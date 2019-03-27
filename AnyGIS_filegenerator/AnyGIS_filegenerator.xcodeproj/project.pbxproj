@@ -24,6 +24,7 @@
 		33B76E25224BE4ED0010E35E /* GuruTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E24224BE4ED0010E35E /* GuruTemplates.swift */; };
 		33B76E27224BE5000010E35E /* OruxTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E26224BE5000010E35E /* OruxTemplates.swift */; };
 		33B76E29224BE5D40010E35E /* ClientAppList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E28224BE5D40010E35E /* ClientAppList.swift */; };
+		33B76E2D224BF3CC0010E35E /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E2C224BF3CC0010E35E /* Controller.swift */; };
 		7776365E378A65D45F3E7D03 /* Pods_AnyGIS_filegenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		33B76E24224BE4ED0010E35E /* GuruTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuruTemplates.swift; sourceTree = "<group>"; };
 		33B76E26224BE5000010E35E /* OruxTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OruxTemplates.swift; sourceTree = "<group>"; };
 		33B76E28224BE5D40010E35E /* ClientAppList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientAppList.swift; sourceTree = "<group>"; };
+		33B76E2C224BF3CC0010E35E /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyGIS_filegenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76540C1F1A9B64DFC65558DD /* Pods-AnyGIS_filegenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.release.xcconfig"; sourceTree = "<group>"; };
 		8BDBCAB25AFE578C55D5EBF4 /* Pods-AnyGIS_filegenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 		33B76E00224B90150010E35E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				33B76E2C224BF3CC0010E35E /* Controller.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -121,12 +124,12 @@
 		33B76E02224B90E40010E35E /* Model of Data */ = {
 			isa = PBXGroup;
 			children = (
+				33B76E28224BE5D40010E35E /* ClientAppList.swift */,
 				33B76E20224BD9B40010E35E /* MapClientFilesData.swift */,
 				33B76E1C224BD62A0010E35E /* MapClientFilesDataDB.swift */,
 				33B76E1E224BD9060010E35E /* MapProcessingData.swift */,
 				33B76E18224BD47A0010E35E /* MapProcessingDataDB.swift */,
 				33B76E0F224BA5C40010E35E /* Text templates */,
-				33B76E28224BE5D40010E35E /* ClientAppList.swift */,
 			);
 			path = "Model of Data";
 			sourceTree = "<group>";
@@ -221,10 +224,10 @@
 			isa = PBXGroup;
 			children = (
 				33B76E10224BA66C0010E35E /* FilePatchTemplates.swift */,
-				33B76E16224BC99F0010E35E /* WebPageTemplates.swift */,
-				33B76E22224BE4D70010E35E /* LocusTemplates.swift */,
 				33B76E24224BE4ED0010E35E /* GuruTemplates.swift */,
+				33B76E22224BE4D70010E35E /* LocusTemplates.swift */,
 				33B76E26224BE5000010E35E /* OruxTemplates.swift */,
+				33B76E16224BC99F0010E35E /* WebPageTemplates.swift */,
 			);
 			path = "Text templates";
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				33B76E1F224BD9060010E35E /* MapProcessingData.swift in Sources */,
 				33B76E15224BC7950010E35E /* SqliteHandler.swift in Sources */,
 				33B76E17224BC99F0010E35E /* WebPageTemplates.swift in Sources */,
+				33B76E2D224BF3CC0010E35E /* Controller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
