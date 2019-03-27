@@ -779,6 +779,11 @@
                                     <action selector="generteLocusInstallersBtn:" target="XfG-lQ-9wD" id="VnW-Ky-FXO"/>
                                 </connections>
                             </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="myo-G9-Ipj">
+                                <rect key="frame" x="375" y="37" width="48" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="kaW-mR-STy"/>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="xCj-wA-Tzr" firstAttribute="top" secondItem="xPb-J4-LPj" secondAttribute="bottom" constant="10" id="0Bz-Cx-n03"/>

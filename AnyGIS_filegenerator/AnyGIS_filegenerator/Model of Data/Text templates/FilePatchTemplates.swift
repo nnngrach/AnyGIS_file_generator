@@ -35,7 +35,6 @@ struct FilePatchTemplates {
     let localPathToOruxMapsFullInServer = "file:////Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/orux_full/"
     let localPathToOruxMapsShortInServer = "file:////Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/orux_short/"
     
-//    let localPathToOsmandTemplate = "file://///Projects/GIS/AnyGIS%20server/AnyGIS_Server/osmandTemplate.sqlitedb"
     
     
     

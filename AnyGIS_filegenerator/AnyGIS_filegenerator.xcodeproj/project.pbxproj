@@ -12,15 +12,18 @@
 		3358321322495814001FFC0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3358321222495814001FFC0A /* Assets.xcassets */; };
 		3358321622495814001FFC0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3358321422495814001FFC0A /* Main.storyboard */; };
 		33B76DFF224B8DA70010E35E /* SqlitedbHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */; };
-		33B76E06224B92AC0010E35E /* Temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E05224B92AC0010E35E /* Temp.swift */; };
 		33B76E11224BA66C0010E35E /* FilePatchTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E10224BA66C0010E35E /* FilePatchTemplates.swift */; };
 		33B76E13224BC6830010E35E /* Disk handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E12224BC6830010E35E /* Disk handler.swift */; };
 		33B76E15224BC7950010E35E /* SqliteHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E14224BC7950010E35E /* SqliteHandler.swift */; };
-		33B76E17224BC99F0010E35E /* WebPagesTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E16224BC99F0010E35E /* WebPagesTemplates.swift */; };
+		33B76E17224BC99F0010E35E /* WebPageTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E16224BC99F0010E35E /* WebPageTemplates.swift */; };
 		33B76E19224BD47A0010E35E /* MapProcessingDataDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E18224BD47A0010E35E /* MapProcessingDataDB.swift */; };
 		33B76E1D224BD62A0010E35E /* MapClientFilesDataDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E1C224BD62A0010E35E /* MapClientFilesDataDB.swift */; };
 		33B76E1F224BD9060010E35E /* MapProcessingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E1E224BD9060010E35E /* MapProcessingData.swift */; };
 		33B76E21224BD9B40010E35E /* MapClientFilesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E20224BD9B40010E35E /* MapClientFilesData.swift */; };
+		33B76E23224BE4D70010E35E /* LocusTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E22224BE4D70010E35E /* LocusTemplates.swift */; };
+		33B76E25224BE4ED0010E35E /* GuruTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E24224BE4ED0010E35E /* GuruTemplates.swift */; };
+		33B76E27224BE5000010E35E /* OruxTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E26224BE5000010E35E /* OruxTemplates.swift */; };
+		33B76E29224BE5D40010E35E /* ClientAppList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E28224BE5D40010E35E /* ClientAppList.swift */; };
 		7776365E378A65D45F3E7D03 /* Pods_AnyGIS_filegenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,15 +36,18 @@
 		3358321722495814001FFC0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3358321822495814001FFC0A /* AnyGIS_filegenerator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnyGIS_filegenerator.entitlements; sourceTree = "<group>"; };
 		33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqlitedbHandler.swift; sourceTree = "<group>"; };
-		33B76E05224B92AC0010E35E /* Temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
 		33B76E10224BA66C0010E35E /* FilePatchTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePatchTemplates.swift; sourceTree = "<group>"; };
 		33B76E12224BC6830010E35E /* Disk handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Disk handler.swift"; sourceTree = "<group>"; };
 		33B76E14224BC7950010E35E /* SqliteHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteHandler.swift; sourceTree = "<group>"; };
-		33B76E16224BC99F0010E35E /* WebPagesTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPagesTemplates.swift; sourceTree = "<group>"; };
+		33B76E16224BC99F0010E35E /* WebPageTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPageTemplates.swift; sourceTree = "<group>"; };
 		33B76E18224BD47A0010E35E /* MapProcessingDataDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapProcessingDataDB.swift; sourceTree = "<group>"; };
 		33B76E1C224BD62A0010E35E /* MapClientFilesDataDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapClientFilesDataDB.swift; sourceTree = "<group>"; };
 		33B76E1E224BD9060010E35E /* MapProcessingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapProcessingData.swift; sourceTree = "<group>"; };
 		33B76E20224BD9B40010E35E /* MapClientFilesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapClientFilesData.swift; sourceTree = "<group>"; };
+		33B76E22224BE4D70010E35E /* LocusTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusTemplates.swift; sourceTree = "<group>"; };
+		33B76E24224BE4ED0010E35E /* GuruTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuruTemplates.swift; sourceTree = "<group>"; };
+		33B76E26224BE5000010E35E /* OruxTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OruxTemplates.swift; sourceTree = "<group>"; };
+		33B76E28224BE5D40010E35E /* ClientAppList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientAppList.swift; sourceTree = "<group>"; };
 		72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyGIS_filegenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76540C1F1A9B64DFC65558DD /* Pods-AnyGIS_filegenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.release.xcconfig"; sourceTree = "<group>"; };
 		8BDBCAB25AFE578C55D5EBF4 /* Pods-AnyGIS_filegenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +126,7 @@
 				33B76E1E224BD9060010E35E /* MapProcessingData.swift */,
 				33B76E18224BD47A0010E35E /* MapProcessingDataDB.swift */,
 				33B76E0F224BA5C40010E35E /* Text templates */,
+				33B76E28224BE5D40010E35E /* ClientAppList.swift */,
 			);
 			path = "Model of Data";
 			sourceTree = "<group>";
@@ -213,9 +220,11 @@
 		33B76E0F224BA5C40010E35E /* Text templates */ = {
 			isa = PBXGroup;
 			children = (
-				33B76E05224B92AC0010E35E /* Temp.swift */,
 				33B76E10224BA66C0010E35E /* FilePatchTemplates.swift */,
-				33B76E16224BC99F0010E35E /* WebPagesTemplates.swift */,
+				33B76E16224BC99F0010E35E /* WebPageTemplates.swift */,
+				33B76E22224BE4D70010E35E /* LocusTemplates.swift */,
+				33B76E24224BE4ED0010E35E /* GuruTemplates.swift */,
+				33B76E26224BE5000010E35E /* OruxTemplates.swift */,
 			);
 			path = "Text templates";
 			sourceTree = "<group>";
@@ -352,10 +361,13 @@
 				3358321122495813001FFC0A /* ViewController.swift in Sources */,
 				3358320F22495813001FFC0A /* AppDelegate.swift in Sources */,
 				33B76E19224BD47A0010E35E /* MapProcessingDataDB.swift in Sources */,
+				33B76E25224BE4ED0010E35E /* GuruTemplates.swift in Sources */,
+				33B76E27224BE5000010E35E /* OruxTemplates.swift in Sources */,
+				33B76E29224BE5D40010E35E /* ClientAppList.swift in Sources */,
+				33B76E23224BE4D70010E35E /* LocusTemplates.swift in Sources */,
 				33B76E1F224BD9060010E35E /* MapProcessingData.swift in Sources */,
 				33B76E15224BC7950010E35E /* SqliteHandler.swift in Sources */,
-				33B76E06224B92AC0010E35E /* Temp.swift in Sources */,
-				33B76E17224BC99F0010E35E /* WebPagesTemplates.swift in Sources */,
+				33B76E17224BC99F0010E35E /* WebPageTemplates.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
