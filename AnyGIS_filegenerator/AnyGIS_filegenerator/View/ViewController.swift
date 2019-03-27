@@ -33,6 +33,12 @@ class ViewController: NSViewController {
     }
     
     @IBAction func generateGuruBtn(_ sender: Any) {
+        let handler = SqliteHandler()
+        do {
+            try handler.getMapList()
+        } catch {
+            print(error)
+        }
     }
     
     @IBAction func generateOruxBtn(_ sender: Any) {

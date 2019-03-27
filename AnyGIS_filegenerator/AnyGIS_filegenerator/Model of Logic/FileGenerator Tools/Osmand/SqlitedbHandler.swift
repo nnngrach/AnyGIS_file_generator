@@ -10,13 +10,13 @@ import SQLite
 
 class SqlitedbHandler {
     
-    private let urlTemplates = UrlTemplates.init()
+    private let patchTemplates = FilePatchTemplates.init()
     
 
     
     public func createFile(zoommin: String, zoommax: String, patch: String, projection: Int64) throws {
         
-        let patch = urlTemplates.localPathToOsmandMapsFull + "filename.sqlitedb"
+        let patch = patchTemplates.localPathToOsmandMapsFull + "filename.sqlitedb"
         
         let db = try Connection(patch)
         
@@ -31,7 +31,7 @@ class SqlitedbHandler {
     
     fileprivate func createInfoTable(zoommin: String, zoommax: String, patch: String, projection: Int64, _ db: Connection) throws {
         
-        let users = Table("info")
+        let info = Table("info")
         
         let minzoom = Expression<String?>("minzoom")
         let maxzoom = Expression<String?>("maxzoom")
@@ -42,7 +42,7 @@ class SqlitedbHandler {
         let expireminutes = Expression<String?>("expireminutes")
         let rule = Expression<String?>("rule")
         
-        try db.run(users.create { t in
+        try db.run(info.create { t in
             t.column(minzoom)
             t.column(maxzoom)
             t.column(url)
@@ -53,7 +53,7 @@ class SqlitedbHandler {
             t.column(rule)
         })
         
-        try db.run(users.insert(minzoom <- zoommin,
+        try db.run(info.insert(minzoom <- zoommin,
                                 maxzoom <- zoommax,
                                 url <- patch,
                                 ellipsoid <- projection,
