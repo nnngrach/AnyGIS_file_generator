@@ -13,6 +13,7 @@
 		3358321622495814001FFC0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3358321422495814001FFC0A /* Main.storyboard */; };
 		33B76DFF224B8DA70010E35E /* SqlitedbHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */; };
 		33B76E06224B92AC0010E35E /* Temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E05224B92AC0010E35E /* Temp.swift */; };
+		33B76E11224BA66C0010E35E /* UrlTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E10224BA66C0010E35E /* UrlTemplates.swift */; };
 		7776365E378A65D45F3E7D03 /* Pods_AnyGIS_filegenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		3358321822495814001FFC0A /* AnyGIS_filegenerator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnyGIS_filegenerator.entitlements; sourceTree = "<group>"; };
 		33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqlitedbHandler.swift; sourceTree = "<group>"; };
 		33B76E05224B92AC0010E35E /* Temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
+		33B76E10224BA66C0010E35E /* UrlTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlTemplates.swift; sourceTree = "<group>"; };
 		72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyGIS_filegenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76540C1F1A9B64DFC65558DD /* Pods-AnyGIS_filegenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.release.xcconfig"; sourceTree = "<group>"; };
 		8BDBCAB25AFE578C55D5EBF4 /* Pods-AnyGIS_filegenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -99,7 +101,7 @@
 		33B76E02224B90E40010E35E /* Model of Data */ = {
 			isa = PBXGroup;
 			children = (
-				33B76E05224B92AC0010E35E /* Temp.swift */,
+				33B76E0F224BA5C40010E35E /* Text templates */,
 			);
 			path = "Model of Data";
 			sourceTree = "<group>";
@@ -186,6 +188,15 @@
 			children = (
 			);
 			path = WebPages;
+			sourceTree = "<group>";
+		};
+		33B76E0F224BA5C40010E35E /* Text templates */ = {
+			isa = PBXGroup;
+			children = (
+				33B76E05224B92AC0010E35E /* Temp.swift */,
+				33B76E10224BA66C0010E35E /* UrlTemplates.swift */,
+			);
+			path = "Text templates";
 			sourceTree = "<group>";
 		};
 		BA8C5E00687C3312A9B3E3A1 /* Pods */ = {
@@ -313,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33B76DFF224B8DA70010E35E /* SqlitedbHandler.swift in Sources */,
+				33B76E11224BA66C0010E35E /* UrlTemplates.swift in Sources */,
 				3358321122495813001FFC0A /* ViewController.swift in Sources */,
 				3358320F22495813001FFC0A /* AppDelegate.swift in Sources */,
 				33B76E06224B92AC0010E35E /* Temp.swift in Sources */,
