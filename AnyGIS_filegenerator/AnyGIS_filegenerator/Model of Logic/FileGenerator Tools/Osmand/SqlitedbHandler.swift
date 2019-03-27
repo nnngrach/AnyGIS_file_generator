@@ -10,15 +10,26 @@ import SQLite
 
 class SqlitedbHandler {
     
-    let templates = UrlTemplates.init()
+    private let urlTemplates = UrlTemplates.init()
     
+
     
-    
-    func test() throws {
+    public func createFile(zoommin: String, zoommax: String, patch: String, projection: Int64) throws {
         
-        let patch = templates.localPathToOsmandMapsFull + "filename.sqlitedb"
+        let patch = urlTemplates.localPathToOsmandMapsFull + "filename.sqlitedb"
         
         let db = try Connection(patch)
+        
+        try createTilesTable(db)
+        try createMetadataTable(db)
+        try createInfoTable(zoommin: zoommin, zoommax: zoommax, patch: patch, projection: projection, db)
+    }
+    
+    
+    
+    
+    
+    fileprivate func createInfoTable(zoommin: String, zoommax: String, patch: String, projection: Int64, _ db: Connection) throws {
         
         let users = Table("info")
         
@@ -42,33 +53,22 @@ class SqlitedbHandler {
             t.column(rule)
         })
         
-        try db.run(users.insert(minzoom <- "-3",
-                                maxzoom <- "16",
-                                url <- "http://anygis.herokuapp.com/Osm_Cycle_Map/{1}/{2}/{0}",
-                                ellipsoid <- 0,
+        try db.run(users.insert(minzoom <- zoommin,
+                                maxzoom <- zoommax,
+                                url <- patch,
+                                ellipsoid <- projection,
                                 tilenumbering <- "BigPlanet",
                                 timecolumn <- "0",
                                 expireminutes <- "0",
                                 rule <- nil
         ))
-        
-        
-        
-        
-        let metadata = Table("android_metadata")
-        
-        let locale = Expression<String?>("locale")
-        
-        try db.run(metadata.create { t in
-            t.column(locale)
-        })
-        
-        try db.run(metadata.insert(or: .replace,
-                                locale <- "ru_RU"
-        ))
-        
-        
-        
+    }
+    
+    
+    
+    
+    
+    fileprivate func createTilesTable(_ db: Connection) throws {
         
         let tiles = Table("tiles")
         
@@ -85,15 +85,30 @@ class SqlitedbHandler {
             t.column(s)
             t.column(image)
             t.primaryKey(x, y, z)
-//            t.primaryKey(s)
         })
         
         try db.run(tiles.createIndex(x))
         try db.run(tiles.createIndex(y))
         try db.run(tiles.createIndex(z))
         try db.run(tiles.createIndex(s))
-        
     }
     
+    
+
+    
+    fileprivate func createMetadataTable(_ db: Connection) throws {
+        
+        let metadata = Table("android_metadata")
+        
+        let locale = Expression<String?>("locale")
+        
+        try db.run(metadata.create { t in
+            t.column(locale)
+        })
+        
+        try db.run(metadata.insert(or: .replace,
+                                   locale <- "ru_RU"
+        ))
+    }
     
 }
