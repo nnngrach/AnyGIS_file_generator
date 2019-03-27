@@ -16,7 +16,6 @@
 		165C966AD5FAFA3DFEA69244804AC5AC /* CoreFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCDE75E05980CE165DA7A9FB000B72E /* CoreFunctions.swift */; };
 		2F9D1AD1DB6504708FFD1C8E24E36F97 /* SQLite.h in Headers */ = {isa = PBXBuildFile; fileRef = D78776668AB1495598C875391AB3DF03 /* SQLite.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3131F55D1677ADC7EEC4064444A89231 /* SQLite-Bridging.m in Sources */ = {isa = PBXBuildFile; fileRef = 558D2132EE8F1B05555C249ECF856BD4 /* SQLite-Bridging.m */; };
-		33B76E1B224BD60D0010E35E /* FileGenDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E1A224BD60D0010E35E /* FileGenDB.swift */; };
 		3D68C49A9825FD994FF3EC05438CB0A9 /* Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D309B46DDA94658BE65F0DAA357DBC6 /* Coding.swift */; };
 		3E1B6E20D5633C527F6FF5B9F83A1D27 /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD4443FDDA437E6D4810EE5BA39C4DC0 /* Statement.swift */; };
 		4C200C275F3A9BC33DF7DA95AEA5E382 /* Collation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0897832FB6A5F66F592162D546EF94 /* Collation.swift */; };
@@ -61,7 +60,6 @@
 		2A82296AE8D451DFF0AB16EDAED6BC90 /* Errors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Sources/SQLite/Core/Errors.swift; sourceTree = "<group>"; };
 		2AF7CC5FAB1774F99E00AB65AB38FA4D /* Operators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Sources/SQLite/Typed/Operators.swift; sourceTree = "<group>"; };
 		2EBC58031FA4F3D418F77D3B4BC3E7D2 /* Pods-AnyGIS_filegenerator-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AnyGIS_filegenerator-acknowledgements.markdown"; sourceTree = "<group>"; };
-		33B76E1A224BD60D0010E35E /* FileGenDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileGenDB.swift; path = "../AnyGIS_filegenerator/Model of Data/FileGenDB.swift"; sourceTree = "<group>"; };
 		3B1C49D9367F91212A63FB893E53CEA8 /* Expression.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Expression.swift; path = Sources/SQLite/Typed/Expression.swift; sourceTree = "<group>"; };
 		423FFA4754DC396EAB50F0CC97FEBC1F /* Pods-AnyGIS_filegenerator-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AnyGIS_filegenerator-acknowledgements.plist"; sourceTree = "<group>"; };
 		4D1186CA4926C2B31862EB6B65197428 /* Schema.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Schema.swift; path = Sources/SQLite/Typed/Schema.swift; sourceTree = "<group>"; };
@@ -227,7 +225,6 @@
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
-				33B76E1A224BD60D0010E35E /* FileGenDB.swift */,
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				E0A1E60606E0BF6E2E10F1F01350DFE8 /* Frameworks */,
 				9C7F1875E201FDD0DED29CB3994FA086 /* Pods */,
@@ -390,7 +387,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33B76E1B224BD60D0010E35E /* FileGenDB.swift in Sources */,
 				976E81F1A2E949F51EA99A2A9BCCC5FD /* Pods-AnyGIS_filegenerator-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

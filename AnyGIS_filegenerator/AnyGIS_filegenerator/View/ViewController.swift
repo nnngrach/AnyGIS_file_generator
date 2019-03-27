@@ -35,7 +35,8 @@ class ViewController: NSViewController {
     @IBAction func generateGuruBtn(_ sender: Any) {
         let handler = SqliteHandler()
         do {
-            try handler.getMapList()
+            //try handler.getMapProcessingData()
+            try handler.getMapClientFilesData()
         } catch {
             print(error)
         }

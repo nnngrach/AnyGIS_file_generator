@@ -8,7 +8,7 @@
 
 import SQLite
 
-struct MapListDB {
+struct MapProcessingDataDB {
     
     static let table = Table("MapsList")
     

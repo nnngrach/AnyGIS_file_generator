@@ -8,7 +8,7 @@
 
 import SQLite
 
-struct FileGenDB{
+struct MapClientFilesDataDB {
     
     static let table = Table("FileGeneratorDB")
     
@@ -36,12 +36,12 @@ struct FileGenDB{
     static let forLocus = Expression<Bool?>("forLocus")
     static let forGuru = Expression<Bool?>("forGuru")
     static let forOrux = Expression<Bool?>("forOrux")
-    static let forOsmand = Expression<String?>("forOsmand")
+    static let forOsmand = Expression<Bool?>("forOsmand")
     
-    static let locusLoadAnygis = Expression<String?>("locusLoadAnygis")
-    static let gurumapsLoadAnygis = Expression<String?>("gurumapsLoadAnygis")
-    static let oruxLoadAnygis = Expression<String?>("oruxLoadAnygis")
-    static let osmandLoadAnygis = Expression<String?>("osmandLoadAnygis")
+    static let locusLoadAnygis = Expression<Bool?>("locusLoadAnygis")
+    static let gurumapsLoadAnygis = Expression<Bool?>("gurumapsLoadAnygis")
+    static let oruxLoadAnygis = Expression<Bool?>("oruxLoadAnygis")
+    static let osmandLoadAnygis = Expression<Bool?>("osmandLoadAnygis")
 
     static let cacheStoringHours = Expression<Int64?>("cacheStoringHours")
 
