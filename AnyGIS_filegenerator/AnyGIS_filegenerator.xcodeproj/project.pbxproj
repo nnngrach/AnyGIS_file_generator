@@ -11,6 +11,8 @@
 		3358321122495813001FFC0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3358321022495813001FFC0A /* ViewController.swift */; };
 		3358321322495814001FFC0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3358321222495814001FFC0A /* Assets.xcassets */; };
 		3358321622495814001FFC0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3358321422495814001FFC0A /* Main.storyboard */; };
+		33B76DFF224B8DA70010E35E /* SqlitedbHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */; };
+		33B76E06224B92AC0010E35E /* Temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E05224B92AC0010E35E /* Temp.swift */; };
 		7776365E378A65D45F3E7D03 /* Pods_AnyGIS_filegenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,6 +24,8 @@
 		3358321522495814001FFC0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3358321722495814001FFC0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3358321822495814001FFC0A /* AnyGIS_filegenerator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnyGIS_filegenerator.entitlements; sourceTree = "<group>"; };
+		33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqlitedbHandler.swift; sourceTree = "<group>"; };
+		33B76E05224B92AC0010E35E /* Temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
 		72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyGIS_filegenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76540C1F1A9B64DFC65558DD /* Pods-AnyGIS_filegenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.release.xcconfig"; sourceTree = "<group>"; };
 		8BDBCAB25AFE578C55D5EBF4 /* Pods-AnyGIS_filegenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -68,14 +72,120 @@
 		3358320D22495813001FFC0A /* AnyGIS_filegenerator */ = {
 			isa = PBXGroup;
 			children = (
-				3358320E22495813001FFC0A /* AppDelegate.swift */,
-				3358321022495813001FFC0A /* ViewController.swift */,
-				3358321222495814001FFC0A /* Assets.xcassets */,
-				3358321422495814001FFC0A /* Main.storyboard */,
-				3358321722495814001FFC0A /* Info.plist */,
-				3358321822495814001FFC0A /* AnyGIS_filegenerator.entitlements */,
+				33B76E00224B90150010E35E /* Controller */,
+				33B76E02224B90E40010E35E /* Model of Data */,
+				33B76E03224B90EF0010E35E /* Model of Logic */,
+				33B76E04224B91140010E35E /* Supporting files */,
+				33B76E01224B90420010E35E /* View */,
 			);
 			path = AnyGIS_filegenerator;
+			sourceTree = "<group>";
+		};
+		33B76E00224B90150010E35E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		33B76E01224B90420010E35E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3358321022495813001FFC0A /* ViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		33B76E02224B90E40010E35E /* Model of Data */ = {
+			isa = PBXGroup;
+			children = (
+				33B76E05224B92AC0010E35E /* Temp.swift */,
+			);
+			path = "Model of Data";
+			sourceTree = "<group>";
+		};
+		33B76E03224B90EF0010E35E /* Model of Logic */ = {
+			isa = PBXGroup;
+			children = (
+				33B76E07224B92FA0010E35E /* DataBase Tools */,
+				33B76E09224B93480010E35E /* Disk Tools */,
+				33B76E08224B93240010E35E /* FileGenerator Tools */,
+			);
+			path = "Model of Logic";
+			sourceTree = "<group>";
+		};
+		33B76E04224B91140010E35E /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				3358321822495814001FFC0A /* AnyGIS_filegenerator.entitlements */,
+				3358320E22495813001FFC0A /* AppDelegate.swift */,
+				3358321222495814001FFC0A /* Assets.xcassets */,
+				3358321722495814001FFC0A /* Info.plist */,
+				3358321422495814001FFC0A /* Main.storyboard */,
+			);
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		33B76E07224B92FA0010E35E /* DataBase Tools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "DataBase Tools";
+			sourceTree = "<group>";
+		};
+		33B76E08224B93240010E35E /* FileGenerator Tools */ = {
+			isa = PBXGroup;
+			children = (
+				33B76E0B224B93780010E35E /* GuruMaps */,
+				33B76E0A224B93720010E35E /* Locus */,
+				33B76E0C224B93800010E35E /* Orux */,
+				33B76E0D224B938A0010E35E /* Osmand */,
+				33B76E0E224B93920010E35E /* WebPages */,
+			);
+			path = "FileGenerator Tools";
+			sourceTree = "<group>";
+		};
+		33B76E09224B93480010E35E /* Disk Tools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Disk Tools";
+			sourceTree = "<group>";
+		};
+		33B76E0A224B93720010E35E /* Locus */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Locus;
+			sourceTree = "<group>";
+		};
+		33B76E0B224B93780010E35E /* GuruMaps */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GuruMaps;
+			sourceTree = "<group>";
+		};
+		33B76E0C224B93800010E35E /* Orux */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Orux;
+			sourceTree = "<group>";
+		};
+		33B76E0D224B938A0010E35E /* Osmand */ = {
+			isa = PBXGroup;
+			children = (
+				33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */,
+			);
+			path = Osmand;
+			sourceTree = "<group>";
+		};
+		33B76E0E224B93920010E35E /* WebPages */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WebPages;
 			sourceTree = "<group>";
 		};
 		BA8C5E00687C3312A9B3E3A1 /* Pods */ = {
@@ -202,8 +312,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33B76DFF224B8DA70010E35E /* SqlitedbHandler.swift in Sources */,
 				3358321122495813001FFC0A /* ViewController.swift in Sources */,
 				3358320F22495813001FFC0A /* AppDelegate.swift in Sources */,
+				33B76E06224B92AC0010E35E /* Temp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,7 +457,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = S8QJHQB6QT;
-				INFOPLIST_FILE = AnyGIS_filegenerator/Info.plist;
+				INFOPLIST_FILE = "AnyGIS_filegenerator/Supporting files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -365,7 +477,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = S8QJHQB6QT;
-				INFOPLIST_FILE = AnyGIS_filegenerator/Info.plist;
+				INFOPLIST_FILE = "AnyGIS_filegenerator/Supporting files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

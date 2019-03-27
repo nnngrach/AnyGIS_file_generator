@@ -718,6 +718,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="generateAllBtn:" target="XfG-lQ-9wD" id="1es-kH-CY7"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d7e-PX-1eT">
                                 <rect key="frame" x="117" y="181" width="247" height="32"/>
@@ -725,6 +728,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="generateGuruBtn:" target="XfG-lQ-9wD" id="pfK-Hj-Bqt"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xPb-J4-LPj">
                                 <rect key="frame" x="117" y="150" width="247" height="32"/>
@@ -732,6 +738,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="generateOruxBtn:" target="XfG-lQ-9wD" id="P8p-xc-iH0"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xCj-wA-Tzr">
                                 <rect key="frame" x="117" y="119" width="247" height="32"/>
@@ -739,6 +748,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="generateLocusBtn:" target="XfG-lQ-9wD" id="JjZ-16-01l"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pkh-kJ-s9r">
                                 <rect key="frame" x="117" y="57" width="247" height="32"/>
@@ -746,6 +758,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="generateOsmandBtn:" target="XfG-lQ-9wD" id="iRt-dp-vBm"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mh7-kW-HkE">
                                 <rect key="frame" x="117" y="26" width="247" height="32"/>
@@ -760,6 +775,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="generteLocusInstallersBtn:" target="XfG-lQ-9wD" id="VnW-Ky-FXO"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
