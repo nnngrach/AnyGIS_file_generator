@@ -41,7 +41,7 @@ struct GuruTemplates {
     
     
     
-    func getGuruMapsItem(url: String, zoomMin: Int, zoomMax: Int, serverParts: String) -> String {
+    func getGuruMapsItem(url: String, zoomMin: Int64, zoomMax: Int64, serverParts: String) -> String {
         
         let firtstPart = """
         <layer>

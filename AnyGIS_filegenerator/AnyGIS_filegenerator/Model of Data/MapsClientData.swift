@@ -8,7 +8,7 @@
 
 import SQLite
 
-struct MapClientFilesData {
+struct MapsClientData {
     
     let id: Int64
     let anygisMapName: String

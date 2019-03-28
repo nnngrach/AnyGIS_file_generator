@@ -8,7 +8,7 @@
 
 import SQLite
 
-struct MapClientFilesDataDB {
+struct MapsClientDataDB {
     
     static let table = Table("FileGeneratorDB")
     

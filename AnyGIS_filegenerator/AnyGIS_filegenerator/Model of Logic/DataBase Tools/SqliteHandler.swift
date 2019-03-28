@@ -16,25 +16,28 @@ class SqliteHandler {
     
     
     
-    public func getMapProcessingData() throws -> [MapProcessingData] {
+    public func getMapsServerData() throws -> [MapsServerData] {
         
-        var result: [MapProcessingData] = []
+        var result: [MapsServerData] = []
         
         let connection = try Connection(patchTemplates.dataBasePatch, readonly: true)
         
-        let rawTable = try connection.prepare(MapProcessingDataDB.table)
+        //let rawTable = try connection.prepare(MapProcessingDataDB.table)
         
+        let rawTable = try connection
+            .prepare(MapsServerDataDB.table
+                .order(MapsServerDataDB.name))
         
         
         for rawLine in rawTable {
 
-            let item = MapProcessingData(name: rawLine[MapProcessingDataDB.name]!,
-                      mode: rawLine[MapProcessingDataDB.mode]!,
-                      backgroundUrl: rawLine[MapProcessingDataDB.backgroundUrl]!,
-                      backgroundServerName: rawLine[MapProcessingDataDB.backgroundServerName]!,
-                      referer: rawLine[MapProcessingDataDB.referer]!,
-                      zoomMin: rawLine[MapProcessingDataDB.zoomMin]!,
-                      zoomMax: rawLine[MapProcessingDataDB.zoomMax]!
+            let item = MapsServerData(name: rawLine[MapsServerDataDB.name]!,
+                      mode: rawLine[MapsServerDataDB.mode]!,
+                      backgroundUrl: rawLine[MapsServerDataDB.backgroundUrl]!,
+                      backgroundServerName: rawLine[MapsServerDataDB.backgroundServerName]!,
+                      referer: rawLine[MapsServerDataDB.referer]!,
+                      zoomMin: rawLine[MapsServerDataDB.zoomMin]!,
+                      zoomMax: rawLine[MapsServerDataDB.zoomMax]!
             )
             
             result.append(item)
@@ -47,43 +50,47 @@ class SqliteHandler {
     
     
     
-    public func getMapClientFilesData() throws -> [MapClientFilesData] {
+    public func getMapsClientData() throws -> [MapsClientData] {
         
-        var result: [MapClientFilesData] = []
+        var result: [MapsClientData] = []
         
         let connection = try Connection(patchTemplates.dataBasePatch, readonly: true)
         
-        let rawTable = try connection.prepare(MapClientFilesDataDB.table)
+        //let rawTable = try connection.prepare(MapClientFilesDataDB.table)
+        
+        let rawTable = try connection
+            .prepare(MapsClientDataDB.table
+            .order(MapsClientDataDB.order, MapsClientDataDB.shortName))
         
         
         for rawLine in rawTable {
             
-            let item = MapClientFilesData(id: rawLine[MapClientFilesDataDB.id]!,
-                          anygisMapName: rawLine[MapClientFilesDataDB.anygisMapName]!,
-                          order: rawLine[MapClientFilesDataDB.order]!,
-                          isInStarterSet: rawLine[MapClientFilesDataDB.isInStarterSet]!,
-                          groupName: rawLine[MapClientFilesDataDB.groupName]!,
-                          groupNameEng: rawLine[MapClientFilesDataDB.groupNameEng]!,
-                          shortName: rawLine[MapClientFilesDataDB.shortName]!,
-                          shortNameEng: rawLine[MapClientFilesDataDB.shortNameEng]!,
-                          groupPrefix: rawLine[MapClientFilesDataDB.groupPrefix]!,
-                          oruxGroupPrefix: rawLine[MapClientFilesDataDB.oruxGroupPrefix]!,
-                          clientMapName: rawLine[MapClientFilesDataDB.clientMapName]!,
-                          projection: rawLine[MapClientFilesDataDB.projection]!,
-                          layersIDList: rawLine[MapClientFilesDataDB.layersIDList]!,
-                          visible: rawLine[MapClientFilesDataDB.visible]!,
-                          countries: rawLine[MapClientFilesDataDB.countries]!,
-                          usage: rawLine[MapClientFilesDataDB.usage]!,
-                          forLocus: rawLine[MapClientFilesDataDB.forLocus]!,
-                          forGuru: rawLine[MapClientFilesDataDB.forGuru]!,
-                          forOrux: rawLine[MapClientFilesDataDB.forOrux]!,
-                          forOsmand: rawLine[MapClientFilesDataDB.forOsmand]!,
-                          locusLoadAnygis: rawLine[MapClientFilesDataDB.locusLoadAnygis]!,
-                          gurumapsLoadAnygis: rawLine[MapClientFilesDataDB.gurumapsLoadAnygis]!,
-                          oruxLoadAnygis: rawLine[MapClientFilesDataDB.oruxLoadAnygis]!,
-                          osmandLoadAnygis: rawLine[MapClientFilesDataDB.osmandLoadAnygis]!,
-                          cacheStoringHours: rawLine[MapClientFilesDataDB.cacheStoringHours]!,
-                          comment: rawLine[MapClientFilesDataDB.comment]!)
+            let item = MapsClientData(id: rawLine[MapsClientDataDB.id]!,
+                          anygisMapName: rawLine[MapsClientDataDB.anygisMapName]!,
+                          order: rawLine[MapsClientDataDB.order]!,
+                          isInStarterSet: rawLine[MapsClientDataDB.isInStarterSet]!,
+                          groupName: rawLine[MapsClientDataDB.groupName]!,
+                          groupNameEng: rawLine[MapsClientDataDB.groupNameEng]!,
+                          shortName: rawLine[MapsClientDataDB.shortName]!,
+                          shortNameEng: rawLine[MapsClientDataDB.shortNameEng]!,
+                          groupPrefix: rawLine[MapsClientDataDB.groupPrefix]!,
+                          oruxGroupPrefix: rawLine[MapsClientDataDB.oruxGroupPrefix]!,
+                          clientMapName: rawLine[MapsClientDataDB.clientMapName]!,
+                          projection: rawLine[MapsClientDataDB.projection]!,
+                          layersIDList: rawLine[MapsClientDataDB.layersIDList]!,
+                          visible: rawLine[MapsClientDataDB.visible]!,
+                          countries: rawLine[MapsClientDataDB.countries]!,
+                          usage: rawLine[MapsClientDataDB.usage]!,
+                          forLocus: rawLine[MapsClientDataDB.forLocus]!,
+                          forGuru: rawLine[MapsClientDataDB.forGuru]!,
+                          forOrux: rawLine[MapsClientDataDB.forOrux]!,
+                          forOsmand: rawLine[MapsClientDataDB.forOsmand]!,
+                          locusLoadAnygis: rawLine[MapsClientDataDB.locusLoadAnygis]!,
+                          gurumapsLoadAnygis: rawLine[MapsClientDataDB.gurumapsLoadAnygis]!,
+                          oruxLoadAnygis: rawLine[MapsClientDataDB.oruxLoadAnygis]!,
+                          osmandLoadAnygis: rawLine[MapsClientDataDB.osmandLoadAnygis]!,
+                          cacheStoringHours: rawLine[MapsClientDataDB.cacheStoringHours]!,
+                          comment: rawLine[MapsClientDataDB.comment]!)
             
             
             result.append(item)

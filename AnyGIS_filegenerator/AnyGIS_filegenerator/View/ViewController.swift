@@ -36,7 +36,7 @@ class ViewController: NSViewController {
         let handler = SqliteHandler()
         do {
             //try handler.getMapProcessingData()
-            try handler.getMapClientFilesData()
+            try handler.getMapsClientData()
         } catch {
             print(error)
         }

@@ -8,7 +8,7 @@
 
 import SQLite
 
-struct MapProcessingData {
+struct MapsServerData {
     
     let name: String
     let mode: String
