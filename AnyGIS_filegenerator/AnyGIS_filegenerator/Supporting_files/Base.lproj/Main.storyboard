@@ -765,6 +765,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="generateWebPagesBtn:" target="XfG-lQ-9wD" id="tSs-kf-Ks4"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fL3-Uq-rlP">
                                 <rect key="frame" x="117" y="88" width="247" height="32"/>

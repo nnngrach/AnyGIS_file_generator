@@ -9,7 +9,9 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
+    
+    private let controller = Controller()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,42 +24,35 @@ class ViewController: NSViewController {
         }
     }
 
+    
+    
     @IBAction func generateAllBtn(_ sender: Any) {
-        let controller = Controller()
-        //try controller.generateAll()
-        
-        //let handler = SqlitedbHandler()
-        do {
-            try controller.generateAll()
-            //try handler.createFile(zoommin: "-3", zoommax: "16", patch: "url", projection: 0 )
-        } catch {
-           print(error)
-        }
-        
+        controller.generateAll()
     }
     
     @IBAction func generateGuruBtn(_ sender: Any) {
-        let handler = SqliteHandler()
-        do {
-            //try handler.getMapProcessingData()
-            try handler.getMapsClientData()
-        } catch {
-            print(error)
-        }
+        controller.generateMapsForGuru()
     }
     
     @IBAction func generateOruxBtn(_ sender: Any) {
+        controller.generateMapsForOrux()
     }
     
     @IBAction func generateLocusBtn(_ sender: Any) {
+        controller.generateMapsForLocus()
     }
     
     @IBAction func generteLocusInstallersBtn(_ sender: Any) {
+        controller.generateInstallersForLocus()
     }
     
     @IBAction func generateOsmandBtn(_ sender: Any) {
+        controller.generateMapsForOsmand()
     }
     
-
+    @IBAction func generateWebPagesBtn(_ sender: Any) {
+        controller.generateWebPages()
+    }
+    
 }
 

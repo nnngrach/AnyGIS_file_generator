@@ -110,8 +110,6 @@
 		3358320D22495813001FFC0A /* AnyGIS_filegenerator */ = {
 			isa = PBXGroup;
 			children = (
-				3358321722495814001FFC0A /* Info.plist */,
-				3358321822495814001FFC0A /* AnyGIS_filegenerator.entitlements */,
 				33B76E00224B90150010E35E /* Controller */,
 				33B76E02224B90E40010E35E /* Model of Data */,
 				33B76E03224B90EF0010E35E /* Model of Logic */,
@@ -163,6 +161,8 @@
 		33B76E04224B91140010E35E /* Supporting_files */ = {
 			isa = PBXGroup;
 			children = (
+				3358321822495814001FFC0A /* AnyGIS_filegenerator.entitlements */,
+				3358321722495814001FFC0A /* Info.plist */,
 				3358320E22495813001FFC0A /* AppDelegate.swift */,
 				3358321222495814001FFC0A /* Assets.xcassets */,
 				3358321422495814001FFC0A /* Main.storyboard */,
@@ -545,12 +545,12 @@
 			baseConfigurationReference = 8BDBCAB25AFE578C55D5EBF4 /* Pods-AnyGIS_filegenerator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = AnyGIS_filegenerator/AnyGIS_filegenerator.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AnyGIS_filegenerator/Supporting_files/AnyGIS_filegenerator.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = S8QJHQB6QT;
-				INFOPLIST_FILE = AnyGIS_filegenerator/Info.plist;
+				INFOPLIST_FILE = AnyGIS_filegenerator/Supporting_files/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -567,12 +567,12 @@
 			baseConfigurationReference = 76540C1F1A9B64DFC65558DD /* Pods-AnyGIS_filegenerator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = AnyGIS_filegenerator/AnyGIS_filegenerator.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AnyGIS_filegenerator/Supporting_files/AnyGIS_filegenerator.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = S8QJHQB6QT;
-				INFOPLIST_FILE = AnyGIS_filegenerator/Info.plist;
+				INFOPLIST_FILE = AnyGIS_filegenerator/Supporting_files/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
