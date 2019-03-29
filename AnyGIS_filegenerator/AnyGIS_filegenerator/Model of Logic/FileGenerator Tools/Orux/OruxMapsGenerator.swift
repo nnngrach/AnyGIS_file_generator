@@ -1,14 +1,4 @@
 //
-//  OruxGenerator.swift
-//  AnyGIS_filegenerator
-//
-//  Created by HR_book on 28/03/2019.
-//  Copyright © 2019 Nnngrach. All rights reserved.
-//
-
-import Foundation
-
-//
 //  GuruMapsGenerator.swift
 //  AnyGIS_filegenerator
 //
@@ -25,6 +15,7 @@ class OruxMapsGenerator {
     private let webTemplates = WebPageTemplates()
     private let oruxTemplates = OruxTemplates()
     private let patchTemplates = FilePatchTemplates()
+    
 
     
     public func createAll(isShortSet: Bool) throws {

@@ -13,18 +13,19 @@ class Controller {
     private let diskHandler = DiskHandler()
     private let patchTemplates = FilePatchTemplates()
     
-    private let locusInstallerGeneretor = LocusInstallersGenerator()
-    private let markdownPagesGenerator = MarkdownPagesGenerator()
     private let guruMapsGenerator = GuruMapsGenerator()
     private let oruxMapsGenerator = OruxMapsGenerator()
     private let locusMapsGenerator = LocusMapsGenerator()
+    private let osmandMapsGenerator = OsmandMapsGenerator()
+    private let markdownPagesGenerator = MarkdownPagesGenerator()
+    private let locusInstallerGeneretor = LocusInstallersGenerator()
     
     
     public func generateAll() {
         generateWebPages()
         generateMapsForGuru()
         generateMapsForOrux()
-        //generateMapsForOsmand()
+        generateMapsForOsmand()
         generateMapsForLocus()
         generateInstallersForLocus()
     }
@@ -89,8 +90,8 @@ class Controller {
         diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsShort)
         
         do {
-            //try osmandMapsGenerator.createAll(isShortSet: true)
-            //try osmandMapsGenerator.createAll(isShortSet: false)
+            try osmandMapsGenerator.createAll(isShortSet: true)
+            try osmandMapsGenerator.createAll(isShortSet: false)
         } catch {
             print(error)
         }

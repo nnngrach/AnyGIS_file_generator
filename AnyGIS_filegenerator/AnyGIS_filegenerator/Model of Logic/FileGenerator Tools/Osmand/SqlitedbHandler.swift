@@ -14,11 +14,13 @@ class SqlitedbHandler {
     
 
     
-    public func createFile(zoommin: String, zoommax: String, patch: String, projection: Int64) throws {
+    public func createFile(isShortSet: Bool, filename: String, zoommin: String, zoommax: String, patch: String, projection: Int64) throws {
         
-        let patch = patchTemplates.localPathToOsmandMapsFull + "filename.sqlitedb"
+        let folderPatch = isShortSet ? patchTemplates.localPathToOsmandMapsShort : patchTemplates.localPathToOsmandMapsFull
         
-        let db = try Connection(patch)
+        let filePatch = folderPatch + filename + ".sqlitedb"
+        
+        let db = try Connection(filePatch)
         
         try createTilesTable(db)
         try createMetadataTable(db)
