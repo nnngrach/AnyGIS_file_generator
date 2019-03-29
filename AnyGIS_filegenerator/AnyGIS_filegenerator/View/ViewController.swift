@@ -23,9 +23,13 @@ class ViewController: NSViewController {
     }
 
     @IBAction func generateAllBtn(_ sender: Any) {
-        let handler = SqlitedbHandler()
+        let controller = Controller()
+        //try controller.generateAll()
+        
+        //let handler = SqlitedbHandler()
         do {
-            try handler.createFile(zoommin: "-3", zoommax: "16", patch: "url", projection: 0 )
+            try controller.generateAll()
+            //try handler.createFile(zoommin: "-3", zoommax: "16", patch: "url", projection: 0 )
         } catch {
            print(error)
         }
