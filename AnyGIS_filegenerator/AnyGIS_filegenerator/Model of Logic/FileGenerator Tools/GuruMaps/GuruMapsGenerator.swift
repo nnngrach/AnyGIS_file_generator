@@ -3,18 +3,18 @@
 //  AnyGIS_filegenerator
 //
 //  Created by HR_book on 28/03/2019.
-//  Copyright © 2019 H.Rach. All rights reserved.
+//  Copyright © 2019 Nnngrach. All rights reserved.
 //
 
 import Foundation
 
 class GuruMapsGenerator {
     
-    let diskHandler = DiskHandler()
-    let baseHandler = SqliteHandler()
-    let webTemplates = WebPageTemplates()
-    let guruTemplates = GuruTemplates()
-    let patchTemplates = FilePatchTemplates()
+    private let diskHandler = DiskHandler()
+    private let baseHandler = SqliteHandler()
+    private let webTemplates = WebPageTemplates()
+    private let guruTemplates = GuruTemplates()
+    private let patchTemplates = FilePatchTemplates()
     
     
     

@@ -3,18 +3,18 @@
 //  AnyGIS_filegenerator
 //
 //  Created by HR_book on 29/03/2019.
-//  Copyright © 2019 H.Rach. All rights reserved.
+//  Copyright © 2019 Nnngrach. All rights reserved.
 //
 
 import Foundation
 
 class LocusMapsGenerator {
     
-    let diskHandler = DiskHandler()
-    let baseHandler = SqliteHandler()
-    let webTemplates = WebPageTemplates()
-    let locusTemplates = LocusMapsTemplates()
-    let patchTemplates = FilePatchTemplates()
+    private let diskHandler = DiskHandler()
+    private let baseHandler = SqliteHandler()
+    private let webTemplates = WebPageTemplates()
+    private let locusTemplates = LocusMapsTemplates()
+    private let patchTemplates = FilePatchTemplates()
     
     
     public func createAll(isShortSet: Bool) throws {

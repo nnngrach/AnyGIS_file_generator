@@ -3,7 +3,7 @@
 //  AnyGIS_filegenerator
 //
 //  Created by HR_book on 28/03/2019.
-//  Copyright © 2019 H.Rach. All rights reserved.
+//  Copyright © 2019 Nnngrach. All rights reserved.
 //
 
 import Foundation
@@ -13,18 +13,18 @@ import Foundation
 //  AnyGIS_filegenerator
 //
 //  Created by HR_book on 28/03/2019.
-//  Copyright © 2019 H.Rach. All rights reserved.
+//  Copyright © 2019 Nnngrach. All rights reserved.
 //
 
 import Foundation
 
 class OruxMapsGenerator {
     
-    let diskHandler = DiskHandler()
-    let baseHandler = SqliteHandler()
-    let webTemplates = WebPageTemplates()
-    let oruxTemplates = OruxTemplates()
-    let patchTemplates = FilePatchTemplates()
+    private let diskHandler = DiskHandler()
+    private let baseHandler = SqliteHandler()
+    private let webTemplates = WebPageTemplates()
+    private let oruxTemplates = OruxTemplates()
+    private let patchTemplates = FilePatchTemplates()
 
     
     public func createAll(isShortSet: Bool) throws {

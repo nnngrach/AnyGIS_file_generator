@@ -3,7 +3,7 @@
 //  AnyGIS_filegenerator
 //
 //  Created by HR_book on 27/03/2019.
-//  Copyright © 2019 H.Rach. All rights reserved.
+//  Copyright © 2019 Nnngrach. All rights reserved.
 //
 
 import SQLite
