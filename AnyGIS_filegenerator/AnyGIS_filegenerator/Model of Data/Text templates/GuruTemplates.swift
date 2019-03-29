@@ -16,18 +16,6 @@ struct GuruTemplates {
     
     func getFileIntro(mapName: String, comment: String) -> String {
         
-        var secondDescription = ""
-        
-        if comment.replacingOccurrences(of: " ", with: "") != "" {
-            secondDescription = """
-            <!--
-            \(comment)
-            -->
-            
-            """
-        }
-        
-        
         return """
         <?xml version="1.0" encoding="utf-8"?>
         
