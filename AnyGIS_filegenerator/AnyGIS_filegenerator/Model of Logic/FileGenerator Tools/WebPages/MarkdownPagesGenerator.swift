@@ -24,7 +24,6 @@ class MarkdownPagesGenerator {
         let lastPart = isShortSet ? "_Short.md" : "_Full.md"
         let fullFileName = firstPart + lastPart
         
-        let mapsServerTable = try baseHandler.getMapsServerData()
         let mapsClientTable = try baseHandler.getMapsClientData()
         
         // Add first part of content
