@@ -13,7 +13,7 @@ struct OruxTemplates {
     
     //MARK: Templates for Orux maps XML
     
-    func getOruxMapIntro() -> String {
+    func getFileIntro() -> String {
         return """
         <?xml version="1.0" encoding="utf-8"?>
         <onlinemapsources>
@@ -22,7 +22,7 @@ struct OruxTemplates {
     }
     
     
-    func getOruxMapsItem(id: Int, projectionName: String, name: String, group: String, url: String, serverParts: String, zoomMin: Int, zoomMax: Int, cacheable: Int, yInvertingScript: String) -> String {
+    func getItem(id: Int64, projectionName: String, name: String, group: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, cacheable: Int, yInvertingScript: String) -> String {
         
         
         return """
@@ -46,7 +46,7 @@ struct OruxTemplates {
     }
     
     
-    func getOutroMapOutro() -> String {
+    func getFileOutro() -> String {
         return """
         
         

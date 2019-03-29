@@ -32,11 +32,11 @@ class GuruMapsGenerator {
             
             
             // Start content agregation
-            var content = guruTemplates.getGuruMapIntro(mapName: mapClientLine.shortName, comment: mapClientLine.comment)
+            var content = guruTemplates.getFileIntro(mapName: mapClientLine.shortName, comment: mapClientLine.comment)
             
             content += generateLayersContent(mapClientLine.id, mapClientLine.layersIDList, mapsClientTable, mapsServerTable)
             
-            content += guruTemplates.getGuruMapOutro()
+            content += guruTemplates.getFileOutro()
             
             
             // Create file
@@ -62,13 +62,13 @@ class GuruMapsGenerator {
     
     
     
-     private func generateLayersContent(_ currentID: Int64, _ layersIdList: String, _ clientMapsTable: [MapsClientData], _ allMapsTable: [MapsServerData]) -> String {
+     private func generateLayersContent(_ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData]) -> String {
         
         var content = ""
         
         if layersIdList == "-1" {
             
-            content += addLayerBlock(locusId: currentID, clientMapsTable, allMapsTable)
+            content += addLayerBlock(locusId: currentID, mapsClientTable, mapsServerTable)
             
         } else {
             
@@ -80,7 +80,7 @@ class GuruMapsGenerator {
             
             for i in 0 ... layersId.count {
                 
-                content += addLayerBlock(locusId: loadId[i], clientMapsTable, allMapsTable)
+                content += addLayerBlock(locusId: loadId[i], mapsClientTable, mapsServerTable)
                 
             }
         }
@@ -92,23 +92,23 @@ class GuruMapsGenerator {
     
     
     
-    private func addLayerBlock(locusId: Int64, _ clientMapsTable: [MapsClientData], _ allMapsTable: [MapsServerData]) -> String {
+    private func addLayerBlock(locusId: Int64, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData]) -> String {
         
-        let clientMapsLine = clientMapsTable.filter {$0.id == locusId}.first!
+        let mapClientLine = mapsClientTable.filter {$0.id == locusId}.first!
         
-        let allMapsLine = allMapsTable.filter {$0.name == clientMapsLine.anygisMapName}.first!
+        let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
         
         // Prepare Url and server parts
-        var url = clientMapsLine.gurumapsLoadAnygis ? webTemplates.anygisMapUrl : allMapsLine.backgroundUrl
+        var url = mapClientLine.gurumapsLoadAnygis ? webTemplates.anygisMapUrl : mapServerLine.backgroundUrl
         
-        url = prepareUrl(url: url, mapName: allMapsLine.name)
+        url = prepareUrl(url: url, mapName: mapServerLine.name)
         
         
         var serverParts = ""
         
-        if !clientMapsLine.gurumapsLoadAnygis {
+        if !mapClientLine.gurumapsLoadAnygis {
             
-            for i in allMapsLine.backgroundServerName {
+            for i in mapServerLine.backgroundServerName {
                 
                 serverParts.append(i)
                 
@@ -116,7 +116,7 @@ class GuruMapsGenerator {
             }
         }
         
-        return guruTemplates.getGuruMapsItem(url: url, zoomMin: allMapsLine.zoomMin, zoomMax: allMapsLine.zoomMax, serverParts: serverParts)
+        return guruTemplates.getItem(url: url, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, serverParts: serverParts)
     }
     
     

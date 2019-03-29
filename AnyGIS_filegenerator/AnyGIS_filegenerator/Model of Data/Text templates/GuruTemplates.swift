@@ -14,7 +14,7 @@ struct GuruTemplates {
     
     //MARK: Templates for GuruMaps (Galileo) maps MS
     
-    func getGuruMapIntro(mapName: String, comment: String) -> String {
+    func getFileIntro(mapName: String, comment: String) -> String {
         
         var secondDescription = ""
         
@@ -41,7 +41,7 @@ struct GuruTemplates {
     
     
     
-    func getGuruMapsItem(url: String, zoomMin: Int64, zoomMax: Int64, serverParts: String) -> String {
+    func getItem(url: String, zoomMin: Int64, zoomMax: Int64, serverParts: String) -> String {
         
         let firtstPart = """
         <layer>
@@ -71,7 +71,7 @@ struct GuruTemplates {
     
     
     
-    func getGuruMapOutro() -> String {
+    func getFileOutro() -> String {
         return """
         
         </layers>
