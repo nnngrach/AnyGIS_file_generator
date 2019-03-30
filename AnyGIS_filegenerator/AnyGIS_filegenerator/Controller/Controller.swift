@@ -102,14 +102,23 @@ class Controller {
         diskHandler.cleanFolder(patch: patchTemplates.localPathToMarkdownPages)
         
         do {
-            try markdownPagesGenerator.createMarkdownPage(appName: .Locus, isShortSet: true)
-            try markdownPagesGenerator.createMarkdownPage(appName: .Locus, isShortSet: false)
-            try markdownPagesGenerator.createMarkdownPage(appName: .GuruMapsAndroid, isShortSet: true)
-            try markdownPagesGenerator.createMarkdownPage(appName: .GuruMapsAndroid, isShortSet: false)
-            try markdownPagesGenerator.createMarkdownPage(appName: .GuruMapsIOS, isShortSet: true)
-            try markdownPagesGenerator.createMarkdownPage(appName: .GuruMapsIOS, isShortSet: false)
-            try markdownPagesGenerator.createMarkdownPage(appName: .Osmand, isShortSet: true)
-            try markdownPagesGenerator.createMarkdownPage(appName: .Osmand, isShortSet: false)
+            try markdownPagesGenerator.createMarkdownPage(appName: .Locus, isShortSet: true, isEnglish: false)
+            try markdownPagesGenerator.createMarkdownPage(appName: .Locus, isShortSet: false, isEnglish: false)
+            try markdownPagesGenerator.createMarkdownPage(appName: .GuruMapsAndroid, isShortSet: true, isEnglish: false)
+            try markdownPagesGenerator.createMarkdownPage(appName: .GuruMapsAndroid, isShortSet: false, isEnglish: false)
+            try markdownPagesGenerator.createMarkdownPage(appName: .GuruMapsIOS, isShortSet: true, isEnglish: false)
+            try markdownPagesGenerator.createMarkdownPage(appName: .GuruMapsIOS, isShortSet: false, isEnglish: false)
+            try markdownPagesGenerator.createMarkdownPage(appName: .Osmand, isShortSet: true, isEnglish: false)
+            try markdownPagesGenerator.createMarkdownPage(appName: .Osmand, isShortSet: false, isEnglish: false)
+            
+            try markdownPagesGenerator.createMarkdownPage(appName: .Locus, isShortSet: true, isEnglish: true)
+            try markdownPagesGenerator.createMarkdownPage(appName: .Locus, isShortSet: false, isEnglish: true)
+            try markdownPagesGenerator.createMarkdownPage(appName: .GuruMapsAndroid, isShortSet: true, isEnglish: true)
+            try markdownPagesGenerator.createMarkdownPage(appName: .GuruMapsAndroid, isShortSet: false, isEnglish: true)
+            try markdownPagesGenerator.createMarkdownPage(appName: .GuruMapsIOS, isShortSet: true, isEnglish: true)
+            try markdownPagesGenerator.createMarkdownPage(appName: .GuruMapsIOS, isShortSet: false, isEnglish: true)
+            try markdownPagesGenerator.createMarkdownPage(appName: .Osmand, isShortSet: true, isEnglish: true)
+            try markdownPagesGenerator.createMarkdownPage(appName: .Osmand, isShortSet: false, isEnglish: true)
         } catch {
             print(error)
         }

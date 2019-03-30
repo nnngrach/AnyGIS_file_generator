@@ -34,35 +34,48 @@ struct WebPageTemplates {
     
     //MARK: Templates for Markdown page generation
     
-    func getMarkdownHeader() -> String {
+    func getMarkdownHeader(isEnglish: Bool) -> String {
+        
+        let buttonsRu = "| [AnyGIS][01] | [Как это работает?][02] | [RusOutdoor Maps][03] | [Скачать карты][04] | [API][05] |"
+        
+        let buttonsEn = "| [AnyGIS][01] | [How it works?][02] | [RusOutdoor Maps][03] | [Download][04] | [API][05] |"
+        
+        let header = isEnglish ? buttonsEn : buttonsRu
+        
+        let allPagesPostfix = isEnglish ? "_en" : "_ru"
+        
+        let indexPostfix = isEnglish ? "_en" : ""
+        
         return """
-        | [AnyGIS][01] | [Как это работает?][02] | [RusOutdoor Maps][03] | [Скачать карты][04] | [API][05] |
+        \(header)
         
         
-        [01]: \(indexPage)
-        [02]: \(descriptionPage)
-        [03]: \(rusOutdoorPage)
-        [04]: \(downloadPage)
-        [05]: \(apiPage)
+        [01]: \(indexPage + indexPostfix)
+        [02]: \(descriptionPage + allPagesPostfix)
+        [03]: \(rusOutdoorPage + allPagesPostfix)
+        [04]: \(downloadPage + allPagesPostfix)
+        [05]: \(apiPage + allPagesPostfix)
         
         """
     }
     
     
     
-    func getMarkdownMaplistIntro(appName: ClientAppList) -> String {
+    func getMarkdownMaplistIntro(appName: ClientAppList, isEnglish: Bool) -> String {
+        
+        let title = isEnglish ? "Download maps for" : "Скачать карты для"
         
         let name = appName.rawValue
         
         return """
-        # Скачать карты для \(name)
+        # \(title) \(name)
         
         """
     }
     
     
     
-    func getMarkdownMaplistCategory(appName: ClientAppList, categoryName: String, fileName: String) -> String {
+    func getMarkdownMaplistCategory(appName: ClientAppList, categoryName: String, fileName: String, isEnglish: Bool) -> String {
         
         let filenameWithoutSpaces = fileName.replacingOccurrences(of: " ", with: "%20")
         
@@ -70,12 +83,14 @@ struct WebPageTemplates {
         
         var resultText = ""
         
+        let label = isEnglish ? "Download all group files" : "Скачать всю группу"
+        
         switch appName {
         case .Locus:
             resultText = """
             
             
-            ### [\(categoryName)](\(locusFolderDownloaderUrl) "Скачать всю группу")
+            ### [\(categoryName)](\(locusFolderDownloaderUrl) \(label))
             
             """
             
@@ -93,7 +108,7 @@ struct WebPageTemplates {
     
     
     
-    func getMarkDownMaplistItem(appName: ClientAppList, name:String, fileName: String) -> String {
+    func getMarkDownMaplistItem(appName: ClientAppList, name:String, fileName: String, isEnglish: Bool) -> String {
         
         var resultUrl = ""
         
@@ -110,8 +125,10 @@ struct WebPageTemplates {
             break
         }
         
+        let label = isEnglish ? "Download this map" : "Скачать эту карту"
+        
         return """
-        [\(name)](\(resultUrl) "Скачать эту карту")
+        [\(name)](\(resultUrl) \(label))
         
         
         """

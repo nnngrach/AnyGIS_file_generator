@@ -16,18 +16,19 @@ class MarkdownPagesGenerator {
     private let patchTemplates = FilePatchTemplates()
     
     
-    public func createMarkdownPage(appName: ClientAppList, isShortSet: Bool) throws {
+    public func createMarkdownPage(appName: ClientAppList, isShortSet: Bool, isEnglish: Bool) throws {
         
         var previousFolder = ""
         
         let firstPart = appName.rawValue.replacingOccurrences(of: " ", with: "_")
-        let lastPart = isShortSet ? "_Short.md" : "_Full.md"
-        let fullFileName = firstPart + lastPart
+        let secondPart = isShortSet ? "_Short" : "_Full"
+        let lastPart = isEnglish ? "_en.md" : "_ru.md"
+        let fullFileName = firstPart + secondPart + lastPart
         
         let mapsClientTable = try baseHandler.getMapsClientData()
         
         // Add first part of content
-        var content = webTemplates.getMarkdownHeader() + webTemplates.getMarkdownMaplistIntro(appName: appName)
+        var content = webTemplates.getMarkdownHeader(isEnglish: isEnglish) + webTemplates.getMarkdownMaplistIntro(appName: appName, isEnglish: isEnglish)
         
         for mapClientLine in mapsClientTable {
             
@@ -46,14 +47,18 @@ class MarkdownPagesGenerator {
                 
                 previousFolder = mapClientLine.groupName
                 
-                content += webTemplates.getMarkdownMaplistCategory(appName: appName, categoryName: mapClientLine.groupName, fileName: mapClientLine.groupPrefix)
+                let category = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
+               
+                content += webTemplates.getMarkdownMaplistCategory(appName: appName, categoryName: category, fileName: mapClientLine.groupPrefix, isEnglish: isEnglish)
             }
             
             
             // Add link to single map
             let filename = mapClientLine.groupPrefix + "_" + mapClientLine.clientMapName
             
-            content += webTemplates.getMarkDownMaplistItem(appName: appName, name: mapClientLine.shortName, fileName: filename)
+            let name = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
+            
+            content += webTemplates.getMarkDownMaplistItem(appName: appName, name: name, fileName: filename, isEnglish: isEnglish)
         }
         
         // Create file
