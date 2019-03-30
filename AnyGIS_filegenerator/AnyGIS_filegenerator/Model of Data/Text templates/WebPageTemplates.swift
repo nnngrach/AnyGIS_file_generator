@@ -104,6 +104,8 @@ struct WebPageTemplates {
             resultUrl = patchTemplates.gitGuruActionInstallersFolder + fileName + ".ms"
         case .GuruMapsAndroid:
             resultUrl = patchTemplates.anygisGuruMapsFolder + fileName + ".ms"
+        case .Osmand:
+            resultUrl = patchTemplates.gitOsmadMapsFolder + fileName + ".sqlitedb"
         default:
             break
         }

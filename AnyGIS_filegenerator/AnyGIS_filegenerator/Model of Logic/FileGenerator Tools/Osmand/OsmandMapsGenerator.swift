@@ -24,6 +24,8 @@ class OsmandMapsGenerator {
         
         for mapClientLine in mapsClientTable {
             
+            //print(mapClientLine.id, mapClientLine.anygisMapName)
+            
             // Filter off service layers
             guard mapClientLine.forOsmand else {continue}
             // Filter for short list
@@ -54,7 +56,8 @@ class OsmandMapsGenerator {
         var method: String? = nil
         
         if mapClientLine.osmandLoadAnygis {
-            url = webTemplates.anygisMapUrlHttp
+            //url = webTemplates.anygisMapUrlHttp
+            url = webTemplates.anygisMapUrl
             url = prepareUrlSimple(url: url, mapName: mapServerLine.name)
             
         } else if mapClientLine.projection == 0 && mapServerLine.backgroundServerName == "" {
@@ -101,7 +104,27 @@ class OsmandMapsGenerator {
         let minZoom = String(mapServerLine.zoomMin - 3)
         let maxZoom = String(mapServerLine.zoomMax - 3)
         
+        var referer: String? = nil
+        if mapServerLine.referer.replacingOccurrences(of: " ", with: "") != "" {
+            referer = mapServerLine.referer
+        }
         
+        
+        
+        var timeSupported: String
+        var expireminutes: String
+        
+        switch mapClientLine.cacheStoringHours {
+        case 99999:
+            timeSupported = "no"
+            expireminutes = "-1"
+        case 0:
+            timeSupported = "yes"
+            expireminutes = "1"
+        default:
+            timeSupported = "yes"
+            expireminutes = String(mapClientLine.cacheStoringHours * 60)
+        }
         
         
         
@@ -112,7 +135,10 @@ class OsmandMapsGenerator {
                                        zoommax: maxZoom,
                                        patch: url,
                                        projection: currentProjection,
-                                       method: method)
+                                       method: method,
+                                       refererUrl: referer,
+                                       timeSupport: timeSupported,
+                                       timeStoring: expireminutes)
     }
     
     

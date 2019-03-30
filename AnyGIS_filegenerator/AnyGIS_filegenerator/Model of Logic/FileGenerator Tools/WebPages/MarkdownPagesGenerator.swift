@@ -51,7 +51,7 @@ class MarkdownPagesGenerator {
             
             
             // Add link to single map
-            let filename = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
+            let filename = mapClientLine.groupPrefix + "_" + mapClientLine.clientMapName
             
             content += webTemplates.getMarkDownMaplistItem(appName: appName, name: mapClientLine.shortName, fileName: filename)
         }

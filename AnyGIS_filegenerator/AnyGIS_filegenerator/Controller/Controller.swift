@@ -108,6 +108,8 @@ class Controller {
             try markdownPagesGenerator.createMarkdownPage(appName: .GuruMapsAndroid, isShortSet: false)
             try markdownPagesGenerator.createMarkdownPage(appName: .GuruMapsIOS, isShortSet: true)
             try markdownPagesGenerator.createMarkdownPage(appName: .GuruMapsIOS, isShortSet: false)
+            try markdownPagesGenerator.createMarkdownPage(appName: .Osmand, isShortSet: true)
+            try markdownPagesGenerator.createMarkdownPage(appName: .Osmand, isShortSet: false)
         } catch {
             print(error)
         }
