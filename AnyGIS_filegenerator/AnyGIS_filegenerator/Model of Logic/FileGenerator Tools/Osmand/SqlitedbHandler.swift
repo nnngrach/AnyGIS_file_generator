@@ -14,7 +14,7 @@ class SqlitedbHandler {
     
 
     
-    public func createFile(isShortSet: Bool, filename: String, zoommin: String, zoommax: String, patch: String, projection: Int64) throws {
+    public func createFile(isShortSet: Bool, filename: String, zoommin: String, zoommax: String, patch: String, projection: Int64, method: String?) throws {
         
         let folderPatch = isShortSet ? patchTemplates.localPathToOsmandMapsShort : patchTemplates.localPathToOsmandMapsFull
         
@@ -24,14 +24,14 @@ class SqlitedbHandler {
         
         try createTilesTable(db)
         try createMetadataTable(db)
-        try createInfoTable(zoommin: zoommin, zoommax: zoommax, patch: patch, projection: projection, db)
+        try createInfoTable(zoommin: zoommin, zoommax: zoommax, patch: patch, projection: projection, method: method, db)
     }
     
     
     
     
     
-    fileprivate func createInfoTable(zoommin: String, zoommax: String, patch: String, projection: Int64, _ db: Connection) throws {
+    fileprivate func createInfoTable(zoommin: String, zoommax: String, patch: String, projection: Int64, method: String?, _ db: Connection) throws {
         
         let info = Table("info")
         
@@ -62,7 +62,7 @@ class SqlitedbHandler {
                                 tilenumbering <- "BigPlanet",
                                 timecolumn <- "0",
                                 expireminutes <- "0",
-                                rule <- nil
+                                rule <- method
         ))
     }
     
