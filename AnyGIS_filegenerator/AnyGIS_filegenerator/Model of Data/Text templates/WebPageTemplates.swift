@@ -133,7 +133,7 @@ struct WebPageTemplates {
         let label = isEnglish ? "Download this map" : "Скачать эту карту"
         
         return """
-        [\(name)](\(resultUrl) \(label))
+        [\(name)](\(resultUrl) "\(label)")
         
         
         """
