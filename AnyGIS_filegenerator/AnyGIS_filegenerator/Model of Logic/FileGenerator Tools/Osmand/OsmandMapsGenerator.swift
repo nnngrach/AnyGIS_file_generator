@@ -24,7 +24,7 @@ class OsmandMapsGenerator {
         
         for mapClientLine in mapsClientTable {
             
-            //print(mapClientLine.id, mapClientLine.anygisMapName)
+            //print(mapClientLine.id, mapClientLine.shortName)
             
             // Filter off service layers
             guard mapClientLine.forOsmand else {continue}
@@ -34,15 +34,14 @@ class OsmandMapsGenerator {
             
             let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
             
-            
-            try generateItem(isShortSet: isShortSet, mapClientLine, mapsServerTable)
+            try generateItem(isShortSet: isShortSet, mapClientLine, mapsServerTable, isEnglish: isEnglish)
             
         }
     }
     
     
     
-    private func generateItem(isShortSet: Bool, _ mapClientLine: MapsClientData, _ mapsServerTable: [MapsServerData]) throws {
+    private func generateItem(isShortSet: Bool, _ mapClientLine: MapsClientData, _ mapsServerTable: [MapsServerData], isEnglish: Bool) throws {
         
         let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
         
@@ -139,7 +138,8 @@ class OsmandMapsGenerator {
                                        method: method,
                                        refererUrl: referer,
                                        timeSupport: timeSupported,
-                                       timeStoring: expireminutes)
+                                       timeStoring: expireminutes,
+                                       isEnglish: isEnglish)
     }
     
     

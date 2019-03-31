@@ -34,7 +34,7 @@ class OruxMapsGenerator {
             if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
             if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
             
-            content += generateBlock(mapClientLine.id, mapClientLine.layersIDList, mapsClientTable, mapsServerTable)
+            content += generateBlock(mapClientLine.id, mapClientLine.layersIDList, mapsClientTable, mapsServerTable, isEnglish: isEnglish)
         }
         
         content += oruxTemplates.getFileOutro()
@@ -43,7 +43,9 @@ class OruxMapsGenerator {
         // Create file
         let patch = isShortSet ? patchTemplates.localPathToOruxMapsShortInServer : patchTemplates.localPathToOruxMapsFullInServer
         
-        let fullPatch = patch + "onlinemapsources.xml"
+         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
+        
+        let fullPatch = patch + langLabel + "onlinemapsources.xml"
         
         diskHandler.createFile(patch: fullPatch, content: content)
     }
@@ -51,7 +53,7 @@ class OruxMapsGenerator {
     
     
     
-    private func generateBlock(_ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData]) -> String {
+    private func generateBlock(_ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], isEnglish: Bool) -> String {
         
         let mapClientLine = mapsClientTable.filter {$0.id == currentID}.first!
         
@@ -91,8 +93,9 @@ class OruxMapsGenerator {
         
         let cacheable = mapClientLine.cacheStoringHours == 0 ? 0 : 1
         
+        let mapName = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
         
-        return oruxTemplates.getItem(id: mapClientLine.id, projectionName: currentProjection, name: mapClientLine.shortName, group: mapClientLine.oruxGroupPrefix, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, cacheable: cacheable, yInvertingScript: yInvertingScript)
+        return oruxTemplates.getItem(id: mapClientLine.id, projectionName: currentProjection, name: mapName, group: mapClientLine.oruxGroupPrefix, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, cacheable: cacheable, yInvertingScript: yInvertingScript)
     }
     
     

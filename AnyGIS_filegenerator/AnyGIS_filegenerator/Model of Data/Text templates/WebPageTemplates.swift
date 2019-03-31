@@ -79,11 +79,14 @@ struct WebPageTemplates {
         
         let filenameWithoutSpaces = fileName.replacingOccurrences(of: " ", with: "%20")
         
-        let locusFolderDownloaderUrl = patchTemplates.gitLocusActionInstallersFolder + "_" + filenameWithoutSpaces + ".xml"
+        let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
+        
+        let locusFolderDownloaderUrl = patchTemplates.gitLocusActionInstallersFolder + langLabel + "_" + filenameWithoutSpaces + ".xml"
         
         var resultText = ""
         
         let label = isEnglish ? "Download all group files" : "Скачать всю группу"
+        
         
         switch appName {
         case .Locus:
@@ -112,15 +115,17 @@ struct WebPageTemplates {
         
         var resultUrl = ""
         
+         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
+        
         switch appName {
         case .Locus:
-            resultUrl = patchTemplates.gitLocusActionInstallersFolder + "__" + fileName + ".xml"
+            resultUrl = patchTemplates.gitLocusActionInstallersFolder + langLabel + "__" + fileName + ".xml"
         case .GuruMapsIOS:
-            resultUrl = patchTemplates.gitGuruActionInstallersFolder + fileName + ".ms"
+            resultUrl = patchTemplates.gitGuruActionInstallersFolder + langLabel + fileName + ".ms"
         case .GuruMapsAndroid:
-            resultUrl = patchTemplates.anygisGuruMapsFolder + fileName + ".ms"
+            resultUrl = patchTemplates.anygisGuruMapsFolder + langLabel + fileName + ".ms"
         case .Osmand:
-            resultUrl = patchTemplates.gitOsmadMapsFolder + fileName + ".sqlitedb"
+            resultUrl = patchTemplates.gitOsmadMapsFolder + langLabel + fileName + ".sqlitedb"
         default:
             break
         }

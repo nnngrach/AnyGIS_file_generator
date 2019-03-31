@@ -94,8 +94,12 @@ class Controller {
     
     
     public func generateMapsForOrux() {
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOruxMapsFullInServer)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOruxMapsShortInServer)
+        let ru = patchTemplates.rusLanguageSubfolder
+        let en = patchTemplates.engLanguageSubfolder
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOruxMapsFullInServer + ru)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOruxMapsFullInServer + en)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOruxMapsShortInServer + ru)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOruxMapsShortInServer + en)
         
         do {
             try oruxMapsGenerator.createAll(isShortSet: true, isEnglish: true)
@@ -109,8 +113,12 @@ class Controller {
     
     
     public func generateMapsForOsmand() {
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsFull)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsShort)
+        let ru = patchTemplates.rusLanguageSubfolder
+        let en = patchTemplates.engLanguageSubfolder
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsFull + ru)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsFull + en)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsShort + ru)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsShort + en)
         
         do {
             try osmandMapsGenerator.createAll(isShortSet: true, isEnglish: true)
