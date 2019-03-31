@@ -31,9 +31,10 @@ struct LocusInstallersTemplates {
     
     
     
-    func getIstallerFileItem(fileName: String, isIcon: Bool) -> String {
+    func getIstallerFileItem(fileName: String, isIcon: Bool, isEnglish: Bool) -> String {
         
         let patch = isIcon ? patchTemplates.gitLocusIconsFolder : patchTemplates.gitLocusMapsFolder
+        let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         let fileType = isIcon ? ".png" : ".xml"
         let filenameWithoutSpaces = fileName.replacingOccurrences(of: " ", with: "%20")
         
@@ -42,7 +43,7 @@ struct LocusInstallersTemplates {
         
         <download>
         <source>
-        <![CDATA[\(patch + filenameWithoutSpaces + fileType)]]>
+        <![CDATA[\(patch + langLabel + filenameWithoutSpaces + fileType)]]>
         </source>
         <dest>
         <![CDATA[/mapsOnline/custom/\(fileName + fileType)]]>

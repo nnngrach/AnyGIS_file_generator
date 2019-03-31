@@ -17,22 +17,23 @@ class LocusMapsGenerator {
     private let patchTemplates = FilePatchTemplates()
     
     
-    public func createAll(isShortSet: Bool) throws {
+    public func createAll(isShortSet: Bool, isEnglish: Bool) throws {
         
         let mapsServerTable = try baseHandler.getMapsServerData()
-        let mapsClientTable = try baseHandler.getMapsClientData()
+        let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
         
         for mapClientLine in mapsClientTable {
             
             // Filter off service layers
             guard mapClientLine.forLocus else {continue}
             // Filter for short list
-            if isShortSet && !mapClientLine.isInStarterSet {continue}
+            if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
+            if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
             
             // Start content agregation
             var content = locusTemplates.getMapFileIntro(comment: mapClientLine.comment)
             
-            content += generateLayersContent(mapClientLine.id, mapClientLine.layersIDList, mapsClientTable, mapsServerTable)
+            content += generateLayersContent(mapClientLine.id, mapClientLine.layersIDList, mapsClientTable, mapsServerTable, isEnglish)
             
             content += locusTemplates.getMapFileOutro()
             
@@ -42,7 +43,10 @@ class LocusMapsGenerator {
             
             let patch = isShortSet ? patchTemplates.localPathToLocusMapsShort : patchTemplates.localPathToLocusMapsFull
             
-            let fullPatch = patch + filename
+            let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
+            
+            
+            let fullPatch = patch + langLabel + filename
             
             diskHandler.createFile(patch: fullPatch, content: content)
         }
@@ -50,13 +54,13 @@ class LocusMapsGenerator {
     
     
     
-    private func generateLayersContent(_ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData]) -> String {
+    private func generateLayersContent(_ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ isEnglish: Bool) -> String {
         
         var content = ""
         
         if layersIdList == "-1" {
             
-            content += addLayerBlock(locusId: currentID, background: "-1", mapsClientTable, mapsServerTable)
+            content += addLayerBlock(locusId: currentID, background: "-1", mapsClientTable, mapsServerTable, isEnglish)
             
             
         } else {
@@ -72,7 +76,7 @@ class LocusMapsGenerator {
             
             for i in 0 ... layersId.count {
                 
-                content += addLayerBlock(locusId: loadId[i], background: backroundId[i], mapsClientTable, mapsServerTable)
+                content += addLayerBlock(locusId: loadId[i], background: backroundId[i], mapsClientTable, mapsServerTable, isEnglish)
             }
             
         }
@@ -82,7 +86,7 @@ class LocusMapsGenerator {
     
     
     
-     private func addLayerBlock(locusId: Int64, background: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData]) -> String {
+    private func addLayerBlock(locusId: Int64, background: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ isEnglish: Bool) -> String {
         
         let mapClientLine = mapsClientTable.filter {$0.id == locusId}.first!
         
@@ -109,14 +113,14 @@ class LocusMapsGenerator {
             serverParts = String(serverParts.dropLast())
         }
         
+        let mapCategory = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
+        let mapName = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
         
-        return locusTemplates.getMapFileItem(id: mapClientLine.id, projection: mapClientLine.projection, visible: mapClientLine.visible, background: background, group: mapClientLine.groupName, name: mapClientLine.shortName, countries: mapClientLine.countries, usage: mapClientLine.usage, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, referer: mapServerLine.referer)
+        
+        return locusTemplates.getMapFileItem(id: mapClientLine.id, projection: mapClientLine.projection, visible: mapClientLine.visible, background: background, group: mapCategory, name: mapName, countries: mapClientLine.countries, usage: mapClientLine.usage, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, referer: mapServerLine.referer)
     }
     
     
-    
-    private func prepareUrl(url: String, mapName: String) -> String {
-        return ""
-    }
+
     
 }

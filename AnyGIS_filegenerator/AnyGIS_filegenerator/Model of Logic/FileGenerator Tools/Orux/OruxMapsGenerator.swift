@@ -18,10 +18,10 @@ class OruxMapsGenerator {
     
 
     
-    public func createAll(isShortSet: Bool) throws {
+    public func createAll(isShortSet: Bool, isEnglish: Bool) throws {
         
         let mapsServerTable = try baseHandler.getMapsServerData()
-        let mapsClientTable = try baseHandler.getMapsClientData()
+        let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
         
         // Start content agregation
         var content = oruxTemplates.getFileIntro()
@@ -31,7 +31,8 @@ class OruxMapsGenerator {
             // Filter off service layers
             guard mapClientLine.forOrux else {continue}
             // Filter for short list
-            if isShortSet && !mapClientLine.isInStarterSet {continue}
+            if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
+            if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
             
             content += generateBlock(mapClientLine.id, mapClientLine.layersIDList, mapsClientTable, mapsServerTable)
         }

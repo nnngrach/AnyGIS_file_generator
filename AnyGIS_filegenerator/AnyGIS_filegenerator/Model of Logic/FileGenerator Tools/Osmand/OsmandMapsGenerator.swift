@@ -17,10 +17,10 @@ class OsmandMapsGenerator {
     private let sqlitedbHandler = SqlitedbHandler()
     
     
-    public func createAll(isShortSet: Bool) throws {
+    public func createAll(isShortSet: Bool, isEnglish: Bool) throws {
         
         let mapsServerTable = try baseHandler.getMapsServerData()
-        let mapsClientTable = try baseHandler.getMapsClientData()
+        let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
         
         for mapClientLine in mapsClientTable {
             
@@ -29,7 +29,8 @@ class OsmandMapsGenerator {
             // Filter off service layers
             guard mapClientLine.forOsmand else {continue}
             // Filter for short list
-            if isShortSet && !mapClientLine.isInStarterSet {continue}
+            if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
+            if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
             
             let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
             

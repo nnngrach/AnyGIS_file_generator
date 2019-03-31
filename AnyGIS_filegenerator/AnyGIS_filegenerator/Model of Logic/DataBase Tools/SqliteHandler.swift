@@ -50,7 +50,7 @@ class SqliteHandler {
     
     
     
-    public func getMapsClientData() throws -> [MapsClientData] {
+    public func getMapsClientData(isEnglish: Bool) throws -> [MapsClientData] {
         
         var result: [MapsClientData] = []
         
@@ -58,9 +58,12 @@ class SqliteHandler {
         
         //let rawTable = try connection.prepare(MapClientFilesDataDB.table)
         
+        let firstSortingField = isEnglish ? MapsClientDataDB.orderEng : MapsClientDataDB.order
+        let secondSortingField = isEnglish ? MapsClientDataDB.shortNameEng : MapsClientDataDB.shortName
+        
         let rawTable = try connection
             .prepare(MapsClientDataDB.table
-            .order(MapsClientDataDB.order, MapsClientDataDB.shortName))
+            .order(firstSortingField, secondSortingField))
         
         
         for rawLine in rawTable {
@@ -68,7 +71,9 @@ class SqliteHandler {
             let item = MapsClientData(id: rawLine[MapsClientDataDB.id]!,
                           anygisMapName: rawLine[MapsClientDataDB.anygisMapName]!,
                           order: rawLine[MapsClientDataDB.order]!,
+                          orderEng: rawLine[MapsClientDataDB.orderEng]!,
                           isInStarterSet: rawLine[MapsClientDataDB.isInStarterSet]!,
+                          isInStarterSetEng: rawLine[MapsClientDataDB.isInStarterSetEng]!,
                           groupName: rawLine[MapsClientDataDB.groupName]!,
                           groupNameEng: rawLine[MapsClientDataDB.groupNameEng]!,
                           shortName: rawLine[MapsClientDataDB.shortName]!,

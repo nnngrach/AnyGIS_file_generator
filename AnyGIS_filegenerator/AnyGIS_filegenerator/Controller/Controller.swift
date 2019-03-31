@@ -32,13 +32,20 @@ class Controller {
     
     
     public func generateInstallersForLocus() {
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToInstallers)
+        let ru = patchTemplates.rusLanguageSubfolder
+        let en = patchTemplates.engLanguageSubfolder
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToInstallers + ru)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToInstallers + en)
         
         do {
-            try locusInstallerGeneretor.createSingleMapLoaders()
-            try locusInstallerGeneretor.createFolderLoader()
-            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: true)
-            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: false)
+            try locusInstallerGeneretor.createSingleMapLoaders(isEnglish: true)
+            try locusInstallerGeneretor.createSingleMapLoaders(isEnglish: false)
+            try locusInstallerGeneretor.createFolderLoader(isEnglish: true)
+            try locusInstallerGeneretor.createFolderLoader(isEnglish: false)
+            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: true, isEnglish: true)
+            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: true, isEnglish: false)
+            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: false, isEnglish: true)
+            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: false, isEnglish: false)
         } catch {
             print(error)
         }
@@ -46,12 +53,19 @@ class Controller {
     
     
     public func generateMapsForLocus() {
-        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsFull)
-        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsShort)
+        let ru = patchTemplates.rusLanguageSubfolder
+        let en = patchTemplates.engLanguageSubfolder
+        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsFull + ru)
+        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsFull + en)
+        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsShort + ru)
+        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsShort + en)
+
         
         do {
-            try locusMapsGenerator.createAll(isShortSet: true)
-            try locusMapsGenerator.createAll(isShortSet: false)
+            try locusMapsGenerator.createAll(isShortSet: true, isEnglish: true)
+            try locusMapsGenerator.createAll(isShortSet: false, isEnglish: true)
+            try locusMapsGenerator.createAll(isShortSet: true, isEnglish: false)
+            try locusMapsGenerator.createAll(isShortSet: false, isEnglish: false)
         } catch {
             print(error)
         }
@@ -59,13 +73,20 @@ class Controller {
     
     
     public func generateMapsForGuru() {
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsFull)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsShort)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsInServer)
+        let ru = patchTemplates.rusLanguageSubfolder
+        let en = patchTemplates.engLanguageSubfolder
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsFull + ru)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsFull + en)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsShort + ru)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsShort + en)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsInServer + ru)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsInServer + en)
         
         do {
-            try guruMapsGenerator.createAll(isShortSet: true)
-            try guruMapsGenerator.createAll(isShortSet: false)
+            try guruMapsGenerator.createAll(isShortSet: true, isEnglish: true)
+            try guruMapsGenerator.createAll(isShortSet: false, isEnglish: true)
+            try guruMapsGenerator.createAll(isShortSet: true, isEnglish: false)
+            try guruMapsGenerator.createAll(isShortSet: false, isEnglish: false)
         } catch {
             print(error)
         }
@@ -77,8 +98,10 @@ class Controller {
         diskHandler.cleanFolder(patch: patchTemplates.localPathToOruxMapsShortInServer)
         
         do {
-            try oruxMapsGenerator.createAll(isShortSet: true)
-            try oruxMapsGenerator.createAll(isShortSet: false)
+            try oruxMapsGenerator.createAll(isShortSet: true, isEnglish: true)
+            try oruxMapsGenerator.createAll(isShortSet: true, isEnglish: false)
+            try oruxMapsGenerator.createAll(isShortSet: false, isEnglish: true)
+            try oruxMapsGenerator.createAll(isShortSet: false, isEnglish: false)
         } catch {
             print(error)
         }
@@ -90,8 +113,10 @@ class Controller {
         diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsShort)
         
         do {
-            try osmandMapsGenerator.createAll(isShortSet: true)
-            try osmandMapsGenerator.createAll(isShortSet: false)
+            try osmandMapsGenerator.createAll(isShortSet: true, isEnglish: true)
+            try osmandMapsGenerator.createAll(isShortSet: true, isEnglish: false)
+            try osmandMapsGenerator.createAll(isShortSet: false, isEnglish: true)
+            try osmandMapsGenerator.createAll(isShortSet: false, isEnglish: false)
         } catch {
             print(error)
         }

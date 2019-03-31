@@ -18,21 +18,25 @@ class GuruMapsGenerator {
     
     
     
-    public func createAll(isShortSet: Bool) throws {
+    public func createAll(isShortSet: Bool, isEnglish: Bool) throws {
         
         let mapsServerTable = try baseHandler.getMapsServerData()
-        let mapsClientTable = try baseHandler.getMapsClientData()
+        let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
         
         for mapClientLine in mapsClientTable {
             
             // Filter off service layers
             guard mapClientLine.forGuru else {continue}
             // Filter for short list
-            if isShortSet && !mapClientLine.isInStarterSet {continue}
+            if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
+            if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
+            
             
             
             // Start content agregation
-            var content = guruTemplates.getFileIntro(mapName: mapClientLine.shortName, comment: mapClientLine.comment)
+            let mapName = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
+            
+            var content = guruTemplates.getFileIntro(mapName: mapName, comment: mapClientLine.comment)
             
             content += generateLayersContent(mapClientLine.id, mapClientLine.layersIDList, mapsClientTable, mapsServerTable)
             
@@ -40,11 +44,15 @@ class GuruMapsGenerator {
             
             
             // Create file
+            let patch = isShortSet ? patchTemplates.localPathToGuruMapsShort : patchTemplates.localPathToGuruMapsFull
+            
+            let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
+            
             let filename = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName + ".ms"
             
-            let patch = isShortSet ? patchTemplates.localPathToGuruMapsShort : self.patchTemplates.localPathToGuruMapsFull
             
-            let fullPatch = patch + filename
+            
+            let fullPatch = patch + langLabel + filename
             
             diskHandler.createFile(patch: fullPatch, content: content)
             
@@ -52,7 +60,7 @@ class GuruMapsGenerator {
             // Copy dublicate file to Public folder to use with Downloader script
             if !isShortSet {
                 
-                let serverPatch = patchTemplates.localPathToGuruMapsInServer + filename
+                let serverPatch = patchTemplates.localPathToGuruMapsInServer + langLabel + filename
                 
                 self.diskHandler.createFile(patch: serverPatch, content: content)
             }
@@ -62,7 +70,7 @@ class GuruMapsGenerator {
     
     
     
-     private func generateLayersContent(_ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData]) -> String {
+    private func generateLayersContent(_ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData]) -> String {
         
         var content = ""
         

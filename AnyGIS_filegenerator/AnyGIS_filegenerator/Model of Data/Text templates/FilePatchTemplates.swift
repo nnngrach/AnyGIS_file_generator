@@ -18,20 +18,20 @@ struct FilePatchTemplates {
     // Generating files folders in site
     
     let localPathToMarkdownPages = "file:////Projects/GIS/Online%20map%20sources/map-sources/Web/Html/Download/"
-    let localPathToIcons = "file:////Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Icons/"
-    let localPathToInstallers = "file:////Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Installers/"
+    let localPathToIcons = "file:////Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Icons"
+    let localPathToInstallers = "file:////Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Installers"
     
-    let localPathToLocusMapsFull = "file:////Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Maps_full/"
-    let localPathToLocusMapsShort = "file:////Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Maps_short/"
-    let localPathToGuruMapsFull = "file:////Projects/GIS/Online%20map%20sources/map-sources/Galileo_online_maps/Maps_full/"
-    let localPathToGuruMapsShort = "file:////Projects/GIS/Online%20map%20sources/map-sources/Galileo_online_maps/Maps_short/"
+    let localPathToLocusMapsFull = "file:////Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Maps_full"
+    let localPathToLocusMapsShort = "file:////Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Maps_short"
+    let localPathToGuruMapsFull = "file:////Projects/GIS/Online%20map%20sources/map-sources/Galileo_online_maps/Maps_full"
+    let localPathToGuruMapsShort = "file:////Projects/GIS/Online%20map%20sources/map-sources/Galileo_online_maps/Maps_short"
     let localPathToOsmandMapsFull = "file:////Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Maps_full/"
     let localPathToOsmandMapsShort = "file:////Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Maps_short/"
     
     
     // Generating files folders in server
     
-    let localPathToGuruMapsInServer = "file://///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/galileo/"
+    let localPathToGuruMapsInServer = "file://///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/galileo"
     let localPathToOruxMapsFullInServer = "file:////Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/orux_full/"
     let localPathToOruxMapsShortInServer = "file:////Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/orux_short/"
     
@@ -56,5 +56,8 @@ struct FilePatchTemplates {
     let gitLocusActionInstallersFolder = "locus-actions://https/raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Locus_online_maps/Installers/"
     let gitGuruActionInstallersFolder = "guru://open?path=https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Galileo_online_maps/Maps_full/"
     
-
+    
+    
+    let rusLanguageSubfolder = "_ru/"
+    let engLanguageSubfolder = "_en/"
 }

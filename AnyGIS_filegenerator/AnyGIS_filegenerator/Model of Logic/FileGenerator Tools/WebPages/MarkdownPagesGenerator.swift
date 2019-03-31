@@ -25,7 +25,7 @@ class MarkdownPagesGenerator {
         let lastPart = isEnglish ? "_en.md" : "_ru.md"
         let fullFileName = firstPart + secondPart + lastPart
         
-        let mapsClientTable = try baseHandler.getMapsClientData()
+        let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
         
         // Add first part of content
         var content = webTemplates.getMarkdownHeader(isEnglish: isEnglish) + webTemplates.getMarkdownMaplistIntro(appName: appName, isEnglish: isEnglish)
@@ -33,7 +33,8 @@ class MarkdownPagesGenerator {
         for mapClientLine in mapsClientTable {
             
             // Filter for short list
-            if isShortSet && !mapClientLine.isInStarterSet {continue}
+            if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
+            if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
             
             // Filter off service layers
             if appName == .Orux  && !mapClientLine.forOrux {continue}

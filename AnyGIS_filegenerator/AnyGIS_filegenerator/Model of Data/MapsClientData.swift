@@ -13,7 +13,9 @@ struct MapsClientData {
     let id: Int64
     let anygisMapName: String
     let order: Int64
+    let orderEng: Int64
     let isInStarterSet: Bool
+    let isInStarterSetEng: Bool
     
     let groupName: String
     let groupNameEng: String
