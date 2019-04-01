@@ -93,7 +93,7 @@ struct WebPageTemplates {
             resultText = """
             
             
-            ### [\(categoryName)](\(locusFolderDownloaderUrl) \(label))
+            ### [\(categoryName)](\(locusFolderDownloaderUrl) "\(label)")
             
             """
             

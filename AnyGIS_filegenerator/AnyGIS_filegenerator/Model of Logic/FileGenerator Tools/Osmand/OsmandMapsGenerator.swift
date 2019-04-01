@@ -45,7 +45,7 @@ class OsmandMapsGenerator {
         
         let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
         
-        let filename = mapClientLine.groupPrefix + "_" + mapClientLine.clientMapName
+        let filename = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
         
         
         let currentProjection: Int64 = mapClientLine.projection == 2 ? 1 : 0

@@ -55,7 +55,7 @@ class MarkdownPagesGenerator {
             
             
             // Add link to single map
-            let filename = mapClientLine.groupPrefix + "_" + mapClientLine.clientMapName
+            let filename = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
             
             let name = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
             

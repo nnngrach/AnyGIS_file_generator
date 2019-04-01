@@ -32,8 +32,9 @@ class LocusInstallersGenerator {
             
             let installerPatch = patchTemplates.localPathToInstallers + langLabel + "__" + mapFileName + ".xml"
             
+            let iconName = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
             
-            let content = locusTemplates.getIstallerFileIntro() + locusTemplates.getIstallerFileItem(fileName: mapFileName, isIcon: false, isEnglish: isEnglish) + locusTemplates.getIstallerFileItem(fileName: mapClientLine.groupName, isIcon: true, isEnglish: isEnglish) + locusTemplates.getIstallerFileOutro()
+            let content = locusTemplates.getIstallerFileIntro() + locusTemplates.getIstallerFileItem(fileName: mapFileName, isIcon: false, isEnglish: isEnglish) + locusTemplates.getIstallerFileItem(fileName: iconName, isIcon: true, isEnglish: isEnglish) + locusTemplates.getIstallerFileOutro()
             
             self.diskHandler.createFile(patch: installerPatch, content: content)
             
@@ -70,7 +71,9 @@ class LocusInstallersGenerator {
                 isNotFirstString = true
                 previousFolder = mapClientLine.groupPrefix
                 
-                content = locusTemplates.getIstallerFileIntro() + locusTemplates.getIstallerFileItem(fileName: mapClientLine.groupName, isIcon: true, isEnglish: isEnglish) + locusTemplates.getIstallerFileItem(fileName: mapFileName, isIcon: false, isEnglish: isEnglish)
+                let iconName = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
+                
+                content = locusTemplates.getIstallerFileIntro() + locusTemplates.getIstallerFileItem(fileName: iconName, isIcon: true, isEnglish: isEnglish) + locusTemplates.getIstallerFileItem(fileName: mapFileName, isIcon: false, isEnglish: isEnglish)
                 
             } else {
                 
@@ -117,23 +120,27 @@ class LocusInstallersGenerator {
             if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
             
             if mapClientLine.groupName != previousFolder {
+                
                 previousFolder = mapClientLine.groupName
-                content += locusTemplates.getIstallerFileItem(fileName: mapClientLine.groupName, isIcon: true, isEnglish: isEnglish)
+                
+                let iconName = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
+                
+                content += locusTemplates.getIstallerFileItem(fileName: iconName, isIcon: true, isEnglish: isEnglish)
             }
             
             let mapFileName = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
             content += locusTemplates.getIstallerFileItem(fileName: mapFileName, isIcon: false, isEnglish: isEnglish)
-            
-            // Add ending part
-            content += locusTemplates.getIstallerFileOutro()
-            
-            // Create file
-            let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
-            
-            let installerPatch = patchTemplates.localPathToInstallers + langLabel + fileName
-            
-            self.diskHandler.createFile(patch: installerPatch, content: content)
         }
+        
+        // Add ending part
+        content += locusTemplates.getIstallerFileOutro()
+        
+        // Create file
+        let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
+        
+        let installerPatch = patchTemplates.localPathToInstallers + langLabel + fileName
+        
+        self.diskHandler.createFile(patch: installerPatch, content: content)
     }
     
 }

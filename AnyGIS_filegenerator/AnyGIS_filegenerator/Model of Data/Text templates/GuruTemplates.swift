@@ -33,9 +33,9 @@ struct GuruTemplates {
         
         let firtstPart = """
         <layer>
-        <minZoom>\(zoomMin)</minZoom>
-        <maxZoom>\(zoomMax)</maxZoom>
-        <url>\(url)</url>
+            <minZoom>\(zoomMin)</minZoom>
+            <maxZoom>\(zoomMax)</maxZoom>
+            <url>\(url)</url>
         
         """
         
@@ -43,13 +43,13 @@ struct GuruTemplates {
         
         if serverParts.replacingOccurrences(of: " ", with: "") != "" {
             secondPart = """
-            <serverParts>\(serverParts)</serverParts>
+                <serverParts>\(serverParts)</serverParts>
             
             """
         }
         
         let thirdPart = """
-            </layer>
+        </layer>
 
 
         """
@@ -61,7 +61,6 @@ struct GuruTemplates {
     
     func getFileOutro() -> String {
         return """
-        
         </layers>
         </customMapSource>
         """
