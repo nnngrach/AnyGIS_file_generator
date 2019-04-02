@@ -101,8 +101,8 @@ class OsmandMapsGenerator {
         
         
         
-        let minZoom = String(mapServerLine.zoomMin - 3)
-        let maxZoom = String(mapServerLine.zoomMax - 3)
+        let minZoom = String(17 - mapServerLine.zoomMax + 1)
+        let maxZoom = String(17 - mapServerLine.zoomMin)
         
         var referer: String? = nil
         if mapServerLine.referer.replacingOccurrences(of: " ", with: "") != "" {
