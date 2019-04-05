@@ -17,6 +17,9 @@ struct MapsClientData {
     let isInStarterSet: Bool
     let isInStarterSetEng: Bool
     
+    let forRus: Bool
+    let forEng: Bool
+    
     let groupName: String
     let groupNameEng: String
     let shortName: String

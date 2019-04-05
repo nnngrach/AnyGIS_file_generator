@@ -118,6 +118,8 @@ class LocusInstallersGenerator {
             // Filter for short list
             if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
             if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
+            if !mapClientLine.forRus && !isEnglish {continue}
+            if !mapClientLine.forEng && isEnglish {continue}
             
             if mapClientLine.groupName != previousFolder {
                 

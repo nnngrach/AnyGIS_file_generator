@@ -19,6 +19,9 @@ struct MapsClientDataDB {
     static let isInStarterSet = Expression<Bool?>("isInStarterSet")
     static let isInStarterSetEng = Expression<Bool?>("isInStarterSetEng")
     
+    static let forRus = Expression<Bool?>("forRus")
+    static let forEng = Expression<Bool?>("forEng")
+    
     static let groupName = Expression<String?>("groupName")
     static let groupNameEng = Expression<String?>("groupNameEng")
     static let shortName = Expression<String?>("shortName")

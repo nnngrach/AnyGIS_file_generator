@@ -31,6 +31,8 @@ class OsmandMapsGenerator {
             // Filter for short list
             if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
             if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
+            if !mapClientLine.forRus && !isEnglish {continue}
+            if !mapClientLine.forEng && isEnglish {continue}
             
             let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
             

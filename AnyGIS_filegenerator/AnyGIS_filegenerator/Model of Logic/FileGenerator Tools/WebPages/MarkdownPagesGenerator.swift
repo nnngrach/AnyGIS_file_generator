@@ -35,6 +35,8 @@ class MarkdownPagesGenerator {
             // Filter for short list
             if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
             if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
+            if !mapClientLine.forRus && !isEnglish {continue}
+            if !mapClientLine.forEng && isEnglish {continue}
             
             // Filter off service layers
             if appName == .Orux  && !mapClientLine.forOrux {continue}

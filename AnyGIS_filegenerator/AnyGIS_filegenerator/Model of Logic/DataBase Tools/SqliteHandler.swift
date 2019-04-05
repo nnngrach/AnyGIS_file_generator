@@ -74,6 +74,8 @@ class SqliteHandler {
                           orderEng: rawLine[MapsClientDataDB.orderEng]!,
                           isInStarterSet: rawLine[MapsClientDataDB.isInStarterSet]!,
                           isInStarterSetEng: rawLine[MapsClientDataDB.isInStarterSetEng]!,
+                          forRus: rawLine[MapsClientDataDB.forRus]!,
+                          forEng: rawLine[MapsClientDataDB.forEng]!,
                           groupName: rawLine[MapsClientDataDB.groupName]!,
                           groupNameEng: rawLine[MapsClientDataDB.groupNameEng]!,
                           shortName: rawLine[MapsClientDataDB.shortName]!,

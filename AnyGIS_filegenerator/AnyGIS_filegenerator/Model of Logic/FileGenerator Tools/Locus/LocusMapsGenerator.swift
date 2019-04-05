@@ -29,6 +29,8 @@ class LocusMapsGenerator {
             // Filter for short list
             if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
             if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
+            if !mapClientLine.forRus && !isEnglish {continue}
+            if !mapClientLine.forEng && isEnglish {continue}
             
             // Start content agregation
             var content = locusTemplates.getMapFileIntro(comment: mapClientLine.comment)
