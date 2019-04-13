@@ -34,6 +34,7 @@
 		33B76E3B224E399B0010E35E /* MarkdownPagesGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E3A224E399B0010E35E /* MarkdownPagesGenerator.swift */; };
 		33B76E3F224E5DA30010E35E /* OsmandMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E3E224E5DA30010E35E /* OsmandMapsGenerator.swift */; };
 		33B76E41224E91380010E35E /* OsmandMapsTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E40224E91380010E35E /* OsmandMapsTemplate.swift */; };
+		33E44E8A2262659E00CBECE7 /* AbstractGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E44E892262659E00CBECE7 /* AbstractGenerator.swift */; };
 		7776365E378A65D45F3E7D03 /* Pods_AnyGIS_filegenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		33B76E3A224E399B0010E35E /* MarkdownPagesGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownPagesGenerator.swift; sourceTree = "<group>"; };
 		33B76E3E224E5DA30010E35E /* OsmandMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmandMapsGenerator.swift; sourceTree = "<group>"; };
 		33B76E40224E91380010E35E /* OsmandMapsTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmandMapsTemplate.swift; sourceTree = "<group>"; };
+		33E44E892262659E00CBECE7 /* AbstractGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractGenerator.swift; sourceTree = "<group>"; };
 		72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyGIS_filegenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76540C1F1A9B64DFC65558DD /* Pods-AnyGIS_filegenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.release.xcconfig"; sourceTree = "<group>"; };
 		8BDBCAB25AFE578C55D5EBF4 /* Pods-AnyGIS_filegenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		33B76E08224B93240010E35E /* FileGenerator Tools */ = {
 			isa = PBXGroup;
 			children = (
+				33E44E882262658600CBECE7 /* Abstract */,
 				33B76E0B224B93780010E35E /* GuruMaps */,
 				33B76E0A224B93720010E35E /* Locus */,
 				33B76E0C224B93800010E35E /* Orux */,
@@ -257,6 +260,14 @@
 				33B76E40224E91380010E35E /* OsmandMapsTemplate.swift */,
 			);
 			path = "Text templates";
+			sourceTree = "<group>";
+		};
+		33E44E882262658600CBECE7 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				33E44E892262659E00CBECE7 /* AbstractGenerator.swift */,
+			);
+			path = Abstract;
 			sourceTree = "<group>";
 		};
 		BA8C5E00687C3312A9B3E3A1 /* Pods */ = {
@@ -394,6 +405,7 @@
 				33B76E13224BC6830010E35E /* Disk handler.swift in Sources */,
 				33B76E3B224E399B0010E35E /* MarkdownPagesGenerator.swift in Sources */,
 				33B76E33224E258E0010E35E /* LocusInstellersGenerator.swift in Sources */,
+				33E44E8A2262659E00CBECE7 /* AbstractGenerator.swift in Sources */,
 				33B76DFF224B8DA70010E35E /* SqlitedbHandler.swift in Sources */,
 				33B76E21224BD9B40010E35E /* MapsClientData.swift in Sources */,
 				33B76E1D224BD62A0010E35E /* MapsClientDataDB.swift in Sources */,

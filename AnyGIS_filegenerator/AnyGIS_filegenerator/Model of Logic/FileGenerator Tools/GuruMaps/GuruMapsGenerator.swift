@@ -10,6 +10,8 @@ import Foundation
 
 class GuruMapsGenerator {
     
+    private let abstract = AbstractGenerator()
+    
     private let diskHandler = DiskHandler()
     private let baseHandler = SqliteHandler()
     private let webTemplates = WebPageTemplates()
@@ -18,6 +20,8 @@ class GuruMapsGenerator {
     
     
     
+    
+    /*
     public func createAll(isShortSet: Bool, isEnglish: Bool) throws {
         
         let mapsServerTable = try baseHandler.getMapsServerData()
@@ -66,6 +70,40 @@ class GuruMapsGenerator {
                 
                 self.diskHandler.createFile(patch: serverPatch, content: content)
             }
+        }
+    }
+    */
+    
+    
+    
+    public func createAll(isShortSet: Bool, isEnglish: Bool) throws {
+        
+        try abstract.create(isShortSet: isShortSet, isEnglish: isEnglish) { clientLine, clientTable, serverTable in
+            
+            let guruTemplates = GuruTemplates()
+            
+            
+            // File content agregation
+            let mapName = isEnglish ? clientLine.shortNameEng : clientLine.shortName
+            
+            var content = guruTemplates.getFileIntro(mapName: mapName, comment: clientLine.comment)
+            
+            content += generateLayersContent(clientLine.id, clientLine.layersIDList, clientTable, serverTable)
+            
+            content += guruTemplates.getFileOutro()
+            
+            
+            // File patch generating
+            let patches = abstract.generatePatches(
+                shortPatch: patchTemplates.localPathToGuruMapsShort,
+                fullPatch: patchTemplates.localPathToGuruMapsFull,
+                serverFolder: patchTemplates.localPathToGuruMapsInServer,
+                extention: ".ms",
+                clientLine: clientLine,
+                isShortSet: isShortSet,
+                isEnglish: isEnglish)
+            
+            return (patch: patches.gitHub, secondPatch: patches.server, content: content)
         }
     }
     
