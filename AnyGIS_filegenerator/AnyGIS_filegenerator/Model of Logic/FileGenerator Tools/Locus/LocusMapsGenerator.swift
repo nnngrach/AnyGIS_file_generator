@@ -115,6 +115,10 @@ class LocusMapsGenerator {
             serverParts = String(serverParts.dropLast())
         }
         
+        //TODO: for old versions of Locus
+        url = url.replacingOccurrences(of: "https", with: "http")
+        
+        
         let mapCategory = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
         let mapName = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
         
