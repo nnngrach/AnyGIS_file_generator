@@ -10,14 +10,24 @@ import Foundation
 
 class LocusMapsGenerator {
     
+    private let abstract = AbstractGenerator()
+    private let locusTemplates = LocusMapsTemplates()
+    
+    
+    // TODO: Delete it
     private let diskHandler = DiskHandler()
     private let baseHandler = SqliteHandler()
     private let webTemplates = WebPageTemplates()
-    private let locusTemplates = LocusMapsTemplates()
     private let patchTemplates = FilePatchTemplates()
     
     
-    public func createAll(isShortSet: Bool, isEnglish: Bool) throws {
+    private let replacingList = [(old: "{invY}", new: "{y}"),
+                                 (old: "https", new: "http")]
+    
+    private let serverPartsSeparator = ";"
+    
+    
+    public func create(isShortSet: Bool, isEnglish: Bool) throws {
         
         let mapsServerTable = try baseHandler.getMapsServerData()
         let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
@@ -32,10 +42,13 @@ class LocusMapsGenerator {
             if !mapClientLine.forRus && !isEnglish {continue}
             if !mapClientLine.forEng && isEnglish {continue}
             
+            let mapName = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
+            let mapCategory = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
+            
             // Start content agregation
             var content = locusTemplates.getMapFileIntro(comment: mapClientLine.comment)
             
-            content += generateLayersContent(mapClientLine.id, mapClientLine.layersIDList, mapsClientTable, mapsServerTable, isEnglish)
+            content += generateLayersContent(mapName, mapCategory, mapClientLine.id, mapClientLine.layersIDList, mapsClientTable, mapsServerTable)
             
             content += locusTemplates.getMapFileOutro()
             
@@ -56,13 +69,15 @@ class LocusMapsGenerator {
     
     
     
-    private func generateLayersContent(_ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ isEnglish: Bool) -> String {
+    private func generateLayersContent(_ mapName: String, _ mapCategory: String, _ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData]) -> String {
         
         var content = ""
         
         if layersIdList == "-1" {
             
-            content += addLayerBlock(locusId: currentID, background: "-1", mapsClientTable, mapsServerTable, isEnglish)
+            //=============
+            content += addLayerBlock(mapName, mapCategory, locusId: currentID, background: "-1", mapsClientTable, mapsServerTable, .Locus)
+            //=============
             
             
         } else {
@@ -75,10 +90,11 @@ class LocusMapsGenerator {
             var backroundId = ["-1"]
             backroundId += layersId
             
-            
             for i in 0 ... layersId.count {
                 
-                content += addLayerBlock(locusId: loadId[i], background: backroundId[i], mapsClientTable, mapsServerTable, isEnglish)
+                //=============
+                content += addLayerBlock(mapName, mapCategory, locusId: loadId[i], background: backroundId[i], mapsClientTable, mapsServerTable, .Locus)
+                //=============
             }
             
         }
@@ -88,42 +104,51 @@ class LocusMapsGenerator {
     
     
     
-    private func addLayerBlock(locusId: Int64, background: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ isEnglish: Bool) -> String {
+    private func addLayerBlock(_ mapName: String, _ mapCategory: String, locusId: Int64, background: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ appName: ClientAppList) -> String {
         
         let mapClientLine = mapsClientTable.filter {$0.id == locusId}.first!
         
         let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
         
         
+        var isLoadAnygis = false
+        
+        switch appName {
+        case .Locus:
+            isLoadAnygis = mapClientLine.locusLoadAnygis
+        case .Osmand:
+            isLoadAnygis = mapClientLine.osmandLoadAnygis
+        case .Orux:
+            isLoadAnygis = mapClientLine.oruxLoadAnygis
+        case .GuruMapsIOS, .GuruMapsAndroid:
+            isLoadAnygis = mapClientLine.gurumapsLoadAnygis
+        }
+        
+
+        
         // Prepare Url and server parts
-        var url = ""
+        var url = isLoadAnygis ? webTemplates.anygisMapUrl : mapServerLine.backgroundUrl
+        
+        url = abstract.replacrUrlParts(url: url, mapName: mapServerLine.name, parameters: replacingList)
+        
         var serverParts = ""
         
-        if mapClientLine.locusLoadAnygis {
-            url = webTemplates.anygisMapUrl
-            url = url.replacingOccurrences(of: "{mapName}", with: mapServerLine.name)
+        if !isLoadAnygis {
             
-        } else {
-            url = mapServerLine.backgroundUrl
-            url = url.replacingOccurrences(of: "{invY}", with: "{y}")
+           let origServerParts = mapServerLine.backgroundServerName
             
-            let origServerParts = mapServerLine.backgroundServerName
             for i in origServerParts {
                 serverParts.append(i)
-                serverParts.append(";")
+                serverParts.append(serverPartsSeparator)
             }
             serverParts = String(serverParts.dropLast())
         }
         
-        //TODO: for old versions of Locus
-        url = url.replacingOccurrences(of: "https", with: "http")
+        //=============
+        let content = locusTemplates.getMapFileItem(id: mapClientLine.id, projection: mapClientLine.projection, visible: mapClientLine.visible, background: background, group: mapCategory, name: mapName, countries: mapClientLine.countries, usage: mapClientLine.usage, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, referer: mapServerLine.referer)
+        //=============
         
-        
-        let mapCategory = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
-        let mapName = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
-        
-        
-        return locusTemplates.getMapFileItem(id: mapClientLine.id, projection: mapClientLine.projection, visible: mapClientLine.visible, background: background, group: mapCategory, name: mapName, countries: mapClientLine.countries, usage: mapClientLine.usage, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, referer: mapServerLine.referer)
+        return content
     }
     
     

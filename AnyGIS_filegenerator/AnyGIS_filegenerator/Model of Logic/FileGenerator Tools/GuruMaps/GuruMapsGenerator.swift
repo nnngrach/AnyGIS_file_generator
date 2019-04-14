@@ -1,186 +1,67 @@
 //
-//  GuruMapsGenerator.swift
+//  GuruChild.swift
 //  AnyGIS_filegenerator
 //
-//  Created by HR_book on 28/03/2019.
+//  Created by HR_book on 14/04/2019.
 //  Copyright © 2019 Nnngrach. All rights reserved.
 //
 
 import Foundation
 
-class GuruMapsGenerator {
+class GuruMapsGenerator: AbstractGenerator {
     
-    private let abstract = AbstractGenerator()
-    
-    private let diskHandler = DiskHandler()
-    private let baseHandler = SqliteHandler()
-    private let webTemplates = WebPageTemplates()
     private let guruTemplates = GuruTemplates()
-    private let patchTemplates = FilePatchTemplates()
     
     
-    
-    
-    /*
-    public func createAll(isShortSet: Bool, isEnglish: Bool) throws {
-        
-        let mapsServerTable = try baseHandler.getMapsServerData()
-        let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
-        
-        for mapClientLine in mapsClientTable {
-            
-            // Filter off service layers
-            guard mapClientLine.forGuru else {continue}
-            // Filter for short list
-            if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
-            if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
-            if !mapClientLine.forRus && !isEnglish {continue}
-            if !mapClientLine.forEng && isEnglish {continue}
-            
-            
-            
-            // Start content agregation
-            let mapName = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
-            
-            var content = guruTemplates.getFileIntro(mapName: mapName, comment: mapClientLine.comment)
-            
-            content += generateLayersContent(mapClientLine.id, mapClientLine.layersIDList, mapsClientTable, mapsServerTable)
-            
-            content += guruTemplates.getFileOutro()
-            
-            
-            // Create file
-            let patch = isShortSet ? patchTemplates.localPathToGuruMapsShort : patchTemplates.localPathToGuruMapsFull
-            
-            let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
-            
-            let filename = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName + ".ms"
-            
-            
-            
-            let fullPatch = patch + langLabel + filename
-            
-            diskHandler.createFile(patch: fullPatch, content: content)
-            
-            
-            // Copy dublicate file to Public folder to use with Downloader script
-            if !isShortSet {
-                
-                let serverPatch = patchTemplates.localPathToGuruMapsInServer + langLabel + filename
-                
-                self.diskHandler.createFile(patch: serverPatch, content: content)
-            }
-        }
+    override var serverPartsSeparator: String {
+        return ";"
     }
-    */
     
     
-    
-    public func createAll(isShortSet: Bool, isEnglish: Bool) throws {
-        
-        try abstract.create(isShortSet: isShortSet, isEnglish: isEnglish) { clientLine, clientTable, serverTable in
-            
-            let guruTemplates = GuruTemplates()
-            
-            
-            // File content agregation
-            let mapName = isEnglish ? clientLine.shortNameEng : clientLine.shortName
-            
-            var content = guruTemplates.getFileIntro(mapName: mapName, comment: clientLine.comment)
-            
-            content += generateLayersContent(clientLine.id, clientLine.layersIDList, clientTable, serverTable)
-            
-            content += guruTemplates.getFileOutro()
-            
-            
-            // File patch generating
-            let patches = abstract.generatePatches(
-                shortPatch: patchTemplates.localPathToGuruMapsShort,
-                fullPatch: patchTemplates.localPathToGuruMapsFull,
-                serverFolder: patchTemplates.localPathToGuruMapsInServer,
-                extention: ".ms",
-                clientLine: clientLine,
-                isShortSet: isShortSet,
-                isEnglish: isEnglish)
-            
-            return (patch: patches.gitHub, secondPatch: patches.server, content: content)
-        }
+    override var replacingUrlParts: [(old: String, new: String)] {
+        return [(old: "{x}", new: "{$x}"),
+                (old: "{y}", new: "{$y}"),
+                (old: "{z}", new: "{$z}"),
+                (old: "{s}", new: "{$serverpart}"),
+                (old: "{invY}", new: "{$invY}"),
+                (old: "&", new: "{&amp;}")]
     }
     
     
     
     
-    private func generateLayersContent(_ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData]) -> String {
+    override func overridingCreatingFileDatails(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData]) -> (patch: String, secondPatch: String?, content: String) {
         
-        var content = ""
         
-        if layersIdList == "-1" {
-            
-            content += addLayerBlock(locusId: currentID, mapsClientTable, mapsServerTable)
-            
-        } else {
-            
-            let layersId = layersIdList.components(separatedBy: ";")
-            
-            var loadId = layersId.map {Int64($0)!}
-            
-            loadId.append(currentID)
-            
-            for i in 0 ... layersId.count {
-                
-                content += addLayerBlock(locusId: loadId[i], mapsClientTable, mapsServerTable)
-                
-            }
-        }
+        // File content agregation
+        var content = guruTemplates.getFileIntro(mapName: mapName, comment: clientLine.comment)
         
-        return content
+        content += generateLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientTable, serverTable, appName)
+        
+        content += guruTemplates.getFileOutro()
+        
+        
+        // File patch generating
+        let patches = getSavingPatches(
+            shortPatch: patchTemplates.localPathToGuruMapsShort,
+            fullPatch: patchTemplates.localPathToGuruMapsFull,
+            serverFolder: patchTemplates.localPathToGuruMapsInServer,
+            extention: ".ms",
+            clientLine: clientLine,
+            isShortSet: isShortSet,
+            isEnglish: isEnglish)
+        
+        return (patch: patches.gitHub, secondPatch: patches.server, content: content)
     }
     
     
     
     
-    
-    private func addLayerBlock(locusId: Int64, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData]) -> String {
+    override func overridingGetLayerItem(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String) -> String {
         
-        let mapClientLine = mapsClientTable.filter {$0.id == locusId}.first!
-        
-        let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
-        
-        // Prepare Url and server parts
-        var url = mapClientLine.gurumapsLoadAnygis ? webTemplates.anygisMapUrl : mapServerLine.backgroundUrl
-        
-        url = prepareUrl(url: url, mapName: mapServerLine.name)
-        
-        
-        var serverParts = ""
-        
-        if !mapClientLine.gurumapsLoadAnygis {
-            
-            for i in mapServerLine.backgroundServerName {
-                
-                serverParts.append(i)
-                
-                serverParts.append(" ")
-            }
-        }
-        
-        return guruTemplates.getItem(url: url, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, serverParts: serverParts)
+        return guruTemplates.getItem(url: url, zoomMin: zoomMin, zoomMax: zoomMax, serverParts: serverParts)
     }
     
     
-    
-    
-    private func prepareUrl(url: String, mapName: String) -> String {
-        
-        var resultUrl = url
-        resultUrl = resultUrl.replacingOccurrences(of: "{mapName}", with: mapName)
-        resultUrl = resultUrl.replacingOccurrences(of: "{x}", with: "{$x}")
-        resultUrl = resultUrl.replacingOccurrences(of: "{y}", with: "{$y}")
-        resultUrl = resultUrl.replacingOccurrences(of: "{z}", with: "{$z}")
-        resultUrl = resultUrl.replacingOccurrences(of: "{s}", with: "{$serverpart}")
-        resultUrl = resultUrl.replacingOccurrences(of: "{invY}", with: "{$invY}")
-        resultUrl = resultUrl.replacingOccurrences(of: "&", with: "&amp;")
-        return resultUrl
-    }
     
 }
