@@ -16,8 +16,7 @@ class AbstractGenerator {
     public let patchTemplates = FilePatchTemplates()
     
     
-    // MARK: Overriding part
-    
+
     public var serverPartsSeparator: String {
         return ";"
     }
@@ -28,26 +27,12 @@ class AbstractGenerator {
     }
     
     
-    public func overridingCreatingFileDatails(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData])  -> (patch: String, secondPatch: String?, content: String)  {
-        
-        return (patch: "", secondPatch: nil, content: "")
-    }
+    
+ 
     
     
-    public func overridingGetLayerItem(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String) -> String {
-        
-        return ""
-    }
-    
-    
-    
-    
-    
-    // MARK: Constant part
-    
-    
-    // Start map generating
-    public func create(isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) throws {
+    // Start all maps generating
+    public func createAllMaps(isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) throws {
         
         let mapsServerTable = try baseHandler.getMapsServerData()
         let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
@@ -75,16 +60,17 @@ class AbstractGenerator {
             
             
             // Get file content and file patch from replacing function
-            let result = overridingCreatingFileDatails(appName, mapName, mapCategory, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable)
-
+            let mapContent = getOneMapContent(appName, mapName, mapCategory, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable)
+            
+            let patches = getPatchesForMapSaving(appName, mapName, mapCategory, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable)
             
             // Save file to GitHub syncing folder
-            diskHandler.createFile(patch: result.patch, content: result.content)
+            diskHandler.createFile(patch: patches.patch, content: mapContent)
             
             // Copy dublicate file to Public folder to use with Downloader script
-            if let serverPatch = result.secondPatch  {
+            if let serverPatch = patches.secondPatch  {
                 if !isShortSet {
-                    diskHandler.createFile(patch: serverPatch, content: result.content)
+                    diskHandler.createFile(patch: serverPatch, content: mapContent)
                 }
             }
         }
@@ -93,38 +79,35 @@ class AbstractGenerator {
     
     
     
-    public func getSavingPatches(shortPatch: String, fullPatch: String, serverFolder: String?, extention: String, clientLine: MapsClientData, isShortSet: Bool, isEnglish: Bool) -> (gitHub: String, server: String?) {
+    
+    
+    // TODO: Delete some input parameters !
+    
+    // overriding function
+    public func getOneMapContent(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData])  -> String  {
         
-        let githubSyncFolder = isShortSet ? shortPatch : fullPatch
-        
-        let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
-        
-        let filename = clientLine.groupPrefix + "-" + clientLine.clientMapName + extention
-        
-        let githubPatch = githubSyncFolder + langLabel + filename
-        
-        
-        
-        var serverPatch: String?
-        
-        if let folder = serverFolder {
-            serverPatch = folder + langLabel + filename
-        }
-        
-        
-        return (gitHub: githubPatch, server: serverPatch)
+        return ""
     }
     
     
     
     
-    public func generateLayersContent(_ mapName: String, _ mapCategory: String, _ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ appName: ClientAppList) -> String {
+    // overriding function
+    public func getPatchesForMapSaving(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData])  -> (patch: String, secondPatch: String?)  {
+        
+        return (patch: "", secondPatch: nil)
+    }
+    
+    
+    
+    
+    public func getAllLayersContent(_ mapName: String, _ mapCategory: String, _ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ appName: ClientAppList) -> String {
         
         var content = ""
         
         if layersIdList == "-1" {
             
-            content += addLayerBlock(mapName, mapCategory, locusId: currentID, background: "-1", mapsClientTable, mapsServerTable, appName)
+            content += getOneLayerContent(mapName, mapCategory, locusId: currentID, background: "-1", mapsClientTable, mapsServerTable, appName)
             
         } else {
             
@@ -138,7 +121,7 @@ class AbstractGenerator {
             
             for i in 0 ... layersId.count {
                 
-                content += addLayerBlock(mapName, mapCategory, locusId: loadId[i], background: backroundId[i], mapsClientTable, mapsServerTable, appName)
+                content += getOneLayerContent(mapName, mapCategory, locusId: loadId[i], background: backroundId[i], mapsClientTable, mapsServerTable, appName)
             }
         }
         
@@ -149,7 +132,7 @@ class AbstractGenerator {
     
     
     
-    private func addLayerBlock(_ mapName: String, _ mapCategory: String, locusId: Int64, background: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ appName: ClientAppList) -> String {
+    private func getOneLayerContent(_ mapName: String, _ mapCategory: String, locusId: Int64, background: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ appName: ClientAppList) -> String {
         
         let mapClientLine = mapsClientTable.filter {$0.id == locusId}.first!
         
@@ -172,7 +155,7 @@ class AbstractGenerator {
         // Prepare Url and server parts
         var url = isLoadAnygis ? webTemplates.anygisMapUrl : mapServerLine.backgroundUrl
         
-        url = replacrUrlParts(url: url, mapName: mapServerLine.name, parameters: replacingUrlParts)
+        url = replaceUrlParts(url: url, mapName: mapServerLine.name, parameters: replacingUrlParts)
         
         var serverParts = ""
         
@@ -188,7 +171,7 @@ class AbstractGenerator {
         }
         
         
-        let content = overridingGetLayerItem(id: mapClientLine.id, projection: mapClientLine.projection, visible: mapClientLine.visible, background: background, group: mapCategory, name: mapName, countries: mapClientLine.countries, usage: mapClientLine.usage, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, referer: mapServerLine.referer)
+        let content = generateOneLayerContent(id: mapClientLine.id, projection: mapClientLine.projection, visible: mapClientLine.visible, background: background, group: mapCategory, name: mapName, countries: mapClientLine.countries, usage: mapClientLine.usage, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, referer: mapServerLine.referer)
         
         
         return content
@@ -197,8 +180,17 @@ class AbstractGenerator {
     
     
     
+    // overriding function
+    public func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String) -> String {
+        
+        return ""
+    }
+    
+    
+    
+    
     // TODO: make private
-    public func replacrUrlParts(url: String, mapName: String, parameters: [(old: String,new: String)]) -> String {
+    public func replaceUrlParts(url: String, mapName: String, parameters: [(old: String,new: String)]) -> String {
         
         var resultUrl = url
         
@@ -211,6 +203,30 @@ class AbstractGenerator {
         return resultUrl
     }
     
-
     
+    
+    
+    public func getSavingFilePatches(shortPatch: String, fullPatch: String, serverFolder: String?, extention: String, clientLine: MapsClientData, isShortSet: Bool, isEnglish: Bool) -> (gitHub: String, server: String?) {
+        
+        let githubSyncFolder = isShortSet ? shortPatch : fullPatch
+        
+        let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
+        
+        let filename = clientLine.groupPrefix + "-" + clientLine.clientMapName + extention
+        
+        let githubPatch = githubSyncFolder + langLabel + filename
+        
+        
+        
+        var serverPatch: String?
+        
+        if let folder = serverFolder {
+            serverPatch = folder + langLabel + filename
+        }
+        
+        
+        return (gitHub: githubPatch, server: serverPatch)
+    }
+    
+
 }

@@ -27,7 +27,6 @@
 		33B76E2D224BF3CC0010E35E /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E2C224BF3CC0010E35E /* Controller.swift */; };
 		33B76E31224D61A90010E35E /* OruxMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E30224D61A90010E35E /* OruxMapsGenerator.swift */; };
 		33B76E33224E258E0010E35E /* LocusInstellersGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E32224E258E0010E35E /* LocusInstellersGenerator.swift */; };
-		33B76E35224E2CEB0010E35E /* LocusMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E34224E2CEB0010E35E /* LocusMapsGenerator.swift */; };
 		33B76E37224E342E0010E35E /* LocusMapsTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E36224E342E0010E35E /* LocusMapsTemplates.swift */; };
 		33B76E39224E35200010E35E /* DecsriptionTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E38224E35200010E35E /* DecsriptionTemplate.swift */; };
 		33B76E3B224E399B0010E35E /* MarkdownPagesGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E3A224E399B0010E35E /* MarkdownPagesGenerator.swift */; };
@@ -35,6 +34,7 @@
 		33B76E41224E91380010E35E /* OsmandMapsTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E40224E91380010E35E /* OsmandMapsTemplate.swift */; };
 		33E44E8A2262659E00CBECE7 /* AbstractGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E44E892262659E00CBECE7 /* AbstractGenerator.swift */; };
 		33E44E8C2263512C00CBECE7 /* GuruMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E44E8B2263512C00CBECE7 /* GuruMapsGenerator.swift */; };
+		33E44E8E2263933900CBECE7 /* LocusMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E44E8D2263933900CBECE7 /* LocusMapsGenerator.swift */; };
 		7776365E378A65D45F3E7D03 /* Pods_AnyGIS_filegenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +62,6 @@
 		33B76E2C224BF3CC0010E35E /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		33B76E30224D61A90010E35E /* OruxMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OruxMapsGenerator.swift; sourceTree = "<group>"; };
 		33B76E32224E258E0010E35E /* LocusInstellersGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusInstellersGenerator.swift; sourceTree = "<group>"; };
-		33B76E34224E2CEB0010E35E /* LocusMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusMapsGenerator.swift; sourceTree = "<group>"; };
 		33B76E36224E342E0010E35E /* LocusMapsTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusMapsTemplates.swift; sourceTree = "<group>"; };
 		33B76E38224E35200010E35E /* DecsriptionTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecsriptionTemplate.swift; sourceTree = "<group>"; };
 		33B76E3A224E399B0010E35E /* MarkdownPagesGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownPagesGenerator.swift; sourceTree = "<group>"; };
@@ -70,6 +69,7 @@
 		33B76E40224E91380010E35E /* OsmandMapsTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmandMapsTemplate.swift; sourceTree = "<group>"; };
 		33E44E892262659E00CBECE7 /* AbstractGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractGenerator.swift; sourceTree = "<group>"; };
 		33E44E8B2263512C00CBECE7 /* GuruMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuruMapsGenerator.swift; sourceTree = "<group>"; };
+		33E44E8D2263933900CBECE7 /* LocusMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusMapsGenerator.swift; sourceTree = "<group>"; };
 		72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyGIS_filegenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76540C1F1A9B64DFC65558DD /* Pods-AnyGIS_filegenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.release.xcconfig"; sourceTree = "<group>"; };
 		8BDBCAB25AFE578C55D5EBF4 /* Pods-AnyGIS_filegenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				33B76E32224E258E0010E35E /* LocusInstellersGenerator.swift */,
-				33B76E34224E2CEB0010E35E /* LocusMapsGenerator.swift */,
+				33E44E8D2263933900CBECE7 /* LocusMapsGenerator.swift */,
 			);
 			path = Locus;
 			sourceTree = "<group>";
@@ -422,10 +422,10 @@
 				33B76E29224BE5D40010E35E /* ClientAppList.swift in Sources */,
 				33B76E23224BE4D70010E35E /* LocusInstallersTemplates.swift in Sources */,
 				33B76E1F224BD9060010E35E /* MapsServerData.swift in Sources */,
+				33E44E8E2263933900CBECE7 /* LocusMapsGenerator.swift in Sources */,
 				33B76E15224BC7950010E35E /* SqliteHandler.swift in Sources */,
 				33B76E17224BC99F0010E35E /* WebPageTemplates.swift in Sources */,
 				33B76E39224E35200010E35E /* DecsriptionTemplate.swift in Sources */,
-				33B76E35224E2CEB0010E35E /* LocusMapsGenerator.swift in Sources */,
 				33B76E3F224E5DA30010E35E /* OsmandMapsGenerator.swift in Sources */,
 				33B76E2D224BF3CC0010E35E /* Controller.swift in Sources */,
 			);

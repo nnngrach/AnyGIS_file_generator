@@ -14,7 +14,7 @@ class GuruMapsGenerator: AbstractGenerator {
     
     
     override var serverPartsSeparator: String {
-        return ";"
+        return " "
     }
     
     
@@ -30,19 +30,26 @@ class GuruMapsGenerator: AbstractGenerator {
     
     
     
-    override func overridingCreatingFileDatails(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData]) -> (patch: String, secondPatch: String?, content: String) {
+    override func getOneMapContent(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData]) -> String {
         
         
-        // File content agregation
         var content = guruTemplates.getFileIntro(mapName: mapName, comment: clientLine.comment)
         
-        content += generateLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientTable, serverTable, appName)
+        content += getAllLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientTable, serverTable, appName)
         
         content += guruTemplates.getFileOutro()
         
         
+        return content
+    }
+    
+    
+    
+    
+    override func getPatchesForMapSaving(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData]) -> (patch: String, secondPatch: String?) {
+
         // File patch generating
-        let patches = getSavingPatches(
+        let patches = getSavingFilePatches(
             shortPatch: patchTemplates.localPathToGuruMapsShort,
             fullPatch: patchTemplates.localPathToGuruMapsFull,
             serverFolder: patchTemplates.localPathToGuruMapsInServer,
@@ -51,13 +58,13 @@ class GuruMapsGenerator: AbstractGenerator {
             isShortSet: isShortSet,
             isEnglish: isEnglish)
         
-        return (patch: patches.gitHub, secondPatch: patches.server, content: content)
+        return (patch: patches.gitHub, secondPatch: patches.server)
     }
     
     
     
     
-    override func overridingGetLayerItem(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String) -> String {
+    override func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String) -> String {
         
         return guruTemplates.getItem(url: url, zoomMin: zoomMin, zoomMax: zoomMax, serverParts: serverParts)
     }

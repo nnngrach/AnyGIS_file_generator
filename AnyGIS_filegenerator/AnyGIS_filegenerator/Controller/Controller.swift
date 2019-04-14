@@ -62,10 +62,10 @@ class Controller {
 
         
         do {
-            try locusMapsGenerator.create(isShortSet: true, isEnglish: true)
-            try locusMapsGenerator.create(isShortSet: false, isEnglish: true)
-            try locusMapsGenerator.create(isShortSet: true, isEnglish: false)
-            try locusMapsGenerator.create(isShortSet: false, isEnglish: false)
+            try locusMapsGenerator.createAllMaps(isShortSet: true, isEnglish: true, appName: .Locus)
+            try locusMapsGenerator.createAllMaps(isShortSet: false, isEnglish: true, appName: .Locus)
+            try locusMapsGenerator.createAllMaps(isShortSet: true, isEnglish: false, appName: .Locus)
+            try locusMapsGenerator.createAllMaps(isShortSet: false, isEnglish: false, appName: .Locus)
         } catch {
             print(error)
         }
@@ -83,10 +83,10 @@ class Controller {
         diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsInServer + en)
         
         do {
-            try guruMapsGenerator.create(isShortSet: true, isEnglish: true, appName: .GuruMapsIOS)
-            try guruMapsGenerator.create(isShortSet: false, isEnglish: true, appName: .GuruMapsIOS)
-            try guruMapsGenerator.create(isShortSet: true, isEnglish: false, appName: .GuruMapsIOS)
-            try guruMapsGenerator.create(isShortSet: false, isEnglish: false, appName: .GuruMapsIOS)
+            try guruMapsGenerator.createAllMaps(isShortSet: true, isEnglish: true, appName: .GuruMapsIOS)
+            try guruMapsGenerator.createAllMaps(isShortSet: false, isEnglish: true, appName: .GuruMapsIOS)
+            try guruMapsGenerator.createAllMaps(isShortSet: true, isEnglish: false, appName: .GuruMapsIOS)
+            try guruMapsGenerator.createAllMaps(isShortSet: false, isEnglish: false, appName: .GuruMapsIOS)
         } catch {
             print(error)
         }
