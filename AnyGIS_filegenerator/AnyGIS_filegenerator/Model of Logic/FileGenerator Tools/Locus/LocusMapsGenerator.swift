@@ -49,7 +49,7 @@ class LocusMapsGenerator: AbstractGenerator {
             shortPatch: patchTemplates.localPathToLocusMapsShort,
             fullPatch: patchTemplates.localPathToLocusMapsFull,
             serverFolder: "",
-            extention: ".ms",
+            extention: ".xml",
             clientLine: clientLine,
             isShortSet: isShortSet,
             isEnglish: isEnglish)
