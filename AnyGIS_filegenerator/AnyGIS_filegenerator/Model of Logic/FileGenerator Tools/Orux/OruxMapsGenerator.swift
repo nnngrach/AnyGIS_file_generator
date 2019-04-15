@@ -1,87 +1,57 @@
 //
-//  GuruMapsGenerator.swift
+//  OruxChild.swift
 //  AnyGIS_filegenerator
 //
-//  Created by HR_book on 28/03/2019.
+//  Created by HR_book on 15/04/2019.
 //  Copyright © 2019 Nnngrach. All rights reserved.
 //
 
 import Foundation
 
-class OruxMapsGenerator {
+class OruxMapsGenerator: AbstractGenerator {
     
-    private let diskHandler = DiskHandler()
-    private let baseHandler = SqliteHandler()
-    private let webTemplates = WebPageTemplates()
     private let oruxTemplates = OruxTemplates()
-    private let patchTemplates = FilePatchTemplates()
     
-
     
-    public func createAll(isShortSet: Bool, isEnglish: Bool) throws {
+    override var serverPartsSeparator: String {
+        return ","
+    }
+    
+    
+    
+    override var replacingUrlParts: [(old: String, new: String)] {
+        return [(old: "{x}", new: "{$x}"),
+                (old: "{y}", new: "{$y}"),
+                (old: "{z}", new: "{$z}"),
+                (old: "{s}", new: "{$s}"),
+                (old: "{invY}", new: "{$y}"),
+                (old: "{$quad}", new: "{$q}")]
+    }
+    
+    
+    
+    override func addIntroAndOutroTo(content: String) -> String {
+        return oruxTemplates.getFileIntro() + content + oruxTemplates.getFileOutro()
+    }
+    
+    
+    
+    override func getOneMapContent(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData]) -> String {
         
-        let mapsServerTable = try baseHandler.getMapsServerData()
-        let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
-        
-        // Start content agregation
-        var content = oruxTemplates.getFileIntro()
-        
-        for mapClientLine in mapsClientTable {
-            
-            // Filter off service layers
-            guard mapClientLine.forOrux else {continue}
-            // Filter for short list
-            if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
-            if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
-            if !mapClientLine.forRus && !isEnglish {continue}
-            if !mapClientLine.forEng && isEnglish {continue}
-            
-            content += generateBlock(mapClientLine.id, mapClientLine.layersIDList, mapsClientTable, mapsServerTable, isEnglish: isEnglish)
-        }
-        
-        content += oruxTemplates.getFileOutro()
-        
-        
-        // Create file
-        let patch = isShortSet ? patchTemplates.localPathToOruxMapsShortInServer : patchTemplates.localPathToOruxMapsFullInServer
-        
-         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
-        
-        let fullPatch = patch + langLabel + "onlinemapsources.xml"
-        
-        diskHandler.createFile(patch: fullPatch, content: content)
+        return getAllLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientTable, serverTable, appName)
     }
     
     
     
     
-    private func generateBlock(_ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], isEnglish: Bool) -> String {
+    override func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String) -> String {
         
-        let mapClientLine = mapsClientTable.filter {$0.id == currentID}.first!
-        
-        let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
-        
-        // Prepare Url and server parts
-        var url = mapClientLine.oruxLoadAnygis ? webTemplates.anygisMapUrl : mapServerLine.backgroundUrl
-        
-        url = prepareUrl(url: url, mapName: mapServerLine.name)
-        
-        
-        // Start content agregation
-        var serverParts = ""
-        
-        let origServerParts = mapServerLine.backgroundServerName
-        for i in origServerParts {
-            serverParts.append(i)
-            serverParts.append(",")
-        }
-        serverParts = String(serverParts.dropLast())
-        
+        let cacheable = cacheStoringHours == 0 ? 0 : 1
         
         var yInvertingScript = ""
         var currentProjection = ""
         
-        switch mapClientLine.projection {
+        switch projection {
         case 0, 5:
             currentProjection = "MERCATORESFERICA"
         case 1:
@@ -93,27 +63,20 @@ class OruxMapsGenerator {
             fatalError("Wrong proection in ORUX generateLayersContent()")
         }
         
-        let cacheable = mapClientLine.cacheStoringHours == 0 ? 0 : 1
         
-        let mapName = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
-        
-        return oruxTemplates.getItem(id: mapClientLine.id, projectionName: currentProjection, name: mapName, group: mapClientLine.oruxGroupPrefix, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, cacheable: cacheable, yInvertingScript: yInvertingScript)
+        return oruxTemplates.getItem(id: id, projectionName: currentProjection, name: name, group: oruxCategory, url: url, serverParts: serverParts, zoomMin: zoomMin, zoomMax: zoomMax, cacheable: cacheable, yInvertingScript: yInvertingScript)
     }
     
     
     
     
-    private func prepareUrl(url: String, mapName: String) -> String {
+    override func getAllMapsFileSavingPatch(_ isShortSet: Bool, _ isEnglish: Bool) -> String {
         
-        var resultUrl = url
-        resultUrl = resultUrl.replacingOccurrences(of: "{x}", with: "{$x}")
-        resultUrl = resultUrl.replacingOccurrences(of: "{y}", with: "{$y}")
-        resultUrl = resultUrl.replacingOccurrences(of: "{z}", with: "{$z}")
-        resultUrl = resultUrl.replacingOccurrences(of: "{s}", with: "{$s}")
-        resultUrl = resultUrl.replacingOccurrences(of: "{invY}", with: "{$y}")
-        resultUrl = resultUrl.replacingOccurrences(of: "{$quad}", with: "{$q}")
-        resultUrl = resultUrl.replacingOccurrences(of: "{mapName}", with: mapName)
-        return resultUrl
+        let patch = isShortSet ? patchTemplates.localPathToOruxMapsShortInServer : patchTemplates.localPathToOruxMapsFullInServer
+        
+        let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
+        
+        return patch + langLabel + "onlinemapsources.xml"
     }
     
 }

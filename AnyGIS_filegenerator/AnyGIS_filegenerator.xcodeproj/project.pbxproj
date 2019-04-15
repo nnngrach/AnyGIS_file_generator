@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		330E8F9E226505E4000D2BB7 /* OruxMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E8F9D226505E4000D2BB7 /* OruxMapsGenerator.swift */; };
 		3358320F22495813001FFC0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3358320E22495813001FFC0A /* AppDelegate.swift */; };
 		3358321122495813001FFC0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3358321022495813001FFC0A /* ViewController.swift */; };
 		3358321322495814001FFC0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3358321222495814001FFC0A /* Assets.xcassets */; };
@@ -25,7 +26,6 @@
 		33B76E27224BE5000010E35E /* OruxTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E26224BE5000010E35E /* OruxTemplates.swift */; };
 		33B76E29224BE5D40010E35E /* ClientAppList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E28224BE5D40010E35E /* ClientAppList.swift */; };
 		33B76E2D224BF3CC0010E35E /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E2C224BF3CC0010E35E /* Controller.swift */; };
-		33B76E31224D61A90010E35E /* OruxMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E30224D61A90010E35E /* OruxMapsGenerator.swift */; };
 		33B76E33224E258E0010E35E /* LocusInstellersGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E32224E258E0010E35E /* LocusInstellersGenerator.swift */; };
 		33B76E37224E342E0010E35E /* LocusMapsTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E36224E342E0010E35E /* LocusMapsTemplates.swift */; };
 		33B76E39224E35200010E35E /* DecsriptionTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E38224E35200010E35E /* DecsriptionTemplate.swift */; };
@@ -39,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		330E8F9D226505E4000D2BB7 /* OruxMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OruxMapsGenerator.swift; sourceTree = "<group>"; };
 		3358320B22495813001FFC0A /* AnyGIS_filegenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnyGIS_filegenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3358320E22495813001FFC0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3358321022495813001FFC0A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		33B76E26224BE5000010E35E /* OruxTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OruxTemplates.swift; sourceTree = "<group>"; };
 		33B76E28224BE5D40010E35E /* ClientAppList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientAppList.swift; sourceTree = "<group>"; };
 		33B76E2C224BF3CC0010E35E /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
-		33B76E30224D61A90010E35E /* OruxMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OruxMapsGenerator.swift; sourceTree = "<group>"; };
 		33B76E32224E258E0010E35E /* LocusInstellersGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusInstellersGenerator.swift; sourceTree = "<group>"; };
 		33B76E36224E342E0010E35E /* LocusMapsTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusMapsTemplates.swift; sourceTree = "<group>"; };
 		33B76E38224E35200010E35E /* DecsriptionTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecsriptionTemplate.swift; sourceTree = "<group>"; };
@@ -225,7 +225,7 @@
 		33B76E0C224B93800010E35E /* Orux */ = {
 			isa = PBXGroup;
 			children = (
-				33B76E30224D61A90010E35E /* OruxMapsGenerator.swift */,
+				330E8F9D226505E4000D2BB7 /* OruxMapsGenerator.swift */,
 			);
 			path = Orux;
 			sourceTree = "<group>";
@@ -404,6 +404,7 @@
 			files = (
 				33B76E13224BC6830010E35E /* Disk handler.swift in Sources */,
 				33B76E3B224E399B0010E35E /* MarkdownPagesGenerator.swift in Sources */,
+				330E8F9E226505E4000D2BB7 /* OruxMapsGenerator.swift in Sources */,
 				33B76E33224E258E0010E35E /* LocusInstellersGenerator.swift in Sources */,
 				33E44E8C2263512C00CBECE7 /* GuruMapsGenerator.swift in Sources */,
 				33E44E8A2262659E00CBECE7 /* AbstractGenerator.swift in Sources */,
@@ -416,7 +417,6 @@
 				33B76E19224BD47A0010E35E /* MapsServerDataDB.swift in Sources */,
 				33B76E25224BE4ED0010E35E /* GuruTemplates.swift in Sources */,
 				33B76E37224E342E0010E35E /* LocusMapsTemplates.swift in Sources */,
-				33B76E31224D61A90010E35E /* OruxMapsGenerator.swift in Sources */,
 				33B76E27224BE5000010E35E /* OruxTemplates.swift in Sources */,
 				33B76E41224E91380010E35E /* OsmandMapsTemplate.swift in Sources */,
 				33B76E29224BE5D40010E35E /* ClientAppList.swift in Sources */,

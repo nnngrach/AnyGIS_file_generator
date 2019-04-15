@@ -32,14 +32,19 @@ class AbstractGenerator {
     
     
     // Start all maps generating
-    public func createAllMaps(isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) throws {
+    public func createAllMaps(isAllMapsInOneFile: Bool, isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) throws {
         
         let mapsServerTable = try baseHandler.getMapsServerData()
         let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
         
+        var fileContent = ""
+        
+        
         for mapClientLine in mapsClientTable {
             
-            
+            if !isAllMapsInOneFile {
+                fileContent = ""
+            }
             
             // Filter off service layers
             if appName == ClientAppList.Locus && !mapClientLine.forLocus {continue}
@@ -55,24 +60,41 @@ class AbstractGenerator {
             if !mapClientLine.forRus && !isEnglish {continue}
             if !mapClientLine.forEng && isEnglish {continue}
             
+            
+            
             let mapName = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
             let mapCategory = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
             
             
-            // Get file content and file patch from replacing function
-            let mapContent = getOneMapContent(appName, mapName, mapCategory, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable)
+            // Overriding part: Get file content and file patch from replacing function
+            fileContent += getOneMapContent(appName, mapName, mapCategory, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable)
             
-            let patches = getPatchesForMapSaving(appName, mapName, mapCategory, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable)
             
-            // Save file to GitHub syncing folder
-            diskHandler.createFile(patch: patches.patch, content: mapContent)
             
-            // Copy dublicate file to Public folder to use with Downloader script
-            if let serverPatch = patches.secondPatch  {
-                if !isShortSet {
-                    diskHandler.createFile(patch: serverPatch, content: mapContent)
+            if !isAllMapsInOneFile {
+                
+                let patches = getPatchesForMapSaving(appName, mapName, mapCategory, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable)
+                
+                // Save sinlge map file to GitHub syncing folder
+                diskHandler.createFile(patch: patches.patch, content: fileContent)
+                
+                // Copy dublicate file to Heroku Public folder to use with Downloader script
+                if patches.secondPatch != nil && !isShortSet {
+                    diskHandler.createFile(patch: patches.secondPatch!, content: fileContent)
                 }
             }
+            
+        }
+        
+        
+        
+        if isAllMapsInOneFile {
+            
+            fileContent = addIntroAndOutroTo(content: fileContent)
+            
+            let patch = getAllMapsFileSavingPatch(isShortSet, isEnglish)
+            
+            diskHandler.createFile(patch: patch, content: fileContent)
         }
     }
     
@@ -171,7 +193,7 @@ class AbstractGenerator {
         }
         
         
-        let content = generateOneLayerContent(id: mapClientLine.id, projection: mapClientLine.projection, visible: mapClientLine.visible, background: background, group: mapCategory, name: mapName, countries: mapClientLine.countries, usage: mapClientLine.usage, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, referer: mapServerLine.referer)
+        let content = generateOneLayerContent(id: mapClientLine.id, projection: mapClientLine.projection, visible: mapClientLine.visible, background: background, group: mapCategory, name: mapName, countries: mapClientLine.countries, usage: mapClientLine.usage, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, referer: mapServerLine.referer, cacheStoringHours: mapClientLine.cacheStoringHours, oruxCategory: mapClientLine.oruxGroupPrefix)
         
         
         return content
@@ -181,7 +203,7 @@ class AbstractGenerator {
     
     
     // overriding function
-    public func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String) -> String {
+    public func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String) -> String {
         
         return ""
     }
@@ -189,8 +211,7 @@ class AbstractGenerator {
     
     
     
-    // TODO: make private
-    public func replaceUrlParts(url: String, mapName: String, parameters: [(old: String,new: String)]) -> String {
+    private func replaceUrlParts(url: String, mapName: String, parameters: [(old: String,new: String)]) -> String {
         
         var resultUrl = url
         
@@ -205,8 +226,8 @@ class AbstractGenerator {
     
     
     
-    
-    public func getSavingFilePatches(shortPatch: String, fullPatch: String, serverFolder: String?, extention: String, clientLine: MapsClientData, isShortSet: Bool, isEnglish: Bool) -> (gitHub: String, server: String?) {
+  
+    public func getOneMapFileSavingPatches(shortPatch: String, fullPatch: String, serverFolder: String?, extention: String, clientLine: MapsClientData, isShortSet: Bool, isEnglish: Bool) -> (gitHub: String, server: String?) {
         
         let githubSyncFolder = isShortSet ? shortPatch : fullPatch
         
@@ -217,16 +238,27 @@ class AbstractGenerator {
         let githubPatch = githubSyncFolder + langLabel + filename
         
         
-        
         var serverPatch: String?
         
         if let folder = serverFolder {
             serverPatch = folder + langLabel + filename
         }
         
-        
         return (gitHub: githubPatch, server: serverPatch)
     }
     
+    
+    
+    
+    // overriding function
+    public func getAllMapsFileSavingPatch(_ isShortSet: Bool, _ isEnglish: Bool) -> String {
+        return ""
+    }
+    
+    
+    // overriding function
+    public func addIntroAndOutroTo(content: String) -> String {
+        return ""
+    }
 
 }

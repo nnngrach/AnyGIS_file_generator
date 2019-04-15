@@ -45,7 +45,7 @@ class LocusMapsGenerator: AbstractGenerator {
     override func getPatchesForMapSaving(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData]) -> (patch: String, secondPatch: String?) {
         
         // File patch generating
-        let patches = getSavingFilePatches(
+        let patches = getOneMapFileSavingPatches(
             shortPatch: patchTemplates.localPathToLocusMapsShort,
             fullPatch: patchTemplates.localPathToLocusMapsFull,
             serverFolder: "",
@@ -59,7 +59,7 @@ class LocusMapsGenerator: AbstractGenerator {
     
     
     
-    override func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String) -> String {
+    override func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String) -> String {
         
         return locusTemplates.getMapFileItem(id: id, projection: projection, visible: visible, background: background, group: group, name: name, countries: countries, usage: usage, url: url, serverParts: serverParts, zoomMin: zoomMin, zoomMax: zoomMax, referer: referer)
     }

@@ -62,10 +62,10 @@ class Controller {
 
         
         do {
-            try locusMapsGenerator.createAllMaps(isShortSet: true, isEnglish: true, appName: .Locus)
-            try locusMapsGenerator.createAllMaps(isShortSet: false, isEnglish: true, appName: .Locus)
-            try locusMapsGenerator.createAllMaps(isShortSet: true, isEnglish: false, appName: .Locus)
-            try locusMapsGenerator.createAllMaps(isShortSet: false, isEnglish: false, appName: .Locus)
+            try locusMapsGenerator.createAllMaps(isAllMapsInOneFile: false, isShortSet: true, isEnglish: true, appName: .Locus)
+            try locusMapsGenerator.createAllMaps(isAllMapsInOneFile: false, isShortSet: false, isEnglish: true, appName: .Locus)
+            try locusMapsGenerator.createAllMaps(isAllMapsInOneFile: false, isShortSet: true, isEnglish: false, appName: .Locus)
+            try locusMapsGenerator.createAllMaps(isAllMapsInOneFile: false, isShortSet: false, isEnglish: false, appName: .Locus)
         } catch {
             print(error)
         }
@@ -83,10 +83,10 @@ class Controller {
         diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsInServer + en)
         
         do {
-            try guruMapsGenerator.createAllMaps(isShortSet: true, isEnglish: true, appName: .GuruMapsIOS)
-            try guruMapsGenerator.createAllMaps(isShortSet: false, isEnglish: true, appName: .GuruMapsIOS)
-            try guruMapsGenerator.createAllMaps(isShortSet: true, isEnglish: false, appName: .GuruMapsIOS)
-            try guruMapsGenerator.createAllMaps(isShortSet: false, isEnglish: false, appName: .GuruMapsIOS)
+            try guruMapsGenerator.createAllMaps(isAllMapsInOneFile: false, isShortSet: true, isEnglish: true, appName: .GuruMapsIOS)
+            try guruMapsGenerator.createAllMaps(isAllMapsInOneFile: false, isShortSet: false, isEnglish: true, appName: .GuruMapsIOS)
+            try guruMapsGenerator.createAllMaps(isAllMapsInOneFile: false, isShortSet: true, isEnglish: false, appName: .GuruMapsIOS)
+            try guruMapsGenerator.createAllMaps(isAllMapsInOneFile: false, isShortSet: false, isEnglish: false, appName: .GuruMapsIOS)
         } catch {
             print(error)
         }
@@ -102,10 +102,10 @@ class Controller {
         diskHandler.cleanFolder(patch: patchTemplates.localPathToOruxMapsShortInServer + en)
         
         do {
-            try oruxMapsGenerator.createAll(isShortSet: true, isEnglish: true)
-            try oruxMapsGenerator.createAll(isShortSet: true, isEnglish: false)
-            try oruxMapsGenerator.createAll(isShortSet: false, isEnglish: true)
-            try oruxMapsGenerator.createAll(isShortSet: false, isEnglish: false)
+            try oruxMapsGenerator.createAllMaps(isAllMapsInOneFile: true, isShortSet: true, isEnglish: true, appName: .Orux)
+            try oruxMapsGenerator.createAllMaps(isAllMapsInOneFile: true, isShortSet: true, isEnglish: false, appName: .Orux)
+            try oruxMapsGenerator.createAllMaps(isAllMapsInOneFile: true, isShortSet: false, isEnglish: true, appName: .Orux)
+            try oruxMapsGenerator.createAllMaps(isAllMapsInOneFile: true, isShortSet: false, isEnglish: false, appName: .Orux)
         } catch {
             print(error)
         }
