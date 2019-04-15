@@ -11,7 +11,7 @@ import Foundation
 class MarkdownPagesGenerator: AbstractGenerator {
     
     
-    private let webTemplates = WebPageTemplates()
+    //private let webTemplates = WebPageTemplates()
     
     
     override var isAllMapsInOneFile: Bool {
