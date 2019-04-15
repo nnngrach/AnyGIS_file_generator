@@ -63,9 +63,9 @@ class LocusMapsGenerator: AbstractGenerator {
     
     
     
-    override func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, groupPrefix: String, name: String, nameEng: String, clientMapName: String,  countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String, isEnglish: Bool, appName: ClientAppList) -> String {
+    override func generateOneLayerContent(_ mapName: String, _ mapCategory: String, _ url: String, _ serverParts: String, _ background: String, _ isEnglish: Bool, _ appName: ClientAppList, _ clientLine: MapsClientData, _ serverLine: MapsServerData) -> String {
         
-        return locusTemplates.getMapFileItem(id: id, projection: projection, visible: visible, background: background, group: group, name: name, countries: countries, usage: usage, url: url, serverParts: serverParts, zoomMin: zoomMin, zoomMax: zoomMax, referer: referer)
+        return locusTemplates.getMapFileItem(id: clientLine.id, projection: clientLine.projection, visible: clientLine.visible, background: background, group: mapCategory, name: mapName, countries: clientLine.countries, usage: clientLine.usage, url: url, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer)
     }
     
 }

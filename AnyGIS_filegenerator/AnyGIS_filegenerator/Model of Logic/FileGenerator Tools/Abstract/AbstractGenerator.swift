@@ -132,14 +132,13 @@ class AbstractGenerator {
     
     
     
-    public func generateContentCategorySeparator(id: Int64, projection: Int64, visible: Bool, background: String, group: String, groupEng: String, groupPrefix: String, name: String,  countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String, previousCategory: String, isEnglish: Bool, appName: ClientAppList) -> String {
+    public func generateContentCategorySeparator(_ previousCategory: String, _ isEnglish: Bool, _ appName: ClientAppList, _ clientLine: MapsClientData, _ serverLine: MapsServerData) -> String {
         
         return ""
     }
     
     
-    
-    public func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, groupPrefix: String, name: String, nameEng: String, clientMapName: String,  countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String, isEnglish: Bool, appName: ClientAppList) -> String {
+    public func generateOneLayerContent(_ mapName: String, _ mapCategory: String, _ url: String, _ serverParts: String, _ background: String, _ isEnglish: Bool, _ appName: ClientAppList, _ clientLine: MapsClientData, _ serverLine: MapsServerData) -> String {
         
         return ""
     }

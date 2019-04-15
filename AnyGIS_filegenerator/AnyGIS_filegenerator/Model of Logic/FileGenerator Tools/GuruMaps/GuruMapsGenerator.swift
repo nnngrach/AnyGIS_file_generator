@@ -67,9 +67,9 @@ class GuruMapsGenerator: AbstractGenerator {
     
     
     
-    override func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, groupPrefix: String, name: String, nameEng: String, clientMapName: String,  countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String, isEnglish: Bool, appName: ClientAppList) -> String {
+    override func generateOneLayerContent(_ mapName: String, _ mapCategory: String, _ url: String, _ serverParts: String, _ background: String, _ isEnglish: Bool, _ appName: ClientAppList, _ clientLine: MapsClientData, _ serverLine: MapsServerData) -> String {
         
-        return guruTemplates.getItem(url: url, zoomMin: zoomMin, zoomMax: zoomMax, serverParts: serverParts)
+        return guruTemplates.getItem(url: url, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, serverParts: serverParts)
     }
     
     

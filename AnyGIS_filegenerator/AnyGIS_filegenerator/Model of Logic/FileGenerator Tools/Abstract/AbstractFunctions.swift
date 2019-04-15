@@ -84,15 +84,15 @@ extension AbstractGenerator {
             serverParts = String(serverParts.dropLast())
         }
         
-        content += generateContentCategorySeparator(id: mapClientLine.id, projection: mapClientLine.projection, visible: mapClientLine.visible, background: background, group: mapCategory, groupEng: mapClientLine.groupNameEng, groupPrefix: mapClientLine.groupPrefix, name: mapName, countries: mapClientLine.countries, usage: mapClientLine.usage, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, referer: mapServerLine.referer, cacheStoringHours: mapClientLine.cacheStoringHours, oruxCategory: mapClientLine.oruxGroupPrefix, previousCategory: previousCategory, isEnglish: isEnglish, appName: appName)
         
+        content += generateContentCategorySeparator(previousCategory, isEnglish, appName, mapClientLine, mapServerLine)
         
-        content += generateOneLayerContent(id: mapClientLine.id, projection: mapClientLine.projection, visible: mapClientLine.visible, background: background, group: mapCategory, groupPrefix: mapClientLine.groupPrefix, name: mapName, nameEng: mapClientLine.shortNameEng, clientMapName: mapClientLine.clientMapName, countries: mapClientLine.countries, usage: mapClientLine.usage, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, referer: mapServerLine.referer, cacheStoringHours: mapClientLine.cacheStoringHours, oruxCategory: mapClientLine.oruxGroupPrefix, isEnglish: isEnglish, appName: appName)
-        
+        content += generateOneLayerContent(mapName, mapCategory, url, serverParts, background, isEnglish, appName, mapClientLine, mapServerLine)
         
         return content
     }
     
+   
     
     
     public func updatePreviousCategory(group: String, previousCategory: String) -> String {

@@ -49,14 +49,14 @@ class OruxMapsGenerator: AbstractGenerator {
     
     
     
-    override func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, groupPrefix: String, name: String, nameEng: String, clientMapName: String,  countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String, isEnglish: Bool, appName: ClientAppList) -> String {
+    override func generateOneLayerContent(_ mapName: String, _ mapCategory: String, _ url: String, _ serverParts: String, _ background: String, _ isEnglish: Bool, _ appName: ClientAppList, _ clientLine: MapsClientData, _ serverLine: MapsServerData) -> String {
         
-        let cacheable = cacheStoringHours == 0 ? 0 : 1
+        let cacheable = clientLine.cacheStoringHours == 0 ? 0 : 1
         
         var yInvertingScript = ""
         var currentProjection = ""
         
-        switch projection {
+        switch clientLine.projection {
         case 0, 5:
             currentProjection = "MERCATORESFERICA"
         case 1:
@@ -69,7 +69,8 @@ class OruxMapsGenerator: AbstractGenerator {
         }
         
         
-        return oruxTemplates.getItem(id: id, projectionName: currentProjection, name: name, group: oruxCategory, url: url, serverParts: serverParts, zoomMin: zoomMin, zoomMax: zoomMax, cacheable: cacheable, yInvertingScript: yInvertingScript)
+        
+        return oruxTemplates.getItem(id: clientLine.id, projectionName: currentProjection, name: mapName, group: clientLine.oruxGroupPrefix, url: url, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, cacheable: cacheable, yInvertingScript: yInvertingScript)
     }
     
     
