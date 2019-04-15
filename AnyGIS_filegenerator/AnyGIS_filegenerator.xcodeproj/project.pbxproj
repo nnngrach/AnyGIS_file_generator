@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		330E8F9E226505E4000D2BB7 /* OruxMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E8F9D226505E4000D2BB7 /* OruxMapsGenerator.swift */; };
+		330E8FA022651403000D2BB7 /* MarkdownPagesGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E8F9F22651403000D2BB7 /* MarkdownPagesGenerator.swift */; };
 		3358320F22495813001FFC0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3358320E22495813001FFC0A /* AppDelegate.swift */; };
 		3358321122495813001FFC0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3358321022495813001FFC0A /* ViewController.swift */; };
 		3358321322495814001FFC0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3358321222495814001FFC0A /* Assets.xcassets */; };
@@ -29,7 +30,7 @@
 		33B76E33224E258E0010E35E /* LocusInstellersGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E32224E258E0010E35E /* LocusInstellersGenerator.swift */; };
 		33B76E37224E342E0010E35E /* LocusMapsTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E36224E342E0010E35E /* LocusMapsTemplates.swift */; };
 		33B76E39224E35200010E35E /* DecsriptionTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E38224E35200010E35E /* DecsriptionTemplate.swift */; };
-		33B76E3B224E399B0010E35E /* MarkdownPagesGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E3A224E399B0010E35E /* MarkdownPagesGenerator.swift */; };
+		33B76E3B224E399B0010E35E /* MarkdownPagesGeneratorOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E3A224E399B0010E35E /* MarkdownPagesGeneratorOld.swift */; };
 		33B76E3F224E5DA30010E35E /* OsmandMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E3E224E5DA30010E35E /* OsmandMapsGenerator.swift */; };
 		33B76E41224E91380010E35E /* OsmandMapsTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E40224E91380010E35E /* OsmandMapsTemplate.swift */; };
 		33E44E8A2262659E00CBECE7 /* AbstractGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E44E892262659E00CBECE7 /* AbstractGenerator.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		330E8F9D226505E4000D2BB7 /* OruxMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OruxMapsGenerator.swift; sourceTree = "<group>"; };
+		330E8F9F22651403000D2BB7 /* MarkdownPagesGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownPagesGenerator.swift; sourceTree = "<group>"; };
 		3358320B22495813001FFC0A /* AnyGIS_filegenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnyGIS_filegenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3358320E22495813001FFC0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3358321022495813001FFC0A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,7 +66,7 @@
 		33B76E32224E258E0010E35E /* LocusInstellersGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusInstellersGenerator.swift; sourceTree = "<group>"; };
 		33B76E36224E342E0010E35E /* LocusMapsTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusMapsTemplates.swift; sourceTree = "<group>"; };
 		33B76E38224E35200010E35E /* DecsriptionTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecsriptionTemplate.swift; sourceTree = "<group>"; };
-		33B76E3A224E399B0010E35E /* MarkdownPagesGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownPagesGenerator.swift; sourceTree = "<group>"; };
+		33B76E3A224E399B0010E35E /* MarkdownPagesGeneratorOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkdownPagesGeneratorOld.swift; sourceTree = "<group>"; };
 		33B76E3E224E5DA30010E35E /* OsmandMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmandMapsGenerator.swift; sourceTree = "<group>"; };
 		33B76E40224E91380010E35E /* OsmandMapsTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmandMapsTemplate.swift; sourceTree = "<group>"; };
 		33E44E892262659E00CBECE7 /* AbstractGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractGenerator.swift; sourceTree = "<group>"; };
@@ -242,7 +244,8 @@
 		33B76E0E224B93920010E35E /* WebPages */ = {
 			isa = PBXGroup;
 			children = (
-				33B76E3A224E399B0010E35E /* MarkdownPagesGenerator.swift */,
+				33B76E3A224E399B0010E35E /* MarkdownPagesGeneratorOld.swift */,
+				330E8F9F22651403000D2BB7 /* MarkdownPagesGenerator.swift */,
 			);
 			path = WebPages;
 			sourceTree = "<group>";
@@ -403,8 +406,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				33B76E13224BC6830010E35E /* Disk handler.swift in Sources */,
-				33B76E3B224E399B0010E35E /* MarkdownPagesGenerator.swift in Sources */,
+				33B76E3B224E399B0010E35E /* MarkdownPagesGeneratorOld.swift in Sources */,
 				330E8F9E226505E4000D2BB7 /* OruxMapsGenerator.swift in Sources */,
+				330E8FA022651403000D2BB7 /* MarkdownPagesGenerator.swift in Sources */,
 				33B76E33224E258E0010E35E /* LocusInstellersGenerator.swift in Sources */,
 				33E44E8C2263512C00CBECE7 /* GuruMapsGenerator.swift in Sources */,
 				33E44E8A2262659E00CBECE7 /* AbstractGenerator.swift in Sources */,

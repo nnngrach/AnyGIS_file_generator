@@ -1,73 +1,86 @@
 //
-//  MarkdownPagesGenerator.swift
+//  MarkChild.swift
 //  AnyGIS_filegenerator
 //
-//  Created by HR_book on 29/03/2019.
+//  Created by HR_book on 15/04/2019.
 //  Copyright © 2019 Nnngrach. All rights reserved.
 //
 
 import Foundation
 
-class MarkdownPagesGenerator {
+class MarkdownPagesGenerator: AbstractGenerator {
     
-    private let diskHandler = DiskHandler()
-    private let baseHandler = SqliteHandler()
+    
     private let webTemplates = WebPageTemplates()
-    private let patchTemplates = FilePatchTemplates()
     
     
-    public func createMarkdownPage(appName: ClientAppList, isShortSet: Bool, isEnglish: Bool) throws {
-        
-        var previousFolder = ""
-        
-        let firstPart = appName.rawValue.replacingOccurrences(of: " ", with: "_")
-        let secondPart = isShortSet ? "_Short" : "_Full"
-        let lastPart = isEnglish ? "_en.md" : "_ru.md"
-        let fullFileName = firstPart + secondPart + lastPart
-        
-        let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
-        
-        // Add first part of content
-        var content = webTemplates.getMarkdownHeader(isEnglish: isEnglish) + webTemplates.getMarkdownMaplistIntro(appName: appName, isEnglish: isEnglish)
-        
-        for mapClientLine in mapsClientTable {
-            
-            // Filter for short list
-            if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
-            if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
-            if !mapClientLine.forRus && !isEnglish {continue}
-            if !mapClientLine.forEng && isEnglish {continue}
-            
-            // Filter off service layers
-            if appName == .Orux  && !mapClientLine.forOrux {continue}
-            if appName == .Locus && !mapClientLine.forLocus {continue}
-            if appName == .Osmand  && !mapClientLine.forOsmand {continue}
-            if (appName == .GuruMapsIOS || appName == .GuruMapsAndroid)  && !mapClientLine.forGuru {continue}
-            
-            
-            // Add link to Catecory
-            if mapClientLine.groupName != previousFolder {
-                
-                previousFolder = mapClientLine.groupName
-                
-                let category = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
-               
-                content += webTemplates.getMarkdownMaplistCategory(appName: appName, categoryName: category, fileName: mapClientLine.groupPrefix, isEnglish: isEnglish)
-            }
-            
-            
-            // Add link to single map
-            let filename = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
-            
-            let name = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
-            
-            content += webTemplates.getMarkDownMaplistItem(appName: appName, name: name, fileName: filename, isEnglish: isEnglish)
-        }
-        
-        // Create file
-        let installerPatch = patchTemplates.localPathToMarkdownPages + fullFileName
-        
-        diskHandler.createFile(patch: installerPatch, content: content)
+    override var isAllMapsInOneFile: Bool {
+        return true
     }
     
+    
+    
+    
+    
+    override func addIntroAndOutroTo(content: String, isEnglish: Bool, appName: ClientAppList) -> String {
+        
+        let intro = webTemplates.getMarkdownHeader(isEnglish: isEnglish) + webTemplates.getMarkdownMaplistIntro(appName: appName, isEnglish: isEnglish)
+        
+        return intro + content
+    }
+    
+    
+    
+    override func getOneMapContent(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData], _ previousCategory: String) -> String {
+        
+        return getAllLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientTable, serverTable, isEnglish, appName, previousCategory)
+    }
+    
+    
+    
+    
+    override func generateContentCategorySeparator(id: Int64, projection: Int64, visible: Bool, background: String, group: String, groupEng: String, groupPrefix: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String, previousCategory: String, isEnglish: Bool, appName: ClientAppList) -> String {
+        
+        var previousFolder = previousCategory
+        
+        // Add link to Catecory
+        if group != previousFolder {
+            
+            previousFolder = group
+
+            let category = isEnglish ? groupEng : group
+
+            return webTemplates.getMarkdownMaplistCategory(appName: appName, categoryName: category, fileName: groupPrefix, isEnglish: isEnglish)
+            
+        } else {
+            
+            return ""
+        }
+    }
+    
+    
+    
+    
+    
+    override func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, groupPrefix: String, name: String, nameEng: String, clientMapName: String,  countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String, isEnglish: Bool, appName: ClientAppList) -> String {
+        
+        let filename = groupPrefix + "-" + clientMapName
+        
+        let mapName = isEnglish ? nameEng : name
+        
+        return webTemplates.getMarkDownMaplistItem(appName: appName, name: mapName, fileName: filename, isEnglish: isEnglish)
+    }
+    
+    
+    
+    
+    override func getAllMapsFileSavingPatch(isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) -> String {
+        
+        let firstPart = patchTemplates.localPathToMarkdownPages
+        let secondPart = appName.rawValue.replacingOccurrences(of: " ", with: "_")
+        let thirdPart = isShortSet ? "_Short" : "_Full"
+        let lastPart = isEnglish ? "_en.md" : "_ru.md"
+        
+        return firstPart + secondPart + thirdPart + lastPart
+    }
 }

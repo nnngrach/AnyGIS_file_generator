@@ -13,6 +13,11 @@ class OruxMapsGenerator: AbstractGenerator {
     private let oruxTemplates = OruxTemplates()
     
     
+    override var isAllMapsInOneFile: Bool {
+        return true
+    }
+    
+    
     override var serverPartsSeparator: String {
         return ","
     }
@@ -30,21 +35,21 @@ class OruxMapsGenerator: AbstractGenerator {
     
     
     
-    override func addIntroAndOutroTo(content: String) -> String {
+    override func addIntroAndOutroTo(content: String, isEnglish: Bool, appName: ClientAppList) -> String {
         return oruxTemplates.getFileIntro() + content + oruxTemplates.getFileOutro()
     }
     
     
     
-    override func getOneMapContent(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData]) -> String {
+    override func getOneMapContent(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData], _ previousCategory: String) -> String {
         
-        return getAllLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientTable, serverTable, appName)
+        return getAllLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientTable, serverTable, isEnglish, appName, previousCategory)
     }
     
     
     
     
-    override func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String) -> String {
+    override func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, groupPrefix: String, name: String, nameEng: String, clientMapName: String,  countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String, isEnglish: Bool, appName: ClientAppList) -> String {
         
         let cacheable = cacheStoringHours == 0 ? 0 : 1
         
@@ -70,7 +75,7 @@ class OruxMapsGenerator: AbstractGenerator {
     
     
     
-    override func getAllMapsFileSavingPatch(_ isShortSet: Bool, _ isEnglish: Bool) -> String {
+    override func getAllMapsFileSavingPatch(isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) -> String {
         
         let patch = isShortSet ? patchTemplates.localPathToOruxMapsShortInServer : patchTemplates.localPathToOruxMapsFullInServer
         

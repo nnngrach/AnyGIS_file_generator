@@ -12,6 +12,9 @@ class GuruMapsGenerator: AbstractGenerator {
     
     private let guruTemplates = GuruTemplates()
     
+    override var isAllMapsInOneFile: Bool {
+        return false
+    }
     
     override var serverPartsSeparator: String {
         return " "
@@ -30,12 +33,12 @@ class GuruMapsGenerator: AbstractGenerator {
     
     
     
-    override func getOneMapContent(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData]) -> String {
+    override func getOneMapContent(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData], _ previousCategory: String) -> String {
         
         
         var content = guruTemplates.getFileIntro(mapName: mapName, comment: clientLine.comment)
         
-        content += getAllLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientTable, serverTable, appName)
+        content += getAllLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientTable, serverTable, isEnglish, appName, previousCategory)
         
         content += guruTemplates.getFileOutro()
         
@@ -64,7 +67,7 @@ class GuruMapsGenerator: AbstractGenerator {
     
     
     
-    override func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String) -> String {
+    override func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, groupPrefix: String, name: String, nameEng: String, clientMapName: String,  countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String, isEnglish: Bool, appName: ClientAppList) -> String {
         
         return guruTemplates.getItem(url: url, zoomMin: zoomMin, zoomMax: zoomMax, serverParts: serverParts)
     }

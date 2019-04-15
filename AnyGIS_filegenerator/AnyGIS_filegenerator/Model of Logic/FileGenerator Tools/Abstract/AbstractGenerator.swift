@@ -16,7 +16,11 @@ class AbstractGenerator {
     public let patchTemplates = FilePatchTemplates()
     
     
+    public var isAllMapsInOneFile: Bool {
+        return false
+    }
 
+    
     public var serverPartsSeparator: String {
         return ";"
     }
@@ -32,12 +36,14 @@ class AbstractGenerator {
     
     
     // Start all maps generating
-    public func createAllMaps(isAllMapsInOneFile: Bool, isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) throws {
+    public func createAllMaps(isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) throws {
         
         let mapsServerTable = try baseHandler.getMapsServerData()
         let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
         
         var fileContent = ""
+        var previousCategory = ""
+        
         
         
         for mapClientLine in mapsClientTable {
@@ -67,7 +73,7 @@ class AbstractGenerator {
             
             
             // Overriding part: Get file content and file patch from replacing function
-            fileContent += getOneMapContent(appName, mapName, mapCategory, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable)
+            fileContent += getOneMapContent(appName, mapName, mapCategory, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable, previousCategory)
             
             
             
@@ -82,6 +88,11 @@ class AbstractGenerator {
                 if patches.secondPatch != nil && !isShortSet {
                     diskHandler.createFile(patch: patches.secondPatch!, content: fileContent)
                 }
+                
+            } else {
+                
+                // Update flag: is this map from new category?
+                previousCategory = updatePreviousCategory(group: mapClientLine.groupName, previousCategory: previousCategory)
             }
             
         }
@@ -90,9 +101,9 @@ class AbstractGenerator {
         
         if isAllMapsInOneFile {
             
-            fileContent = addIntroAndOutroTo(content: fileContent)
+            fileContent = addIntroAndOutroTo(content: fileContent, isEnglish: isEnglish, appName: appName)
             
-            let patch = getAllMapsFileSavingPatch(isShortSet, isEnglish)
+            let patch = getAllMapsFileSavingPatch(isShortSet: isShortSet, isEnglish: isEnglish, appName: appName)
             
             diskHandler.createFile(patch: patch, content: fileContent)
         }
@@ -106,7 +117,7 @@ class AbstractGenerator {
     // TODO: Delete some input parameters !
     
     // overriding function
-    public func getOneMapContent(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData])  -> String  {
+    public func getOneMapContent(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData], _ previousCategory: String)  -> String  {
         
         return ""
     }
@@ -123,13 +134,13 @@ class AbstractGenerator {
     
     
     
-    public func getAllLayersContent(_ mapName: String, _ mapCategory: String, _ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ appName: ClientAppList) -> String {
+    public func getAllLayersContent(_ mapName: String, _ mapCategory: String, _ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ isEnglish: Bool, _ appName: ClientAppList, _ previousCategory: String) -> String {
         
         var content = ""
         
         if layersIdList == "-1" {
             
-            content += getOneLayerContent(mapName, mapCategory, locusId: currentID, background: "-1", mapsClientTable, mapsServerTable, appName)
+            content += getOneLayerContent(mapName, mapCategory, locusId: currentID, background: "-1", mapsClientTable, mapsServerTable, isEnglish, appName, previousCategory)
             
         } else {
             
@@ -143,7 +154,7 @@ class AbstractGenerator {
             
             for i in 0 ... layersId.count {
                 
-                content += getOneLayerContent(mapName, mapCategory, locusId: loadId[i], background: backroundId[i], mapsClientTable, mapsServerTable, appName)
+                content += getOneLayerContent(mapName, mapCategory, locusId: loadId[i], background: backroundId[i], mapsClientTable, mapsServerTable, isEnglish, appName, previousCategory)
             }
         }
         
@@ -154,7 +165,10 @@ class AbstractGenerator {
     
     
     
-    private func getOneLayerContent(_ mapName: String, _ mapCategory: String, locusId: Int64, background: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ appName: ClientAppList) -> String {
+    private func getOneLayerContent(_ mapName: String, _ mapCategory: String, locusId: Int64, background: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ isEnglish: Bool, _ appName: ClientAppList, _ previousCategory: String) -> String {
+        
+        
+        var content = ""
         
         let mapClientLine = mapsClientTable.filter {$0.id == locusId}.first!
         
@@ -192,8 +206,10 @@ class AbstractGenerator {
             serverParts = String(serverParts.dropLast())
         }
         
+        content += generateContentCategorySeparator(id: mapClientLine.id, projection: mapClientLine.projection, visible: mapClientLine.visible, background: background, group: mapCategory, groupEng: mapClientLine.groupNameEng, groupPrefix: mapClientLine.groupPrefix, name: mapName, countries: mapClientLine.countries, usage: mapClientLine.usage, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, referer: mapServerLine.referer, cacheStoringHours: mapClientLine.cacheStoringHours, oruxCategory: mapClientLine.oruxGroupPrefix, previousCategory: previousCategory, isEnglish: isEnglish, appName: appName)
         
-        let content = generateOneLayerContent(id: mapClientLine.id, projection: mapClientLine.projection, visible: mapClientLine.visible, background: background, group: mapCategory, name: mapName, countries: mapClientLine.countries, usage: mapClientLine.usage, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, referer: mapServerLine.referer, cacheStoringHours: mapClientLine.cacheStoringHours, oruxCategory: mapClientLine.oruxGroupPrefix)
+        
+        content += generateOneLayerContent(id: mapClientLine.id, projection: mapClientLine.projection, visible: mapClientLine.visible, background: background, group: mapCategory, groupPrefix: mapClientLine.groupPrefix, name: mapName, nameEng: mapClientLine.shortNameEng, clientMapName: mapClientLine.clientMapName, countries: mapClientLine.countries, usage: mapClientLine.usage, url: url, serverParts: serverParts, zoomMin: mapServerLine.zoomMin, zoomMax: mapServerLine.zoomMax, referer: mapServerLine.referer, cacheStoringHours: mapClientLine.cacheStoringHours, oruxCategory: mapClientLine.oruxGroupPrefix, isEnglish: isEnglish, appName: appName)
         
         
         return content
@@ -201,9 +217,28 @@ class AbstractGenerator {
     
     
     
+    private func updatePreviousCategory(group: String, previousCategory: String) -> String {
+        
+        if group != previousCategory {
+            return group
+        } else {
+            return previousCategory
+        }
+    }
+    
+    
     
     // overriding function
-    public func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String) -> String {
+    public func generateContentCategorySeparator(id: Int64, projection: Int64, visible: Bool, background: String, group: String, groupEng: String, groupPrefix: String, name: String,  countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String, previousCategory: String, isEnglish: Bool, appName: ClientAppList) -> String {
+        
+        return ""
+    }
+    
+    
+    
+    
+    // overriding function
+    public func generateOneLayerContent(id: Int64, projection: Int64, visible: Bool, background: String, group: String, groupPrefix: String, name: String, nameEng: String, clientMapName: String,  countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, cacheStoringHours: Int64, oruxCategory: String, isEnglish: Bool, appName: ClientAppList) -> String {
         
         return ""
     }
@@ -251,13 +286,13 @@ class AbstractGenerator {
     
     
     // overriding function
-    public func getAllMapsFileSavingPatch(_ isShortSet: Bool, _ isEnglish: Bool) -> String {
+    public func getAllMapsFileSavingPatch(isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) -> String {
         return ""
     }
     
     
     // overriding function
-    public func addIntroAndOutroTo(content: String) -> String {
+    public func addIntroAndOutroTo(content: String, isEnglish: Bool, appName: ClientAppList) -> String {
         return ""
     }
 
