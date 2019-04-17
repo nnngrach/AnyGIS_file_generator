@@ -47,7 +47,6 @@ class MarkdownPagesGenerator: AbstractGenerator {
         
         guard clientLine.groupName != "Background" else {return ""}
         
-        
         let filename = clientLine.groupPrefix + "-" + clientLine.clientMapName
         
         let mapName = isEnglish ? clientLine.shortNameEng : clientLine.shortName

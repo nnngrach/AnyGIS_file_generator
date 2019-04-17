@@ -11,7 +11,29 @@ import Foundation
 extension AbstractGenerator {
     
     
-    public func getMapsCategoryLabel(_ currentCategory: String, _ previousCategory: String, _ groupPrefix: String, _ isEnglish: Bool, _ appName: ClientAppList) -> String {
+    public func isItUnnecessaryMap(_ mapClientLine: MapsClientData, _ isShortSet: Bool, _ isEnglish: Bool, _ appName: ClientAppList) -> Bool {
+        
+        // Filter off service layers
+        if appName == ClientAppList.Orux && !mapClientLine.forOrux {return true}
+        if appName == ClientAppList.Locus && !mapClientLine.forLocus {return true}
+        if appName == ClientAppList.Osmand && !mapClientLine.forOsmand {return true}
+        if (appName == ClientAppList.GuruMapsIOS || appName == ClientAppList.GuruMapsAndroid) && !mapClientLine.forGuru {return true}
+        
+        // Filter for short list
+        if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {return true}
+        if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {return true}
+        
+        // Filter for language specific maps
+        if !mapClientLine.forEng && isEnglish {return true}
+        if !mapClientLine.forRus && !isEnglish {return true}
+        
+        return false
+    }
+    
+    
+    
+    
+    public func getMapCategoryLabelContent(_ currentCategory: String, _ previousCategory: String, _ groupPrefix: String, _ isEnglish: Bool, _ appName: ClientAppList) -> String {
         
         if currentCategory != previousCategory {
             return generateContentCategoryLabel(appName, currentCategory, groupPrefix, isEnglish)
@@ -83,21 +105,22 @@ extension AbstractGenerator {
         
         url = replaceUrlParts(url: url, mapName: mapServerLine.name, parameters: urlPartsForReplacement)
         
-        var serverParts = ""
+        
+        var serverPartsInClientFormat = ""
         
         if !isLoadAnygis {
             
-            let origServerParts = mapServerLine.backgroundServerName
+            let storedServerParts = mapServerLine.backgroundServerName
             
-            for i in origServerParts {
-                serverParts.append(i)
-                serverParts.append(serverNamesSeparator)
+            for i in storedServerParts {
+                serverPartsInClientFormat.append(i)
+                serverPartsInClientFormat.append(serverNamesSeparator)
             }
-            serverParts = String(serverParts.dropLast())
+            serverPartsInClientFormat = String(serverPartsInClientFormat.dropLast())
         }
         
         
-        content += generateOneLayerContent(mapName, mapCategory, url, serverParts, background, isEnglish, appName, mapClientLine, mapServerLine)
+        content += generateOneLayerContent(mapName, mapCategory, url, serverPartsInClientFormat, background, isEnglish, appName, mapClientLine, mapServerLine)
         
         return content
     }

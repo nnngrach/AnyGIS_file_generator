@@ -47,52 +47,34 @@ class AbstractGenerator {
         // Interating for All Maps list
         for mapClientLine in mapsClientTable {
             
+            if isItUnnecessaryMap(mapClientLine, isShortSet, isEnglish, appName) {continue}
             
-            // If creating new file with single map
             if !isAllMapsInOneFile {
                 fileContent = ""
             }
+        
+        
+            let mapNameLabel = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
+            let mapCategoryLabel = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
             
             
-            // Filter off service layers
-            if appName == ClientAppList.Orux && !mapClientLine.forOrux {continue}
-            if appName == ClientAppList.Locus && !mapClientLine.forLocus {continue}
-            if appName == ClientAppList.Osmand && !mapClientLine.forOsmand {continue}
-            if (appName == ClientAppList.GuruMapsIOS || appName == ClientAppList.GuruMapsAndroid) && !mapClientLine.forGuru {continue}
-            
-            // Filter for short list
-            if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
-            if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
-            
-            // Filter for language specific maps
-            if !mapClientLine.forRus && !isEnglish {continue}
-            if !mapClientLine.forEng && isEnglish {continue}
-            
-            
-            // Get labels
-            let mapName = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
-            let mapCategory = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
-            
-            
-            // Add Group labels for Web pages maps list
+            // For web pages only: split maps list for groups
             if isAllMapsInOneFile {
                 
-                fileContent += getMapsCategoryLabel(mapCategory, previousMapCategoryLabel, mapClientLine.groupPrefix, isEnglish, appName)
+                fileContent += getMapCategoryLabelContent(mapCategoryLabel, previousMapCategoryLabel, mapClientLine.groupPrefix, isEnglish, appName)
                 
-                previousMapCategoryLabel = mapCategory
+                previousMapCategoryLabel = mapCategoryLabel
             }
             
             
-            // Get content for one map from overriding function
-            fileContent += getOneMapContent(appName, mapName, mapCategory, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable, previousMapCategoryLabel)
+            fileContent += getOneMapContent(appName, mapNameLabel, mapCategoryLabel, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable, previousMapCategoryLabel)
             
             
             
             // If creating new file with single map
             if !isAllMapsInOneFile {
                 
-                // Get saving patches for one map file from overriding function
-                let patches = getOneMapFileSavingPatches(appName, mapName, mapCategory, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable)
+                let patches = getOneMapFileSavingPatches(appName, mapNameLabel, mapCategoryLabel, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable)
                 
                 // Save sinlge map file to GitHub syncing folder
                 diskHandler.createFile(patch: patches.patch, content: fileContent)
@@ -101,27 +83,18 @@ class AbstractGenerator {
                 if patches.secondPatch != nil && !isShortSet {
                     diskHandler.createFile(patch: patches.secondPatch!, content: fileContent)
                 }
-              
-            // If creating one file with all maps
-            } else {
-                
-                // Update variable for Map Category label generating
-                previousMapCategoryLabel = mapCategory
             }
-            
         }
         
         
-        // If creating one file with all maps
+        
+        // If creating one file with all maps, fit collected content to file structure
         if isAllMapsInOneFile {
             
-            // Fit collected content to file structure
             fileContent = addIntroAndOutroTo(content: fileContent, isEnglish: isEnglish, appName: appName)
             
-            // Get saving patch for all maps file from overriding function
             let patch = getAllMapsFileSavingPatch(isShortSet: isShortSet, isEnglish: isEnglish, appName: appName)
             
-            // Save all maps file
             diskHandler.createFile(patch: patch, content: fileContent)
         }
     }

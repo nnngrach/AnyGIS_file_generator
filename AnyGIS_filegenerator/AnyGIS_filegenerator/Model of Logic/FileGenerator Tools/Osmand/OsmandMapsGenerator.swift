@@ -34,10 +34,7 @@ class OsmandMapsGenerator {
             if !mapClientLine.forRus && !isEnglish {continue}
             if !mapClientLine.forEng && isEnglish {continue}
             
-            let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
-            
             try generateItem(isShortSet: isShortSet, mapClientLine, mapsServerTable, isEnglish: isEnglish)
-            
         }
     }
     
@@ -51,7 +48,6 @@ class OsmandMapsGenerator {
         
         
         let currentProjection: Int64 = mapClientLine.projection == 2 ? 1 : 0
-        
         
         
         var url = ""
