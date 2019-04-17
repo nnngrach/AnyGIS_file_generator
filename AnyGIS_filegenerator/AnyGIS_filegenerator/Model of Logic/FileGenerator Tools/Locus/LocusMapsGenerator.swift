@@ -18,13 +18,13 @@ class LocusMapsGenerator: AbstractGenerator {
     }
     
     
-    override var serverPartsSeparator: String {
+    override var serverNamesSeparator: String {
         return ";"
     }
     
     
     
-    override var replacingUrlParts: [(old: String, new: String)] {
+    override var urlPartsForReplacement: [(old: String, new: String)] {
         return [(old: "{invY}", new: "{y}"),
                 (old: "https", new: "http")]
     }
@@ -36,7 +36,7 @@ class LocusMapsGenerator: AbstractGenerator {
         
         var content = locusTemplates.getMapFileIntro(comment: clientLine.comment)
         
-        content += getAllLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientTable, serverTable, isEnglish, appName, previousCategory)
+        content += getAllLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientLine, clientTable, serverTable, isEnglish, appName, previousCategory)
         
         content += locusTemplates.getMapFileOutro()
         
@@ -46,10 +46,10 @@ class LocusMapsGenerator: AbstractGenerator {
     
     
     
-    override func getPatchesForMapSaving(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData]) -> (patch: String, secondPatch: String?) {
+    override func getOneMapFileSavingPatches(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData]) -> (patch: String, secondPatch: String?) {
         
         // File patch generating
-        let patches = getOneMapFileSavingPatches(
+        let patches = generateOneMapFileSavingPatches(
             shortPatch: patchTemplates.localPathToLocusMapsShort,
             fullPatch: patchTemplates.localPathToLocusMapsFull,
             serverFolder: "",

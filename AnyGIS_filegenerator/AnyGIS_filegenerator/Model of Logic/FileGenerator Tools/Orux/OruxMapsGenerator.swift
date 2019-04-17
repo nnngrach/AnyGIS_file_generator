@@ -18,13 +18,13 @@ class OruxMapsGenerator: AbstractGenerator {
     }
     
     
-    override var serverPartsSeparator: String {
+    override var serverNamesSeparator: String {
         return ","
     }
     
     
     
-    override var replacingUrlParts: [(old: String, new: String)] {
+    override var urlPartsForReplacement: [(old: String, new: String)] {
         return [(old: "{x}", new: "{$x}"),
                 (old: "{y}", new: "{$y}"),
                 (old: "{z}", new: "{$z}"),
@@ -43,7 +43,7 @@ class OruxMapsGenerator: AbstractGenerator {
     
     override func getOneMapContent(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData], _ previousCategory: String) -> String {
         
-        return getAllLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientTable, serverTable, isEnglish, appName, previousCategory)
+        return getAllLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientLine, clientTable, serverTable, isEnglish, appName, previousCategory)
     }
     
     

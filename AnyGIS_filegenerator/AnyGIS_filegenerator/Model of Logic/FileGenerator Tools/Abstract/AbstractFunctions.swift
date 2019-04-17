@@ -11,10 +11,22 @@ import Foundation
 extension AbstractGenerator {
     
     
-    public func getAllLayersContent(_ mapName: String, _ mapCategory: String, _ currentID: Int64, _ layersIdList: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ isEnglish: Bool, _ appName: ClientAppList, _ previousCategory: String) -> String {
+    public func getMapsCategoryLabel(_ currentCategory: String, _ previousCategory: String, _ groupPrefix: String, _ isEnglish: Bool, _ appName: ClientAppList) -> String {
+        
+        if currentCategory != previousCategory {
+            return generateContentCategoryLabel(appName, currentCategory, groupPrefix, isEnglish)
+        } else {
+            return ""
+        }
+    }
+    
+    
+    
+    public func getAllLayersContent(_ mapName: String, _ mapCategory: String, _ currentID: Int64, _ layersIdList: String, _ mapsClientLine: MapsClientData, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ isEnglish: Bool, _ appName: ClientAppList, _ previousCategory: String) -> String {
         
         
         var content = ""
+        
         
         if layersIdList == "-1" {
             
@@ -69,7 +81,7 @@ extension AbstractGenerator {
         // Prepare Url and server parts
         var url = isLoadAnygis ? webTemplates.anygisMapUrl : mapServerLine.backgroundUrl
         
-        url = replaceUrlParts(url: url, mapName: mapServerLine.name, parameters: replacingUrlParts)
+        url = replaceUrlParts(url: url, mapName: mapServerLine.name, parameters: urlPartsForReplacement)
         
         var serverParts = ""
         
@@ -79,13 +91,11 @@ extension AbstractGenerator {
             
             for i in origServerParts {
                 serverParts.append(i)
-                serverParts.append(serverPartsSeparator)
+                serverParts.append(serverNamesSeparator)
             }
             serverParts = String(serverParts.dropLast())
         }
         
-        
-        content += generateContentCategorySeparator(previousCategory, isEnglish, appName, mapClientLine, mapServerLine)
         
         content += generateOneLayerContent(mapName, mapCategory, url, serverParts, background, isEnglish, appName, mapClientLine, mapServerLine)
         
@@ -94,16 +104,7 @@ extension AbstractGenerator {
     
    
     
-    
-    public func updatePreviousCategory(group: String, previousCategory: String) -> String {
-        
-        if group != previousCategory {
-            return group
-        } else {
-            return previousCategory
-        }
-    }
-    
+
     
     
 
@@ -123,7 +124,7 @@ extension AbstractGenerator {
     
     
     
-    public func getOneMapFileSavingPatches(shortPatch: String, fullPatch: String, serverFolder: String?, extention: String, clientLine: MapsClientData, isShortSet: Bool, isEnglish: Bool) -> (gitHub: String, server: String?) {
+    public func generateOneMapFileSavingPatches(shortPatch: String, fullPatch: String, serverFolder: String?, extention: String, clientLine: MapsClientData, isShortSet: Bool, isEnglish: Bool) -> (gitHub: String, server: String?) {
         
         let githubSyncFolder = isShortSet ? shortPatch : fullPatch
         

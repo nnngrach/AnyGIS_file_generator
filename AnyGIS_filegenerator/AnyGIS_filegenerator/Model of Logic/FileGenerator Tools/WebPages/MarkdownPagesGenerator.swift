@@ -11,14 +11,10 @@ import Foundation
 class MarkdownPagesGenerator: AbstractGenerator {
     
     
-    //private let webTemplates = WebPageTemplates()
-    
     
     override var isAllMapsInOneFile: Bool {
         return true
     }
-    
-    
     
     
     
@@ -33,36 +29,24 @@ class MarkdownPagesGenerator: AbstractGenerator {
     
     override func getOneMapContent(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData], _ previousCategory: String) -> String {
         
-        return getAllLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientTable, serverTable, isEnglish, appName, previousCategory)
+        return getAllLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientLine, clientTable, serverTable, isEnglish, appName, previousCategory)
     }
     
     
     
     
-    override func generateContentCategorySeparator(_ previousCategory: String, _ isEnglish: Bool, _ appName: ClientAppList, _ clientLine: MapsClientData, _ serverLine: MapsServerData) -> String {
+    override func generateContentCategoryLabel(_ appName: ClientAppList, _ categoryName: String, _ fileName: String, _ isEnglish: Bool) -> String {
         
-        var previousFolder = previousCategory
-        
-        // Add link to Catecory
-        if clientLine.groupName != previousFolder {
-            
-            previousFolder = clientLine.groupName
-
-            let category = isEnglish ? clientLine.groupNameEng : clientLine.groupName
-
-            return webTemplates.getMarkdownMaplistCategory(appName: appName, categoryName: category, fileName: clientLine.groupPrefix, isEnglish: isEnglish)
-            
-        } else {
-            
-            return ""
-        }
+        return webTemplates.getMarkdownMaplistCategory(appName: appName, categoryName: categoryName, fileGroupPrefix: fileName, isEnglish: isEnglish)
     }
-    
     
     
     
     
     override func generateOneLayerContent(_ mapName: String, _ mapCategory: String, _ url: String, _ serverParts: String, _ background: String, _ isEnglish: Bool, _ appName: ClientAppList, _ clientLine: MapsClientData, _ serverLine: MapsServerData) -> String {
+        
+        guard clientLine.groupName != "Background" else {return ""}
+        
         
         let filename = clientLine.groupPrefix + "-" + clientLine.clientMapName
         

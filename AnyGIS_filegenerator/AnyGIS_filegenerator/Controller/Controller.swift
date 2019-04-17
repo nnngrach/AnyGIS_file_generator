@@ -62,10 +62,10 @@ class Controller {
 
         
         do {
-            try locusMapsGenerator.createAllMaps(isShortSet: true, isEnglish: true, appName: .Locus)
-            try locusMapsGenerator.createAllMaps(isShortSet: false, isEnglish: true, appName: .Locus)
-            try locusMapsGenerator.createAllMaps(isShortSet: true, isEnglish: false, appName: .Locus)
-            try locusMapsGenerator.createAllMaps(isShortSet: false, isEnglish: false, appName: .Locus)
+            try locusMapsGenerator.startAllMapsCreating(isShortSet: true, isEnglish: true, appName: .Locus)
+            try locusMapsGenerator.startAllMapsCreating(isShortSet: false, isEnglish: true, appName: .Locus)
+            try locusMapsGenerator.startAllMapsCreating(isShortSet: true, isEnglish: false, appName: .Locus)
+            try locusMapsGenerator.startAllMapsCreating(isShortSet: false, isEnglish: false, appName: .Locus)
         } catch {
             print(error)
         }
@@ -83,10 +83,10 @@ class Controller {
         diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsInServer + en)
         
         do {
-            try guruMapsGenerator.createAllMaps(isShortSet: true, isEnglish: true, appName: .GuruMapsIOS)
-            try guruMapsGenerator.createAllMaps(isShortSet: false, isEnglish: true, appName: .GuruMapsIOS)
-            try guruMapsGenerator.createAllMaps(isShortSet: true, isEnglish: false, appName: .GuruMapsIOS)
-            try guruMapsGenerator.createAllMaps(isShortSet: false, isEnglish: false, appName: .GuruMapsIOS)
+            try guruMapsGenerator.startAllMapsCreating(isShortSet: true, isEnglish: true, appName: .GuruMapsIOS)
+            try guruMapsGenerator.startAllMapsCreating(isShortSet: false, isEnglish: true, appName: .GuruMapsIOS)
+            try guruMapsGenerator.startAllMapsCreating(isShortSet: true, isEnglish: false, appName: .GuruMapsIOS)
+            try guruMapsGenerator.startAllMapsCreating(isShortSet: false, isEnglish: false, appName: .GuruMapsIOS)
         } catch {
             print(error)
         }
@@ -102,10 +102,10 @@ class Controller {
         diskHandler.cleanFolder(patch: patchTemplates.localPathToOruxMapsShortInServer + en)
         
         do {
-            try oruxMapsGenerator.createAllMaps(isShortSet: true, isEnglish: true, appName: .Orux)
-            try oruxMapsGenerator.createAllMaps(isShortSet: true, isEnglish: false, appName: .Orux)
-            try oruxMapsGenerator.createAllMaps(isShortSet: false, isEnglish: true, appName: .Orux)
-            try oruxMapsGenerator.createAllMaps(isShortSet: false, isEnglish: false, appName: .Orux)
+            try oruxMapsGenerator.startAllMapsCreating(isShortSet: true, isEnglish: true, appName: .Orux)
+            try oruxMapsGenerator.startAllMapsCreating(isShortSet: true, isEnglish: false, appName: .Orux)
+            try oruxMapsGenerator.startAllMapsCreating(isShortSet: false, isEnglish: true, appName: .Orux)
+            try oruxMapsGenerator.startAllMapsCreating(isShortSet: false, isEnglish: false, appName: .Orux)
         } catch {
             print(error)
         }
@@ -135,23 +135,23 @@ class Controller {
         diskHandler.cleanFolder(patch: patchTemplates.localPathToMarkdownPages)
         
         do {
-            try markdownPagesGenerator.createAllMaps(isShortSet: true, isEnglish: false, appName: .Locus)
-            try markdownPagesGenerator.createAllMaps(isShortSet: false, isEnglish: false, appName: .Locus)
-            try markdownPagesGenerator.createAllMaps(isShortSet: true, isEnglish: false, appName: .GuruMapsAndroid)
-            try markdownPagesGenerator.createAllMaps(isShortSet: false, isEnglish: false, appName: .GuruMapsAndroid)
-            try markdownPagesGenerator.createAllMaps(isShortSet: true, isEnglish: false, appName: .GuruMapsIOS)
-            try markdownPagesGenerator.createAllMaps(isShortSet: false, isEnglish: false, appName: .GuruMapsIOS)
-            try markdownPagesGenerator.createAllMaps(isShortSet: true, isEnglish: false, appName: .Osmand)
-            try markdownPagesGenerator.createAllMaps(isShortSet: false, isEnglish: false, appName: .Osmand)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: true, isEnglish: false, appName: .Locus)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: false, isEnglish: false, appName: .Locus)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: true, isEnglish: false, appName: .GuruMapsAndroid)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: false, isEnglish: false, appName: .GuruMapsAndroid)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: true, isEnglish: false, appName: .GuruMapsIOS)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: false, isEnglish: false, appName: .GuruMapsIOS)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: true, isEnglish: false, appName: .Osmand)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: false, isEnglish: false, appName: .Osmand)
             
-            try markdownPagesGenerator.createAllMaps(isShortSet: true, isEnglish: true, appName: .Locus)
-            try markdownPagesGenerator.createAllMaps(isShortSet: false, isEnglish: true, appName: .Locus)
-            try markdownPagesGenerator.createAllMaps(isShortSet: true, isEnglish: true, appName: .GuruMapsAndroid)
-            try markdownPagesGenerator.createAllMaps(isShortSet: false, isEnglish: true, appName: .GuruMapsAndroid)
-            try markdownPagesGenerator.createAllMaps(isShortSet: true, isEnglish: true, appName: .GuruMapsIOS)
-            try markdownPagesGenerator.createAllMaps(isShortSet: false, isEnglish: true, appName: .GuruMapsIOS)
-            try markdownPagesGenerator.createAllMaps(isShortSet: true, isEnglish: true, appName: .Osmand)
-            try markdownPagesGenerator.createAllMaps(isShortSet: false, isEnglish: true, appName: .Osmand)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: true, isEnglish: true, appName: .Locus)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: false, isEnglish: true, appName: .Locus)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: true, isEnglish: true, appName: .GuruMapsAndroid)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: false, isEnglish: true, appName: .GuruMapsAndroid)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: true, isEnglish: true, appName: .GuruMapsIOS)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: false, isEnglish: true, appName: .GuruMapsIOS)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: true, isEnglish: true, appName: .Osmand)
+            try markdownPagesGenerator.startAllMapsCreating(isShortSet: false, isEnglish: true, appName: .Osmand)
             
         } catch {
             print(error)

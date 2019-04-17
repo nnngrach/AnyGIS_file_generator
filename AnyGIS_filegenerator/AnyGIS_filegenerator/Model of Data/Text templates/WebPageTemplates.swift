@@ -75,9 +75,9 @@ struct WebPageTemplates {
     
     
     
-    func getMarkdownMaplistCategory(appName: ClientAppList, categoryName: String, fileName: String, isEnglish: Bool) -> String {
+    func getMarkdownMaplistCategory(appName: ClientAppList, categoryName: String, fileGroupPrefix: String, isEnglish: Bool) -> String {
         
-        let filenameWithoutSpaces = fileName.replacingOccurrences(of: " ", with: "%20")
+        let filenameWithoutSpaces = fileGroupPrefix.replacingOccurrences(of: " ", with: "%20")
         
         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         
