@@ -27,7 +27,7 @@ class GuruMapsGenerator: AbstractGenerator {
                 (old: "{z}", new: "{$z}"),
                 (old: "{s}", new: "{$serverpart}"),
                 (old: "{invY}", new: "{$invY}"),
-                (old: "&", new: "{&amp;}")]
+                (old: "&", new: "&amp;")]
     }
     
     
