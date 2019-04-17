@@ -8,7 +8,8 @@
 
 import Foundation
 
-class OsmandMapsGenerator {
+class OsmandAllMapsGenerator {
+    
     private let diskHandler = DiskHandler()
     private let baseHandler = SqliteHandler()
     private let webTemplates = WebPageTemplates()
@@ -17,7 +18,7 @@ class OsmandMapsGenerator {
     private let sqlitedbHandler = SqlitedbHandler()
     
     
-    public func createAll(isShortSet: Bool, isEnglish: Bool) throws {
+    public func launch(isShortSet: Bool, isEnglish: Bool) throws {
         
         let mapsServerTable = try baseHandler.getMapsServerData()
         let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
@@ -54,7 +55,6 @@ class OsmandMapsGenerator {
         var method: String? = nil
         
         if mapClientLine.osmandLoadAnygis {
-            //url = webTemplates.anygisMapUrlHttp
             url = webTemplates.anygisMapUrl
             url = prepareUrlSimple(url: url, mapName: mapServerLine.name)
             

@@ -22,8 +22,6 @@ class SqliteHandler {
         
         let connection = try Connection(patchTemplates.dataBasePatch, readonly: true)
         
-        //let rawTable = try connection.prepare(MapProcessingDataDB.table)
-        
         let rawTable = try connection
             .prepare(MapsServerDataDB.table
                 .order(MapsServerDataDB.name))
