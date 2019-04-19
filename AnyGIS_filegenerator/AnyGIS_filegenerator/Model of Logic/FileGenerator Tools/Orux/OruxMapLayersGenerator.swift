@@ -28,7 +28,7 @@ class OruxMapLayersGenerator: AbstractMapLayersGenerator {
     }
     
     
-    override func generateOneLayerContent(_ mapName: String, _ mapCategory: String, _ url: String, _ serverParts: String, _ background: String, _ isEnglish: Bool, _ appName: ClientAppList, _ clientLine: MapsClientData, _ serverLine: MapsServerData) -> String {
+    override func generateOneLayerContent(_ mapName: String, _ mapCategory: String, _ url: String, _ serverParts: String, _ background: String, _ tileSize: String, _ isEnglish: Bool, _ appName: ClientAppList, _ clientLine: MapsClientData, _ serverLine: MapsServerData) -> String {
         
         let cacheable = clientLine.cacheStoringHours == 0 ? 0 : 1
         

@@ -95,6 +95,7 @@ class SqliteHandler {
                           oruxLoadAnygis: rawLine[MapsClientDataDB.oruxLoadAnygis]!,
                           osmandLoadAnygis: rawLine[MapsClientDataDB.osmandLoadAnygis]!,
                           cacheStoringHours: rawLine[MapsClientDataDB.cacheStoringHours]!,
+                          isRetina: rawLine[MapsClientDataDB.isRetina]!,
                           comment: rawLine[MapsClientDataDB.comment]!)
             
             

@@ -47,6 +47,7 @@ struct MapsClientData {
     let osmandLoadAnygis: Bool
     
     let cacheStoringHours: Int64
+    let isRetina: Bool
     
     let comment: String
 }

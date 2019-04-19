@@ -49,6 +49,7 @@ struct MapsClientDataDB {
     static let osmandLoadAnygis = Expression<Bool?>("osmandLoadAnygis")
 
     static let cacheStoringHours = Expression<Int64?>("cacheStoringHours")
+    static let isRetina = Expression<Bool?>("isRetina")
 
     static let comment = Expression<String?>("comment")
 }
