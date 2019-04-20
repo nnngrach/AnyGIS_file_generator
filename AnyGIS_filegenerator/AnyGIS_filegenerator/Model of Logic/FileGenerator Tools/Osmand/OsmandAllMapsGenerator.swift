@@ -99,7 +99,7 @@ class OsmandAllMapsGenerator {
         
         
         
-        let minZoom = String(17 - mapServerLine.zoomMax + 1)
+        let minZoom = String(17 - mapServerLine.zoomMax)
         let maxZoom = String(17 - mapServerLine.zoomMin)
         
         var referer: String? = nil
