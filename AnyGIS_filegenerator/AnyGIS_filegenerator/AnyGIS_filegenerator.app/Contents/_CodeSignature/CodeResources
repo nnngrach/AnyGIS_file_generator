@@ -10,23 +10,23 @@
 		</data>
 		<key>Resources/Assets.car</key>
 		<data>
-		zxLv8aBOw1LaXDRtdYIcr98ji0w=
+		JVpfuyGxa5b3U9yee1V/IsHUfP0=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
 		<data>
-		APpFtWIL4mtZ4Xzt3XrJqKgtcA0=
+		ipoCtB7L3vtK5es2U934vTeH/gA=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
 		<data>
-		bw5DT72fYk4rnngNqCsbQ5W/E8c=
+		ShFDHCpZliPjEMAXW1votgpnPJs=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib</key>
 		<data>
-		PcB0hVa1YDF7++ZwBHd8dlVBJV0=
+		5z56BYIWfM88zoTco6p85BjT4Xc=
 		</data>
 		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
 		<data>
-		dC3zmM+wl4Xa8XBhNO9AxVEB3lw=
+		vdVV07ml9OLnDNkfyCbIAZLE7ZQ=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -35,7 +35,7 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			TY1dG/B405D4Grt8TCIIgPM4UmI=
+			e9I2MI4PhkRTYayW3OY2wNhwANI=
 			</data>
 			<key>requirement</key>
 			<string>identifier "org.cocoapods.SQLite" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: nnngrach@gmail.com (82PEP3LFQE)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
@@ -186,35 +186,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1Amz/+kN329r27xmvUTkrolciivo7QOFEPRj/AQaeQ0=
+			ic9LvIjYnuR2a6mB0swm8+CoQe6m0ISRFHrMXOPNxQc=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			oNXpaGI9tVJEAk/5jrX0R2wdtiSUzOJSO6PVZEhTkto=
+			/7WCIoq+sZC/nnZA/6jEQt7H8nGc7ekgqYLeK/OhfIo=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/MainMenu.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			fOybELDuc0XH7Dx2FUltNoz2KcAvjSplaF6Sr0Vpoxs=
+			SpxF0CeLv7mBHJnWo6UXJbZRNgq/M6Y1DpiPbL0Cc3Y=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/NSWindowController-B8D-0N-5wS.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			gKrMzc8At0Md/1UhAEOXOFxH9eU7kBepBn7Y307QAT8=
+			OQojWwQTwCh4wljF6vCxEg7gZh95e/a8mp9ZqVhqy44=
 			</data>
 		</dict>
 		<key>Resources/Base.lproj/Main.storyboardc/XfG-lQ-9wD-view-m2S-Jp-Qdl.nib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			gWi0zEyZY+uuSL8oZUiRY6Q0mQoBnYDpQxtz1vnKVN0=
+			sZXWkKRJKietu3G0/1gXsvfBHLgix22c5k697SYLVUg=
 			</data>
 		</dict>
 	</dict>
