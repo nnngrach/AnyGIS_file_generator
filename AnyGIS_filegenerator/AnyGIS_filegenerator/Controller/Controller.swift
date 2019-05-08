@@ -19,6 +19,8 @@ class Controller {
     private let osmandMapsGenerator = OsmandAllMapsGenerator()
     private let markdownPagesGenerator = WebPagesAllMapsGenerator()
     private let locusInstallerGeneretor = LocusInstallersGenerator()
+    
+    private let westraParser = WestraParser()
 
 
     public func generateAll() {
@@ -156,6 +158,11 @@ class Controller {
         } catch {
             print(error)
         }
+    }
+    
+    
+    public func parseWestraGeoJson() {
+        westraParser.generateWestraPassesGeoJson()
     }
     
 }

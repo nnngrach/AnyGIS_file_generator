@@ -28,6 +28,12 @@
 		3358321122495813001FFC0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3358321022495813001FFC0A /* ViewController.swift */; };
 		3358321322495814001FFC0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3358321222495814001FFC0A /* Assets.xcassets */; };
 		3358321622495814001FFC0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3358321422495814001FFC0A /* Main.storyboard */; };
+		337049B52282C1600080FF9E /* WestraParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337049B42282C1600080FF9E /* WestraParser.swift */; };
+		337049B72282D4C90080FF9E /* WesraPassNakarte.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337049B62282D4C90080FF9E /* WesraPassNakarte.swift */; };
+		337049B92282E3000080FF9E /* GeoJsonFeatureCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337049B82282E3000080FF9E /* GeoJsonFeatureCollection.swift */; };
+		337049BC2282E4590080FF9E /* GeoJsonFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337049BB2282E4590080FF9E /* GeoJsonFeature.swift */; };
+		337049BE2282E58B0080FF9E /* GeoJsonPointGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337049BD2282E58B0080FF9E /* GeoJsonPointGeometry.swift */; };
+		337049C02282E61D0080FF9E /* GeoJsonPassProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337049BF2282E61D0080FF9E /* GeoJsonPassProperty.swift */; };
 		33B76DFF224B8DA70010E35E /* SqlitedbHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */; };
 		33B76E11224BA66C0010E35E /* FilePatchTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E10224BA66C0010E35E /* FilePatchTemplates.swift */; };
 		33B76E13224BC6830010E35E /* Disk handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E12224BC6830010E35E /* Disk handler.swift */; };
@@ -78,6 +84,12 @@
 		3358321522495814001FFC0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3358321722495814001FFC0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3358321822495814001FFC0A /* AnyGIS_filegenerator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnyGIS_filegenerator.entitlements; sourceTree = "<group>"; };
+		337049B42282C1600080FF9E /* WestraParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WestraParser.swift; sourceTree = "<group>"; };
+		337049B62282D4C90080FF9E /* WesraPassNakarte.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WesraPassNakarte.swift; sourceTree = "<group>"; };
+		337049B82282E3000080FF9E /* GeoJsonFeatureCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoJsonFeatureCollection.swift; sourceTree = "<group>"; };
+		337049BB2282E4590080FF9E /* GeoJsonFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoJsonFeature.swift; sourceTree = "<group>"; };
+		337049BD2282E58B0080FF9E /* GeoJsonPointGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoJsonPointGeometry.swift; sourceTree = "<group>"; };
+		337049BF2282E61D0080FF9E /* GeoJsonPassProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoJsonPassProperty.swift; sourceTree = "<group>"; };
 		33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqlitedbHandler.swift; sourceTree = "<group>"; };
 		33B76E10224BA66C0010E35E /* FilePatchTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePatchTemplates.swift; sourceTree = "<group>"; };
 		33B76E12224BC6830010E35E /* Disk handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Disk handler.swift"; sourceTree = "<group>"; };
@@ -155,6 +167,26 @@
 			path = AnyGIS_filegenerator;
 			sourceTree = "<group>";
 		};
+		337049B32282C12C0080FF9E /* WestraParser */ = {
+			isa = PBXGroup;
+			children = (
+				337049B42282C1600080FF9E /* WestraParser.swift */,
+			);
+			path = WestraParser;
+			sourceTree = "<group>";
+		};
+		337049BA2282E4350080FF9E /* WestraPasses */ = {
+			isa = PBXGroup;
+			children = (
+				337049B62282D4C90080FF9E /* WesraPassNakarte.swift */,
+				337049B82282E3000080FF9E /* GeoJsonFeatureCollection.swift */,
+				337049BB2282E4590080FF9E /* GeoJsonFeature.swift */,
+				337049BD2282E58B0080FF9E /* GeoJsonPointGeometry.swift */,
+				337049BF2282E61D0080FF9E /* GeoJsonPassProperty.swift */,
+			);
+			path = WestraPasses;
+			sourceTree = "<group>";
+		};
 		33B76E00224B90150010E35E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +212,7 @@
 				33B76E1E224BD9060010E35E /* MapsServerData.swift */,
 				33B76E18224BD47A0010E35E /* MapsServerDataDB.swift */,
 				33B76E0F224BA5C40010E35E /* Text templates */,
+				337049BA2282E4350080FF9E /* WestraPasses */,
 			);
 			path = "Model of Data";
 			sourceTree = "<group>";
@@ -223,6 +256,7 @@
 				33B76E0C224B93800010E35E /* Orux */,
 				33B76E0D224B938A0010E35E /* Osmand */,
 				33B76E0E224B93920010E35E /* WebPages */,
+				337049B32282C12C0080FF9E /* WestraParser */,
 			);
 			path = "FileGenerator Tools";
 			sourceTree = "<group>";
@@ -457,10 +491,12 @@
 				330E8FAA226753D4000D2BB7 /* GuruMapLayersGenerator.swift in Sources */,
 				330E8FAE226757FE000D2BB7 /* LocusMapLayersGenerator.swift in Sources */,
 				330E8FA622674E11000D2BB7 /* AbstractSavingPatchGenerator.swift in Sources */,
+				337049B92282E3000080FF9E /* GeoJsonFeatureCollection.swift in Sources */,
 				33E44E8A2262659E00CBECE7 /* AbstractAllMapsGenerator.swift in Sources */,
 				33B76DFF224B8DA70010E35E /* SqlitedbHandler.swift in Sources */,
 				33B76E21224BD9B40010E35E /* MapsClientData.swift in Sources */,
 				330E8FBA226760D0000D2BB7 /* WebPagesOneMapGenerator.swift in Sources */,
+				337049B72282D4C90080FF9E /* WesraPassNakarte.swift in Sources */,
 				33B76E1D224BD62A0010E35E /* MapsClientDataDB.swift in Sources */,
 				33B76E11224BA66C0010E35E /* FilePatchTemplates.swift in Sources */,
 				3358321122495813001FFC0A /* ViewController.swift in Sources */,
@@ -469,21 +505,25 @@
 				33B76E25224BE4ED0010E35E /* GuruTemplates.swift in Sources */,
 				33B76E37224E342E0010E35E /* LocusMapsTemplates.swift in Sources */,
 				330E8FBC2267611C000D2BB7 /* WebPagesLayersGenerator.swift in Sources */,
+				337049B52282C1600080FF9E /* WestraParser.swift in Sources */,
 				330E8FA222652CD2000D2BB7 /* AbstractMapLayersGenerator.swift in Sources */,
 				33B76E27224BE5000010E35E /* OruxTemplates.swift in Sources */,
 				330E8FB622675ED6000D2BB7 /* OruxMapLayersGenerator.swift in Sources */,
 				330E8FA422674D34000D2BB7 /* AbstractOneMapGenerator.swift in Sources */,
 				33B76E41224E91380010E35E /* OsmandMapsTemplate.swift in Sources */,
 				330E8FB02267589D000D2BB7 /* LocusSavingPatchGenerator.swift in Sources */,
+				337049BC2282E4590080FF9E /* GeoJsonFeature.swift in Sources */,
 				330E8FB2226759B7000D2BB7 /* LocusOneMapGenerator.swift in Sources */,
 				33B76E29224BE5D40010E35E /* ClientAppList.swift in Sources */,
 				33B76E23224BE4D70010E35E /* LocusInstallersTemplates.swift in Sources */,
 				33B76E1F224BD9060010E35E /* MapsServerData.swift in Sources */,
+				337049BE2282E58B0080FF9E /* GeoJsonPointGeometry.swift in Sources */,
 				33E44E8E2263933900CBECE7 /* LocusAllMapsGenerator.swift in Sources */,
 				33B76E15224BC7950010E35E /* SqliteHandler.swift in Sources */,
 				330E8FAC2267540A000D2BB7 /* GuruSavingPatchGenerator.swift in Sources */,
 				33B76E17224BC99F0010E35E /* WebPageTemplates.swift in Sources */,
 				33B76E39224E35200010E35E /* DecsriptionTemplate.swift in Sources */,
+				337049C02282E61D0080FF9E /* GeoJsonPassProperty.swift in Sources */,
 				330E8FBE22676152000D2BB7 /* WebPagesSavingPatchGenerator.swift in Sources */,
 				33B76E3F224E5DA30010E35E /* OsmandAllMapsGenerator.swift in Sources */,
 				330E8FB822675F06000D2BB7 /* OruxSavingPatchGenerator.swift in Sources */,

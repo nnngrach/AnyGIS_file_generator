@@ -706,11 +706,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="AnyGIS_filegenerator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="290"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c8M-LP-dF1">
-                                <rect key="frame" x="117" y="212" width="247" height="32"/>
+                                <rect key="frame" x="117" y="232" width="247" height="32"/>
                                 <buttonCell key="cell" type="push" title="Generate all files" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GpO-lA-u68">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -720,7 +720,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d7e-PX-1eT">
-                                <rect key="frame" x="117" y="181" width="247" height="32"/>
+                                <rect key="frame" x="117" y="201" width="247" height="32"/>
                                 <buttonCell key="cell" type="push" title="Generate GuruMaps *.ms" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="q4F-La-ssq">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -730,7 +730,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xPb-J4-LPj">
-                                <rect key="frame" x="117" y="150" width="247" height="32"/>
+                                <rect key="frame" x="117" y="170" width="247" height="32"/>
                                 <buttonCell key="cell" type="push" title="Generate OruxMaps *.xml" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="haW-wZ-aYj">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -740,7 +740,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xCj-wA-Tzr">
-                                <rect key="frame" x="117" y="119" width="247" height="32"/>
+                                <rect key="frame" x="117" y="139" width="247" height="32"/>
                                 <buttonCell key="cell" type="push" title="Generate Locus maps *.xml" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YeO-3q-d4C">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -750,7 +750,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pkh-kJ-s9r">
-                                <rect key="frame" x="117" y="57" width="247" height="32"/>
+                                <rect key="frame" x="117" y="77" width="247" height="32"/>
                                 <buttonCell key="cell" type="push" title="Generate Osmand maps *.sqlitedb" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="if8-ji-Cpr">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -760,7 +760,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mh7-kW-HkE">
-                                <rect key="frame" x="117" y="26" width="247" height="32"/>
+                                <rect key="frame" x="117" y="46" width="247" height="32"/>
                                 <buttonCell key="cell" type="push" title="Generate web pages *.md" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="saE-bw-DI5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -770,7 +770,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fL3-Uq-rlP">
-                                <rect key="frame" x="117" y="88" width="247" height="32"/>
+                                <rect key="frame" x="117" y="108" width="247" height="32"/>
                                 <buttonCell key="cell" type="push" title="Generate Locus installers *.xml" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ehc-Oc-i6I">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -780,27 +780,40 @@
                                 </connections>
                             </button>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="myo-G9-Ipj">
-                                <rect key="frame" x="375" y="37" width="48" height="48"/>
+                                <rect key="frame" x="375" y="57" width="48" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="kaW-mR-STy"/>
                             </imageView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tps-1r-Ys1">
+                                <rect key="frame" x="117" y="15" width="247" height="32"/>
+                                <buttonCell key="cell" type="push" title="Parse Westra Passes GeoJSON" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Rtc-tF-Xwk">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="parseWestraGeoJson:" target="XfG-lQ-9wD" id="4rA-03-zJA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="xCj-wA-Tzr" firstAttribute="top" secondItem="xPb-J4-LPj" secondAttribute="bottom" constant="10" id="0Bz-Cx-n03"/>
                             <constraint firstItem="Mh7-kW-HkE" firstAttribute="width" secondItem="c8M-LP-dF1" secondAttribute="width" id="3ET-5a-gzX"/>
                             <constraint firstItem="Pkh-kJ-s9r" firstAttribute="top" secondItem="fL3-Uq-rlP" secondAttribute="bottom" constant="10" id="B6I-c6-cRl"/>
                             <constraint firstItem="xCj-wA-Tzr" firstAttribute="width" secondItem="c8M-LP-dF1" secondAttribute="width" id="BXK-Cw-nT0"/>
+                            <constraint firstItem="tps-1r-Ys1" firstAttribute="top" secondItem="Mh7-kW-HkE" secondAttribute="bottom" constant="10" id="BaT-ZK-8G0"/>
                             <constraint firstItem="c8M-LP-dF1" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="DGO-rt-aiu"/>
                             <constraint firstItem="xCj-wA-Tzr" firstAttribute="centerX" secondItem="c8M-LP-dF1" secondAttribute="centerX" id="IQP-3v-b31"/>
                             <constraint firstItem="d7e-PX-1eT" firstAttribute="top" secondItem="c8M-LP-dF1" secondAttribute="bottom" constant="10" id="Imc-8A-zcg"/>
                             <constraint firstItem="fL3-Uq-rlP" firstAttribute="width" secondItem="c8M-LP-dF1" secondAttribute="width" id="J1I-nX-QiB"/>
                             <constraint firstItem="Pkh-kJ-s9r" firstAttribute="width" secondItem="c8M-LP-dF1" secondAttribute="width" id="JRl-Su-vn6"/>
                             <constraint firstItem="Pkh-kJ-s9r" firstAttribute="centerX" secondItem="c8M-LP-dF1" secondAttribute="centerX" id="Lt5-JS-Mt4"/>
+                            <constraint firstItem="tps-1r-Ys1" firstAttribute="centerX" secondItem="c8M-LP-dF1" secondAttribute="centerX" id="PaX-IN-E1v"/>
                             <constraint firstItem="c8M-LP-dF1" firstAttribute="width" secondItem="d7e-PX-1eT" secondAttribute="width" id="QhI-Lm-6ub"/>
                             <constraint firstItem="c8M-LP-dF1" firstAttribute="centerX" secondItem="d7e-PX-1eT" secondAttribute="centerX" id="RIv-DM-ocl"/>
                             <constraint firstItem="Mh7-kW-HkE" firstAttribute="top" secondItem="Pkh-kJ-s9r" secondAttribute="bottom" constant="10" id="SFv-Qc-giv"/>
                             <constraint firstItem="Mh7-kW-HkE" firstAttribute="centerX" secondItem="c8M-LP-dF1" secondAttribute="centerX" id="Y7U-MF-nQK"/>
                             <constraint firstItem="xPb-J4-LPj" firstAttribute="width" secondItem="c8M-LP-dF1" secondAttribute="width" id="YcU-ao-i0q"/>
+                            <constraint firstItem="tps-1r-Ys1" firstAttribute="width" secondItem="c8M-LP-dF1" secondAttribute="width" id="b2g-pd-yfF"/>
                             <constraint firstItem="xPb-J4-LPj" firstAttribute="top" secondItem="d7e-PX-1eT" secondAttribute="bottom" constant="10" id="bNA-bk-E62"/>
                             <constraint firstItem="fL3-Uq-rlP" firstAttribute="centerX" secondItem="c8M-LP-dF1" secondAttribute="centerX" id="diO-uA-zas"/>
                             <constraint firstItem="xPb-J4-LPj" firstAttribute="centerX" secondItem="c8M-LP-dF1" secondAttribute="centerX" id="pSn-wp-euV"/>

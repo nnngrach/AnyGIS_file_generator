@@ -54,5 +54,9 @@ class ViewController: NSViewController {
         controller.generateWebPages()
     }
     
+    @IBAction func parseWestraGeoJson(_ sender: Any) {
+        controller.parseWestraGeoJson()
+    }
+    
 }
 
