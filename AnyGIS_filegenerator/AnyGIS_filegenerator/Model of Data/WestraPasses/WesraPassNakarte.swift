@@ -14,4 +14,5 @@ struct WestraPassNakarte: Codable {
     var latlon: [Double]
     var grade_eng: String
     var grade: String?
+    var is_summit: Int?
 }

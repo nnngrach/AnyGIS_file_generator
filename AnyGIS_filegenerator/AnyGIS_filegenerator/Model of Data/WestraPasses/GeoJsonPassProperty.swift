@@ -9,10 +9,8 @@
 import Foundation
 
 struct GeoJsonPassPropertie: Codable {
-    //var @id: String
     var ele: String
-    var mountain_pass: String
     var name: String
-    var natural: String
     var rtsa_scale: String
+    var is_summit: Int?
 }

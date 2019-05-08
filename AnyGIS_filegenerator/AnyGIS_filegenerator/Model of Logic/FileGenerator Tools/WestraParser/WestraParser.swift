@@ -16,6 +16,7 @@ class WestraParser {
     
     
     public func generateWestraPassesGeoJson() {
+        print("Start parsing Westra Passes")
         let urlString = "https://nakarte.me/westraPasses/westra_passes.json"
         guard let url = URL(string: urlString) else {return}
         
@@ -36,6 +37,8 @@ class WestraParser {
                 let fileUrl = URL(string: patch)!
 
                 try dataForSaving.write(to: fileUrl)
+                
+                print("Finish parsing Westra Passes")
                 
             } catch let error {
                 print(error)
@@ -63,13 +66,12 @@ class WestraParser {
         for pass in nakartePasses {
             
             let geometry = GeoJsonPointGeometry(type: "Point",
-                                                coordinates: pass.latlon)
+                                                coordinates: [pass.latlon[1], pass.latlon[0]])
             
             let properties = GeoJsonPassPropertie(ele: pass.elevation ?? "",
-                                                  mountain_pass: "yes",
                                                   name: pass.name ?? "",
-                                                  natural: "saddle",
-                                                  rtsa_scale: pass.grade_eng)
+                                                  rtsa_scale: pass.grade_eng,
+                                                  is_summit: pass.is_summit ?? 0)
             
             let geoJsonPass = GeoJsonFeature(type: "Feature",
                                                 geometry: geometry,
