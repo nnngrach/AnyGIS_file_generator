@@ -11,27 +11,34 @@ import Foundation
 
 class WestraParser {
     
+    private let diskHandler = DiskHandler()
+    private let patchTemplates = FilePatchTemplates()
+    
     
     public func generateWestraPassesGeoJson() {
-        downloadJson()
-    }
-    
-    
-    
-    private func downloadJson() {
         let urlString = "https://nakarte.me/westraPasses/westra_passes.json"
         guard let url = URL(string: urlString) else {return}
+        
         
         URLSession.shared.dataTask(with: url) { (data, response, error)  in
             guard let data = data else {return}
             guard error == nil else {return}
             
-            
             do {
-                let nakartePasses = try JSONDecoder().decode([WestraPassNakarte].self, from: data)
-                //print(nakartePasses)
+                
+                let nakartePasses = try self.encodeFromJson(data)
+                
+                let geoJsonPasses = self.convertToGeojson(nakartePasses)
+                
+                let dataForSaving = try JSONEncoder().encode(geoJsonPasses)
+                
+                let patch = self.patchTemplates.localPathToGeoJson + "/WestraPasses.geojson"
+                let fileUrl = URL(string: patch)!
+
+                try dataForSaving.write(to: fileUrl)
+                
             } catch let error {
-                //print(error)
+                print(error)
             }
             
         }.resume()
@@ -41,9 +48,17 @@ class WestraParser {
     
     
     
-    private func convertToGeojson(nakartePasses: [WestraPassNakarte]) -> GeoJsonFeatureCollection {
+    private func encodeFromJson(_ data: Data) throws -> [WestraPassNakarte]{
+        return try JSONDecoder().decode([WestraPassNakarte].self, from: data)
+    }
+    
+    
+    
+    
+    private func convertToGeojson(_ nakartePasses: [WestraPassNakarte]) -> GeoJsonFeatureCollection {
         
         var geoJsonPasses = GeoJsonFeatureCollection(type: "FeatureCollection", features: [])
+        
         
         for pass in nakartePasses {
             
@@ -66,9 +81,5 @@ class WestraParser {
         return geoJsonPasses
     }
     
-    
-    private func saveFile() {
-        
-    }
     
 }
