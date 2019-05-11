@@ -21,6 +21,8 @@ class Controller {
     private let locusInstallerGeneretor = LocusInstallersGenerator()
     
     private let westraParser = WestraParser()
+    //private let bookParser = BookParser()
+    private let osmXmlParser = OsmXmlParser()
 
 
     public func generateAll() {
@@ -163,6 +165,13 @@ class Controller {
     
     public func parseWestraGeoJson() {
         westraParser.generateWestraPassesGeoJson()
+    }
+    
+    
+    public func parseOsmToGeoJson() {
+        let path = "file:///Projects/GIS/Online%20map%20sources/map-sources/Experimantal_area/Osm_Parsing/export.osm"
+        //bookParser.parse(filepath: path, completitionHandler: nil)
+        osmXmlParser.parse(filepath: path, completitionHandler: nil)
     }
     
 }

@@ -58,5 +58,9 @@ class ViewController: NSViewController {
         controller.parseWestraGeoJson()
     }
     
+    @IBAction func parseOsmXmlToGeoJson(_ sender: Any) {
+        controller.parseOsmToGeoJson()
+    }
+    
 }
 
