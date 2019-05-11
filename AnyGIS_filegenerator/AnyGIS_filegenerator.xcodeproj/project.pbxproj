@@ -27,6 +27,8 @@
 		33405E752286EC220032B3DD /* OsmXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33405E742286EC220032B3DD /* OsmXmlParser.swift */; };
 		33405E792286ECCC0032B3DD /* OsmWay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33405E782286ECCC0032B3DD /* OsmWay.swift */; };
 		33405E8322871F140032B3DD /* OsmNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33405E8222871F140032B3DD /* OsmNode.swift */; };
+		33405E8722872B450032B3DD /* OsmToGeoJsonConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33405E8622872B450032B3DD /* OsmToGeoJsonConverter.swift */; };
+		33405E8922872BAE0032B3DD /* AnygisRunMapUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33405E8822872BAE0032B3DD /* AnygisRunMapUpdater.swift */; };
 		3358320F22495813001FFC0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3358320E22495813001FFC0A /* AppDelegate.swift */; };
 		3358321122495813001FFC0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3358321022495813001FFC0A /* ViewController.swift */; };
 		3358321322495814001FFC0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3358321222495814001FFC0A /* Assets.xcassets */; };
@@ -83,6 +85,8 @@
 		33405E742286EC220032B3DD /* OsmXmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmXmlParser.swift; sourceTree = "<group>"; };
 		33405E782286ECCC0032B3DD /* OsmWay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmWay.swift; sourceTree = "<group>"; };
 		33405E8222871F140032B3DD /* OsmNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmNode.swift; sourceTree = "<group>"; };
+		33405E8622872B450032B3DD /* OsmToGeoJsonConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmToGeoJsonConverter.swift; sourceTree = "<group>"; };
+		33405E8822872BAE0032B3DD /* AnygisRunMapUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnygisRunMapUpdater.swift; sourceTree = "<group>"; };
 		3358320B22495813001FFC0A /* AnyGIS_filegenerator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnyGIS_filegenerator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3358320E22495813001FFC0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3358321022495813001FFC0A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 			isa = PBXGroup;
 			children = (
 				33405E742286EC220032B3DD /* OsmXmlParser.swift */,
+				33405E8622872B450032B3DD /* OsmToGeoJsonConverter.swift */,
+				33405E8822872BAE0032B3DD /* AnygisRunMapUpdater.swift */,
 			);
 			path = OsmParser;
 			sourceTree = "<group>";
@@ -271,7 +277,7 @@
 			children = (
 				33B76E07224B92FA0010E35E /* DataBase Tools */,
 				33B76E09224B93480010E35E /* Disk Tools */,
-				33B76E08224B93240010E35E /* FileGenerator Tools */,
+				33B76E08224B93240010E35E /* Preset Files Generator Tools */,
 				33405E732286EBF40032B3DD /* OSM tools */,
 			);
 			path = "Model of Logic";
@@ -297,7 +303,7 @@
 			path = "DataBase Tools";
 			sourceTree = "<group>";
 		};
-		33B76E08224B93240010E35E /* FileGenerator Tools */ = {
+		33B76E08224B93240010E35E /* Preset Files Generator Tools */ = {
 			isa = PBXGroup;
 			children = (
 				33E44E882262658600CBECE7 /* Abstract */,
@@ -307,7 +313,7 @@
 				33B76E0D224B938A0010E35E /* Osmand */,
 				33B76E0E224B93920010E35E /* WebPages */,
 			);
-			path = "FileGenerator Tools";
+			path = "Preset Files Generator Tools";
 			sourceTree = "<group>";
 		};
 		33B76E09224B93480010E35E /* Disk Tools */ = {
@@ -537,6 +543,7 @@
 				330E8FA822675392000D2BB7 /* GuruOneMapGenerator.swift in Sources */,
 				33405E792286ECCC0032B3DD /* OsmWay.swift in Sources */,
 				330E8FB422675C14000D2BB7 /* OruxOneMapGenerator.swift in Sources */,
+				33405E8922872BAE0032B3DD /* AnygisRunMapUpdater.swift in Sources */,
 				33E44E8C2263512C00CBECE7 /* GuruAllMapsGenerator.swift in Sources */,
 				330E8FAA226753D4000D2BB7 /* GuruMapLayersGenerator.swift in Sources */,
 				330E8FAE226757FE000D2BB7 /* LocusMapLayersGenerator.swift in Sources */,
@@ -578,6 +585,7 @@
 				330E8FBE22676152000D2BB7 /* WebPagesSavingPatchGenerator.swift in Sources */,
 				33B76E3F224E5DA30010E35E /* OsmandAllMapsGenerator.swift in Sources */,
 				330E8FB822675F06000D2BB7 /* OruxSavingPatchGenerator.swift in Sources */,
+				33405E8722872B450032B3DD /* OsmToGeoJsonConverter.swift in Sources */,
 				33B76E2D224BF3CC0010E35E /* Controller.swift in Sources */,
 				33405E8322871F140032B3DD /* OsmNode.swift in Sources */,
 			);

@@ -21,8 +21,8 @@ class OsmXmlParser: NSObject, XMLParserDelegate {
     
     var nodes: [OsmNode] = []
     var currentNodeID = String()
-    var lat = String()
-    var lon = String()
+    var lat = Double()
+    var lon = Double()
     
     
     
@@ -60,8 +60,8 @@ class OsmXmlParser: NSObject, XMLParserDelegate {
             currenrTags[attributeDict["k"]!] = attributeDict["v"]
         case "node":
             currentNodeID = attributeDict["id"]!
-            lat = attributeDict["lat"]!
-            lon = attributeDict["lon"]!
+            lat = Double(attributeDict["lat"]!)!
+            lon = Double(attributeDict["lon"]!)!
         default:
             break
         }

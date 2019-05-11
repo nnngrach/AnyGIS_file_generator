@@ -10,7 +10,7 @@ import Foundation
 
 struct OsmNode {
     var id: String
-    var lat: String
-    var lon: String
+    var lat: Double
+    var lon: Double
     var tags: [String : String]
 }
