@@ -12,4 +12,5 @@ struct OsmNode {
     var id: String
     var lat: String
     var lon: String
+    var tags: [String : String]
 }

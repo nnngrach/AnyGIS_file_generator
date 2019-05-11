@@ -16,6 +16,7 @@ class OsmXmlParser: NSObject, XMLParserDelegate {
     var ways: [OsmWay] = []
     var currentWayID = String()
     var currentNodes = [String]()
+    
     var currenrTags = [String : String]()
     
     var nodes: [OsmNode] = []
@@ -67,6 +68,7 @@ class OsmXmlParser: NSObject, XMLParserDelegate {
     }
     
     
+    
 /*
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         let data = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
@@ -90,9 +92,11 @@ class OsmXmlParser: NSObject, XMLParserDelegate {
         case "way":
             let way = OsmWay(id: currentWayID, tags: currenrTags, nodesID: currentNodes)
             ways.append(way)
+            //print(way)
         case "node":
-            let node = OsmNode(id: currentNodeID, lat: lat, lon: lon)
+            let node = OsmNode(id: currentNodeID, lat: lat, lon: lon, tags: currenrTags)
             nodes.append(node)
+            //print(node)
         default:
             break
         }
@@ -102,6 +106,7 @@ class OsmXmlParser: NSObject, XMLParserDelegate {
     func parserDidEndDocument(_ parser: XMLParser) {
         parserCompletitionHandler?(ways, nodes)
         //print(ways)
+        //print(nodes)
     }
     
     
