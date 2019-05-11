@@ -8,12 +8,6 @@
 
 import Foundation
 
-struct OsmWay {
-    var id: String
-    var tags: [String : String]
-    var nodesID: [String]
-}
-
 struct OsmNode {
     var id: String
     var lat: String

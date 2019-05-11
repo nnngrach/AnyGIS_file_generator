@@ -11,8 +11,8 @@ import Foundation
 struct WestraPassNakarte: Codable {
     var name: String?
     var elevation: String?
-    var latlon: [String]
+    var latlon: [Double]
     var grade_eng: String
     var grade: String?
-    var is_summit: String?
+    var is_summit: Int?
 }

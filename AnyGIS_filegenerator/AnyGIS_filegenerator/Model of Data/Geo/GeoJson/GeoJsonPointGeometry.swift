@@ -1,5 +1,5 @@
 //
-//  WestraPassGeoJson.swift
+//  GeoJsonPointGeometry.swift
 //  AnyGIS_filegenerator
 //
 //  Created by HR_book on 08/05/2019.
@@ -8,8 +8,7 @@
 
 import Foundation
 
-struct GeoJsonFeature: Codable {
+struct GeoJsonPointGeometry: Codable {
     var type: String
-    var geometry: GeoJsonPointGeometry
-    var properties: GeoJsonPassPropertie
+    var coordinates: [Double]
 }
