@@ -71,7 +71,7 @@ class WestraParser {
             let properties = GeoJsonPassPropertie(ele: pass.elevation ?? "",
                                                   name: pass.name ?? "",
                                                   rtsa_scale: pass.grade_eng,
-                                                  is_summit: pass.is_summit ?? 0)
+                                                  is_summit: pass.is_summit ?? "0")
             
             let geoJsonPass = GeoJsonFeature(type: "Feature",
                                                 geometry: geometry,

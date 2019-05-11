@@ -10,5 +10,5 @@ import Foundation
 
 struct GeoJsonPointGeometry: Codable {
     var type: String
-    var coordinates: [Double]
+    var coordinates: [String]
 }

@@ -12,5 +12,5 @@ struct GeoJsonPassPropertie: Codable {
     var ele: String
     var name: String
     var rtsa_scale: String
-    var is_summit: Int?
+    var is_summit: String?
 }
