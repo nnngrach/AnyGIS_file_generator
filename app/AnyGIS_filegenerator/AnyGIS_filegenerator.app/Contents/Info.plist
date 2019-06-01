@@ -44,6 +44,11 @@
 	<string>10B61</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>10.14</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2019 Nnngrach. All rights reserved.</string>
 	<key>NSMainStoryboardFile</key>

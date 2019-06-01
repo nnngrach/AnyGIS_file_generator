@@ -46,7 +46,10 @@ struct LocusMapsTemplates {
     
     
     
-    func getMapFileItem(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, tileSize: String) -> String {
+    func getMapFileItem(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, isRetina: Bool) -> String {
+        
+        let finalUrl = isRetina  ?  (url + "?locusScale={ts}")  :  url
+        print()
         
         var result = """
         
@@ -55,7 +58,7 @@ struct LocusMapsTemplates {
         <mode>\(name)</mode>
         <countries>\(countries)</countries>
         <usage>\(usage)</usage>
-        <url><![CDATA[\(url)]]></url>
+        <url><![CDATA[\(finalUrl)]]></url>
         
         """
         
@@ -75,6 +78,12 @@ struct LocusMapsTemplates {
         <tileSize>256</tileSize>
         
         """
+        
+        
+        if isRetina { result += """
+            <tileScale dpi="0" multi="2.0" replace="19" />
+            """
+        }
         
         
         if referer.replacingOccurrences(of: " ", with: "") != "" {

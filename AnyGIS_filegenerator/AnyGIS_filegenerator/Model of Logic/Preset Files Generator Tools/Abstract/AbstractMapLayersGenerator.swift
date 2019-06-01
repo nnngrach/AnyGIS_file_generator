@@ -99,10 +99,9 @@ class AbstractMapLayersGenerator {
         }
         
         
-        let tileSize = mapClientLine.isRetina ? "512" : "256"
+
         
-        
-        content += generateOneLayerContent(mapName, mapCategory, url, serverPartsInClientFormat, background, tileSize, isEnglish, appName, mapClientLine, mapServerLine)
+        content += generateOneLayerContent(mapName, mapCategory, url, serverPartsInClientFormat, background, mapClientLine.isRetina, isEnglish, appName, mapClientLine, mapServerLine)
         
         return content
     }
@@ -111,7 +110,7 @@ class AbstractMapLayersGenerator {
     
     
     
-    public func generateOneLayerContent(_ mapName: String, _ mapCategory: String, _ url: String, _ serverParts: String, _ background: String, _ tileSize: String, _ isEnglish: Bool, _ appName: ClientAppList, _ clientLine: MapsClientData, _ serverLine: MapsServerData) -> String {
+    public func generateOneLayerContent(_ mapName: String, _ mapCategory: String, _ url: String, _ serverParts: String, _ background: String, _ isRetina: Bool, _ isEnglish: Bool, _ appName: ClientAppList, _ clientLine: MapsClientData, _ serverLine: MapsServerData) -> String {
         
         return ""
     }
