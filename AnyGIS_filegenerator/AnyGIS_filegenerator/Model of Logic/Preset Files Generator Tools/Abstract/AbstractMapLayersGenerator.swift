@@ -23,6 +23,7 @@ class AbstractMapLayersGenerator {
     
     
     
+    
     public func getAllLayersContent(_ mapName: String, _ mapCategory: String, _ currentID: Int64, _ layersIdList: String, _ mapsClientLine: MapsClientData, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ isEnglish: Bool, _ appName: ClientAppList, _ previousCategory: String) -> String {
         
         
@@ -31,7 +32,7 @@ class AbstractMapLayersGenerator {
         
         if layersIdList == "-1" {
             
-            content += getOneLayerContent(mapName, mapCategory, locusId: currentID, background: "-1", mapsClientTable, mapsServerTable, isEnglish, appName, previousCategory)
+            content += getOneLayerContent(mapName, mapCategory, locusId: currentID, background: "-1", mapsClientTable, mapsServerTable, isEnglish, appName, previousCategory, currentID)
             
         } else {
             
@@ -45,7 +46,7 @@ class AbstractMapLayersGenerator {
             
             for i in 0 ... layersId.count {
                 
-                content += getOneLayerContent(mapName, mapCategory, locusId: loadId[i], background: backroundId[i], mapsClientTable, mapsServerTable, isEnglish, appName, previousCategory)
+                content += getOneLayerContent(mapName, mapCategory, locusId: loadId[i], background: backroundId[i], mapsClientTable, mapsServerTable, isEnglish, appName, previousCategory, currentID)
             }
         }
         
@@ -56,7 +57,7 @@ class AbstractMapLayersGenerator {
     
     
     
-    private func getOneLayerContent(_ mapName: String, _ mapCategory: String, locusId: Int64, background: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ isEnglish: Bool, _ appName: ClientAppList, _ previousCategory: String) -> String {
+    private func getOneLayerContent(_ mapName: String, _ mapCategory: String, locusId: Int64, background: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ isEnglish: Bool, _ appName: ClientAppList, _ previousCategory: String, _ mainLayerId: Int64?) -> String {
         
         
         var content = ""
@@ -101,7 +102,7 @@ class AbstractMapLayersGenerator {
         
 
         
-        content += generateOneLayerContent(mapName, mapCategory, url, serverPartsInClientFormat, background, mapClientLine.isRetina, isEnglish, appName, mapClientLine, mapServerLine)
+        content += generateOneLayerContent(mapName, mapCategory, url, serverPartsInClientFormat, background, mapClientLine.isRetina, isEnglish, appName, mapClientLine, mapServerLine, mainLayerId!)
         
         return content
     }
@@ -110,7 +111,7 @@ class AbstractMapLayersGenerator {
     
     
     
-    public func generateOneLayerContent(_ mapName: String, _ mapCategory: String, _ url: String, _ serverParts: String, _ background: String, _ isRetina: Bool, _ isEnglish: Bool, _ appName: ClientAppList, _ clientLine: MapsClientData, _ serverLine: MapsServerData) -> String {
+    public func generateOneLayerContent(_ mapName: String, _ mapCategory: String, _ url: String, _ serverParts: String, _ background: String, _ isRetina: Bool, _ isEnglish: Bool, _ appName: ClientAppList, _ clientLine: MapsClientData, _ serverLine: MapsServerData, _ mainLayerId: Int64) -> String {
         
         return ""
     }

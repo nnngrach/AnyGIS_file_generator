@@ -66,6 +66,9 @@ class SqliteHandler {
         
         for rawLine in rawTable {
             
+            if (isEnglish && !rawLine[MapsClientDataDB.forEng]!) { continue }
+            if (!isEnglish && !rawLine[MapsClientDataDB.forRus]!) { continue }
+            
             let item = MapsClientData(id: rawLine[MapsClientDataDB.id]!,
                           anygisMapName: rawLine[MapsClientDataDB.anygisMapName]!,
                           order: rawLine[MapsClientDataDB.order]!,
