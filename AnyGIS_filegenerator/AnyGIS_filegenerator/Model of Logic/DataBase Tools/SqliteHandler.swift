@@ -93,10 +93,12 @@ class SqliteHandler {
                           forGuru: rawLine[MapsClientDataDB.forGuru]!,
                           forOrux: rawLine[MapsClientDataDB.forOrux]!,
                           forOsmand: rawLine[MapsClientDataDB.forOsmand]!,
+                          forOsmandMeta: rawLine[MapsClientDataDB.forOsmandMeta]!,
                           locusLoadAnygis: rawLine[MapsClientDataDB.locusLoadAnygis]!,
                           gurumapsLoadAnygis: rawLine[MapsClientDataDB.gurumapsLoadAnygis]!,
                           oruxLoadAnygis: rawLine[MapsClientDataDB.oruxLoadAnygis]!,
                           osmandLoadAnygis: rawLine[MapsClientDataDB.osmandLoadAnygis]!,
+                          osmandMetaLoadAnygis: rawLine[MapsClientDataDB.osmandMetaLoadAnygis]!,
                           cacheStoringHours: rawLine[MapsClientDataDB.cacheStoringHours]!,
                           isRetina: rawLine[MapsClientDataDB.isRetina]!,
                           comment: rawLine[MapsClientDataDB.comment]!)

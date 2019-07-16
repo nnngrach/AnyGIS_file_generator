@@ -14,7 +14,7 @@ class SqlitedbHandler {
     
 
     
-    public func createFile(isShortSet: Bool, filename: String, zoommin: String, zoommax: String, patch: String, projection: Int64, method: String?, refererUrl: String?, timeSupport: String, timeStoring: String, isEnglish: Bool) throws {
+    public func createFile(isShortSet: Bool, filename: String, zoommin: Int64, zoommax: Int64, patch: String, projection: Int64, method: String?, refererUrl: String?, timeSupport: String, timeStoring: String, isEnglish: Bool) throws {
         
         let folderPatch = isShortSet ? patchTemplates.localPathToOsmandMapsShort : patchTemplates.localPathToOsmandMapsFull
         
@@ -22,11 +22,14 @@ class SqlitedbHandler {
         
         let filePatch = folderPatch + langLabel + filename + ".sqlitedb"
         
+        let sqlitedbMinZoom = String(17 - zoommax)
+        let sqlitedbMaxZoom = String(17 - zoommin)
+        
         let db = try Connection(filePatch)
         
         try createTilesTable(db)
         try createMetadataTable(db)
-        try createInfoTable(zoommin: zoommin, zoommax: zoommax, patch: patch, projection: projection, method: method, refererUrl: refererUrl, timeSupport: timeSupport, timeStoring: timeStoring, db)
+        try createInfoTable(zoommin: sqlitedbMinZoom, zoommax: sqlitedbMaxZoom, patch: patch, projection: projection, method: method, refererUrl: refererUrl, timeSupport: timeSupport, timeStoring: timeStoring, db)
     }
     
     

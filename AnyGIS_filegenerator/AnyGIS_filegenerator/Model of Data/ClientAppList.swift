@@ -11,6 +11,7 @@ enum ClientAppList: String {
     case Locus = "Locus Maps"
     case GuruMapsIOS = "Guru Maps IOS"
     case GuruMapsAndroid = "Guru Maps Android"
-    case Osmand = "OsmAnd Maps"
+    case Osmand = "OsmAnd Maps (sqlitedb)"
+    case OsmandMetainfo = "OsmAnd Maps (metainfo)"
     case Orux = "Orux Maps"
 }

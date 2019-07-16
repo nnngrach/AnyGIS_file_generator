@@ -40,11 +40,13 @@ struct MapsClientData {
     let forGuru: Bool
     let forOrux: Bool
     let forOsmand: Bool
+    let forOsmandMeta: Bool
     
     let locusLoadAnygis: Bool
     let gurumapsLoadAnygis: Bool
     let oruxLoadAnygis: Bool
     let osmandLoadAnygis: Bool
+    let osmandMetaLoadAnygis: Bool
     
     let cacheStoringHours: Int64
     let isRetina: Bool

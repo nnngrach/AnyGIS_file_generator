@@ -123,12 +123,23 @@ class Controller {
         diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsFull + en)
         diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsShort + ru)
         diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsShort + en)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsFull + ru)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsFull + en)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsShort + ru)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsShort + en)
+        
+
+
 
         do {
-            try osmandMapsGenerator.launch(isShortSet: true, isEnglish: true)
-            try osmandMapsGenerator.launch(isShortSet: true, isEnglish: false)
-            try osmandMapsGenerator.launch(isShortSet: false, isEnglish: true)
-            try osmandMapsGenerator.launch(isShortSet: false, isEnglish: false)
+            try osmandMapsGenerator.launch(isShortSet: true, isEnglish: true, isForSqlitedb: false)
+            try osmandMapsGenerator.launch(isShortSet: true, isEnglish: false, isForSqlitedb: false)
+            try osmandMapsGenerator.launch(isShortSet: false, isEnglish: true, isForSqlitedb: false)
+            try osmandMapsGenerator.launch(isShortSet: false, isEnglish: false, isForSqlitedb: false)
+            try osmandMapsGenerator.launch(isShortSet: true, isEnglish: true, isForSqlitedb: true)
+            try osmandMapsGenerator.launch(isShortSet: true, isEnglish: false, isForSqlitedb: true)
+            try osmandMapsGenerator.launch(isShortSet: false, isEnglish: true, isForSqlitedb: true)
+            try osmandMapsGenerator.launch(isShortSet: false, isEnglish: false, isForSqlitedb: true)
         } catch {
             print(error)
         }
@@ -147,6 +158,8 @@ class Controller {
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .GuruMapsIOS)
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .Osmand)
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .Osmand)
+            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .OsmandMetainfo)
+            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .OsmandMetainfo)
 
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .Locus)
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Locus)
@@ -156,6 +169,8 @@ class Controller {
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .GuruMapsIOS)
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .Osmand)
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Osmand)
+            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .OsmandMetainfo)
+            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .OsmandMetainfo)
 
         } catch {
             print(error)

@@ -24,6 +24,7 @@
 		330E8FBA226760D0000D2BB7 /* WebPagesOneMapGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E8FB9226760D0000D2BB7 /* WebPagesOneMapGenerator.swift */; };
 		330E8FBC2267611C000D2BB7 /* WebPagesLayersGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E8FBB2267611C000D2BB7 /* WebPagesLayersGenerator.swift */; };
 		330E8FBE22676152000D2BB7 /* WebPagesSavingPatchGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E8FBD22676152000D2BB7 /* WebPagesSavingPatchGenerator.swift */; };
+		333F214422DC5AED0099A8D0 /* MetainfoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333F214322DC5AED0099A8D0 /* MetainfoHandler.swift */; };
 		33405E752286EC220032B3DD /* OsmXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33405E742286EC220032B3DD /* OsmXmlParser.swift */; };
 		33405E792286ECCC0032B3DD /* OsmWay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33405E782286ECCC0032B3DD /* OsmWay.swift */; };
 		33405E8322871F140032B3DD /* OsmNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33405E8222871F140032B3DD /* OsmNode.swift */; };
@@ -82,6 +83,7 @@
 		330E8FB9226760D0000D2BB7 /* WebPagesOneMapGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPagesOneMapGenerator.swift; sourceTree = "<group>"; };
 		330E8FBB2267611C000D2BB7 /* WebPagesLayersGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPagesLayersGenerator.swift; sourceTree = "<group>"; };
 		330E8FBD22676152000D2BB7 /* WebPagesSavingPatchGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPagesSavingPatchGenerator.swift; sourceTree = "<group>"; };
+		333F214322DC5AED0099A8D0 /* MetainfoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetainfoHandler.swift; sourceTree = "<group>"; };
 		33405E742286EC220032B3DD /* OsmXmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmXmlParser.swift; sourceTree = "<group>"; };
 		33405E782286ECCC0032B3DD /* OsmWay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmWay.swift; sourceTree = "<group>"; };
 		33405E8222871F140032B3DD /* OsmNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmNode.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 			isa = PBXGroup;
 			children = (
 				33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */,
+				333F214322DC5AED0099A8D0 /* MetainfoHandler.swift */,
 				33B76E3E224E5DA30010E35E /* OsmandAllMapsGenerator.swift */,
 			);
 			path = Osmand;
@@ -557,6 +560,7 @@
 				33B76E1D224BD62A0010E35E /* MapsClientDataDB.swift in Sources */,
 				33B76E11224BA66C0010E35E /* FilePatchTemplates.swift in Sources */,
 				3358321122495813001FFC0A /* ViewController.swift in Sources */,
+				333F214422DC5AED0099A8D0 /* MetainfoHandler.swift in Sources */,
 				3358320F22495813001FFC0A /* AppDelegate.swift in Sources */,
 				33B76E19224BD47A0010E35E /* MapsServerDataDB.swift in Sources */,
 				33B76E25224BE4ED0010E35E /* GuruTemplates.swift in Sources */,

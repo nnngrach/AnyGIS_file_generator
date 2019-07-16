@@ -73,6 +73,8 @@ class AbstractMapLayersGenerator {
             isLoadAnygis = mapClientLine.locusLoadAnygis
         case .Osmand:
             isLoadAnygis = mapClientLine.osmandLoadAnygis
+        case .OsmandMetainfo:
+            isLoadAnygis = mapClientLine.osmandMetaLoadAnygis
         case .Orux:
             isLoadAnygis = mapClientLine.oruxLoadAnygis
         case .GuruMapsIOS, .GuruMapsAndroid:

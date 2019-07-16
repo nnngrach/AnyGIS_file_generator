@@ -35,6 +35,8 @@ struct DecsriptionTemplate {
             currentAppPageUrl = webPagesTemplates.locusPage
         case .Osmand:
             currentAppPageUrl = webPagesTemplates.osmandPage
+        case .OsmandMetainfo:
+            currentAppPageUrl = webPagesTemplates.osmandPage
         case .Orux:
             currentAppPageUrl = webPagesTemplates.oruxPage
         }

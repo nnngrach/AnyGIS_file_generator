@@ -16,9 +16,10 @@ class OsmandAllMapsGenerator {
     private let osmandTemplate = OsmandMapsTemplate()
     private let patchTemplates = FilePatchTemplates()
     private let sqlitedbHandler = SqlitedbHandler()
+    private let metainfoHandler = MetainfoHandler()
     
     
-    public func launch(isShortSet: Bool, isEnglish: Bool) throws {
+    public func launch(isShortSet: Bool, isEnglish: Bool, isForSqlitedb: Bool) throws {
         
         let mapsServerTable = try baseHandler.getMapsServerData()
         let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
@@ -28,28 +29,78 @@ class OsmandAllMapsGenerator {
             //print(mapClientLine.id, mapClientLine.shortName)
             
             // Filter off service layers
-            guard mapClientLine.forOsmand else {continue}
+            //guard mapClientLine.forOsmand else {continue}
+            if isForSqlitedb && !mapClientLine.forOsmand {continue}
+            if !isForSqlitedb && !mapClientLine.forOsmandMeta {continue}
+            
             // Filter for short list
             if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
             if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
             if !mapClientLine.forRus && !isEnglish {continue}
             if !mapClientLine.forEng && isEnglish {continue}
             
-            try generateItem(isShortSet: isShortSet, mapClientLine, mapsServerTable, isEnglish: isEnglish)
+            
+            if isForSqlitedb {
+                try generateSqlitedbItem(isShortSet: isShortSet, mapClientLine, mapsServerTable, isEnglish)
+            } else {
+                try generateMetainfoItem(isShortSet: isShortSet, mapClientLine, mapsServerTable, isEnglish)
+            }
         }
     }
     
     
     
-    private func generateItem(isShortSet: Bool, _ mapClientLine: MapsClientData, _ mapsServerTable: [MapsServerData], isEnglish: Bool) throws {
+    
+    
+    
+    private func generateMetainfoItem(isShortSet: Bool, _ mapClientLine: MapsClientData, _ mapsServerTable: [MapsServerData], _ isEnglish: Bool) throws {
         
         let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
         
         let filename = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
         
         
-        let currentProjection: Int64 = mapClientLine.projection == 2 ? 1 : 0
+        let isElipsoid = (mapClientLine.projection == 2)
+        let tileSize = mapClientLine.isRetina ? "512" : "256"
         
+        var url = ""
+        
+        if mapClientLine.osmandMetaLoadAnygis {
+            url = webTemplates.anygisMapUrl
+            url = prepareUrlSimple(url: url, mapName: mapServerLine.name)
+            if mapServerLine.backgroundUrl.hasPrefix("http://"){
+                url = url.replacingOccurrences(of: "https://", with: "http://")
+            }
+            
+        } else {
+            url = mapServerLine.backgroundUrl
+            url = prepareUrlSimple(url: url, mapName: mapServerLine.name, serverNames: mapServerLine.backgroundServerName)
+        }
+
+        
+        try metainfoHandler.create(isShortSet: isShortSet,
+                                   filename: filename,
+                                   zoommin: mapServerLine.zoomMin,
+                                   zoommax: mapServerLine.zoomMax,
+                                   url: url,
+                                   isElipsoid: isElipsoid,
+                                   isEnglish: isEnglish,
+                                   tileSize: tileSize)
+    }
+    
+    
+    
+    
+    
+    
+    
+    private func generateSqlitedbItem(isShortSet: Bool, _ mapClientLine: MapsClientData, _ mapsServerTable: [MapsServerData], _ isEnglish: Bool) throws {
+        
+        let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
+        
+        let filename = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
+        
+        let currentProjection: Int64 = mapClientLine.projection == 2 ? 1 : 0
         
         var url = ""
         var method: String? = nil
@@ -63,6 +114,7 @@ class OsmandAllMapsGenerator {
             url = prepareUrlSimple(url: url, mapName: mapServerLine.name)
             
         } else {
+            
             method = osmandTemplate.readAsScriptMethod
             var urlString = mapServerLine.backgroundUrl
             
@@ -99,8 +151,8 @@ class OsmandAllMapsGenerator {
         
         
         
-        let minZoom = String(17 - mapServerLine.zoomMax)
-        let maxZoom = String(17 - mapServerLine.zoomMin)
+        let minZoom = 17 - mapServerLine.zoomMax
+        let maxZoom = 17 - mapServerLine.zoomMin
         
         var referer: String? = nil
         if mapServerLine.referer.replacingOccurrences(of: " ", with: "") != "" {
@@ -142,7 +194,10 @@ class OsmandAllMapsGenerator {
     
     
     
-    private func prepareUrlSimple(url: String, mapName: String) -> String {
+    
+    
+    
+    private func prepareUrlSimple(url: String, mapName: String, serverNames: String = "") -> String {
         
         var resultUrl = url
         resultUrl = resultUrl.replacingOccurrences(of: "{mapName}", with: mapName)
@@ -150,6 +205,13 @@ class OsmandAllMapsGenerator {
         resultUrl = resultUrl.replacingOccurrences(of: "{y}", with: "{2}")
         resultUrl = resultUrl.replacingOccurrences(of: "{z}", with: "{0}")
         resultUrl = resultUrl.replacingOccurrences(of: "{invY}", with: "{2}")
+//        resultUrl = resultUrl.replacingOccurrences(of: "https", with: "http")
+        
+        if serverNames != "" {
+            let serverPart = String(serverNames.first!)
+            resultUrl = resultUrl.replacingOccurrences(of: "{s}", with: serverPart)
+        }
+        
         return resultUrl
     }
     

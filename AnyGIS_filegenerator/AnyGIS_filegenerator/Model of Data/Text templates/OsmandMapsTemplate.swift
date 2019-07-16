@@ -90,4 +90,25 @@ struct OsmandMapsTemplate {
         """
     
     
+    public func getMetainfoText(url: String, minZoom: Int64, maxZoom: Int64, isEllipsoid: Bool, tileSize: String, extensiton: String) -> String {
+        return """
+        [url_template]
+        \(url)
+        [min_zoom]
+        \(minZoom)
+        [max_zoom]
+        \(maxZoom)
+        [ellipsoid]
+        \(isEllipsoid)
+        [tile_size]
+        \(tileSize)
+        [img_density]
+        16
+        [avg_img_size]
+        32000
+        [ext]
+        .png
+        """
+    }
+    
 }

@@ -42,11 +42,13 @@ struct MapsClientDataDB {
     static let forGuru = Expression<Bool?>("forGuru")
     static let forOrux = Expression<Bool?>("forOrux")
     static let forOsmand = Expression<Bool?>("forOsmand")
+    static let forOsmandMeta = Expression<Bool?>("forOsmandMeta")
     
     static let locusLoadAnygis = Expression<Bool?>("locusLoadAnygis")
     static let gurumapsLoadAnygis = Expression<Bool?>("gurumapsLoadAnygis")
     static let oruxLoadAnygis = Expression<Bool?>("oruxLoadAnygis")
     static let osmandLoadAnygis = Expression<Bool?>("osmandLoadAnygis")
+    static let osmandMetaLoadAnygis = Expression<Bool?>("osmandMetaLoadAnygis")
 
     static let cacheStoringHours = Expression<Int64?>("cacheStoringHours")
     static let isRetina = Expression<Bool?>("isRetina")

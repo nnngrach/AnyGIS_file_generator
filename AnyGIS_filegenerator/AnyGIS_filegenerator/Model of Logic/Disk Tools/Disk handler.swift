@@ -23,6 +23,20 @@ class DiskHandler {
     }
     
     
+    public func createFolder(patch: String) {
+        
+        var correctedPatch = patch.replacingOccurrences(of: "file:///", with: "/")
+        correctedPatch = correctedPatch.replacingOccurrences(of: "%20", with: " ")
+        
+        do {
+            try FileManager.default.createDirectory(atPath: correctedPatch, withIntermediateDirectories: true, attributes: nil)
+        }
+        catch let error as NSError {
+            print("Error: \(error)")
+        }
+    }
+    
+    
     public func cleanFolder(patch: String) {
         
         let folderUrl = URL(string: patch)!

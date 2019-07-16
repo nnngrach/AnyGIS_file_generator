@@ -126,6 +126,8 @@ struct WebPageTemplates {
             resultUrl = patchTemplates.anygisGuruMapsFolder + langLabel + fileName + ".ms"
         case .Osmand:
             resultUrl = patchTemplates.gitOsmadMapsFolder + langLabel + fileName + ".sqlitedb"
+        case .OsmandMetainfo:
+            resultUrl = patchTemplates.gitDownloaderApi + patchTemplates.gitOsmadMetainfoMapsFolder + langLabel + fileName
         default:
             break
         }
