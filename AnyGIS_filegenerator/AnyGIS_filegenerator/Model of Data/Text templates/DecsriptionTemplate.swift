@@ -39,6 +39,8 @@ struct DecsriptionTemplate {
             currentAppPageUrl = webPagesTemplates.osmandPage
         case .Orux:
             currentAppPageUrl = webPagesTemplates.oruxPage
+        case .Alpine:
+            currentAppPageUrl = webPagesTemplates.alpinePage
         }
         
         let currentAppName = appName.rawValue

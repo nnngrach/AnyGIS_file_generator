@@ -79,6 +79,8 @@ class AbstractMapLayersGenerator {
             isLoadAnygis = mapClientLine.oruxLoadAnygis
         case .GuruMapsIOS, .GuruMapsAndroid:
             isLoadAnygis = mapClientLine.gurumapsLoadAnygis
+        case .Alpine:
+            isLoadAnygis = mapClientLine.alpineLoadAnygis
         }
         
         

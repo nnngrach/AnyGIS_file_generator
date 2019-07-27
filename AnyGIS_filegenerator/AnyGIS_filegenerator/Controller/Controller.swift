@@ -17,11 +17,11 @@ class Controller {
     private let oruxMapsGenerator = OruxAllMapsGenerator()
     private let locusMapsGenerator = LocusAllMapsGenerator()
     private let osmandMapsGenerator = OsmandAllMapsGenerator()
+    private let alpineMapsGenerator = AlpineAllMapsGenerator()
     private let markdownPagesGenerator = WebPagesAllMapsGenerator()
     private let locusInstallerGeneretor = LocusInstallersGenerator()
     
     private let westraParser = WestraParser()
-    //private let bookParser = BookParser()
     private let osmXmlParser = OsmXmlParser()
 
 
@@ -30,6 +30,8 @@ class Controller {
         generateMapsForGuru()
         generateMapsForOrux()
         generateMapsForOsmand()
+        generateMapsForOsmandMetainfo()
+        generateMapsForAlpine()
         generateMapsForLocus()
         generateInstallersForLocus()
     }
@@ -123,19 +125,8 @@ class Controller {
         diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsFull + en)
         diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsShort + ru)
         diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsShort + en)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsFull + ru)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsFull + en)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsShort + ru)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsShort + en)
-        
-
-
 
         do {
-            try osmandMapsGenerator.launch(isShortSet: true, isEnglish: true, isForSqlitedb: false)
-            try osmandMapsGenerator.launch(isShortSet: true, isEnglish: false, isForSqlitedb: false)
-            try osmandMapsGenerator.launch(isShortSet: false, isEnglish: true, isForSqlitedb: false)
-            try osmandMapsGenerator.launch(isShortSet: false, isEnglish: false, isForSqlitedb: false)
             try osmandMapsGenerator.launch(isShortSet: true, isEnglish: true, isForSqlitedb: true)
             try osmandMapsGenerator.launch(isShortSet: true, isEnglish: false, isForSqlitedb: true)
             try osmandMapsGenerator.launch(isShortSet: false, isEnglish: true, isForSqlitedb: true)
@@ -144,6 +135,52 @@ class Controller {
             print(error)
         }
     }
+    
+    
+    
+    public func generateMapsForOsmandMetainfo() {
+        let ru = patchTemplates.rusLanguageSubfolder
+        let en = patchTemplates.engLanguageSubfolder
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsFull + ru)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsFull + en)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsShort + ru)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsShort + en)
+        
+        
+        
+        
+        do {
+            try osmandMapsGenerator.launch(isShortSet: true, isEnglish: true, isForSqlitedb: false)
+            try osmandMapsGenerator.launch(isShortSet: true, isEnglish: false, isForSqlitedb: false)
+            try osmandMapsGenerator.launch(isShortSet: false, isEnglish: true, isForSqlitedb: false)
+            try osmandMapsGenerator.launch(isShortSet: false, isEnglish: false, isForSqlitedb: false)
+        } catch {
+            print(error)
+        }
+    }
+    
+    
+    
+    public func generateMapsForAlpine() {
+        let ru = patchTemplates.rusLanguageSubfolder
+        let en = patchTemplates.engLanguageSubfolder
+        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsFull + ru)
+        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsFull + en)
+        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsShort + ru)
+        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsShort + en)
+        
+        
+        do {
+            try alpineMapsGenerator.launch(isShortSet: true, isEnglish: true, appName: .Locus)
+            try alpineMapsGenerator.launch(isShortSet: false, isEnglish: true, appName: .Locus)
+            try alpineMapsGenerator.launch(isShortSet: true, isEnglish: false, appName: .Locus)
+            try alpineMapsGenerator.launch(isShortSet: false, isEnglish: false, appName: .Locus)
+            
+        } catch {
+            print(error)
+        }
+    }
+    
 
 
     public func generateWebPages() {
@@ -160,6 +197,8 @@ class Controller {
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .Osmand)
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .OsmandMetainfo)
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .OsmandMetainfo)
+            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .Alpine)
+            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .Alpine)
 
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .Locus)
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Locus)
@@ -171,6 +210,8 @@ class Controller {
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Osmand)
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .OsmandMetainfo)
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .OsmandMetainfo)
+            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .Alpine)
+            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Alpine)
 
         } catch {
             print(error)

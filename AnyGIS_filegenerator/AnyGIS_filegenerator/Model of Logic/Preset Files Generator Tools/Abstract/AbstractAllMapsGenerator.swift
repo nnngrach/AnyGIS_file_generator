@@ -59,7 +59,6 @@ class AbstractAllMapsGenerator {
                 previousMapCategoryLabel = mapCategoryLabel
             }
             
-            
             fileContent += oneMapGenerator.getOneMapContent(appName, mapNameLabel, mapCategoryLabel, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable, previousMapCategoryLabel)
             
             

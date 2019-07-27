@@ -30,6 +30,8 @@ struct FilePatchTemplates {
     let localPathToOsmandMapsShort = "file:////Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Sqlitedb/Maps_short"
     let localPathToOsmandMetainfoMapsFull = "file:////Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Maps_full"
     let localPathToOsmandMetainfoMapsShort = "file:////Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Maps_short"
+    let localPathToAlpineMapsFull = "file:////Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Maps_full"
+    let localPathToAlpineMapsShort = "file:////Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Maps_short"
     
     
     // Generating files folders in server
@@ -37,6 +39,7 @@ struct FilePatchTemplates {
     let localPathToGuruMapsInServer = "file://///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/galileo"
     let localPathToOruxMapsFullInServer = "file:////Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/orux_full"
     let localPathToOruxMapsShortInServer = "file:////Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/orux_short"
+    let localPathToAlpineMapsInServer = "file://///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/alpine"
     
     
     
@@ -50,7 +53,10 @@ struct FilePatchTemplates {
     let gitLocusMapsFolder = "https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Locus_online_maps/Maps_full"
     let gitOsmadMapsFolder = "https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Osmand_online_maps/Sqlitedb/Maps_full"
     let gitOsmadMetainfoMapsFolder = "https://github.com/nnngrach/AnyGIS_maps/tree/master/Osmand_online_maps/Metainfo/Maps_full"
+    let gitAlpineMapsFolder = "https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/AlpineQuest_online_maps/Maps_full"
+    
     let anygisGuruMapsFolder = "https://anygis.herokuapp.com/download/galileo"
+    let anygisAlpineMapsFolder = "https://anygis.herokuapp.com/download/alpine"
     
     
     let gitDownloaderApi = "https://minhaskamal.github.io/DownGit/#/home?url="

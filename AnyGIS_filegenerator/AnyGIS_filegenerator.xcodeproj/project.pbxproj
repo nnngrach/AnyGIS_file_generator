@@ -40,6 +40,11 @@
 		337049BC2282E4590080FF9E /* GeoJsonFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337049BB2282E4590080FF9E /* GeoJsonFeature.swift */; };
 		337049BE2282E58B0080FF9E /* GeoJsonPointGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337049BD2282E58B0080FF9E /* GeoJsonPointGeometry.swift */; };
 		337049C02282E61D0080FF9E /* GeoJsonPassProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337049BF2282E61D0080FF9E /* GeoJsonPassProperty.swift */; };
+		339B6F8722EC9A0800D069C7 /* AlpineAllMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B6F8622EC9A0800D069C7 /* AlpineAllMapsGenerator.swift */; };
+		339B6F8922EC9A4D00D069C7 /* AlpineOneMapGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B6F8822EC9A4D00D069C7 /* AlpineOneMapGenerator.swift */; };
+		339B6F8B22EC9A7D00D069C7 /* AlpineMapLayersGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B6F8A22EC9A7D00D069C7 /* AlpineMapLayersGenerator.swift */; };
+		339B6F8D22EC9AA000D069C7 /* AlpineSavingPathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B6F8C22EC9AA000D069C7 /* AlpineSavingPathGenerator.swift */; };
+		339B6F8F22EC9B4300D069C7 /* AlpineMapsTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B6F8E22EC9B4300D069C7 /* AlpineMapsTemplates.swift */; };
 		33B76DFF224B8DA70010E35E /* SqlitedbHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */; };
 		33B76E11224BA66C0010E35E /* FilePatchTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E10224BA66C0010E35E /* FilePatchTemplates.swift */; };
 		33B76E13224BC6830010E35E /* Disk handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E12224BC6830010E35E /* Disk handler.swift */; };
@@ -102,6 +107,11 @@
 		337049BB2282E4590080FF9E /* GeoJsonFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoJsonFeature.swift; sourceTree = "<group>"; };
 		337049BD2282E58B0080FF9E /* GeoJsonPointGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoJsonPointGeometry.swift; sourceTree = "<group>"; };
 		337049BF2282E61D0080FF9E /* GeoJsonPassProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoJsonPassProperty.swift; sourceTree = "<group>"; };
+		339B6F8622EC9A0800D069C7 /* AlpineAllMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineAllMapsGenerator.swift; sourceTree = "<group>"; };
+		339B6F8822EC9A4D00D069C7 /* AlpineOneMapGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineOneMapGenerator.swift; sourceTree = "<group>"; };
+		339B6F8A22EC9A7D00D069C7 /* AlpineMapLayersGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineMapLayersGenerator.swift; sourceTree = "<group>"; };
+		339B6F8C22EC9AA000D069C7 /* AlpineSavingPathGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineSavingPathGenerator.swift; sourceTree = "<group>"; };
+		339B6F8E22EC9B4300D069C7 /* AlpineMapsTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineMapsTemplates.swift; sourceTree = "<group>"; };
 		33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqlitedbHandler.swift; sourceTree = "<group>"; };
 		33B76E10224BA66C0010E35E /* FilePatchTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePatchTemplates.swift; sourceTree = "<group>"; };
 		33B76E12224BC6830010E35E /* Disk handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Disk handler.swift"; sourceTree = "<group>"; };
@@ -244,6 +254,17 @@
 			path = NakarteWestraPasses;
 			sourceTree = "<group>";
 		};
+		339B6F8522EC997100D069C7 /* AlpineQuest */ = {
+			isa = PBXGroup;
+			children = (
+				339B6F8622EC9A0800D069C7 /* AlpineAllMapsGenerator.swift */,
+				339B6F8822EC9A4D00D069C7 /* AlpineOneMapGenerator.swift */,
+				339B6F8A22EC9A7D00D069C7 /* AlpineMapLayersGenerator.swift */,
+				339B6F8C22EC9AA000D069C7 /* AlpineSavingPathGenerator.swift */,
+			);
+			path = AlpineQuest;
+			sourceTree = "<group>";
+		};
 		33B76E00224B90150010E35E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +330,7 @@
 			isa = PBXGroup;
 			children = (
 				33E44E882262658600CBECE7 /* Abstract */,
+				339B6F8522EC997100D069C7 /* AlpineQuest */,
 				33B76E0B224B93780010E35E /* GuruMaps */,
 				33B76E0A224B93720010E35E /* Locus */,
 				33B76E0C224B93800010E35E /* Orux */,
@@ -389,6 +411,7 @@
 				33B76E24224BE4ED0010E35E /* GuruTemplates.swift */,
 				33B76E22224BE4D70010E35E /* LocusInstallersTemplates.swift */,
 				33B76E36224E342E0010E35E /* LocusMapsTemplates.swift */,
+				339B6F8E22EC9B4300D069C7 /* AlpineMapsTemplates.swift */,
 				33B76E26224BE5000010E35E /* OruxTemplates.swift */,
 				33B76E16224BC99F0010E35E /* WebPageTemplates.swift */,
 				33B76E40224E91380010E35E /* OsmandMapsTemplate.swift */,
@@ -560,10 +583,13 @@
 				33B76E1D224BD62A0010E35E /* MapsClientDataDB.swift in Sources */,
 				33B76E11224BA66C0010E35E /* FilePatchTemplates.swift in Sources */,
 				3358321122495813001FFC0A /* ViewController.swift in Sources */,
+				339B6F8F22EC9B4300D069C7 /* AlpineMapsTemplates.swift in Sources */,
 				333F214422DC5AED0099A8D0 /* MetainfoHandler.swift in Sources */,
 				3358320F22495813001FFC0A /* AppDelegate.swift in Sources */,
 				33B76E19224BD47A0010E35E /* MapsServerDataDB.swift in Sources */,
+				339B6F8D22EC9AA000D069C7 /* AlpineSavingPathGenerator.swift in Sources */,
 				33B76E25224BE4ED0010E35E /* GuruTemplates.swift in Sources */,
+				339B6F8722EC9A0800D069C7 /* AlpineAllMapsGenerator.swift in Sources */,
 				33B76E37224E342E0010E35E /* LocusMapsTemplates.swift in Sources */,
 				330E8FBC2267611C000D2BB7 /* WebPagesLayersGenerator.swift in Sources */,
 				337049B52282C1600080FF9E /* WestraParser.swift in Sources */,
@@ -582,8 +608,10 @@
 				337049BE2282E58B0080FF9E /* GeoJsonPointGeometry.swift in Sources */,
 				33E44E8E2263933900CBECE7 /* LocusAllMapsGenerator.swift in Sources */,
 				33B76E15224BC7950010E35E /* SqliteHandler.swift in Sources */,
+				339B6F8922EC9A4D00D069C7 /* AlpineOneMapGenerator.swift in Sources */,
 				330E8FAC2267540A000D2BB7 /* GuruSavingPatchGenerator.swift in Sources */,
 				33B76E17224BC99F0010E35E /* WebPageTemplates.swift in Sources */,
+				339B6F8B22EC9A7D00D069C7 /* AlpineMapLayersGenerator.swift in Sources */,
 				33B76E39224E35200010E35E /* DecsriptionTemplate.swift in Sources */,
 				337049C02282E61D0080FF9E /* GeoJsonPassProperty.swift in Sources */,
 				330E8FBE22676152000D2BB7 /* WebPagesSavingPatchGenerator.swift in Sources */,

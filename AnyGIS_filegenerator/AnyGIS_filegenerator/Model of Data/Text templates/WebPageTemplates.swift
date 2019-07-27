@@ -23,6 +23,7 @@ struct WebPageTemplates {
     let guruPage = "https://nnngrach.github.io/AnyGIS_maps/Web/Html/Galileo"
     let oruxPage = "https://nnngrach.github.io/AnyGIS_maps/Web/Html/Orux"
     let osmandPage = "https://nnngrach.github.io/AnyGIS_maps/Web/Html/Osmand"
+    let alpinePage = "https://nnngrach.github.io/AnyGIS_maps/Web/Html/Alpine"
     let apiPage = "https://nnngrach.github.io/AnyGIS_maps/Web/Html/Api"
     
     let anygisMapUrl = "https://anygis.herokuapp.com/{mapName}/{x}/{y}/{z}"
@@ -128,6 +129,8 @@ struct WebPageTemplates {
             resultUrl = patchTemplates.gitOsmadMapsFolder + langLabel + fileName + ".sqlitedb"
         case .OsmandMetainfo:
             resultUrl = patchTemplates.gitDownloaderApi + patchTemplates.gitOsmadMetainfoMapsFolder + langLabel + fileName
+        case .Alpine:
+            resultUrl = patchTemplates.anygisAlpineMapsFolder + langLabel + fileName + ".AQX"
         default:
             break
         }

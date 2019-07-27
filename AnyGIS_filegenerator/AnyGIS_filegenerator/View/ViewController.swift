@@ -50,6 +50,14 @@ class ViewController: NSViewController {
         controller.generateMapsForOsmand()
     }
     
+    @IBAction func generateOsmandMetainfoBtn(_ sender: Any) {
+        controller.generateMapsForOsmandMetainfo()
+    }
+    
+    @IBAction func generateAlpineinfoBtn(_ sender: Any) {
+        controller.generateMapsForAlpine()
+    }
+    
     @IBAction func generateWebPagesBtn(_ sender: Any) {
         controller.generateWebPages()
     }
