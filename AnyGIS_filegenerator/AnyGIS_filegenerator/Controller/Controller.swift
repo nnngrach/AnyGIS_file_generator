@@ -164,17 +164,19 @@ class Controller {
     public func generateMapsForAlpine() {
         let ru = patchTemplates.rusLanguageSubfolder
         let en = patchTemplates.engLanguageSubfolder
-        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsFull + ru)
-        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsFull + en)
-        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsShort + ru)
-        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsShort + en)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToAlpineMapsFull + ru)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToAlpineMapsFull + en)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToAlpineMapsShort + ru)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToAlpineMapsShort + en)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToAlpineMapsInServer + ru)
+        diskHandler.cleanFolder(patch: patchTemplates.localPathToAlpineMapsInServer + en)
         
         
         do {
-            try alpineMapsGenerator.launch(isShortSet: true, isEnglish: true, appName: .Locus)
-            try alpineMapsGenerator.launch(isShortSet: false, isEnglish: true, appName: .Locus)
-            try alpineMapsGenerator.launch(isShortSet: true, isEnglish: false, appName: .Locus)
-            try alpineMapsGenerator.launch(isShortSet: false, isEnglish: false, appName: .Locus)
+            try alpineMapsGenerator.launch(isShortSet: true, isEnglish: true, appName: .Alpine)
+            try alpineMapsGenerator.launch(isShortSet: false, isEnglish: true, appName: .Alpine)
+            try alpineMapsGenerator.launch(isShortSet: true, isEnglish: false, appName: .Alpine)
+            try alpineMapsGenerator.launch(isShortSet: false, isEnglish: false, appName: .Alpine)
             
         } catch {
             print(error)
@@ -217,6 +219,7 @@ class Controller {
             print(error)
         }
     }
+    
     
     
     public func parseWestraGeoJson() {

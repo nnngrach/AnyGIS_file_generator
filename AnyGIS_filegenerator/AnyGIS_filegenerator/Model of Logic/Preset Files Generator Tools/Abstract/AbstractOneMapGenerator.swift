@@ -22,6 +22,7 @@ class AbstractOneMapGenerator {
         if appName == ClientAppList.Locus && !mapClientLine.forLocus {return true}
         if appName == ClientAppList.Osmand && !mapClientLine.forOsmand {return true}
         if appName == ClientAppList.OsmandMetainfo && !mapClientLine.forOsmandMeta {return true}
+        if appName == ClientAppList.Alpine && !mapClientLine.forAlpine {return true}
         if (appName == ClientAppList.GuruMapsIOS || appName == ClientAppList.GuruMapsAndroid) && !mapClientLine.forGuru {return true}
         
         // Filter for short list

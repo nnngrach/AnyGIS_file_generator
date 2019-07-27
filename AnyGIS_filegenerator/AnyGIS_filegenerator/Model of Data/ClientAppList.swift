@@ -14,5 +14,5 @@ enum ClientAppList: String {
     case Osmand = "OsmAnd Maps (sqlitedb)"
     case OsmandMetainfo = "OsmAnd Maps (metainfo)"
     case Orux = "Orux Maps"
-    case Alpine = "AlpineQuest Maps"
+    case Alpine = "Alpine Quest Maps"
 }

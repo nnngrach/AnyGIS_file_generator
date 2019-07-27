@@ -20,4 +20,4 @@ class WebPagesSavingPatchGenerator: AbstractSavingPatchGenerator {
         return firstPart + secondPart + thirdPart + lastPart
     }
     
-}
+}   
