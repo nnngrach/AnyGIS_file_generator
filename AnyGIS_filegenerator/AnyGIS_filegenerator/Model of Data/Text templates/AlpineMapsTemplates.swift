@@ -28,12 +28,12 @@ struct AlpineMapsTemplates {
         <name>\(group)</name>
         <description>\(group)</description>
         
-            <source id="\(id)" layer="true">
+            \(getId(id: id, group: group))
                 <name>\(name)</name>
                 <copyright>\(name)</copyright>
                 <data-source></data-source>
-                <region>WRLD</region>
-                <type>OTHE</type>
+                \(getRegion(countries))
+                \(getUsageType(usage))
                 <preview-location>5.90,44.80,10</preview-location>
         
                 <level>
@@ -55,7 +55,53 @@ struct AlpineMapsTemplates {
     
     
     
-
+    
+    
+    func getId(id: Int64, group: String) -> String {
+        if group == "Overlay" {
+            return "<source id=\"\(id)\" layer=\"true\">"
+        } else {
+            return "<source id=\"\(id)\">"
+        }
+    }
+    
+    
+    
+    func getRegion(_ region: String) -> String {
+        if region == "World" {
+            return "<region>WRLD</region>"
+        } else {
+            return "<region>OTHE</region>"
+        }
+    }
+    
+    
+    
+    func getUsageType(_ usage: String) -> String {
+        switch usage {
+        case "aero":
+            return "<type>AERO</type>"
+        case "city":
+            return "<type>ROAD</type>"
+        case "hiking":
+            return "<type>TOPO</type>"
+        case "road":
+            return "<type>ROAD</type>"
+        case "cycle":
+            return "<type>TOPO</type>"
+        case "nautical":
+            return "<type>NAUT</type>"
+        case "overlay":
+            return "<type>OTHE</type>"
+        case "photo":
+            return "<type>SATE</type>"
+        case "ski":
+            return "<type>TOPO</type>"
+        default:
+            return "<type>OTHE</type>"
+        }
+    }
+    
     
     
     func getZoomLevels(min: Int64, max: Int64) -> String {
@@ -78,6 +124,13 @@ struct AlpineMapsTemplates {
             result = "<referer><![CDATA[\(referer)]]></referer>"
         }
         return result
+    }
+    
+    
+    
+    func getUserAgent() -> String {
+        //return "<user-agent>{$application-agent}</user-agent>"
+        return "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36"
     }
     
     
