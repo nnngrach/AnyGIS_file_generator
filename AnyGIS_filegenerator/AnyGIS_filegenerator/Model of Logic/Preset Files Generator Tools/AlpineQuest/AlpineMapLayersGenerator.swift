@@ -18,7 +18,8 @@ class AlpineMapLayersGenerator: AbstractMapLayersGenerator {
     
     
     override var urlPartsForReplacement: [(old: String, new: String)] {
-        return [(old: "https", new: "http")]
+        //return [(old: "https", new: "http")]
+        return []
     }
     
     
