@@ -12,6 +12,18 @@ class AbstractSavingPatchGenerator {
     
     public let patchTemplates = FilePatchTemplates()
     
+    public var shortPatch: String {
+        return ""
+    }
+    
+    public var fullPatch: String {
+        return ""
+    }
+    
+    public var zipPatch: String {
+        return ""
+    }
+    
     
     public func getAllMapsFileSavingPatch(isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) -> String {
         return ""

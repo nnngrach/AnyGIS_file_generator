@@ -84,6 +84,30 @@ class DiskHandler {
     }
     
     
+    public func cleanFiletypeFromFolder(patch: String, filetype: String) {
+        
+        let folderUrl = URL(string: patch)!
+        
+        do {
+            let fileURLs = try FileManager
+                .default
+                .contentsOfDirectory(at: folderUrl,
+                                     includingPropertiesForKeys: nil,
+                                     options: [.skipsHiddenFiles,
+                                               .skipsSubdirectoryDescendants])
+            
+            for fileURL in fileURLs {
+                if fileURL.absoluteString.hasSuffix("." + filetype) {
+                    try FileManager.default.removeItem(at: fileURL)
+                }
+            }
+            
+        } catch {
+            print(error)
+        }
+    }
+    
+    
     
     
     public func secureCopyItem(at source: String, to destination: String) -> Bool {

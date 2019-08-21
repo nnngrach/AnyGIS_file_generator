@@ -8,10 +8,11 @@
 
 import Foundation
 
+
 class Controller {
     
     private let diskHandler = DiskHandler()
-    private let patchTemplates = FilePatchTemplates()
+    private let patches = FilePatchTemplates()
     
     private let guruMapsGenerator = GuruAllMapsGenerator()
     private let oruxMapsGenerator = OruxAllMapsGenerator()
@@ -38,10 +39,10 @@ class Controller {
 
 
     public func generateInstallersForLocus() {
-        let ru = patchTemplates.rusLanguageSubfolder
-        let en = patchTemplates.engLanguageSubfolder
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToInstallers + ru)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToInstallers + en)
+        let ru = patches.rusLanguageSubfolder
+        let en = patches.engLanguageSubfolder
+        diskHandler.cleanFolder(patch: patches.localPathToInstallers + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToInstallers + en)
 
         do {
             try locusInstallerGeneretor.createSingleMapLoaders(isEnglish: true)
@@ -59,13 +60,14 @@ class Controller {
 
 
     public func generateMapsForLocus() {
-        let ru = patchTemplates.rusLanguageSubfolder
-        let en = patchTemplates.engLanguageSubfolder
-        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsFull + ru)
-        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsFull + en)
-        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsShort + ru)
-        diskHandler.cleanXmlFromFolder(patch: patchTemplates.localPathToLocusMapsShort + en)
-
+        let ru = patches.rusLanguageSubfolder
+        let en = patches.engLanguageSubfolder
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsZip, filetype: "zip")
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsFull + ru, filetype: "xml")
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsFull + en, filetype: "xml")
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsShort + ru, filetype: "xml")
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsShort + en, filetype: "xml")
+        
 
         do {
             try locusMapsGenerator.launch(isShortSet: true, isEnglish: true, appName: .Locus)
@@ -79,14 +81,15 @@ class Controller {
 
 
     public func generateMapsForGuru() {
-        let ru = patchTemplates.rusLanguageSubfolder
-        let en = patchTemplates.engLanguageSubfolder
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsFull + ru)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsFull + en)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsShort + ru)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsShort + en)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsInServer + ru)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToGuruMapsInServer + en)
+        let ru = patches.rusLanguageSubfolder
+        let en = patches.engLanguageSubfolder
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToGuruMapsZip, filetype: "zip")
+        diskHandler.cleanFolder(patch: patches.localPathToGuruMapsFull + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToGuruMapsFull + en)
+        diskHandler.cleanFolder(patch: patches.localPathToGuruMapsShort + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToGuruMapsShort + en)
+        diskHandler.cleanFolder(patch: patches.localPathToGuruMapsInServer + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToGuruMapsInServer + en)
 
         do {
             try guruMapsGenerator.launch(isShortSet: true, isEnglish: true, appName: .GuruMapsIOS)
@@ -100,12 +103,12 @@ class Controller {
 
 
     public func generateMapsForOrux() {
-        let ru = patchTemplates.rusLanguageSubfolder
-        let en = patchTemplates.engLanguageSubfolder
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOruxMapsFullInServer + ru)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOruxMapsFullInServer + en)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOruxMapsShortInServer + ru)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOruxMapsShortInServer + en)
+        let ru = patches.rusLanguageSubfolder
+        let en = patches.engLanguageSubfolder
+        diskHandler.cleanFolder(patch: patches.localPathToOruxMapsFullInServer + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToOruxMapsFullInServer + en)
+        diskHandler.cleanFolder(patch: patches.localPathToOruxMapsShortInServer + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToOruxMapsShortInServer + en)
 
         do {
             try oruxMapsGenerator.launch(isShortSet: true, isEnglish: true, appName: .Orux)
@@ -119,12 +122,13 @@ class Controller {
 
 
     public func generateMapsForOsmand() {
-        let ru = patchTemplates.rusLanguageSubfolder
-        let en = patchTemplates.engLanguageSubfolder
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsFull + ru)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsFull + en)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsShort + ru)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMapsShort + en)
+        let ru = patches.rusLanguageSubfolder
+        let en = patches.engLanguageSubfolder
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToOsmandMapsZip, filetype: "zip")
+        diskHandler.cleanFolder(patch: patches.localPathToOsmandMapsFull + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToOsmandMapsFull + en)
+        diskHandler.cleanFolder(patch: patches.localPathToOsmandMapsShort + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToOsmandMapsShort + en)
 
         do {
             try osmandMapsGenerator.launch(isShortSet: true, isEnglish: true, isForSqlitedb: true)
@@ -139,12 +143,13 @@ class Controller {
     
     
     public func generateMapsForOsmandMetainfo() {
-        let ru = patchTemplates.rusLanguageSubfolder
-        let en = patchTemplates.engLanguageSubfolder
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsFull + ru)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsFull + en)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsShort + ru)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToOsmandMetainfoMapsShort + en)
+        let ru = patches.rusLanguageSubfolder
+        let en = patches.engLanguageSubfolder
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToOsmandMetainfoZip, filetype: "zip")
+        diskHandler.cleanFolder(patch: patches.localPathToOsmandMetainfoFull + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToOsmandMetainfoFull + en)
+        diskHandler.cleanFolder(patch: patches.localPathToOsmandMetainfoShort + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToOsmandMetainfoShort + en)
         
         
         
@@ -162,14 +167,16 @@ class Controller {
     
     
     public func generateMapsForAlpine() {
-        let ru = patchTemplates.rusLanguageSubfolder
-        let en = patchTemplates.engLanguageSubfolder
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToAlpineMapsFull + ru)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToAlpineMapsFull + en)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToAlpineMapsShort + ru)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToAlpineMapsShort + en)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToAlpineMapsInServer + ru)
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToAlpineMapsInServer + en)
+        
+        let ru = patches.rusLanguageSubfolder
+        let en = patches.engLanguageSubfolder
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToAlpineMapsZip, filetype: "zip")
+        diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsFull + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsFull + en)
+        diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsShort + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsShort + en)
+        diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsInServer + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsInServer + en)
         
         
         do {
@@ -181,12 +188,13 @@ class Controller {
         } catch {
             print(error)
         }
+        
     }
     
 
 
     public func generateWebPages() {
-        diskHandler.cleanFolder(patch: patchTemplates.localPathToMarkdownPages)
+        diskHandler.cleanFolder(patch: patches.localPathToMarkdownPages)
 
         do {
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .Locus)

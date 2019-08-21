@@ -10,11 +10,12 @@ import Foundation
 
 class OsmandAllMapsGenerator {
     
+    private let zipHandler = ZipHandler()
     private let diskHandler = DiskHandler()
     private let baseHandler = SqliteHandler()
     private let webTemplates = WebPageTemplates()
     private let osmandTemplate = OsmandMapsTemplate()
-    private let patchTemplates = FilePatchTemplates()
+    private let patches = FilePatchTemplates()
     private let sqlitedbHandler = SqlitedbHandler()
     private let metainfoHandler = MetainfoHandler()
     
@@ -45,6 +46,21 @@ class OsmandAllMapsGenerator {
             } else {
                 try generateMetainfoItem(isShortSet: isShortSet, mapClientLine, mapsServerTable, isEnglish)
             }
+        }
+        
+        // Add all files to zip
+        if isForSqlitedb {
+            zipHandler.zipMapsFolder(sourceShort: patches.localPathToOsmandMapsShort,
+                                     SouceFull: patches.localPathToOsmandMapsFull,
+                                     zipPath: patches.localPathToOsmandMapsZip,
+                                     isShortSet: isShortSet,
+                                     isEnglish: isEnglish)
+        } else {
+            zipHandler.zipMapsFolder(sourceShort: patches.localPathToOsmandMetainfoShort,
+                                     SouceFull: patches.localPathToOsmandMetainfoFull,
+                                     zipPath: patches.localPathToOsmandMetainfoZip,
+                                     isShortSet: isShortSet,
+                                     isEnglish: isEnglish)
         }
     }
     

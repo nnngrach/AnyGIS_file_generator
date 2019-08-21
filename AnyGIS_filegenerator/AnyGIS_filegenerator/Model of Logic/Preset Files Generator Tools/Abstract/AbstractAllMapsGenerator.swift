@@ -10,8 +10,9 @@ import Foundation
 
 class AbstractAllMapsGenerator {
     
-    private let diskHandler = DiskHandler()
     private let baseHandler = SqliteHandler()
+    private let diskHandler = DiskHandler()
+    private let zipHandler = ZipHandler()
     
     public var oneMapGenerator: AbstractOneMapGenerator {
         return AbstractOneMapGenerator()
@@ -37,7 +38,7 @@ class AbstractAllMapsGenerator {
         var previousMapCategoryLabel = ""
         
         
-        // Interating for All Maps list
+        // Iterating for All Maps list
         for mapClientLine in mapsClientTable {
             
             if oneMapGenerator.isItUnnecessaryMap(mapClientLine, isShortSet, isEnglish, appName) {continue}
@@ -89,6 +90,17 @@ class AbstractAllMapsGenerator {
             
             diskHandler.createFile(patch: patch, content: fileContent)
         }
+        
+        
+        // Archive result to zip files
+        if !isAllMapsInOneFile {
+            zipHandler.zipMapsFolder(sourceShort: patchGenerator.shortPatch,
+                                 SouceFull: patchGenerator.fullPatch,
+                                 zipPath: patchGenerator.zipPatch,
+                                 isShortSet: isShortSet,
+                                 isEnglish: isEnglish)
+        }
+        
     }
     
 }

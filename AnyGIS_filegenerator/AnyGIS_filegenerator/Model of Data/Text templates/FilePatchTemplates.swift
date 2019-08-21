@@ -12,34 +12,45 @@ struct FilePatchTemplates {
     
     // Main DB patch
     
-    let dataBasePatch = "file://///Projects/GIS/AnyGIS%20server/AnyGIS_Server/base.sqlite"
+    let dataBasePatch = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/base.sqlite"
     
     
     // Generating files folders in site
     
-    let localPathToMarkdownPages = "file:////Projects/GIS/Online%20map%20sources/map-sources/Web/Html/Download/"
-    let localPathToIcons = "file:////Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Icons"
-    let localPathToInstallers = "file:////Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Installers"
-    let localPathToGeoJson = "file:////Projects/GIS/Online%20map%20sources/map-sources/GeoJson"
+    let localPathToMarkdownPages = "file:///Projects/GIS/Online%20map%20sources/map-sources/Web/Html/Download/"
+    let localPathToIcons = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Icons"
+    let localPathToInstallers = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Installers"
+    let localPathToGeoJson = "file:///Projects/GIS/Online%20map%20sources/map-sources/GeoJson"
     
-    let localPathToLocusMapsFull = "file:////Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Maps_full"
-    let localPathToLocusMapsShort = "file:////Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Maps_short"
-    let localPathToGuruMapsFull = "file:////Projects/GIS/Online%20map%20sources/map-sources/Galileo_online_maps/Maps_full"
-    let localPathToGuruMapsShort = "file:////Projects/GIS/Online%20map%20sources/map-sources/Galileo_online_maps/Maps_short"
-    let localPathToOsmandMapsFull = "file:////Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Sqlitedb/Maps_full"
-    let localPathToOsmandMapsShort = "file:////Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Sqlitedb/Maps_short"
-    let localPathToOsmandMetainfoMapsFull = "file:////Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Maps_full"
-    let localPathToOsmandMetainfoMapsShort = "file:////Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Maps_short"
-    let localPathToAlpineMapsFull = "file:////Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Maps_full"
-    let localPathToAlpineMapsShort = "file:////Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Maps_short"
+    
+    let localPathToLocusMapsZip = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Zip/"
+    let localPathToLocusMapsFull = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Maps_full"
+    let localPathToLocusMapsShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Maps_short"
+    
+    
+    let localPathToGuruMapsZip = "file:///Projects/GIS/Online%20map%20sources/map-sources/Galileo_online_maps/Zip/"
+    let localPathToGuruMapsFull = "file:///Projects/GIS/Online%20map%20sources/map-sources/Galileo_online_maps/Maps_full"
+    let localPathToGuruMapsShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/Galileo_online_maps/Maps_short"
+    
+    let localPathToOsmandMapsZip = "file:///Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Sqlitedb/Zip/"
+    let localPathToOsmandMapsFull = "file:///Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Sqlitedb/Maps_full"
+    let localPathToOsmandMapsShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Sqlitedb/Maps_short"
+    
+    let localPathToOsmandMetainfoZip = "file:///Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Zip/"
+    let localPathToOsmandMetainfoFull = "file:///Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Maps_full"
+    let localPathToOsmandMetainfoShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Maps_short"
+    
+    let localPathToAlpineMapsZip = "file:///Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Zip/"
+    let localPathToAlpineMapsFull = "file:///Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Maps_full"
+    let localPathToAlpineMapsShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Maps_short"
     
     
     // Generating files folders in server
     
-    let localPathToGuruMapsInServer = "file://///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/galileo"
-    let localPathToOruxMapsFullInServer = "file:////Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/orux_full"
-    let localPathToOruxMapsShortInServer = "file:////Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/orux_short"
-    let localPathToAlpineMapsInServer = "file://///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/alpine"
+    let localPathToGuruMapsInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/galileo"
+    let localPathToOruxMapsFullInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/orux_full"
+    let localPathToOruxMapsShortInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/orux_short"
+    let localPathToAlpineMapsInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/alpine"
     
     
     
@@ -53,6 +64,7 @@ struct FilePatchTemplates {
     let gitLocusMapsFolder = "https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Locus_online_maps/Maps_full"
     let gitOsmadMapsFolder = "https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Osmand_online_maps/Sqlitedb/Maps_full"
     let gitOsmadMetainfoMapsFolder = "https://github.com/nnngrach/AnyGIS_maps/tree/master/Osmand_online_maps/Metainfo/Maps_full"
+    let gitOsmadMetainfoMapsFolderDownloader = "https://github.com/nnngrach/AnyGIS_maps/raw/master/Osmand_online_maps/Metainfo/Maps_full"
     let gitAlpineMapsFolder = "https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/AlpineQuest_online_maps/Maps_full"
     
     let anygisGuruMapsFolder = "https://anygis.herokuapp.com/download/galileo"
@@ -64,7 +76,7 @@ struct FilePatchTemplates {
     let gitLocusShortMapsZip = "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/nnngrach/AnyGIS_maps/tree/master/Locus_online_maps/Maps_short"
     
     let gitLocusActionInstallersFolder = "locus-actions://https/raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Locus_online_maps/Installers"
-    let gitGuruActionInstallersFolder = "guru://open?path=https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Galileo_online_maps/Maps_full"
+    let gitMapsFolder = "guru://open?path=https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Galileo_online_maps/Maps_full"
     
     
     

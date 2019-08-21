@@ -64,6 +64,7 @@
 		33B76E39224E35200010E35E /* DecsriptionTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E38224E35200010E35E /* DecsriptionTemplate.swift */; };
 		33B76E3F224E5DA30010E35E /* OsmandAllMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E3E224E5DA30010E35E /* OsmandAllMapsGenerator.swift */; };
 		33B76E41224E91380010E35E /* OsmandMapsTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E40224E91380010E35E /* OsmandMapsTemplate.swift */; };
+		33CF2888230B3E7100B89D03 /* ZipHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CF2887230B3E7100B89D03 /* ZipHandler.swift */; };
 		33E44E8A2262659E00CBECE7 /* AbstractAllMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E44E892262659E00CBECE7 /* AbstractAllMapsGenerator.swift */; };
 		33E44E8C2263512C00CBECE7 /* GuruAllMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E44E8B2263512C00CBECE7 /* GuruAllMapsGenerator.swift */; };
 		33E44E8E2263933900CBECE7 /* LocusAllMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E44E8D2263933900CBECE7 /* LocusAllMapsGenerator.swift */; };
@@ -131,6 +132,7 @@
 		33B76E38224E35200010E35E /* DecsriptionTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecsriptionTemplate.swift; sourceTree = "<group>"; };
 		33B76E3E224E5DA30010E35E /* OsmandAllMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmandAllMapsGenerator.swift; sourceTree = "<group>"; };
 		33B76E40224E91380010E35E /* OsmandMapsTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmandMapsTemplate.swift; sourceTree = "<group>"; };
+		33CF2887230B3E7100B89D03 /* ZipHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipHandler.swift; sourceTree = "<group>"; };
 		33E44E892262659E00CBECE7 /* AbstractAllMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractAllMapsGenerator.swift; sourceTree = "<group>"; };
 		33E44E8B2263512C00CBECE7 /* GuruAllMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuruAllMapsGenerator.swift; sourceTree = "<group>"; };
 		33E44E8D2263933900CBECE7 /* LocusAllMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusAllMapsGenerator.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 			isa = PBXGroup;
 			children = (
 				33B76E12224BC6830010E35E /* Disk handler.swift */,
+				33CF2887230B3E7100B89D03 /* ZipHandler.swift */,
 			);
 			path = "Disk Tools";
 			sourceTree = "<group>";
@@ -543,12 +546,14 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+				"${BUILT_PRODUCTS_DIR}/ZIPFoundation/ZIPFoundation.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZIPFoundation.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -570,6 +575,7 @@
 				33405E792286ECCC0032B3DD /* OsmWay.swift in Sources */,
 				330E8FB422675C14000D2BB7 /* OruxOneMapGenerator.swift in Sources */,
 				33405E8922872BAE0032B3DD /* AnygisRunMapUpdater.swift in Sources */,
+				33CF2888230B3E7100B89D03 /* ZipHandler.swift in Sources */,
 				33E44E8C2263512C00CBECE7 /* GuruAllMapsGenerator.swift in Sources */,
 				330E8FAA226753D4000D2BB7 /* GuruMapLayersGenerator.swift in Sources */,
 				330E8FAE226757FE000D2BB7 /* LocusMapLayersGenerator.swift in Sources */,

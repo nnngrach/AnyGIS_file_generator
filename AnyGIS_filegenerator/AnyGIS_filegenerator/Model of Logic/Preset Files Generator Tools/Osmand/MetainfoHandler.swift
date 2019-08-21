@@ -10,6 +10,7 @@ import Foundation
 
 class MetainfoHandler {
     
+    private let zipHandler = ZipHandler()
     private let diskHandler = DiskHandler()
     private let patchTemplates = FilePatchTemplates()
     private let osmandTemplate = OsmandMapsTemplate()
@@ -17,7 +18,7 @@ class MetainfoHandler {
     
     public func create(isShortSet: Bool, filename: String, zoommin: Int64, zoommax: Int64, url: String, isElipsoid: Bool, isEnglish: Bool, tileSize: String) throws {
         
-        let folderPatch = isShortSet ? patchTemplates.localPathToOsmandMetainfoMapsShort : patchTemplates.localPathToOsmandMetainfoMapsFull
+        let folderPatch = isShortSet ? patchTemplates.localPathToOsmandMetainfoShort : patchTemplates.localPathToOsmandMetainfoFull
         
         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         
@@ -34,6 +35,9 @@ class MetainfoHandler {
         
         
         diskHandler.createFile(patch: mapFolderName + filename, content: content)
+        
+        zipHandler.zip(sourcePath: mapFolderName,
+                       archievePath: mapFolderName + ".zip")
     }
     
 }

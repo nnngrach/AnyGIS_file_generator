@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1010"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B621A45D44B81ACCB761EB92733D0848"
+               BlueprintIdentifier = "DDFB68EDD8C885C09C2CA21263820D2C"
                BuildableName = "Pods_AnyGIS_filegenerator.framework"
                BlueprintName = "Pods-AnyGIS_filegenerator"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B621A45D44B81ACCB761EB92733D0848"
+            BlueprintIdentifier = "DDFB68EDD8C885C09C2CA21263820D2C"
             BuildableName = "Pods_AnyGIS_filegenerator.framework"
             BlueprintName = "Pods-AnyGIS_filegenerator"
             ReferencedContainer = "container:Pods.xcodeproj">
