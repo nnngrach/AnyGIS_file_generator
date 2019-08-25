@@ -67,8 +67,11 @@ struct FilePatchTemplates {
     let gitOsmadMetainfoMapsFolderDownloader = "https://github.com/nnngrach/AnyGIS_maps/raw/master/Osmand_online_maps/Metainfo/Maps_full"
     let gitAlpineMapsFolder = "https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/AlpineQuest_online_maps/Maps_full"
     
-    let anygisGuruMapsFolder = "https://anygis.herokuapp.com/download/galileo"
-    let anygisAlpineMapsFolder = "https://anygis.herokuapp.com/download/alpine"
+    let anygisGuruMapsFolder = "http://server.anygis.ru/download/galileo"
+    let anygisAlpineMapsFolder = "http://server.anygis.ru/download/alpine"
+    //let anygisGuruMapsFolder = "https://anygis.herokuapp.com/download/galileo"
+    //let anygisAlpineMapsFolder = "https://anygis.herokuapp.com/download/alpine"
+
     
     
     let gitDownloaderApi = "https://minhaskamal.github.io/DownGit/#/home?url="

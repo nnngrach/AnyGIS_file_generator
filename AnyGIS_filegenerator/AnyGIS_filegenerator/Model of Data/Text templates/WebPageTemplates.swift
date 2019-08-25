@@ -15,19 +15,19 @@ struct WebPageTemplates {
     
     //MARK: Header links
     
-    let indexPage = "https://nnngrach.github.io/AnyGIS_maps/index"
-    let descriptionPage = "https://nnngrach.github.io/AnyGIS_maps/Web/Html/Description"
-    let rusOutdoorPage = "https://nnngrach.github.io/AnyGIS_maps/Web/Html/RusOutdoor"
-    let downloadPage = "https://nnngrach.github.io/AnyGIS_maps/Web/Html/DownloadPage"
-    let locusPage = "https://nnngrach.github.io/AnyGIS_maps/Web/Html/Locus"
-    let guruPage = "https://nnngrach.github.io/AnyGIS_maps/Web/Html/Galileo"
-    let oruxPage = "https://nnngrach.github.io/AnyGIS_maps/Web/Html/Orux"
-    let osmandPage = "https://nnngrach.github.io/AnyGIS_maps/Web/Html/Osmand"
-    let alpinePage = "https://nnngrach.github.io/AnyGIS_maps/Web/Html/Alpine"
-    let apiPage = "https://nnngrach.github.io/AnyGIS_maps/Web/Html/Api"
+    let indexPage = "http://www.anygis.ru/index"
+    let descriptionPage = "http://www.anygis.ru/Web/Html/Description"
+    let rusOutdoorPage = "http://www.anygis.ru/Web/Html/RusOutdoor"
+    let downloadPage = "http://www.anygis.ru/Web/Html/DownloadPage"
+    let locusPage = "http://www.anygis.ru/Web/Html/Locus"
+    let guruPage = "http://www.anygis.ru/Web/Html/Galileo"
+    let oruxPage = "http://www.anygis.ru/Web/Html/Orux"
+    let osmandPage = "http://www.anygis.ru/Web/Html/Osmand"
+    let alpinePage = "http://www.anygis.ru/Web/Html/Alpine"
+    let apiPage = "http://www.anygis.ru/Web/Html/Api"
     
-    let anygisMapUrl = "https://anygis.herokuapp.com/{mapName}/{x}/{y}/{z}"
-    let anygisMapUrlHttp = "http://anygis.herokuapp.com/{mapName}/{x}/{y}/{z}"
+    let anygisMapUrl = "http://server.anygis.ru/{mapName}/{x}/{y}/{z}"
+    let anygisMapUrlHttp = "http://server.anygis.ru/{mapName}/{x}/{y}/{z}"
     
     let email = "anygis@bk.ru"
     
