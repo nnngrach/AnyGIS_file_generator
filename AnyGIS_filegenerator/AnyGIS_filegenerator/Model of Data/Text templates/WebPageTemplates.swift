@@ -15,16 +15,16 @@ struct WebPageTemplates {
     
     //MARK: Header links
     
-    let indexPage = "http://www.anygis.ru/index"
-    let descriptionPage = "http://www.anygis.ru/Web/Html/Description"
-    let rusOutdoorPage = "http://www.anygis.ru/Web/Html/RusOutdoor"
-    let downloadPage = "http://www.anygis.ru/Web/Html/DownloadPage"
-    let locusPage = "http://www.anygis.ru/Web/Html/Locus"
-    let guruPage = "http://www.anygis.ru/Web/Html/Galileo"
-    let oruxPage = "http://www.anygis.ru/Web/Html/Orux"
-    let osmandPage = "http://www.anygis.ru/Web/Html/Osmand"
-    let alpinePage = "http://www.anygis.ru/Web/Html/Alpine"
-    let apiPage = "http://www.anygis.ru/Web/Html/Api"
+    let indexPage = "http://anygis.ru/index"
+    let descriptionPage = "http://anygis.ru/Web/Html/Description"
+    let rusOutdoorPage = "http://anygis.ru/Web/Html/RusOutdoor"
+    let downloadPage = "http://anygis.ru/Web/Html/DownloadPage"
+    let locusPage = "http://anygis.ru/Web/Html/Locus"
+    let guruPage = "http://anygis.ru/Web/Html/Galileo"
+    let oruxPage = "http://anygis.ru/Web/Html/Orux"
+    let osmandPage = "http://anygis.ru/Web/Html/Osmand"
+    let alpinePage = "http://anygis.ru/Web/Html/Alpine"
+    let apiPage = "http://anygis.ru/Web/Html/Api"
     
     let anygisMapUrl = "http://anygis.ru/server/{mapName}/{x}/{y}/{z}"
     let anygisMapUrlHttp = "http://anygis.ru/server/{mapName}/{x}/{y}/{z}"
@@ -37,6 +37,13 @@ struct WebPageTemplates {
     
     func getMarkdownHeader(isEnglish: Bool) -> String {
         
+        let jekyllHeader = """
+        ---
+        layout: default
+        ---
+
+        """
+        
         let buttonsRu = "| [AnyGIS][01] | [Как это работает?][02] | [RusOutdoor Maps][03] | [Скачать карты][04] | [API][05] |"
         
         let buttonsEn = "| [AnyGIS][01] | [How it works?][02] | [RusOutdoor Maps][03] | [Download][04] | [API][05] |"
@@ -48,6 +55,8 @@ struct WebPageTemplates {
         let indexPostfix = isEnglish ? "_en" : ""
         
         return """
+        \(jekyllHeader)
+        
         \(header)
         
         

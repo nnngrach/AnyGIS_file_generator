@@ -17,7 +17,8 @@ struct FilePatchTemplates {
     
     // Generating files folders in site
     
-    let localPathToMarkdownPages = "file:///Projects/GIS/Online%20map%20sources/map-sources/Web/Html/Download/"
+    let localPathToMarkdownPages = "file:///Projects/GIS/Anygis_site/modernist-master/Web/Html/Download/"
+    
     let localPathToIcons = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Icons"
     let localPathToInstallers = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Installers"
     let localPathToGeoJson = "file:///Projects/GIS/Online%20map%20sources/map-sources/GeoJson"
@@ -47,10 +48,10 @@ struct FilePatchTemplates {
     
     // Generating files folders in server
     
-    let localPathToGuruMapsInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/galileo"
-    let localPathToOruxMapsFullInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/orux_full"
-    let localPathToOruxMapsShortInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/orux_short"
-    let localPathToAlpineMapsInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/alpine"
+    let localPathToGuruMapsInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/galileo"
+    let localPathToOruxMapsFullInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/orux_full"
+    let localPathToOruxMapsShortInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/orux_short"
+    let localPathToAlpineMapsInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/alpine"
     
     
     
