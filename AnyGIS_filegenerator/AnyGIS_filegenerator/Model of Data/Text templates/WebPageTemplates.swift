@@ -26,8 +26,8 @@ struct WebPageTemplates {
     let alpinePage = "http://www.anygis.ru/Web/Html/Alpine"
     let apiPage = "http://www.anygis.ru/Web/Html/Api"
     
-    let anygisMapUrl = "http://server.anygis.ru/{mapName}/{x}/{y}/{z}"
-    let anygisMapUrlHttp = "http://server.anygis.ru/{mapName}/{x}/{y}/{z}"
+    let anygisMapUrl = "http://anygis.ru/server/{mapName}/{x}/{y}/{z}"
+    let anygisMapUrlHttp = "http://anygis.ru/server/{mapName}/{x}/{y}/{z}"
     
     let email = "anygis@bk.ru"
     
