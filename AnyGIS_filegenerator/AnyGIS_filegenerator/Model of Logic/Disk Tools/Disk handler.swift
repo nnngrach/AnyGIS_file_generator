@@ -46,8 +46,7 @@ class DiskHandler {
                 .default
                 .contentsOfDirectory(at: folderUrl,
                                      includingPropertiesForKeys: nil,
-                                     options: [.skipsHiddenFiles,
-                                               .skipsSubdirectoryDescendants])
+                                     options: [.skipsSubdirectoryDescendants])
             
             for fileURL in fileURLs {
                 try FileManager.default.removeItem(at: fileURL)
@@ -93,9 +92,8 @@ class DiskHandler {
                 .default
                 .contentsOfDirectory(at: folderUrl,
                                      includingPropertiesForKeys: nil,
-                                     options: [.skipsHiddenFiles,
-                                               .skipsSubdirectoryDescendants])
-            
+                                     options: [.skipsSubdirectoryDescendants])
+  
             for fileURL in fileURLs {
                 if fileURL.absoluteString.hasSuffix("." + filetype) {
                     try FileManager.default.removeItem(at: fileURL)

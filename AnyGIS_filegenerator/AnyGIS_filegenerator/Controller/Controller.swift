@@ -67,6 +67,10 @@ class Controller {
         diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsFull + en, filetype: "xml")
         diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsShort + ru, filetype: "xml")
         diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsShort + en, filetype: "xml")
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsFull + ru, filetype: "DS_Store")
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsFull + en, filetype: "DS_Store")
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsShort + ru, filetype: "DS_Store")
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsShort + en, filetype: "DS_Store")
         
 
         do {
