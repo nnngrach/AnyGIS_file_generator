@@ -15,19 +15,19 @@ struct WebPageTemplates {
     
     //MARK: Header links
     
-    let indexPage = "http://anygis.ru/index"
-    let descriptionPage = "http://anygis.ru/Web/Html/Description"
-    let rusOutdoorPage = "http://anygis.ru/Web/Html/RusOutdoor"
-    let downloadPage = "http://anygis.ru/Web/Html/DownloadPage"
-    let locusPage = "http://anygis.ru/Web/Html/Locus"
-    let guruPage = "http://anygis.ru/Web/Html/Galileo"
-    let oruxPage = "http://anygis.ru/Web/Html/Orux"
-    let osmandPage = "http://anygis.ru/Web/Html/Osmand"
-    let alpinePage = "http://anygis.ru/Web/Html/Alpine"
-    let apiPage = "http://anygis.ru/Web/Html/Api"
+    let indexPage = "https://anygis.ru/index"
+    let descriptionPage = "https://anygis.ru/Web/Html/Description"
+    let rusOutdoorPage = "https://anygis.ru/Web/Html/RusOutdoor"
+    let downloadPage = "https://anygis.ru/Web/Html/DownloadPage"
+    let locusPage = "https://anygis.ru/Web/Html/Locus"
+    let guruPage = "https://anygis.ru/Web/Html/Galileo"
+    let oruxPage = "https://anygis.ru/Web/Html/Orux"
+    let osmandPage = "https://anygis.ru/Web/Html/Osmand"
+    let alpinePage = "https://anygis.ru/Web/Html/Alpine"
+    let apiPage = "https://anygis.ru/Web/Html/Api"
     
-    let anygisMapUrl = "http://anygis.ru/server/{mapName}/{x}/{y}/{z}"
-    let anygisMapUrlHttp = "http://anygis.ru/server/{mapName}/{x}/{y}/{z}"
+    let anygisMapUrl = "https://anygis.ru/server/{mapName}/{x}/{y}/{z}"
+    let anygisMapUrlHttp = "https://anygis.ru/server/{mapName}/{x}/{y}/{z}"
     
     let email = "anygis@bk.ru"
     

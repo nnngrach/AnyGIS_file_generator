@@ -60,7 +60,7 @@ struct DecsriptionTemplate {
         Файл обновлен: \(getCreationTime())
         
         Сделан на основе наборов карт от:
-        - SAS.planet (http://www.sasgis.org/)
+        - SAS.planet (https://www.sasgis.org/)
         - Erelen (https://melda.ru/locus/)
         - ms.Galileo-app (https://ms.galileo-app.com/)
         - Custom-maps-sourse (https://custom-map-source.appspot.com/)
