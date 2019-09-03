@@ -86,9 +86,13 @@ class AbstractAllMapsGenerator {
             
             fileContent = oneMapGenerator.addIntroAndOutroTo(content: fileContent, isEnglish: isEnglish, appName: appName)
             
-            let patch = patchGenerator.getAllMapsFileSavingPatch(isShortSet: isShortSet, isEnglish: isEnglish, appName: appName)
+            let patches = patchGenerator.getAllMapsFileSavingPatch(isShortSet: isShortSet, isEnglish: isEnglish, appName: appName)
             
-            diskHandler.createFile(patch: patch, content: fileContent)
+            diskHandler.createFile(patch: patches.patch, content: fileContent)
+            
+            if patches.secondPatch != nil {
+                diskHandler.createFile(patch: patches.secondPatch!, content: fileContent)
+            }
         }
         
         

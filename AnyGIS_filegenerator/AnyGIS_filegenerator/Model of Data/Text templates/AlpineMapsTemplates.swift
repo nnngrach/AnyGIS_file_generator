@@ -25,6 +25,8 @@ struct AlpineMapsTemplates {
         <?xml version="1.0" encoding="utf-8" ?>
         <aqx version="6">
         
+        \(descriptionTemplates.getDescription(appName: .Alpine))
+        
         <name>\(group)</name>
         <description>\(group)</description>
         

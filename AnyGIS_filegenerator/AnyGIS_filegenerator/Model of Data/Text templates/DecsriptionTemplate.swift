@@ -43,28 +43,14 @@ struct DecsriptionTemplate {
             currentAppPageUrl = webPagesTemplates.alpinePage
         }
         
-        let currentAppName = appName.rawValue
-        
-        
-        let nameString = """
-        Комплект карт "AnyGIS" для навигатора \(currentAppName).
-        \(currentAppPageUrl)
-        """
-        
+        //let currentAppName = appName.rawValue
         
         return """
         <!--
-        \(nameString)
-        
-        Составитель: AnyGIS (\(webPagesTemplates.email)).
-        Файл обновлен: \(getCreationTime())
-        
-        Сделан на основе наборов карт от:
-        - SAS.planet (https://www.sasgis.org/)
-        - Erelen (https://melda.ru/locus/)
-        - ms.Galileo-app (https://ms.galileo-app.com/)
-        - Custom-maps-sourse (https://custom-map-source.appspot.com/)
+        Map pack from AnyGIS.ru
+        Updated: \(getCreationTime())
         -->
+        
         """
     }
 }

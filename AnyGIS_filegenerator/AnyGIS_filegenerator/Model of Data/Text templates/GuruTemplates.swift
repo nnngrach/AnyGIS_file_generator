@@ -10,7 +10,7 @@ import Foundation
 
 struct GuruTemplates {
     
-    
+    private let descriptionTemplates = DecsriptionTemplate()
     
     //MARK: Templates for GuruMaps (Galileo) maps MS
     
@@ -18,6 +18,8 @@ struct GuruTemplates {
         
         return """
         <?xml version="1.0" encoding="utf-8"?>
+        
+        \(descriptionTemplates.getDescription(appName: .GuruMapsIOS))
         
         <customMapSource>
         <name>\(mapName)</name>

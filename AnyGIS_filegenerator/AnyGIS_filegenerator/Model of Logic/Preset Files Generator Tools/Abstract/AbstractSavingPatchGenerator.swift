@@ -25,8 +25,8 @@ class AbstractSavingPatchGenerator {
     }
     
     
-    public func getAllMapsFileSavingPatch(isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) -> String {
-        return ""
+    public func getAllMapsFileSavingPatch(isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) -> (patch: String, secondPatch: String?) {
+        return (patch: "", secondPatch: nil)
     }
     
     

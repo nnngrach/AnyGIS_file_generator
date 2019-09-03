@@ -10,6 +10,7 @@ import Foundation
 
 struct OruxTemplates {
     
+    private let descriptionTemplates = DecsriptionTemplate()
     
     //MARK: Templates for Orux maps XML
     
@@ -18,6 +19,7 @@ struct OruxTemplates {
         <?xml version="1.0" encoding="utf-8"?>
         <onlinemapsources>
         
+        \(descriptionTemplates.getDescription(appName: .Orux))
         """
     }
     

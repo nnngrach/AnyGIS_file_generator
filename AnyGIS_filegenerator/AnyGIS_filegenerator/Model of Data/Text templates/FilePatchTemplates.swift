@@ -41,6 +41,9 @@ struct FilePatchTemplates {
     let localPathToOsmandMetainfoFull = "file:///Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Maps_full"
     let localPathToOsmandMetainfoShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Maps_short"
     
+    let localPathToOruxMapsFull = "file:///Projects/GIS/Online%20map%20sources/map-sources/Orux_online_maps/Maps_full"
+    let localPathToOruxMapsShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/Orux_online_maps/Maps_short"
+    
     let localPathToAlpineMapsZip = "file:///Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Zip/"
     let localPathToAlpineMapsFull = "file:///Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Maps_full"
     let localPathToAlpineMapsShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Maps_short"
