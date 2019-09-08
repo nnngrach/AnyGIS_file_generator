@@ -25,9 +25,11 @@ struct WebPageTemplates {
     let osmandPage = "https://anygis.ru/Web/Html/Osmand"
     let alpinePage = "https://anygis.ru/Web/Html/Alpine"
     let apiPage = "https://anygis.ru/Web/Html/Api"
+    let changeLogPage = "https://anygis.ru/Web/Html/Changelog"
+
     
-    let anygisMapUrl = "https://anygis.ru/server/{mapName}/{x}/{y}/{z}"
-    let anygisMapUrlHttp = "https://anygis.ru/server/{mapName}/{x}/{y}/{z}"
+    let anygisMapUrl = "https://anygis.ru/api/v1/{mapName}/{x}/{y}/{z}"
+    let anygisMapUrlHttp = "https://anygis.ru/api/v1/{mapName}/{x}/{y}/{z}"
     
     let email = "anygis@bk.ru"
     

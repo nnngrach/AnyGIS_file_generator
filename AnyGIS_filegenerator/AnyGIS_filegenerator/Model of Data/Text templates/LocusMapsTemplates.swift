@@ -94,10 +94,11 @@ struct LocusMapsTemplates {
             """
         }
         
+        let decriptionPage = webPagesTemplates.changeLogPage + "_ru"
         
         result += """
         <extraHeader><![CDATA[User-Agent#Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36]]></extraHeader>
-        <attribution><![CDATA[Сборник карт AnyGIS. <a href="\(webPagesTemplates.locusPage)">Проверить обновления</a>]]></attribution>
+        <attribution><![CDATA[Map pack from AnyGIS.r. <a href="\(decriptionPage)">Check for updates</a>]]></attribution>
         </provider>
         
         """
