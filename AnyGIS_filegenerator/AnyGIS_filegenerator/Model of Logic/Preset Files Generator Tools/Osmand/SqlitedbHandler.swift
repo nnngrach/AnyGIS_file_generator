@@ -22,8 +22,10 @@ class SqlitedbHandler {
         
         let filePatch = folderPatch + langLabel + filename + ".sqlitedb"
         
-        let sqlitedbMinZoom = String(17 - zoommax)
-        let sqlitedbMaxZoom = String(17 - zoommin)
+        //let sqlitedbMinZoom = String(17 - zoommax)
+        //let sqlitedbMaxZoom = String(17 - zoommin)
+        let sqlitedbMinZoom = String(zoommin)
+        let sqlitedbMaxZoom = String(zoommax)
         
         let db = try Connection(filePatch)
         

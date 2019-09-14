@@ -19,7 +19,8 @@ class LocusMapLayersGenerator: AbstractMapLayersGenerator {
     
     
     override var urlPartsForReplacement: [(old: String, new: String)] {
-        return [(old: "{invY}", new: "{y}")]
+        return [(old: "{invY}", new: "{y}"),
+                (old: "{q}", new: "{c}")]
 //        return [(old: "{invY}", new: "{y}"),
 //                (old: "https", new: "http")]
     }

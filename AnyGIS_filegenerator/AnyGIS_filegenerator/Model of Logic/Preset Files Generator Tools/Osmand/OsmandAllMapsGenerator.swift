@@ -221,7 +221,7 @@ class OsmandAllMapsGenerator {
         resultUrl = resultUrl.replacingOccurrences(of: "{y}", with: "{2}")
         resultUrl = resultUrl.replacingOccurrences(of: "{z}", with: "{0}")
         resultUrl = resultUrl.replacingOccurrences(of: "{invY}", with: "{2}")
-//        resultUrl = resultUrl.replacingOccurrences(of: "https", with: "http")
+        //resultUrl = resultUrl.replacingOccurrences(of: "https", with: "http")
         
         if serverNames != "" {
             let serverPart = String(serverNames.first!)
@@ -243,6 +243,7 @@ class OsmandAllMapsGenerator {
         resultUrl = resultUrl.replacingOccurrences(of: "{sasZ}", with: "\" + getSasZ(z,x,y) + \"")
         resultUrl = resultUrl.replacingOccurrences(of: "{folderX}", with: "\" + getSasX(z,x,y) + \"")
         resultUrl = resultUrl.replacingOccurrences(of: "{folderY}", with: "\" + getSasY(z,x,y) + \"")
+        //resultUrl = resultUrl.replacingOccurrences(of: "https", with: "http")
 
         return resultUrl
     }

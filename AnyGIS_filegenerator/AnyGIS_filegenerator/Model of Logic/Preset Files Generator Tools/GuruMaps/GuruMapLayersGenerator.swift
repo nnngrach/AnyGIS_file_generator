@@ -22,6 +22,7 @@ class GuruMapLayersGenerator: AbstractMapLayersGenerator {
         return [(old: "{x}", new: "{$x}"),
                 (old: "{y}", new: "{$y}"),
                 (old: "{z}", new: "{$z}"),
+                (old: "{q}", new: "{$quad}"),
                 (old: "{s}", new: "{$serverpart}"),
                 (old: "{invY}", new: "{$invY}"),
                 (old: "&", new: "&amp;")]
