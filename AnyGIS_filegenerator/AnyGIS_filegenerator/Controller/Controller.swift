@@ -192,7 +192,6 @@ class Controller {
         } catch {
             print(error)
         }
-        
     }
     
 

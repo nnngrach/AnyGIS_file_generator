@@ -114,4 +114,38 @@ class SqliteHandler {
     
     
     
+    
+    public func getMapsPreviewData() throws -> [MapsPreviewData] {
+        
+        var result: [MapsPreviewData] = []
+        
+        let connection = try Connection(patchTemplates.dataBasePatch, readonly: true)
+        
+        let rawTable = try connection
+            .prepare(MapsPreviewDataDB.table
+                .order(MapsPreviewDataDB.name))
+        
+        
+        for rawLine in rawTable {
+            
+            let item = MapsPreviewData(name: rawLine[MapsPreviewDataDB.name]!,
+                                    isTesting: rawLine[MapsPreviewDataDB.isTesting]!,
+                                    hasPrewiew: rawLine[MapsPreviewDataDB.hasPrewiew]!,
+                                    isOverlay: rawLine[MapsPreviewDataDB.isOverlay]!,
+                                    previewLat: rawLine[MapsPreviewDataDB.previewLat]!,
+                                    previewLon: rawLine[MapsPreviewDataDB.previewLon]!,
+                                    previewZoom: rawLine[MapsPreviewDataDB.previewZoom]!,
+                                    previewUrl: rawLine[MapsPreviewDataDB.previewUrl]!,
+                                    isGlobal: rawLine[MapsPreviewDataDB.isGlobal]!,
+                                    bboxL: rawLine[MapsPreviewDataDB.bboxL]!,
+                                    bboxT: rawLine[MapsPreviewDataDB.bboxT]!,
+                                    bboxR: rawLine[MapsPreviewDataDB.bboxR]!,
+                                    bboxB: rawLine[MapsPreviewDataDB.bboxB]!)
+        
+            result.append(item)
+        }
+        
+        return result
+    }
+    
 }

@@ -24,6 +24,8 @@
 		330E8FBA226760D0000D2BB7 /* WebPagesOneMapGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E8FB9226760D0000D2BB7 /* WebPagesOneMapGenerator.swift */; };
 		330E8FBC2267611C000D2BB7 /* WebPagesLayersGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E8FBB2267611C000D2BB7 /* WebPagesLayersGenerator.swift */; };
 		330E8FBE22676152000D2BB7 /* WebPagesSavingPatchGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E8FBD22676152000D2BB7 /* WebPagesSavingPatchGenerator.swift */; };
+		330F3F5F2331734300343CA2 /* MapsPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F3F5E2331734300343CA2 /* MapsPreviewData.swift */; };
+		330F3F612331739E00343CA2 /* MapsPreviewDataDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F3F602331739E00343CA2 /* MapsPreviewDataDB.swift */; };
 		333F214422DC5AED0099A8D0 /* MetainfoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333F214322DC5AED0099A8D0 /* MetainfoHandler.swift */; };
 		33405E752286EC220032B3DD /* OsmXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33405E742286EC220032B3DD /* OsmXmlParser.swift */; };
 		33405E792286ECCC0032B3DD /* OsmWay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33405E782286ECCC0032B3DD /* OsmWay.swift */; };
@@ -89,6 +91,8 @@
 		330E8FB9226760D0000D2BB7 /* WebPagesOneMapGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPagesOneMapGenerator.swift; sourceTree = "<group>"; };
 		330E8FBB2267611C000D2BB7 /* WebPagesLayersGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPagesLayersGenerator.swift; sourceTree = "<group>"; };
 		330E8FBD22676152000D2BB7 /* WebPagesSavingPatchGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPagesSavingPatchGenerator.swift; sourceTree = "<group>"; };
+		330F3F5E2331734300343CA2 /* MapsPreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsPreviewData.swift; sourceTree = "<group>"; };
+		330F3F602331739E00343CA2 /* MapsPreviewDataDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsPreviewDataDB.swift; sourceTree = "<group>"; };
 		333F214322DC5AED0099A8D0 /* MetainfoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetainfoHandler.swift; sourceTree = "<group>"; };
 		33405E742286EC220032B3DD /* OsmXmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmXmlParser.swift; sourceTree = "<group>"; };
 		33405E782286ECCC0032B3DD /* OsmWay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmWay.swift; sourceTree = "<group>"; };
@@ -292,6 +296,8 @@
 				33B76E1C224BD62A0010E35E /* MapsClientDataDB.swift */,
 				33B76E1E224BD9060010E35E /* MapsServerData.swift */,
 				33B76E18224BD47A0010E35E /* MapsServerDataDB.swift */,
+				330F3F5E2331734300343CA2 /* MapsPreviewData.swift */,
+				330F3F602331739E00343CA2 /* MapsPreviewDataDB.swift */,
 				33B76E0F224BA5C40010E35E /* Text templates */,
 			);
 			path = "Model of Data";
@@ -575,6 +581,7 @@
 				33405E792286ECCC0032B3DD /* OsmWay.swift in Sources */,
 				330E8FB422675C14000D2BB7 /* OruxOneMapGenerator.swift in Sources */,
 				33405E8922872BAE0032B3DD /* AnygisRunMapUpdater.swift in Sources */,
+				330F3F612331739E00343CA2 /* MapsPreviewDataDB.swift in Sources */,
 				33CF2888230B3E7100B89D03 /* ZipHandler.swift in Sources */,
 				33E44E8C2263512C00CBECE7 /* GuruAllMapsGenerator.swift in Sources */,
 				330E8FAA226753D4000D2BB7 /* GuruMapLayersGenerator.swift in Sources */,
@@ -592,6 +599,7 @@
 				339B6F8F22EC9B4300D069C7 /* AlpineMapsTemplates.swift in Sources */,
 				333F214422DC5AED0099A8D0 /* MetainfoHandler.swift in Sources */,
 				3358320F22495813001FFC0A /* AppDelegate.swift in Sources */,
+				330F3F5F2331734300343CA2 /* MapsPreviewData.swift in Sources */,
 				33B76E19224BD47A0010E35E /* MapsServerDataDB.swift in Sources */,
 				339B6F8D22EC9AA000D069C7 /* AlpineSavingPathGenerator.swift in Sources */,
 				33B76E25224BE4ED0010E35E /* GuruTemplates.swift in Sources */,
