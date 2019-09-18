@@ -10,6 +10,9 @@ import Foundation
 
 struct FilePatchTemplates {
     
+    let siteHost = "https://anygis.ru/"
+    let serverHost = "https://anygis.ru/api/v1/"
+    
     // Main DB patch
     
     let dataBasePatch = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/base.sqlite"
@@ -66,6 +69,7 @@ struct FilePatchTemplates {
     let gitLocusPagesFolder = "https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Web/Html/Download/"
     
     let gitLocusMapsFolder = "https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Locus_online_maps/Maps_full"
+    let gitLocusEmptyMap = "https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Locus_online_maps/empty.xml"
     let gitOsmadMapsFolder = "https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Osmand_online_maps/Sqlitedb/Maps_full"
     let gitOsmadMetainfoMapsFolder = "https://github.com/nnngrach/AnyGIS_maps/tree/master/Osmand_online_maps/Metainfo/Maps_full"
     let gitOsmadMetainfoMapsFolderDownloader = "https://github.com/nnngrach/AnyGIS_maps/raw/master/Osmand_online_maps/Metainfo/Maps_full"
@@ -89,4 +93,5 @@ struct FilePatchTemplates {
     
     let rusLanguageSubfolder = "_ru/"
     let engLanguageSubfolder = "_en/"
+    
 }

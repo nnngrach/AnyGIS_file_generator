@@ -49,10 +49,13 @@ class Controller {
             try locusInstallerGeneretor.createSingleMapLoaders(isEnglish: false)
             try locusInstallerGeneretor.createFolderLoader(isEnglish: true)
             try locusInstallerGeneretor.createFolderLoader(isEnglish: false)
-            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: true, isEnglish: true)
-            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: true, isEnglish: false)
-            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: false, isEnglish: true)
-            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: false, isEnglish: false)
+            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: true, isEnglish: true, isUninstaller: false)
+            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: true, isEnglish: false, isUninstaller: false)
+            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: false, isEnglish: true, isUninstaller: false)
+            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: false, isEnglish: false, isUninstaller: false)
+            
+            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: false, isEnglish: true, isUninstaller: true)
+            try locusInstallerGeneretor.createAllMapsLoader(isShortSet: false, isEnglish: false, isUninstaller: true)
         } catch {
             print(error)
         }

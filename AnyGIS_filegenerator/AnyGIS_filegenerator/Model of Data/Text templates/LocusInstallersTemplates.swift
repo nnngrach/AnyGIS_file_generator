@@ -31,22 +31,31 @@ struct LocusInstallersTemplates {
     
     
     
-    func getIstallerFileItem(fileName: String, isIcon: Bool, isEnglish: Bool) -> String {
+    func getIstallerFileItem(fileName: String, isIcon: Bool, isEnglish: Bool, isUninstaller: Bool) -> String {
         
         let patch = isIcon ? patchTemplates.gitLocusIconsFolder : patchTemplates.gitLocusMapsFolder
         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         let fileType = isIcon ? ".png" : ".xml"
         let filenameWithoutSpaces = fileName.replacingOccurrences(of: " ", with: "%20")
         
+        let instalationPath = "/mapsOnline/custom/\(fileName + fileType)"
+        
+        var downloadPath = ""
+        
+        if isUninstaller {
+            downloadPath = patchTemplates.gitLocusEmptyMap
+        } else {
+            downloadPath = "\(patch + langLabel + filenameWithoutSpaces + fileType)"
+        }
         
         return """
         
         <download>
         <source>
-        <![CDATA[\(patch + langLabel + filenameWithoutSpaces + fileType)]]>
+        <![CDATA[\(downloadPath)]]>
         </source>
         <dest>
-        <![CDATA[/mapsOnline/custom/\(fileName + fileType)]]>
+        <![CDATA[\(instalationPath)]]>
         </dest>
         </download>
         

@@ -148,4 +148,36 @@ class SqliteHandler {
         return result
     }
     
+    
+    public func getMapsPreviewBy(name: String) -> MapsPreviewData? {
+        
+        do {
+            let connection = try Connection(patchTemplates.dataBasePatch, readonly: true)
+            
+            let rawLine = try connection
+                .pluck(MapsPreviewDataDB.table
+                    .filter(MapsPreviewDataDB.name == name)
+            )
+            
+            guard rawLine != nil else {return nil}
+            
+            return MapsPreviewData(name: rawLine![MapsPreviewDataDB.name]!,
+                                   isTesting: rawLine![MapsPreviewDataDB.isTesting]!,
+                                   hasPrewiew: rawLine![MapsPreviewDataDB.hasPrewiew]!,
+                                   isOverlay: rawLine![MapsPreviewDataDB.isOverlay]!,
+                                   previewLat: rawLine![MapsPreviewDataDB.previewLat]!,
+                                   previewLon: rawLine![MapsPreviewDataDB.previewLon]!,
+                                   previewZoom: rawLine![MapsPreviewDataDB.previewZoom]!,
+                                   previewUrl: rawLine![MapsPreviewDataDB.previewUrl]!,
+                                   isGlobal: rawLine![MapsPreviewDataDB.isGlobal]!,
+                                   bboxL: rawLine![MapsPreviewDataDB.bboxL]!,
+                                   bboxT: rawLine![MapsPreviewDataDB.bboxT]!,
+                                   bboxR: rawLine![MapsPreviewDataDB.bboxR]!,
+                                   bboxB: rawLine![MapsPreviewDataDB.bboxB]!)
+            
+        } catch {
+            return nil
+        }
+    }
+    
 }

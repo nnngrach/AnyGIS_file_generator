@@ -26,6 +26,7 @@
 		330E8FBE22676152000D2BB7 /* WebPagesSavingPatchGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330E8FBD22676152000D2BB7 /* WebPagesSavingPatchGenerator.swift */; };
 		330F3F5F2331734300343CA2 /* MapsPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F3F5E2331734300343CA2 /* MapsPreviewData.swift */; };
 		330F3F612331739E00343CA2 /* MapsPreviewDataDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F3F602331739E00343CA2 /* MapsPreviewDataDB.swift */; };
+		330F3F6323317FEC00343CA2 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F3F6223317FEC00343CA2 /* Enums.swift */; };
 		333F214422DC5AED0099A8D0 /* MetainfoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333F214322DC5AED0099A8D0 /* MetainfoHandler.swift */; };
 		33405E752286EC220032B3DD /* OsmXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33405E742286EC220032B3DD /* OsmXmlParser.swift */; };
 		33405E792286ECCC0032B3DD /* OsmWay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33405E782286ECCC0032B3DD /* OsmWay.swift */; };
@@ -93,6 +94,7 @@
 		330E8FBD22676152000D2BB7 /* WebPagesSavingPatchGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPagesSavingPatchGenerator.swift; sourceTree = "<group>"; };
 		330F3F5E2331734300343CA2 /* MapsPreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsPreviewData.swift; sourceTree = "<group>"; };
 		330F3F602331739E00343CA2 /* MapsPreviewDataDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsPreviewDataDB.swift; sourceTree = "<group>"; };
+		330F3F6223317FEC00343CA2 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		333F214322DC5AED0099A8D0 /* MetainfoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetainfoHandler.swift; sourceTree = "<group>"; };
 		33405E742286EC220032B3DD /* OsmXmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmXmlParser.swift; sourceTree = "<group>"; };
 		33405E782286ECCC0032B3DD /* OsmWay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmWay.swift; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				3358320E22495813001FFC0A /* AppDelegate.swift */,
 				3358321222495814001FFC0A /* Assets.xcassets */,
 				3358321422495814001FFC0A /* Main.storyboard */,
+				330F3F6223317FEC00343CA2 /* Enums.swift */,
 			);
 			path = Supporting_files;
 			sourceTree = "<group>";
@@ -587,6 +590,7 @@
 				330E8FAA226753D4000D2BB7 /* GuruMapLayersGenerator.swift in Sources */,
 				330E8FAE226757FE000D2BB7 /* LocusMapLayersGenerator.swift in Sources */,
 				330E8FA622674E11000D2BB7 /* AbstractSavingPatchGenerator.swift in Sources */,
+				330F3F6323317FEC00343CA2 /* Enums.swift in Sources */,
 				337049B92282E3000080FF9E /* GeoJsonFeatureCollection.swift in Sources */,
 				33E44E8A2262659E00CBECE7 /* AbstractAllMapsGenerator.swift in Sources */,
 				33B76DFF224B8DA70010E35E /* SqlitedbHandler.swift in Sources */,

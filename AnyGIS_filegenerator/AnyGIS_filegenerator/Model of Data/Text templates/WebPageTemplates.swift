@@ -123,7 +123,7 @@ struct WebPageTemplates {
     
     
     
-    func getMarkDownMaplistItem(appName: ClientAppList, name:String, fileName: String, isEnglish: Bool) -> String {
+    func getMarkDownMaplistItem(appName: ClientAppList, name:String, fileName: String, isEnglish: Bool, hasPreview: Bool, dbMapName: String) -> String {
         
         var resultUrl = ""
         
@@ -146,13 +146,35 @@ struct WebPageTemplates {
             break
         }
         
+        
+        let previewerIconCode = getPreviwIconCode(hasPreview: hasPreview, isEnglish: isEnglish, mapName: dbMapName)
+        
         let label = isEnglish ? "Download this map" : "Скачать эту карту"
         
+        
         return """
-        [\(name)](\(resultUrl) "\(label)")
+        \(previewerIconCode)  [\(name)](\(resultUrl) "\(label)")
         
         
         """
+    }
+    
+    
+    func getPreviwIconCode(hasPreview: Bool, isEnglish: Bool, mapName: String) -> String {
+        
+        return ""
+        /*
+        if hasPreview {
+            let iconUrl = patchTemplates.siteHost + "Web/Img/eye.png"
+            let previewPageUrl = patchTemplates.serverHost + "preview/" + mapName
+            let label = isEnglish ? "Preview map" : "Предпросмотр карты"
+            
+            return "[![](\(iconUrl) \"\(label)\")](\(previewPageUrl))"
+        } else {
+            let iconUrl = patchTemplates.siteHost + "Web/Img/eyeNo.png"
+            return "![](\(iconUrl))"
+        }
+        */
     }
     
     

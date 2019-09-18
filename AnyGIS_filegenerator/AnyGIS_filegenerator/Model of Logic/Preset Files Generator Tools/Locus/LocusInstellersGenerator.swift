@@ -34,7 +34,7 @@ class LocusInstallersGenerator {
             
             let iconName = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
             
-            let content = locusTemplates.getIstallerFileIntro() + locusTemplates.getIstallerFileItem(fileName: mapFileName, isIcon: false, isEnglish: isEnglish) + locusTemplates.getIstallerFileItem(fileName: iconName, isIcon: true, isEnglish: isEnglish) + locusTemplates.getIstallerFileOutro()
+            let content = locusTemplates.getIstallerFileIntro() + locusTemplates.getIstallerFileItem(fileName: mapFileName, isIcon: false, isEnglish: isEnglish, isUninstaller: false) + locusTemplates.getIstallerFileItem(fileName: iconName, isIcon: true, isEnglish: isEnglish, isUninstaller: false) + locusTemplates.getIstallerFileOutro()
             
             self.diskHandler.createFile(patch: installerPatch, content: content)
             
@@ -73,12 +73,12 @@ class LocusInstallersGenerator {
                 
                 let iconName = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
                 
-                content = locusTemplates.getIstallerFileIntro() + locusTemplates.getIstallerFileItem(fileName: iconName, isIcon: true, isEnglish: isEnglish) + locusTemplates.getIstallerFileItem(fileName: mapFileName, isIcon: false, isEnglish: isEnglish)
+                content = locusTemplates.getIstallerFileIntro() + locusTemplates.getIstallerFileItem(fileName: iconName, isIcon: true, isEnglish: isEnglish, isUninstaller: false) + locusTemplates.getIstallerFileItem(fileName: mapFileName, isIcon: false, isEnglish: isEnglish, isUninstaller: false)
                 
             } else {
                 
                 // Just add current map to group
-                content += locusTemplates.getIstallerFileItem(fileName: mapFileName, isIcon: false, isEnglish: isEnglish)
+                content += locusTemplates.getIstallerFileItem(fileName: mapFileName, isIcon: false, isEnglish: isEnglish, isUninstaller: false)
             }
             
             // For last iteration: write collected data to last file
@@ -101,7 +101,7 @@ class LocusInstallersGenerator {
     
     
     
-    public func createAllMapsLoader(isShortSet: Bool, isEnglish: Bool) throws {
+    public func createAllMapsLoader(isShortSet: Bool, isEnglish: Bool, isUninstaller: Bool) throws {
         
         var previousFolder = ""
         let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
@@ -127,11 +127,13 @@ class LocusInstallersGenerator {
                 
                 let iconName = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
                 
-                content += locusTemplates.getIstallerFileItem(fileName: iconName, isIcon: true, isEnglish: isEnglish)
+                content += locusTemplates.getIstallerFileItem(fileName: iconName, isIcon: true, isEnglish: isEnglish, isUninstaller: isUninstaller)
             }
             
             let mapFileName = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
-            content += locusTemplates.getIstallerFileItem(fileName: mapFileName, isIcon: false, isEnglish: isEnglish)
+            
+            
+            content += locusTemplates.getIstallerFileItem(fileName: mapFileName, isIcon: false, isEnglish: isEnglish, isUninstaller: isUninstaller)
         }
         
         // Add ending part
@@ -140,7 +142,8 @@ class LocusInstallersGenerator {
         // Create file
         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         
-        let installerPatch = patchTemplates.localPathToInstallers + langLabel + fileName
+        let uninstallerLabel = isUninstaller ? "Uninstaller_" : ""
+        let installerPatch = patchTemplates.localPathToInstallers + langLabel + uninstallerLabel + fileName
         
         self.diskHandler.createFile(patch: installerPatch, content: content)
     }
