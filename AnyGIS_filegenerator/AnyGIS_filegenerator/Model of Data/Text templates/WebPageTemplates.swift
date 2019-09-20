@@ -162,8 +162,8 @@ struct WebPageTemplates {
     
     func getPreviwIconCode(hasPreview: Bool, isEnglish: Bool, mapName: String) -> String {
         
-        return ""
-        /*
+        //return ""
+        
         if hasPreview {
             let iconUrl = patchTemplates.siteHost + "Web/Img/eye.png"
             let previewPageUrl = patchTemplates.serverHost + "preview/" + mapName
@@ -174,7 +174,7 @@ struct WebPageTemplates {
             let iconUrl = patchTemplates.siteHost + "Web/Img/eyeNo.png"
             return "![](\(iconUrl))"
         }
-        */
+        
     }
     
     

@@ -11,6 +11,7 @@ import Foundation
 struct FilePatchTemplates {
     
     let siteHost = "https://anygis.ru/"
+    //let siteHost = "http://localhost:8080/"
     let serverHost = "https://anygis.ru/api/v1/"
     
     // Main DB patch
