@@ -18,7 +18,7 @@ struct AlpineMapsTemplates {
     //MARK: Templates for Locus maps XML
     
     
-    func getMapFileItem(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, isRetina: Bool, isGlobal: Bool, previewPoint: (lat: Double, lon: Double, z: Int64), bbox: (left: Double, top: Double, right: Double, bottom: Double), storeDays: Int) -> String {
+    func getMapFileItem(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, copyright: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, isRetina: Bool, isGlobal: Bool, previewPoint: (lat: Double, lon: Double, z: Int64), bbox: (left: Double, top: Double, right: Double, bottom: Double), storeDays: Int) -> String {
         
         
         //<outline>2.54,49.49 2.54,51.51 6.41,51.51 6.41,49.49</outline>
@@ -35,7 +35,7 @@ struct AlpineMapsTemplates {
         
             \(getId(id: id, group: group))
                 <name>\(name)</name>
-                <copyright>\(name)</copyright>
+                \(getCopyright(copyright))
                 <data-source></data-source>
                 \(getRegion(countries))
                 \(getUsageType(usage))
@@ -186,13 +186,29 @@ struct AlpineMapsTemplates {
     
     func getBbox(isGlobal: Bool, bbox: (left: Double, top: Double, right: Double, bottom: Double)) -> String {
         
+        let isBboxPositive = (bbox.left >= 0) && (bbox.top >= 0) && (bbox.right >= 0) && (bbox.bottom >= 0)
+        
+        
         if isGlobal {
             return ""
+            
+        } else if !isBboxPositive {
+            return ""
+            
         } else {
-            return "<outline>\(bbox.bottom),\(bbox.left) \(bbox.bottom),\(bbox.right) \(bbox.top),\(bbox.right) \(bbox.top),\(bbox.left)</outline>"
+            return "<outline>\(bbox.left),\(bbox.top) \(bbox.right),\(bbox.top) \(bbox.right),\(bbox.bottom) \(bbox.left),\(bbox.bottom)</outline>"
         }
-        
     }
     
+    
+    func getCopyright(_ copyright: String) -> String {
+        
+        if copyright.replacingOccurrences(of: " ", with: "") == "" {
+            return ""
+        } else {
+            let timmedCopyright = copyright.replacingOccurrences(of: "© ", with: "")
+            return "<copyright>\(timmedCopyright)</copyright>"
+        }
+    }
 }
 

@@ -56,4 +56,5 @@ struct MapsClientDataDB {
     static let isRetina = Expression<Bool?>("isRetina")
 
     static let comment = Expression<String?>("comment")
+    static let copyright = Expression<String?>("copyright")
 }

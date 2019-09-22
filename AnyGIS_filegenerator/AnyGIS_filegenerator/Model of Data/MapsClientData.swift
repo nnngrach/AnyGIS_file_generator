@@ -54,4 +54,5 @@ struct MapsClientData {
     let isRetina: Bool
     
     let comment: String
+    let copyright: String
 }

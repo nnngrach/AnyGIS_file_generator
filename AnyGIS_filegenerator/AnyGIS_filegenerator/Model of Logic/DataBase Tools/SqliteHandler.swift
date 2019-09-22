@@ -103,7 +103,8 @@ class SqliteHandler {
                           alpineLoadAnygis: rawLine[MapsClientDataDB.alpineLoadAnygis]!,
                           cacheStoringHours: rawLine[MapsClientDataDB.cacheStoringHours]!,
                           isRetina: rawLine[MapsClientDataDB.isRetina]!,
-                          comment: rawLine[MapsClientDataDB.comment]!)
+                          comment: rawLine[MapsClientDataDB.comment]!,
+                          copyright: rawLine[MapsClientDataDB.copyright]!)
             
             
             result.append(item)

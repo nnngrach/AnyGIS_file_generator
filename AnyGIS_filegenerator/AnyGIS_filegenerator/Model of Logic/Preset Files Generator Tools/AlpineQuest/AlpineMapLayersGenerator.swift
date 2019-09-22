@@ -19,8 +19,8 @@ class AlpineMapLayersGenerator: AbstractMapLayersGenerator {
     
     
     override var urlPartsForReplacement: [(old: String, new: String)] {
-        //return [(old: "https", new: "http")]
-        return []
+        return [(old: "https", new: "http")]
+        //return []
     }
     
     
@@ -56,7 +56,7 @@ class AlpineMapLayersGenerator: AbstractMapLayersGenerator {
             
             let bbox = (left: previewLine!.bboxL, top: previewLine!.bboxT, right:  previewLine!.bboxR, bottom: previewLine!.bboxB)
             
-            return alpineTemplates.getMapFileItem(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: mapName, countries: clientLine.countries, usage: clientLine.usage, url: url, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina, isGlobal: previewLine!.isGlobal, previewPoint: previewPoint, bbox: bbox, storeDays: storeDays)
+            return alpineTemplates.getMapFileItem(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: mapName, copyright: clientLine.copyright, countries: clientLine.countries, usage: clientLine.usage, url: url, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina, isGlobal: previewLine!.isGlobal, previewPoint: previewPoint, bbox: bbox, storeDays: storeDays)
             
         } catch {
             return ""
