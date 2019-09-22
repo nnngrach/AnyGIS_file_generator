@@ -9,7 +9,7 @@ import Foundation
 
 class AlpineOneMapGenerator: AbstractOneMapGenerator {
     
-    private let alpineTemplates = AlpineMapsTemplates()
+    //private let alpineTemplates = AlpineMapsTemplates()
     
     
     override var layersGenerator: AbstractMapLayersGenerator {

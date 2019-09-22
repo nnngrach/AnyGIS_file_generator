@@ -164,12 +164,17 @@ struct WebPageTemplates {
         
         //return ""
         
+        
+        
         if hasPreview {
             let iconUrl = patchTemplates.siteHost + "Web/Img/eye.png"
             let previewPageUrl = patchTemplates.serverHost + "preview/" + mapName
             let label = isEnglish ? "Preview map" : "Предпросмотр карты"
             
-            return "[![](\(iconUrl) \"\(label)\")](\(previewPageUrl))"
+            return "<a href=\"\(previewPageUrl)\" target=\"_blank\" title=\"\(label)\" > <img src=\"\(iconUrl)\" /> </a>"
+            
+            //return "[![](\(iconUrl) \"\(label)\")](\(previewPageUrl))"
+            
         } else {
             let iconUrl = patchTemplates.siteHost + "Web/Img/eyeNo.png"
             return "![](\(iconUrl))"

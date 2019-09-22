@@ -36,6 +36,7 @@ struct AlpineMapsTemplates {
                 <data-source></data-source>
                 \(getRegion(countries))
                 \(getUsageType(usage))
+                <outline>2.54,49.49 2.54,51.51 6.41,51.51 6.41,49.49</outline>
                 <preview-location>5.90,44.80,10</preview-location>
         
                 <level>

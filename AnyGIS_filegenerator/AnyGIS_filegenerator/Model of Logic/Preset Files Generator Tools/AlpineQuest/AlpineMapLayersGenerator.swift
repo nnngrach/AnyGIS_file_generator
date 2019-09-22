@@ -9,6 +9,7 @@ import Foundation
 
 class AlpineMapLayersGenerator: AbstractMapLayersGenerator {
     
+    private let baseHandler = SqliteHandler()
     private let alpineTemplates = AlpineMapsTemplates()
     
     
