@@ -18,8 +18,11 @@ struct AlpineMapsTemplates {
     //MARK: Templates for Locus maps XML
     
     
-    func getMapFileItem(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, isRetina: Bool) -> String {
+    func getMapFileItem(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, isRetina: Bool, isGlobal: Bool, previewPoint: (lat: Double, lon: Double, z: Int64), bbox: (left: Double, top: Double, right: Double, bottom: Double), storeDays: Int) -> String {
         
+        
+        //<outline>2.54,49.49 2.54,51.51 6.41,51.51 6.41,49.49</outline>
+        //y1x1 y1x2 y2x2 y2x1
         
         let result = """
         <?xml version="1.0" encoding="utf-8" ?>
@@ -36,12 +39,15 @@ struct AlpineMapsTemplates {
                 <data-source></data-source>
                 \(getRegion(countries))
                 \(getUsageType(usage))
-                <outline>2.54,49.49 2.54,51.51 6.41,51.51 6.41,49.49</outline>
-                <preview-location>5.90,44.80,10</preview-location>
+        
+                \(getBbox(isGlobal: isGlobal, bbox: bbox))
+                <preview-location>\(previewPoint.lon),\(previewPoint.lat),\(previewPoint.z)</preview-location>
         
                 <level>
                     \(getProections(projection))
                     <zoom-values>\(getZoomLevels(min: zoomMin, max: zoomMax))</zoom-values>
+        
+                    <update-delay>\(storeDays)D</update-delay>
         
                     <servers>
                         \(getReferer(referer))
@@ -176,7 +182,17 @@ struct AlpineMapsTemplates {
         return result
     }
     
-
+    
+    
+    func getBbox(isGlobal: Bool, bbox: (left: Double, top: Double, right: Double, bottom: Double)) -> String {
+        
+        if isGlobal {
+            return ""
+        } else {
+            return "<outline>\(bbox.bottom),\(bbox.left) \(bbox.bottom),\(bbox.right) \(bbox.top),\(bbox.right) \(bbox.top),\(bbox.left)</outline>"
+        }
+        
+    }
     
 }
 

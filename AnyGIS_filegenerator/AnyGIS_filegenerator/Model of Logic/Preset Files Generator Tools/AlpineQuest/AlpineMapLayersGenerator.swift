@@ -43,8 +43,27 @@ class AlpineMapLayersGenerator: AbstractMapLayersGenerator {
             backgroundLayerUnicId = additionalText + background
         }
         
+        let storeDays = Int(clientLine.cacheStoringHours / 24)
         
-        return alpineTemplates.getMapFileItem(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: mapName, countries: clientLine.countries, usage: clientLine.usage, url: url, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina)
+        
+        do {
+            let previewLine = try baseHandler
+                .getMapsPreviewData()
+                .filter{$0.name == serverLine.name}
+                .first
+            
+            let previewPoint = (lat: previewLine!.previewLat, lon: previewLine!.previewLon, z: previewLine!.previewZoom)
+            
+            let bbox = (left: previewLine!.bboxL, top: previewLine!.bboxT, right:  previewLine!.bboxR, bottom: previewLine!.bboxB)
+            
+            return alpineTemplates.getMapFileItem(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: mapName, countries: clientLine.countries, usage: clientLine.usage, url: url, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina, isGlobal: previewLine!.isGlobal, previewPoint: previewPoint, bbox: bbox, storeDays: storeDays)
+            
+        } catch {
+            return ""
+        }
+        
+        
+//        return alpineTemplates.getMapFileItem(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: mapName, countries: clientLine.countries, usage: clientLine.usage, url: url, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina)
     }
     
 }
