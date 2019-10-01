@@ -21,8 +21,7 @@ struct AlpineMapsTemplates {
     func getMapFileItem(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, copyright: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, isRetina: Bool, isGlobal: Bool, previewPoint: (lat: Double, lon: Double, z: Int64), bbox: (left: Double, top: Double, right: Double, bottom: Double), storeDays: Int) -> String {
         
         
-        //<outline>2.54,49.49 2.54,51.51 6.41,51.51 6.41,49.49</outline>
-        //y1x1 y1x2 y2x2 y2x1
+        
         
         let result = """
         <?xml version="1.0" encoding="utf-8" ?>
