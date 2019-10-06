@@ -19,6 +19,7 @@ class Controller {
     private let locusMapsGenerator = LocusAllMapsGenerator()
     private let osmandMapsGenerator = OsmandAllMapsGenerator()
     private let alpineMapsGenerator = AlpineAllMapsGenerator()
+    private let alpineFoldersGenerator = AlpineFoldersGenerator()
     private let markdownPagesGenerator = WebPagesAllMapsGenerator()
     private let locusInstallerGeneretor = LocusInstallersGenerator()
     
@@ -187,6 +188,12 @@ class Controller {
         
         
         do {
+            
+            try alpineFoldersGenerator.createAllFoldersWithMaps(isEnglish: true, isShortSet: true)
+            try alpineFoldersGenerator.createAllFoldersWithMaps(isEnglish: false, isShortSet: true)
+            try alpineFoldersGenerator.createAllFoldersWithMaps(isEnglish: true, isShortSet: false)
+            try alpineFoldersGenerator.createAllFoldersWithMaps(isEnglish: false, isShortSet: false)
+            
             try alpineMapsGenerator.launch(isShortSet: true, isEnglish: true, appName: .Alpine)
             try alpineMapsGenerator.launch(isShortSet: false, isEnglish: true, appName: .Alpine)
             try alpineMapsGenerator.launch(isShortSet: true, isEnglish: false, appName: .Alpine)

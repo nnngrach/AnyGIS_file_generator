@@ -124,7 +124,7 @@ class AbstractMapLayersGenerator {
     
     
     
-    private func replaceUrlParts(url: String, mapName: String, parameters: [(old: String,new: String)]) -> String {
+    func replaceUrlParts(url: String, mapName: String, parameters: [(old: String,new: String)]) -> String {
         
         var resultUrl = url
         

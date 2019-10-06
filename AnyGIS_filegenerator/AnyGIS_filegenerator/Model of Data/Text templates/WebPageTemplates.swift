@@ -93,7 +93,7 @@ struct WebPageTemplates {
         
         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         
-        let locusFolderDownloaderUrl = patchTemplates.gitLocusActionInstallersFolder + langLabel + "_" + filenameWithoutSpaces + ".xml"
+        
         
         var resultText = ""
         
@@ -102,10 +102,22 @@ struct WebPageTemplates {
         
         switch appName {
         case .Locus:
+            let folderDownloaderUrl = patchTemplates.gitLocusActionInstallersFolder + langLabel + "_" + filenameWithoutSpaces + ".xml"
+            
             resultText = """
             
             
-            ### [\(categoryName)](\(locusFolderDownloaderUrl) "\(label)")
+            ### [\(categoryName)](\(folderDownloaderUrl) "\(label)")
+            
+            """
+            
+        case .Alpine:
+            let folderDownloaderUrl = patchTemplates.anygisAlpineMapsFolder + langLabel + "_" + filenameWithoutSpaces + ".AQX"
+            
+            resultText = """
+            
+            
+            ### [\(categoryName)](\(folderDownloaderUrl) "\(label)")
             
             """
             

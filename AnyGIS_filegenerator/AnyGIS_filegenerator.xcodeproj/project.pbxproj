@@ -71,7 +71,7 @@
 		33E44E8A2262659E00CBECE7 /* AbstractAllMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E44E892262659E00CBECE7 /* AbstractAllMapsGenerator.swift */; };
 		33E44E8C2263512C00CBECE7 /* GuruAllMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E44E8B2263512C00CBECE7 /* GuruAllMapsGenerator.swift */; };
 		33E44E8E2263933900CBECE7 /* LocusAllMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E44E8D2263933900CBECE7 /* LocusAllMapsGenerator.swift */; };
-		33E7EF82234A46D50051D638 /* AlpineFolderGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E7EF81234A46D50051D638 /* AlpineFolderGenerator.swift */; };
+		33E7EF82234A46D50051D638 /* AlpineFoldersGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E7EF81234A46D50051D638 /* AlpineFoldersGenerator.swift */; };
 		7776365E378A65D45F3E7D03 /* Pods_AnyGIS_filegenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */; };
 /* End PBXBuildFile section */
 
@@ -143,7 +143,7 @@
 		33E44E892262659E00CBECE7 /* AbstractAllMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractAllMapsGenerator.swift; sourceTree = "<group>"; };
 		33E44E8B2263512C00CBECE7 /* GuruAllMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuruAllMapsGenerator.swift; sourceTree = "<group>"; };
 		33E44E8D2263933900CBECE7 /* LocusAllMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusAllMapsGenerator.swift; sourceTree = "<group>"; };
-		33E7EF81234A46D50051D638 /* AlpineFolderGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineFolderGenerator.swift; sourceTree = "<group>"; };
+		33E7EF81234A46D50051D638 /* AlpineFoldersGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineFoldersGenerator.swift; sourceTree = "<group>"; };
 		72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyGIS_filegenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76540C1F1A9B64DFC65558DD /* Pods-AnyGIS_filegenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.release.xcconfig"; sourceTree = "<group>"; };
 		8BDBCAB25AFE578C55D5EBF4 /* Pods-AnyGIS_filegenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -268,10 +268,10 @@
 			isa = PBXGroup;
 			children = (
 				339B6F8622EC9A0800D069C7 /* AlpineAllMapsGenerator.swift */,
-				33E7EF81234A46D50051D638 /* AlpineFolderGenerator.swift */,
 				339B6F8822EC9A4D00D069C7 /* AlpineOneMapGenerator.swift */,
 				339B6F8A22EC9A7D00D069C7 /* AlpineMapLayersGenerator.swift */,
 				339B6F8C22EC9AA000D069C7 /* AlpineSavingPathGenerator.swift */,
+				33E7EF81234A46D50051D638 /* AlpineFoldersGenerator.swift */,
 			);
 			path = AlpineQuest;
 			sourceTree = "<group>";
@@ -588,7 +588,7 @@
 				330E8FB422675C14000D2BB7 /* OruxOneMapGenerator.swift in Sources */,
 				33405E8922872BAE0032B3DD /* AnygisRunMapUpdater.swift in Sources */,
 				330F3F612331739E00343CA2 /* MapsPreviewDataDB.swift in Sources */,
-				33E7EF82234A46D50051D638 /* AlpineFolderGenerator.swift in Sources */,
+				33E7EF82234A46D50051D638 /* AlpineFoldersGenerator.swift in Sources */,
 				33CF2888230B3E7100B89D03 /* ZipHandler.swift in Sources */,
 				33E44E8C2263512C00CBECE7 /* GuruAllMapsGenerator.swift in Sources */,
 				330E8FAA226753D4000D2BB7 /* GuruMapLayersGenerator.swift in Sources */,

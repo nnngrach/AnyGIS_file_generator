@@ -37,13 +37,15 @@ class AlpineMapLayersGenerator: AbstractMapLayersGenerator {
             currentLayerUnicId = Int64(additionalText + String(clientLine.id))!
         }
         
+        let storeDays = Int(clientLine.cacheStoringHours / 24)
+        
+        
         if background == "-1" {
             backgroundLayerUnicId = background
         } else {
             backgroundLayerUnicId = additionalText + background
         }
         
-        let storeDays = Int(clientLine.cacheStoringHours / 24)
         
         
         do {
@@ -59,8 +61,6 @@ class AlpineMapLayersGenerator: AbstractMapLayersGenerator {
             let urlWithDefaultTileSize = url.replacingOccurrences(of: "{ts}", with: serverLine.dpiSD)
             
             return alpineTemplates.getOneMapData(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: mapName, copyright: clientLine.copyright, countries: clientLine.countries, usage: clientLine.usage, url: urlWithDefaultTileSize, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina, isGlobal: previewLine!.isGlobal, previewPoint: previewPoint, bbox: bbox, storeDays: storeDays)
-            
-            //return alpineTemplates.getMapFileItem(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: mapName, copyright: clientLine.copyright, countries: clientLine.countries, usage: clientLine.usage, url: urlWithDefaultTileSize, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina, isGlobal: previewLine!.isGlobal, previewPoint: previewPoint, bbox: bbox, storeDays: storeDays)
             
         } catch {
             return ""
