@@ -46,7 +46,7 @@ struct LocusMapsTemplates {
     
     
     
-    func getMapFileItem(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, isRetina: Bool) -> String {
+    func getMapFileItem(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, isRetina: Bool, cacheTimeout: Int64, tileScalesBlock: String, copyright: String) -> String {
         
         let finalUrl = isRetina  ?  (url + "?locusScale={ts}")  :  url
         print()
@@ -58,6 +58,7 @@ struct LocusMapsTemplates {
         <mode>\(name)</mode>
         <countries>\(countries)</countries>
         <usage>\(usage)</usage>
+        <cacheTimeout>\(cacheTimeout)</cacheTimeout>
         <url><![CDATA[\(finalUrl)]]></url>
         
         """
@@ -76,12 +77,13 @@ struct LocusMapsTemplates {
         <zoomMin>\(zoomMin + 8)</zoomMin>    <!-- \(zoomMin) -->
         <zoomMax>\(zoomMax + 8)</zoomMax>   <!-- \(zoomMax) -->
         <tileSize>256</tileSize>
+        \(tileScalesBlock)
         
         """
         
         
         if isRetina { result += """
-            <tileScale dpi="0" multi="2.0" replace="19" />
+            <tileScale dpi="0" multi="2" replace=""
             
             """
         }
@@ -97,8 +99,8 @@ struct LocusMapsTemplates {
         let decriptionPage = webPagesTemplates.changeLogPage + "_ru"
         
         result += """
-        <extraHeader><![CDATA[User-Agent#Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36]]></extraHeader>
-        <attribution><![CDATA[Map pack from AnyGIS.ru. <a href="\(decriptionPage)">Check for updates</a>]]></attribution>
+        <extraHeader><![CDATA[User-Agent#Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Safari/605.1.15]]></extraHeader>
+        <attribution><![CDATA[\(copyright) <br> Map pack from AnyGIS.ru. <a href="\(decriptionPage)">Check for updates</a>]]></attribution>
         </provider>
         
         """

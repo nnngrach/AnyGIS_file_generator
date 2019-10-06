@@ -19,4 +19,6 @@ struct MapsServerDataDB {
     static let referer = Expression<String?>("referer")
     static let zoomMin = Expression<Int64?>("zoomMin")
     static let zoomMax = Expression<Int64?>("zoomMax")
+    static let dpiSD = Expression<String?>("dpiSD")
+    static let dpiHD = Expression<String?>("dpiHD")
 }

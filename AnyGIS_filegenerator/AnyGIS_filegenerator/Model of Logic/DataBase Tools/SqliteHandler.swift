@@ -35,7 +35,9 @@ class SqliteHandler {
                       backgroundServerName: rawLine[MapsServerDataDB.backgroundServerName]!,
                       referer: rawLine[MapsServerDataDB.referer]!,
                       zoomMin: rawLine[MapsServerDataDB.zoomMin]!,
-                      zoomMax: rawLine[MapsServerDataDB.zoomMax]!
+                      zoomMax: rawLine[MapsServerDataDB.zoomMax]!,
+                      dpiSD: rawLine[MapsServerDataDB.dpiSD]!,
+                      dpiHD: rawLine[MapsServerDataDB.dpiHD]!
             )
             
             result.append(item)

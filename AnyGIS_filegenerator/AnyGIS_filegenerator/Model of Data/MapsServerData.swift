@@ -17,5 +17,7 @@ struct MapsServerData {
     let referer: String
     let zoomMin: Int64
     let zoomMax: Int64
+    let dpiSD: String
+    let dpiHD: String
     
 }

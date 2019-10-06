@@ -46,7 +46,19 @@ class LocusMapLayersGenerator: AbstractMapLayersGenerator {
         }
         
         
-        return locusTemplates.getMapFileItem(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: mapName, countries: clientLine.countries, usage: clientLine.usage, url: url, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina)
+        var tileScalesBlock = ""
+        
+        if serverLine.backgroundUrl.contains("{ts}") {
+            tileScalesBlock = """
+        <tileScales>
+            <tileScale dpi="0" multi="1" replace="\(serverLine.dpiSD)" />
+            <tileScale dpi="320" multi="2" replace="\(serverLine.dpiHD)" />
+        </tileScales>
+        """
+        }
+        
+        
+        return locusTemplates.getMapFileItem(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: mapName, countries: clientLine.countries, usage: clientLine.usage, url: url, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina, cacheTimeout: clientLine.cacheStoringHours, tileScalesBlock: tileScalesBlock, copyright: clientLine.copyright)
     }
     
 }

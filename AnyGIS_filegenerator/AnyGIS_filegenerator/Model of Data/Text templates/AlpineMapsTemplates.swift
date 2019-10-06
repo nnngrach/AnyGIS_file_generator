@@ -25,12 +25,12 @@ struct AlpineMapsTemplates {
         
         let result = """
         <?xml version="1.0" encoding="utf-8" ?>
-        <aqx version="6">
+        <aqx version="9">
         
         \(descriptionTemplates.getDescription(appName: .Alpine))
         
         <name>\(group)</name>
-        <description>\(group)</description>
+        <description>\(copyright)</description>
         
             \(getId(id: id, group: group))
                 <name>\(name)</name>
@@ -138,7 +138,7 @@ struct AlpineMapsTemplates {
     
     func getUserAgent() -> String {
         //return "<user-agent>{$application-agent}</user-agent>"
-        return "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.110 Safari/537.36"
+        return "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Safari/605.1.15"
     }
     
     
