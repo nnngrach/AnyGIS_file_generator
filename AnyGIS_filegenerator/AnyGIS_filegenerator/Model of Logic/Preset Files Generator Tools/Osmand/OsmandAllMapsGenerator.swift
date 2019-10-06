@@ -101,7 +101,8 @@ class OsmandAllMapsGenerator {
                                    url: url,
                                    isElipsoid: isElipsoid,
                                    isEnglish: isEnglish,
-                                   tileSize: tileSize)
+                                   tileSize: tileSize,
+                                   defaultTileSize: mapServerLine.dpiSD)
     }
     
     
@@ -205,7 +206,8 @@ class OsmandAllMapsGenerator {
                                        refererUrl: referer,
                                        timeSupport: timeSupported,
                                        timeStoring: expireminutes,
-                                       isEnglish: isEnglish)
+                                       isEnglish: isEnglish,
+                                       defaultTileSize: mapServerLine.dpiSD)
     }
     
     

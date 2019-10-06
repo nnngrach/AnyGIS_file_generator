@@ -21,17 +21,34 @@ struct AlpineMapsTemplates {
     func getMapFileItem(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, copyright: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, isRetina: Bool, isGlobal: Bool, previewPoint: (lat: Double, lon: Double, z: Int64), bbox: (left: Double, top: Double, right: Double, bottom: Double), storeDays: Int) -> String {
         
         
+        let intro = getIntro(groupName: group)
         
+        let oneMapData = getOneMapData(id: id, projection: projection, visible: visible, background: background, group: group, name: name, copyright: copyright, countries: countries, usage: usage, url: url, serverParts: serverParts, zoomMin: zoomMin, zoomMax: zoomMax, referer: referer, isRetina: isRetina, isGlobal: isGlobal, previewPoint: previewPoint, bbox: bbox, storeDays: storeDays)
         
-        let result = """
+        let outro = getOutro()
+        
+        return intro + oneMapData + outro
+    }
+    
+    
+    
+    func getIntro(groupName: String) -> String {
+        return """
         <?xml version="1.0" encoding="utf-8" ?>
         <aqx version="9">
         
         \(descriptionTemplates.getDescription(appName: .Alpine))
         
-        <name>\(group)</name>
-        <description>\(copyright)</description>
+        <name>\(groupName)</name>
+        <description></description>
         
+        """
+    }
+    
+    func getOneMapData(id: Int64, projection: Int64, visible: Bool, background: String, group: String, name: String, copyright: String, countries: String, usage: String, url: String, serverParts: String, zoomMin: Int64, zoomMax: Int64, referer: String, isRetina: Bool, isGlobal: Bool, previewPoint: (lat: Double, lon: Double, z: Int64), bbox: (left: Double, top: Double, right: Double, bottom: Double), storeDays: Int) -> String {
+        
+        return """
+
             \(getId(id: id, group: group))
                 <name>\(name)</name>
                 \(getCopyright(copyright))
@@ -39,13 +56,12 @@ struct AlpineMapsTemplates {
                 \(getRegion(countries))
                 \(getUsageType(usage))
         
-                \(getBbox(isGlobal: isGlobal, bbox: bbox))
                 <preview-location>\(previewPoint.lon),\(previewPoint.lat),\(previewPoint.z)</preview-location>
+                \(getBbox(isGlobal: isGlobal, bbox: bbox))
         
                 <level>
-                    \(getProections(projection))
                     <zoom-values>\(getZoomLevels(min: zoomMin, max: zoomMax))</zoom-values>
-        
+                    \(getProections(projection))
                     <update-delay>\(storeDays)D</update-delay>
         
                     <servers>
@@ -54,12 +70,17 @@ struct AlpineMapsTemplates {
                     </servers>
                 </level>
             </source>
-        </aqx>
-        """
         
-        return result
+        
+        """
     }
     
+    func getOutro() -> String {
+        return """
+        
+        </aqx>
+        """
+    }
     
     
     

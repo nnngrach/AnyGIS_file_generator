@@ -16,7 +16,7 @@ class MetainfoHandler {
     private let osmandTemplate = OsmandMapsTemplate()
     
     
-    public func create(isShortSet: Bool, filename: String, zoommin: Int64, zoommax: Int64, url: String, isElipsoid: Bool, isEnglish: Bool, tileSize: String) throws {
+    public func create(isShortSet: Bool, filename: String, zoommin: Int64, zoommax: Int64, url: String, isElipsoid: Bool, isEnglish: Bool, tileSize: String, defaultTileSize: String) throws {
         
         let folderPatch = isShortSet ? patchTemplates.localPathToOsmandMetainfoShort : patchTemplates.localPathToOsmandMetainfoFull
         
@@ -28,8 +28,10 @@ class MetainfoHandler {
         diskHandler.createFolder(patch: mapFolderName)
         
         
+        let urlWithDefaultTileSize = url.replacingOccurrences(of: "{ts}", with: defaultTileSize)
         
-        let content = osmandTemplate.getMetainfoText(url: url, minZoom: zoommin, maxZoom: zoommax, isEllipsoid: isElipsoid, tileSize: tileSize, extensiton: "")
+        
+        let content = osmandTemplate.getMetainfoText(url: urlWithDefaultTileSize, minZoom: zoommin, maxZoom: zoommax, isEllipsoid: isElipsoid, tileSize: tileSize, extensiton: "")
         
         let filename = "/.metainfo"
         

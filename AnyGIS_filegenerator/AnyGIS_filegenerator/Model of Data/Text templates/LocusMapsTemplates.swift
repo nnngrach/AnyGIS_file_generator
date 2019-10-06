@@ -100,7 +100,7 @@ struct LocusMapsTemplates {
         
         result += """
         <extraHeader><![CDATA[User-Agent#Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Safari/605.1.15]]></extraHeader>
-        <attribution><![CDATA[\(copyright) <br> Map pack from AnyGIS.ru. <a href="\(decriptionPage)">Check for updates</a>]]></attribution>
+        <attribution><![CDATA[\(copyright) <br> 	Map pack from AnyGIS.ru. <a href="\(decriptionPage)">Check for updates</a>]]></attribution>
         </provider>
         
         """

@@ -56,14 +56,25 @@ class AlpineMapLayersGenerator: AbstractMapLayersGenerator {
             
             let bbox = (left: previewLine!.bboxL, top: previewLine!.bboxT, right:  previewLine!.bboxR, bottom: previewLine!.bboxB)
             
-            return alpineTemplates.getMapFileItem(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: mapName, copyright: clientLine.copyright, countries: clientLine.countries, usage: clientLine.usage, url: url, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina, isGlobal: previewLine!.isGlobal, previewPoint: previewPoint, bbox: bbox, storeDays: storeDays)
+            let urlWithDefaultTileSize = url.replacingOccurrences(of: "{ts}", with: serverLine.dpiSD)
+            
+            return alpineTemplates.getOneMapData(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: mapName, copyright: clientLine.copyright, countries: clientLine.countries, usage: clientLine.usage, url: urlWithDefaultTileSize, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina, isGlobal: previewLine!.isGlobal, previewPoint: previewPoint, bbox: bbox, storeDays: storeDays)
+            
+            //return alpineTemplates.getMapFileItem(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: mapName, copyright: clientLine.copyright, countries: clientLine.countries, usage: clientLine.usage, url: urlWithDefaultTileSize, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina, isGlobal: previewLine!.isGlobal, previewPoint: previewPoint, bbox: bbox, storeDays: storeDays)
             
         } catch {
             return ""
         }
         
-        
-//        return alpineTemplates.getMapFileItem(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: mapName, countries: clientLine.countries, usage: clientLine.usage, url: url, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina)
+    }
+    
+    
+    func getIntro(groupName: String) -> String {
+        return alpineTemplates.getIntro(groupName: groupName)
+    }
+    
+    func getOutro() -> String {
+        return alpineTemplates.getOutro()
     }
     
 }
