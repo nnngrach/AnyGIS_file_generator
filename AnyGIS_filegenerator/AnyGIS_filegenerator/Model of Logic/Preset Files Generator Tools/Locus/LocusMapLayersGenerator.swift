@@ -55,6 +55,12 @@ class LocusMapLayersGenerator: AbstractMapLayersGenerator {
             <tileScale dpi="320" multi="2" replace="\(serverLine.dpiHD)" />
         </tileScales>
         """
+        } else if isRetina {
+            tileScalesBlock = """
+            <tileScales>
+                <tileScale dpi="0" multi="2" replace="" />
+            </tileScales>
+            """
         }
         
         

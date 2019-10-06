@@ -82,11 +82,11 @@ struct LocusMapsTemplates {
         """
         
         
-        if isRetina { result += """
-            <tileScale dpi="0" multi="2" replace=""
-            
-            """
-        }
+//        if isRetina { result += """
+//            <tileScale dpi="0" multi="2" replace=""
+//            
+//            """
+//        }
         
         
         if referer.replacingOccurrences(of: " ", with: "") != "" {
