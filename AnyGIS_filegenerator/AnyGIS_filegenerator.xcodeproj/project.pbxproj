@@ -72,6 +72,7 @@
 		33E44E8C2263512C00CBECE7 /* GuruAllMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E44E8B2263512C00CBECE7 /* GuruAllMapsGenerator.swift */; };
 		33E44E8E2263933900CBECE7 /* LocusAllMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E44E8D2263933900CBECE7 /* LocusAllMapsGenerator.swift */; };
 		33E7EF82234A46D50051D638 /* AlpineFoldersGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E7EF81234A46D50051D638 /* AlpineFoldersGenerator.swift */; };
+		33E7EF85234B63010051D638 /* GlobalContants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E7EF84234B63010051D638 /* GlobalContants.swift */; };
 		7776365E378A65D45F3E7D03 /* Pods_AnyGIS_filegenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */; };
 /* End PBXBuildFile section */
 
@@ -144,6 +145,7 @@
 		33E44E8B2263512C00CBECE7 /* GuruAllMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuruAllMapsGenerator.swift; sourceTree = "<group>"; };
 		33E44E8D2263933900CBECE7 /* LocusAllMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusAllMapsGenerator.swift; sourceTree = "<group>"; };
 		33E7EF81234A46D50051D638 /* AlpineFoldersGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineFoldersGenerator.swift; sourceTree = "<group>"; };
+		33E7EF84234B63010051D638 /* GlobalContants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalContants.swift; sourceTree = "<group>"; };
 		72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyGIS_filegenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76540C1F1A9B64DFC65558DD /* Pods-AnyGIS_filegenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.release.xcconfig"; sourceTree = "<group>"; };
 		8BDBCAB25AFE578C55D5EBF4 /* Pods-AnyGIS_filegenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				33B76E00224B90150010E35E /* Controller */,
 				33B76E02224B90E40010E35E /* Model of Data */,
 				33B76E03224B90EF0010E35E /* Model of Logic */,
+				33E7EF83234B62D50051D638 /* Global */,
 				33B76E04224B91140010E35E /* Supporting_files */,
 				33B76E01224B90420010E35E /* View */,
 			);
@@ -327,7 +330,6 @@
 				3358320E22495813001FFC0A /* AppDelegate.swift */,
 				3358321222495814001FFC0A /* Assets.xcassets */,
 				3358321422495814001FFC0A /* Main.storyboard */,
-				330F3F6223317FEC00343CA2 /* Enums.swift */,
 			);
 			path = Supporting_files;
 			sourceTree = "<group>";
@@ -443,6 +445,15 @@
 				330E8FA322674D34000D2BB7 /* AbstractOneMapGenerator.swift */,
 			);
 			path = Abstract;
+			sourceTree = "<group>";
+		};
+		33E7EF83234B62D50051D638 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				330F3F6223317FEC00343CA2 /* Enums.swift */,
+				33E7EF84234B63010051D638 /* GlobalContants.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 		BA8C5E00687C3312A9B3E3A1 /* Pods */ = {
@@ -589,6 +600,7 @@
 				33405E8922872BAE0032B3DD /* AnygisRunMapUpdater.swift in Sources */,
 				330F3F612331739E00343CA2 /* MapsPreviewDataDB.swift in Sources */,
 				33E7EF82234A46D50051D638 /* AlpineFoldersGenerator.swift in Sources */,
+				33E7EF85234B63010051D638 /* GlobalContants.swift in Sources */,
 				33CF2888230B3E7100B89D03 /* ZipHandler.swift in Sources */,
 				33E44E8C2263512C00CBECE7 /* GuruAllMapsGenerator.swift in Sources */,
 				330E8FAA226753D4000D2BB7 /* GuruMapLayersGenerator.swift in Sources */,

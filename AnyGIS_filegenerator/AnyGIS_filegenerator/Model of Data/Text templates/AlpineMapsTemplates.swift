@@ -158,13 +158,15 @@ struct AlpineMapsTemplates {
     
     
     func getUserAgent() -> String {
-        //return "<user-agent>{$application-agent}</user-agent>"
-        return "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Safari/605.1.15"
+        return USER_AGENT
     }
     
     
     
     func getURL(_ url: String, _ serverParts: String) -> String {
+        
+        
+        
         var result = ""
         
         if serverParts.replacingOccurrences(of: " ", with: "") == "" {
@@ -181,6 +183,7 @@ struct AlpineMapsTemplates {
                 """
             }
         }
+        
         return result
     }
     

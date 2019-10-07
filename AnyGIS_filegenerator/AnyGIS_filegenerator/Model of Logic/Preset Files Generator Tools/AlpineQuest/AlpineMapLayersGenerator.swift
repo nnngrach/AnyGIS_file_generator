@@ -47,7 +47,6 @@ class AlpineMapLayersGenerator: AbstractMapLayersGenerator {
         }
         
         
-        
         do {
             let previewLine = try baseHandler
                 .getMapsPreviewData()

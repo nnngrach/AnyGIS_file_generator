@@ -16,7 +16,7 @@ class AlpineFoldersGenerator {
     private let alpineTemplates = AlpineMapsTemplates()
     private let alpineLayerGenerator = AlpineMapLayersGenerator()
     private let alpineSavinsPatches = AlpineSavingPatchGenerator()
-    
+    private let webTemplates = WebPageTemplates()
     
     func createAllFoldersWithMaps(isEnglish: Bool, isShortSet: Bool) throws {
         
@@ -38,15 +38,19 @@ class AlpineFoldersGenerator {
             if !mapClientLine.forRus && !isEnglish {continue}
             if !mapClientLine.forEng && isEnglish {continue}
             
-            
-            
+           
             let mapServerLine = mapsServerTable.filter{$0.name == mapClientLine.anygisMapName}.first!
             
-            //let mapFileName = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
-            
+          
             let mapName = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
             let groupName = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
-            let processedUrl = alpineLayerGenerator.replaceUrlParts(url: mapServerLine.backgroundUrl, mapName: mapClientLine.anygisMapName, parameters: alpineLayerGenerator.urlPartsForReplacement)
+            
+            var processedUrl = mapClientLine.alpineLoadAnygis ? webTemplates.anygisMapUrl : mapServerLine.backgroundUrl
+            
+            processedUrl = alpineLayerGenerator.replaceUrlParts(url: processedUrl, mapName: mapClientLine.anygisMapName, parameters: alpineLayerGenerator.urlPartsForReplacement)
+            
+            let processedServerNames = addSeparators(serverNames: mapServerLine.backgroundServerName)
+            
             
             
             if mapClientLine.groupPrefix != previousFolder {
@@ -64,20 +68,38 @@ class AlpineFoldersGenerator {
                
                 let intro = alpineLayerGenerator.getIntro(groupName: groupName)
                 
-                let oneMapData = alpineLayerGenerator.generateOneLayerContent(mapName, groupName, processedUrl, mapServerLine.backgroundServerName, mapClientLine.layersIDList, mapClientLine.isRetina, isEnglish, .Alpine, mapClientLine, mapServerLine, mapClientLine.id)
+                let oneMapData = alpineLayerGenerator.generateOneLayerContent(mapName, groupName, processedUrl, processedServerNames, mapClientLine.layersIDList, mapClientLine.isRetina, isEnglish, .Alpine, mapClientLine, mapServerLine, mapClientLine.id)
                 
                 content = intro + oneMapData
                 
             } else {
                 
                 // Just add current map to group
-                content += alpineLayerGenerator.generateOneLayerContent(mapName, groupName, processedUrl, mapServerLine.backgroundServerName, mapClientLine.layersIDList, mapClientLine.isRetina, isEnglish, .Alpine, mapClientLine, mapServerLine, mapClientLine.id)
+                content += alpineLayerGenerator.generateOneLayerContent(mapName, groupName, processedUrl, processedServerNames, mapClientLine.layersIDList, mapClientLine.isRetina, isEnglish, .Alpine, mapClientLine, mapServerLine, mapClientLine.id)
             }
             
             // For last iteration: write collected data to last file
             finishAndWriteFolder(folderName: previousFolder, content: content, isEnglish: isEnglish, isShortSet: isShortSet, clientLine: mapClientLine, clientTable: mapsClientTable, serverTable: mapsServerTable)
         }
         
+    }
+    
+    
+    
+    func addSeparators(serverNames: String) -> String {
+        
+        var result = ""
+        
+        if serverNames.replacingOccurrences(of: " ", with: "") != "" {
+            for i in serverNames {
+                result.append(i)
+                result.append(";")
+            }
+            
+            result.removeLast()
+        }
+        
+        return result
     }
     
     
