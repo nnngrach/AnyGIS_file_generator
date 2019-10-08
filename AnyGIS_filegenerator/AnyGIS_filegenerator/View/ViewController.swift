@@ -58,6 +58,12 @@ class ViewController: NSViewController {
         controller.generateMapsForAlpine()
     }
     
+    
+    @IBAction func generateSasPlanetBtn(_ sender: Any) {
+        controller.generateMapsForSasPlanet()
+    }
+    
+    
     @IBAction func generateWebPagesBtn(_ sender: Any) {
         controller.generateWebPages()
     }

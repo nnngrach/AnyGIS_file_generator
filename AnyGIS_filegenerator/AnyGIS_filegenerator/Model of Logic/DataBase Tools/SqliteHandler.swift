@@ -48,6 +48,33 @@ class SqliteHandler {
     
     
     
+    public func getMapsServerDataBy(name: String) -> MapsServerData? {
+        
+        do {
+            let connection = try Connection(patchTemplates.dataBasePatch, readonly: true)
+            
+            let rawLine = try connection
+                .pluck(MapsServerDataDB.table
+                    .filter(MapsServerDataDB.name == name)
+            )
+            
+            guard rawLine != nil else {return nil}
+            
+            return MapsServerData(name: rawLine![MapsServerDataDB.name]!,
+                                      mode: rawLine![MapsServerDataDB.mode]!,
+                                      backgroundUrl: rawLine![MapsServerDataDB.backgroundUrl]!,
+                                      backgroundServerName: rawLine![MapsServerDataDB.backgroundServerName]!,
+                                      referer: rawLine![MapsServerDataDB.referer]!,
+                                      zoomMin: rawLine![MapsServerDataDB.zoomMin]!,
+                                      zoomMax: rawLine![MapsServerDataDB.zoomMax]!,
+                                      dpiSD: rawLine![MapsServerDataDB.dpiSD]!,
+                                      dpiHD: rawLine![MapsServerDataDB.dpiHD]!
+            )
+        } catch {
+            return nil
+        }
+    }
+    
     
     
     public func getMapsClientData(isEnglish: Bool) throws -> [MapsClientData] {
@@ -97,12 +124,14 @@ class SqliteHandler {
                           forOsmand: rawLine[MapsClientDataDB.forOsmand]!,
                           forOsmandMeta: rawLine[MapsClientDataDB.forOsmandMeta]!,
                           forAlpine: rawLine[MapsClientDataDB.forAlpine]!,
+                          forSas: rawLine[MapsClientDataDB.forSas]!,
                           locusLoadAnygis: rawLine[MapsClientDataDB.locusLoadAnygis]!,
                           gurumapsLoadAnygis: rawLine[MapsClientDataDB.gurumapsLoadAnygis]!,
                           oruxLoadAnygis: rawLine[MapsClientDataDB.oruxLoadAnygis]!,
                           osmandLoadAnygis: rawLine[MapsClientDataDB.osmandLoadAnygis]!,
                           osmandMetaLoadAnygis: rawLine[MapsClientDataDB.osmandMetaLoadAnygis]!,
                           alpineLoadAnygis: rawLine[MapsClientDataDB.alpineLoadAnygis]!,
+                          sasLoadAnygis: rawLine[MapsClientDataDB.sasLoadAnygis]!,
                           cacheStoringHours: rawLine[MapsClientDataDB.cacheStoringHours]!,
                           isRetina: rawLine[MapsClientDataDB.isRetina]!,
                           comment: rawLine[MapsClientDataDB.comment]!,
@@ -182,5 +211,37 @@ class SqliteHandler {
             return nil
         }
     }
+    
+    
+    
+    
+    public func getSasPlanetDataBy(name: String) -> SasPlanetData? {
+        
+        do {
+            let connection = try Connection(patchTemplates.dataBasePatch, readonly: true)
+            
+            let rawLine = try connection
+                .pluck(SasPlanetDataDB.table
+                    .filter(SasPlanetDataDB.anygisName == name)
+            )
+            
+            guard rawLine != nil else {return nil}
+            
+            return SasPlanetData(anygisName: rawLine![SasPlanetDataDB.anygisName]!,
+                                 menuRu: rawLine![SasPlanetDataDB.menuRu]!,
+                                 menuUk: rawLine![SasPlanetDataDB.menuUk]!,
+                                 menuEn: rawLine![SasPlanetDataDB.menuEn]!,
+                                 nameRu: rawLine![SasPlanetDataDB.nameRu]!,
+                                 nameUk: rawLine![SasPlanetDataDB.nameUk]!,
+                                 nameEn: rawLine![SasPlanetDataDB.nameEn]!,
+                                 mapFolderPath: rawLine![SasPlanetDataDB.mapFolderPath]!,
+                                 mapFileName: rawLine![SasPlanetDataDB.mapFileName]!,
+                                 tileFormat: rawLine![SasPlanetDataDB.tileFormat]!,
+                                 icon: rawLine![SasPlanetDataDB.icon]!)
+        } catch {
+            return nil
+        }
+    }
+    
     
 }

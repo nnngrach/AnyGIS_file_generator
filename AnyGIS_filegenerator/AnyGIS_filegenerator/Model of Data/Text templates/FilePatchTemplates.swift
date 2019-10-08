@@ -23,8 +23,8 @@ struct FilePatchTemplates {
     
     let localPathToMarkdownPages = "file:///Projects/GIS/Anygis_site/modernist-master/Web/Html/Download/"
     
-    let localPathToIcons = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Icons"
-    let localPathToInstallers = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Installers"
+    let localPathToLocusIcons = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Icons"
+    let localPathToLocusInstallers = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Installers"
     let localPathToGeoJson = "file:///Projects/GIS/Online%20map%20sources/map-sources/GeoJson"
     
     
@@ -51,6 +51,13 @@ struct FilePatchTemplates {
     let localPathToAlpineMapsZip = "file:///Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Zip/"
     let localPathToAlpineMapsFull = "file:///Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Maps_full"
     let localPathToAlpineMapsShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Maps_short"
+    
+    
+    
+    let localPathToSasPlanetMaps = "file:///Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Maps/"
+    
+    let localPathToSasPlanetIcons = "file:///Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Icons/"
+    
     
     
     // Generating files folders in server

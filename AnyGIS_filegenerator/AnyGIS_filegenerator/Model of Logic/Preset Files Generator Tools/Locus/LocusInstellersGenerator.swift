@@ -30,7 +30,7 @@ class LocusInstallersGenerator {
             
             let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
             
-            let installerPatch = patchTemplates.localPathToInstallers + langLabel + "__" + mapFileName + ".xml"
+            let installerPatch = patchTemplates.localPathToLocusInstallers + langLabel + "__" + mapFileName + ".xml"
             
             let iconName = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
             
@@ -94,7 +94,7 @@ class LocusInstallersGenerator {
         
         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         
-        let installerPatch = patchTemplates.localPathToInstallers + langLabel + "_" + folderName + ".xml"
+        let installerPatch = patchTemplates.localPathToLocusInstallers + langLabel + "_" + folderName + ".xml"
         
         self.diskHandler.createFile(patch: installerPatch, content: resultContent)
     }
@@ -143,7 +143,7 @@ class LocusInstallersGenerator {
         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         
         let uninstallerLabel = isUninstaller ? "Uninstaller_" : ""
-        let installerPatch = patchTemplates.localPathToInstallers + langLabel + uninstallerLabel + fileName
+        let installerPatch = patchTemplates.localPathToLocusInstallers + langLabel + uninstallerLabel + fileName
         
         self.diskHandler.createFile(patch: installerPatch, content: content)
     }

@@ -42,6 +42,7 @@ struct MapsClientData {
     let forOsmand: Bool
     let forOsmandMeta: Bool
     let forAlpine: Bool
+    let forSas: Bool
     
     let locusLoadAnygis: Bool
     let gurumapsLoadAnygis: Bool
@@ -49,6 +50,7 @@ struct MapsClientData {
     let osmandLoadAnygis: Bool
     let osmandMetaLoadAnygis: Bool
     let alpineLoadAnygis: Bool
+    let sasLoadAnygis: Bool
     
     let cacheStoringHours: Int64
     let isRetina: Bool
