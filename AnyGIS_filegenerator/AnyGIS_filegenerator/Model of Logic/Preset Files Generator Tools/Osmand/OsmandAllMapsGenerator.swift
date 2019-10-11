@@ -77,7 +77,9 @@ class OsmandAllMapsGenerator {
         
         
         let isElipsoid = (mapClientLine.projection == 2)
-        let tileSize = mapClientLine.isRetina ? "512" : "256"
+        
+        let hasTileSizeUrlTag = mapServerLine.backgroundUrl.contains("{ts}")
+        let tileSize = (hasTileSizeUrlTag || mapClientLine.isRetina) ? "512" : "256"
         
         var url = ""
         
@@ -102,7 +104,7 @@ class OsmandAllMapsGenerator {
                                    isElipsoid: isElipsoid,
                                    isEnglish: isEnglish,
                                    tileSize: tileSize,
-                                   defaultTileSize: mapServerLine.dpiSD)
+                                   defaultTileSize: mapServerLine.dpiHD)
     }
     
     
@@ -207,7 +209,7 @@ class OsmandAllMapsGenerator {
                                        timeSupport: timeSupported,
                                        timeStoring: expireminutes,
                                        isEnglish: isEnglish,
-                                       defaultTileSize: mapServerLine.dpiSD)
+                                       defaultTileSize: mapServerLine.dpiHD)
     }
     
     

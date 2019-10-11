@@ -102,6 +102,25 @@ class SasPlanetTemplate {
 //        }
 //    }
     
+    
+    
+    func getScriptContent(_ url: String, serverPart: String) -> String {
+        
+        var variablesPart = ""
+        var scriptBeginning = ""
+        var finalUrl = ""
+        
+        
+        
+        
+        if variablesPart.count != 0 {
+            variablesPart = "var\n" + variablesPart
+        }
+        
+        return """
+        \(variablesPart)
+        """
+    }
 }
 
 
