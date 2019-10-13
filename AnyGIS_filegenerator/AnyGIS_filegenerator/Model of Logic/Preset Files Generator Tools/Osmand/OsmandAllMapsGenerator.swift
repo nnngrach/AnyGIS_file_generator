@@ -256,13 +256,15 @@ class OsmandAllMapsGenerator {
     
     private func getServerPartsScript(_ severParts: String) -> String {
         
-        let serverLetters = Array(severParts)
+        
+        //let serverLetters = Array(severParts)
+        let serverLetters = severParts.split(separator: ";")
         
         var serverNamesString = ""
         
         for letter in serverLetters {
             serverNamesString.append("\"")
-            serverNamesString.append(letter)
+            serverNamesString.append(String(letter))
             serverNamesString.append("\"")
             serverNamesString.append(",")
         }

@@ -91,16 +91,24 @@ class AbstractMapLayersGenerator {
         
         
         var serverPartsInClientFormat = ""
+        let defaultSeparator = ";"
         
         if !isLoadAnygis {
             
-            let storedServerParts = mapServerLine.backgroundServerName
+            serverPartsInClientFormat = mapServerLine.backgroundServerName
             
-            for i in storedServerParts {
-                serverPartsInClientFormat.append(i)
-                serverPartsInClientFormat.append(serverNamesSeparator)
+            if serverNamesSeparator != defaultSeparator {
+                serverPartsInClientFormat = serverPartsInClientFormat.replacingOccurrences(of: defaultSeparator, with: serverNamesSeparator)
             }
-            serverPartsInClientFormat = String(serverPartsInClientFormat.dropLast())
+                
+            
+//            let storedServerParts = mapServerLine.backgroundServerName
+//
+//            for i in storedServerParts {
+//                serverPartsInClientFormat.append(i)
+//                serverPartsInClientFormat.append(serverNamesSeparator)
+//            }
+//            serverPartsInClientFormat = String(serverPartsInClientFormat.dropLast())
         }
         
         
