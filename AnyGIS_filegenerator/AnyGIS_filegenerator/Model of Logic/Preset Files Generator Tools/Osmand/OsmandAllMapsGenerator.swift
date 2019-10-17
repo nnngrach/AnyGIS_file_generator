@@ -28,6 +28,7 @@ class OsmandAllMapsGenerator {
         for mapClientLine in mapsClientTable {
             
             //print(mapClientLine.id, mapClientLine.shortName)
+            //print(mapClientLine.id, mapClientLine.anygisMapName, mapClientLine.clientMapName)
             
             // Filter off service layers
             //guard mapClientLine.forOsmand else {continue}

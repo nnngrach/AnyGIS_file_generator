@@ -20,7 +20,10 @@ class GuruOneMapGenerator: AbstractOneMapGenerator {
     
     override func getOneMapContent(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData], _ previousCategory: String) -> String {
         
-        var content = guruTemplates.getFileIntro(mapName: mapName, comment: clientLine.comment)
+        
+        let fullName = getFullName(clientLine, isEnglish)
+        
+        var content = guruTemplates.getFileIntro(mapName: fullName, comment: clientLine.comment)
         
         content += layersGenerator.getAllLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientLine, clientTable, serverTable, isEnglish, appName, previousCategory)
         
@@ -28,5 +31,24 @@ class GuruOneMapGenerator: AbstractOneMapGenerator {
         
         return content
     }
+    
+    
+    
+    
+    private func getFullName(_ clientLine: MapsClientData, _ isEnglish: Bool) -> String {
+        
+        var result = isEnglish ? clientLine.shortNameEng : clientLine.shortName
+        
+        if clientLine.groupPrefix == "Global-Satellites" {
+            if !result.contains("Гибрид") && !result.contains("Hybrid") {
+                let categoryName = isEnglish ? " - Satellite" : " - Спутник"
+                
+                result += categoryName
+            }
+        }
+        
+        return result
+    }
+    
     
 }
