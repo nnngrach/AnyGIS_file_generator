@@ -85,7 +85,7 @@ class SqliteHandler {
         
         //let rawTable = try connection.prepare(MapClientFilesDataDB.table)
         
-        let firstSortingField = isEnglish ? MapsClientDataDB.orderEng : MapsClientDataDB.order
+        let firstSortingField = isEnglish ? MapsClientDataDB.orderEng : MapsClientDataDB.orderRu
         let secondSortingField = isEnglish ? MapsClientDataDB.shortNameEng : MapsClientDataDB.shortName
         
         let rawTable = try connection
@@ -100,7 +100,7 @@ class SqliteHandler {
             
             let item = MapsClientData(id: rawLine[MapsClientDataDB.id]!,
                           anygisMapName: rawLine[MapsClientDataDB.anygisMapName]!,
-                          order: rawLine[MapsClientDataDB.order]!,
+                          orderRu: rawLine[MapsClientDataDB.orderRu]!,
                           orderEng: rawLine[MapsClientDataDB.orderEng]!,
                           isInStarterSet: rawLine[MapsClientDataDB.isInStarterSet]!,
                           isInStarterSetEng: rawLine[MapsClientDataDB.isInStarterSetEng]!,

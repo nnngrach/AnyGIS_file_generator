@@ -14,7 +14,7 @@ struct MapsClientDataDB {
     
     static let id = Expression<Int64?>("id")
     static let anygisMapName = Expression<String?>("anygisMapName")
-    static let order = Expression<Int64?>("order")
+    static let orderRu = Expression<Int64?>("orderRu")
     static let orderEng = Expression<Int64?>("orderEng")
     static let isInStarterSet = Expression<Bool?>("isInStarterSet")
     static let isInStarterSetEng = Expression<Bool?>("isInStarterSetEng")
