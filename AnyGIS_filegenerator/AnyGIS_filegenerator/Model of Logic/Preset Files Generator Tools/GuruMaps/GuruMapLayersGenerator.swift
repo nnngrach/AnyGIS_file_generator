@@ -24,14 +24,14 @@ class GuruMapLayersGenerator: AbstractMapLayersGenerator {
                 (old: "{z}", new: "{$z}"),
                 (old: "{q}", new: "{$quad}"),
                 (old: "{s}", new: "{$serverpart}"),
-                (old: "{invY}", new: "{$invY}"),
+                (old: "{-y}", new: "{$invY}"),
                 (old: "&", new: "&amp;")]
     }
     
     
     override func generateOneLayerContent(_ mapName: String, _ mapCategory: String, _ url: String, _ serverParts: String, _ background: String, _ isRetina: Bool, _ isEnglish: Bool, _ appName: ClientAppList, _ clientLine: MapsClientData, _ serverLine: MapsServerData, _ mainLayerId: Int64) -> String {
         
-        let urlWithDefaultTileSize = url.replacingOccurrences(of: "{ts}", with: serverLine.dpiSD)
+        let urlWithDefaultTileSize = url.replacingOccurrences(of: "{tileSize}", with: serverLine.dpiSD)
         
         return guruTemplates.getItem(url: urlWithDefaultTileSize, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, serverParts: serverParts)
     }

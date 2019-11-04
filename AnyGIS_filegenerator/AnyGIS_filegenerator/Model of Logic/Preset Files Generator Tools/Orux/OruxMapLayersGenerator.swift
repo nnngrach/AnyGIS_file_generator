@@ -23,7 +23,7 @@ class OruxMapLayersGenerator: AbstractMapLayersGenerator {
                 (old: "{y}", new: "{$y}"),
                 (old: "{z}", new: "{$z}"),
                 (old: "{s}", new: "{$s}"),
-                (old: "{invY}", new: "{$y}"),
+                (old: "{-y}", new: "{$y}"),
                 (old: "{$quad}", new: "{$q}")]
     }
     
@@ -47,7 +47,7 @@ class OruxMapLayersGenerator: AbstractMapLayersGenerator {
             fatalError("Wrong proection in ORUX generateLayersContent()")
         }
         
-        let urlWithDefaultTileSize = url.replacingOccurrences(of: "{ts}", with: serverLine.dpiSD)
+        let urlWithDefaultTileSize = url.replacingOccurrences(of: "{tileSize}", with: serverLine.dpiSD)
         
         
         return oruxTemplates.getItem(id: clientLine.id, projectionName: currentProjection, name: mapName, group: clientLine.oruxGroupPrefix, url: urlWithDefaultTileSize, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, cacheable: cacheable, yInvertingScript: yInvertingScript)

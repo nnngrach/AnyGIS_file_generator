@@ -87,7 +87,7 @@ struct AlpineMapsTemplates {
     
     
     func getId(id: Int64, group: String) -> String {
-        if group == "Overlay" {
+        if group.hasPrefix("Overlay") {
             return "<source id=\"\(id)\" layer=\"true\">"
         } else {
             return "<source id=\"\(id)\">"
@@ -170,6 +170,9 @@ struct AlpineMapsTemplates {
         var result = ""
         
         if serverParts.replacingOccurrences(of: " ", with: "") == "" {
+            result = "<server><![CDATA[\(url)]]></server>"
+            
+        } else if url.hasPrefix(patchTemplates.serverHostHttp){
             result = "<server><![CDATA[\(url)]]></server>"
             
         } else {

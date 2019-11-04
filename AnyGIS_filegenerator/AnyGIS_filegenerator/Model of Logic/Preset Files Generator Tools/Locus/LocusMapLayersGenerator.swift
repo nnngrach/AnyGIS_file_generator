@@ -19,10 +19,9 @@ class LocusMapLayersGenerator: AbstractMapLayersGenerator {
     
     
     override var urlPartsForReplacement: [(old: String, new: String)] {
-        return [(old: "{invY}", new: "{y}"),
-                (old: "{q}", new: "{c}")]
-//        return [(old: "{invY}", new: "{y}"),
-//                (old: "https", new: "http")]
+        return [(old: "{-y}", new: "{y}"),
+                (old: "{q}", new: "{c}"),
+                (old: "{tileSize}", new: "{ts}")]
     }
     
     
@@ -48,7 +47,7 @@ class LocusMapLayersGenerator: AbstractMapLayersGenerator {
         
         var tileScalesBlock = ""
         
-        if serverLine.backgroundUrl.contains("{ts}") {
+        if serverLine.backgroundUrl.contains("{tileSize}") {
             tileScalesBlock = """
         <tileScales>
             <tileScale dpi="0" multi="1" replace="\(serverLine.dpiSD)" />

@@ -79,7 +79,7 @@ class OsmandAllMapsGenerator {
         
         let isElipsoid = (mapClientLine.projection == 2)
         
-        let hasTileSizeUrlTag = mapServerLine.backgroundUrl.contains("{ts}")
+        let hasTileSizeUrlTag = mapServerLine.backgroundUrl.contains("{tileSize}")
         let tileSize = (hasTileSizeUrlTag || mapClientLine.isRetina) ? "512" : "256"
         
         var url = ""
@@ -147,20 +147,20 @@ class OsmandAllMapsGenerator {
                 }
             }
             
-            if urlString.contains("{invY}") {
+            if urlString.contains("{-y}") {
                 url += osmandTemplate.getInvYScript
             }
             
-            if urlString.contains("{sasZ}") {
-                url += osmandTemplate.getSasZ
+            if urlString.contains("{z+1}") {
+                url += osmandTemplate.getZPlus1
             }
             
-            if urlString.contains("{folderX}") {
-                url += osmandTemplate.getSasX
+            if urlString.contains("{x/1024}") {
+                url += osmandTemplate.getXDiv1024
             }
             
-            if urlString.contains("{folderY}") {
-                url += osmandTemplate.getSasY
+            if urlString.contains("{y/1024}") {
+                url += osmandTemplate.getYDiv1024
             }
             
             urlString = prepareUrlForScript(url: urlString)
@@ -225,7 +225,7 @@ class OsmandAllMapsGenerator {
         resultUrl = resultUrl.replacingOccurrences(of: "{x}", with: "{1}")
         resultUrl = resultUrl.replacingOccurrences(of: "{y}", with: "{2}")
         resultUrl = resultUrl.replacingOccurrences(of: "{z}", with: "{0}")
-        resultUrl = resultUrl.replacingOccurrences(of: "{invY}", with: "{2}")
+        resultUrl = resultUrl.replacingOccurrences(of: "{-y}", with: "{2}")
         //resultUrl = resultUrl.replacingOccurrences(of: "https", with: "http")
         
         if serverNames != "" {
@@ -244,10 +244,10 @@ class OsmandAllMapsGenerator {
         resultUrl = resultUrl.replacingOccurrences(of: "{y}", with: "\" + y + \"")
         resultUrl = resultUrl.replacingOccurrences(of: "{z}", with: "\" + z + \"")
         resultUrl = resultUrl.replacingOccurrences(of: "{s}", with: "\" + getServerName(z,x,y) + \"")
-        resultUrl = resultUrl.replacingOccurrences(of: "{invY}", with: "\" + getInvYScript(z,x,y) + \"")
-        resultUrl = resultUrl.replacingOccurrences(of: "{sasZ}", with: "\" + getSasZ(z,x,y) + \"")
-        resultUrl = resultUrl.replacingOccurrences(of: "{folderX}", with: "\" + getSasX(z,x,y) + \"")
-        resultUrl = resultUrl.replacingOccurrences(of: "{folderY}", with: "\" + getSasY(z,x,y) + \"")
+        resultUrl = resultUrl.replacingOccurrences(of: "{-y}", with: "\" + getInvYScript(z,x,y) + \"")
+        resultUrl = resultUrl.replacingOccurrences(of: "{z+1}", with: "\" + getZPlus1(z,x,y) + \"")
+        resultUrl = resultUrl.replacingOccurrences(of: "{x/1024}", with: "\" + getXDiv1024(z,x,y) + \"")
+        resultUrl = resultUrl.replacingOccurrences(of: "{y/1024}", with: "\" + getYDiv1024(z,x,y) + \"")
         //resultUrl = resultUrl.replacingOccurrences(of: "https", with: "http")
 
         return resultUrl

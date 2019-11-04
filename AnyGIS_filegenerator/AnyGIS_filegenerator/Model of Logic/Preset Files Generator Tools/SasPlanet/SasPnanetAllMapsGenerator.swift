@@ -76,7 +76,7 @@ class SasPnanetAllMapsGenerator {
 //        resultUrl = resultUrl.replacingOccurrences(of: "{x}", with: "{1}")
 //        resultUrl = resultUrl.replacingOccurrences(of: "{y}", with: "{2}")
 //        resultUrl = resultUrl.replacingOccurrences(of: "{z}", with: "{0}")
-//        resultUrl = resultUrl.replacingOccurrences(of: "{invY}", with: "{2}")
+//        resultUrl = resultUrl.replacingOccurrences(of: "{-y}", with: "{2}")
 //        //resultUrl = resultUrl.replacingOccurrences(of: "https", with: "http")
 //        
 //        if serverNames != "" {

@@ -63,27 +63,27 @@ struct OsmandMapsTemplate {
     
     
     
-    public let getSasZ = """
+    public let getZPlus1 = """
         
-        public static String getSasZ(int z, int x, int y) {
+        public static String getZPlus1(int z, int x, int y) {
         return String.valueOf(z + 1);
         }
         
         """
     
     
-    public let getSasX = """
+    public let getXDiv1024 = """
         
-        public static String getSasX(int z, int x, int y) {
+        public static String getXDiv1024(int z, int x, int y) {
         return String.valueOf(x / 1024);
         }
         
         """
     
     
-    public let getSasY = """
+    public let getYDiv1024 = """
         
-        public static String getSasY(int z, int x, int y) {
+        public static String getYDiv1024(int z, int x, int y) {
         return String.valueOf(y / 1024);
         }
         

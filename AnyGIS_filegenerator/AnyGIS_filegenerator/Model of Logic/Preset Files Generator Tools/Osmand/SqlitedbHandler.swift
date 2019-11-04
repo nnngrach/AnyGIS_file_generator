@@ -40,7 +40,7 @@ class SqlitedbHandler {
     
     fileprivate func createInfoTable(zoommin: String, zoommax: String, patch: String, projection: Int64, method: String?, refererUrl: String?, timeSupport: String, timeStoring: String, defaultTileSize: String, _ db: Connection) throws {
         
-        let urlWithDefaultTileSize = patch.replacingOccurrences(of: "{ts}", with: defaultTileSize)
+        let urlWithDefaultTileSize = patch.replacingOccurrences(of: "{tileSize}", with: defaultTileSize)
         
         let info = Table("info")
         

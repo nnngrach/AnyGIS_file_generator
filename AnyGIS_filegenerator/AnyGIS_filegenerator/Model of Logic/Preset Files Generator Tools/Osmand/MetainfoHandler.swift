@@ -28,7 +28,7 @@ class MetainfoHandler {
         diskHandler.createFolder(patch: mapFolderName)
         
         
-        let urlWithDefaultTileSize = url.replacingOccurrences(of: "{ts}", with: defaultTileSize)
+        let urlWithDefaultTileSize = url.replacingOccurrences(of: "{tileSize}", with: defaultTileSize)
         
         
         let content = osmandTemplate.getMetainfoText(url: urlWithDefaultTileSize, minZoom: zoommin, maxZoom: zoommax, isEllipsoid: isElipsoid, tileSize: tileSize, extensiton: "")

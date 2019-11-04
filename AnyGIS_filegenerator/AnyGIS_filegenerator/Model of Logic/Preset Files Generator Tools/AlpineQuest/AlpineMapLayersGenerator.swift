@@ -57,7 +57,7 @@ class AlpineMapLayersGenerator: AbstractMapLayersGenerator {
             
             let bbox = (left: previewLine!.bboxL, top: previewLine!.bboxT, right:  previewLine!.bboxR, bottom: previewLine!.bboxB)
             
-            let urlWithDefaultTileSize = url.replacingOccurrences(of: "{ts}", with: serverLine.dpiSD)
+            let urlWithDefaultTileSize = url.replacingOccurrences(of: "{tileSize}", with: serverLine.dpiSD)
             
             return alpineTemplates.getOneMapData(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: mapName, copyright: clientLine.copyright, countries: clientLine.countries, usage: clientLine.usage, url: urlWithDefaultTileSize, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina, isGlobal: previewLine!.isGlobal, previewPoint: previewPoint, bbox: bbox, storeDays: storeDays)
             
