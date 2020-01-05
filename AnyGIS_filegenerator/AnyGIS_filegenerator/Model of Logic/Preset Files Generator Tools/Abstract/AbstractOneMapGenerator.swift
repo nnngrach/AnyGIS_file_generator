@@ -33,6 +33,9 @@ class AbstractOneMapGenerator {
         if !mapClientLine.forEng && isEnglish {return true}
         if !mapClientLine.forRus && !isEnglish {return true}
         
+        // Filter hidden maps
+        if !mapClientLine.visible {return true}
+        
         return false
     }
     

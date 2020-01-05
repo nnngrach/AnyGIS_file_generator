@@ -26,6 +26,7 @@ class SasPnanetAllMapsGenerator {
         for mapClientLine in mapsClientTable {
             
             guard mapClientLine.forSas else {continue}
+            guard mapClientLine.visible else {continue}
             
             let mapServerLine = try baseHandler.getMapsServerDataBy(name: mapClientLine.anygisMapName)
             let sasPlanetLine = try baseHandler.getSasPlanetDataBy(name: mapClientLine.anygisMapName)

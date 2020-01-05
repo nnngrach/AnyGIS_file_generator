@@ -40,6 +40,7 @@ class OsmandAllMapsGenerator {
             if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
             if !mapClientLine.forRus && !isEnglish {continue}
             if !mapClientLine.forEng && isEnglish {continue}
+            if !mapClientLine.visible {continue}
             
             
             if isForSqlitedb {
@@ -124,48 +125,52 @@ class OsmandAllMapsGenerator {
         
         var url = ""
         var method: String? = nil
+        var invertedY: Int64 = 0
+        
+        var serverNames = mapServerLine.backgroundServerName
+        serverNames = serverNames.replacingOccurrences(of: ";", with: ",")
         
         if mapClientLine.osmandLoadAnygis {
             url = webTemplates.anygisMapUrl
             url = prepareUrlSimple(url: url, mapName: mapServerLine.name)
             
-        } else if mapClientLine.projection == 0 && mapServerLine.backgroundServerName == "" {
-            url = mapServerLine.backgroundUrl
-            url = prepareUrlSimple(url: url, mapName: mapServerLine.name)
-            
         } else {
             
-            method = osmandTemplate.readAsScriptMethod
+            //method = osmandTemplate.readAsScriptMethod
             var urlString = mapServerLine.backgroundUrl
             
             
-            if urlString.contains("{s}") {
-                if mapServerLine.backgroundServerName == "wikimapia" {
-                    url += osmandTemplate.getWikiScript()
-                } else {
-                    url += getServerPartsScript(mapServerLine.backgroundServerName)
-                }
-            }
+            
+            
+//            if urlString.contains("{s}") {
+//                if mapServerLine.backgroundServerName == "wikimapia" {
+//                    url += osmandTemplate.getWikiScript()
+//                } else {
+//                    url += getServerPartsScript(mapServerLine.backgroundServerName)
+//                }
+//            }
             
             if urlString.contains("{-y}") {
-                url += osmandTemplate.getInvYScript
+                invertedY = 1
+//                url += osmandTemplate.getInvYScript
             }
             
-            if urlString.contains("{z+1}") {
-                url += osmandTemplate.getZPlus1
-            }
+//            if urlString.contains("{z+1}") {
+//                url += osmandTemplate.getZPlus1
+//            }
             
-            if urlString.contains("{x/1024}") {
-                url += osmandTemplate.getXDiv1024
-            }
+//            if urlString.contains("{x/1024}") {
+//                url += osmandTemplate.getXDiv1024
+//            }
+//
+//            if urlString.contains("{y/1024}") {
+//                url += osmandTemplate.getYDiv1024
+//            }
             
-            if urlString.contains("{y/1024}") {
-                url += osmandTemplate.getYDiv1024
-            }
+            //urlString = prepareUrlForScript(url: urlString)
+            url = prepareUrlSimple(url: urlString, mapName: mapServerLine.name)
             
-            urlString = prepareUrlForScript(url: urlString)
-            
-            url += osmandTemplate.getUrlScript(url: urlString)
+//            url += osmandTemplate.getUrlScript(url: urlString)
         }
 
         
@@ -204,7 +209,9 @@ class OsmandAllMapsGenerator {
                                        zoommin: minZoom,
                                        zoommax: maxZoom,
                                        patch: url,
+                                       serverNames: serverNames,
                                        projection: currentProjection,
+                                       isYInverted: invertedY,
                                        method: method,
                                        refererUrl: referer,
                                        timeSupport: timeSupported,
@@ -226,12 +233,11 @@ class OsmandAllMapsGenerator {
         resultUrl = resultUrl.replacingOccurrences(of: "{y}", with: "{2}")
         resultUrl = resultUrl.replacingOccurrences(of: "{z}", with: "{0}")
         resultUrl = resultUrl.replacingOccurrences(of: "{-y}", with: "{2}")
+        resultUrl = resultUrl.replacingOccurrences(of: "{s}", with: "{rnd}")
+        //resultUrl = resultUrl.replacingOccurrences(of: "{c}", with: "{q}")
         //resultUrl = resultUrl.replacingOccurrences(of: "https", with: "http")
         
-        if serverNames != "" {
-            let serverPart = String(serverNames.first!)
-            resultUrl = resultUrl.replacingOccurrences(of: "{s}", with: serverPart)
-        }
+
         
         return resultUrl
     }
@@ -254,7 +260,7 @@ class OsmandAllMapsGenerator {
     }
     
     
-    
+    // delete?
     private func getServerPartsScript(_ severParts: String) -> String {
         
         

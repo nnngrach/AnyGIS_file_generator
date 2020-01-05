@@ -14,7 +14,7 @@ class SqlitedbHandler {
     
 
     
-    public func createFile(isShortSet: Bool, filename: String, zoommin: Int64, zoommax: Int64, patch: String, projection: Int64, method: String?, refererUrl: String?, timeSupport: String, timeStoring: String, isEnglish: Bool, defaultTileSize: String) throws {
+    public func createFile(isShortSet: Bool, filename: String, zoommin: Int64, zoommax: Int64, patch: String, serverNames: String, projection: Int64, isYInverted: Int64, method: String?, refererUrl: String?, timeSupport: String, timeStoring: String, isEnglish: Bool, defaultTileSize: String) throws {
         
         let folderPatch = isShortSet ? patchTemplates.localPathToOsmandMapsShort : patchTemplates.localPathToOsmandMapsFull
         
@@ -31,14 +31,14 @@ class SqlitedbHandler {
         
         try createTilesTable(db)
         try createMetadataTable(db)
-        try createInfoTable(zoommin: sqlitedbMinZoom, zoommax: sqlitedbMaxZoom, patch: patch, projection: projection, method: method, refererUrl: refererUrl, timeSupport: timeSupport, timeStoring: timeStoring, defaultTileSize: defaultTileSize, db)
+        try createInfoTable(zoommin: sqlitedbMinZoom, zoommax: sqlitedbMaxZoom, patch: patch, serverNames: serverNames, projection: projection, isYInverted: isYInverted, method: method, refererUrl: refererUrl, timeSupport: timeSupport, timeStoring: timeStoring, defaultTileSize: defaultTileSize, db)
     }
     
     
     
     
     
-    fileprivate func createInfoTable(zoommin: String, zoommax: String, patch: String, projection: Int64, method: String?, refererUrl: String?, timeSupport: String, timeStoring: String, defaultTileSize: String, _ db: Connection) throws {
+    fileprivate func createInfoTable(zoommin: String, zoommax: String, patch: String, serverNames: String, projection: Int64, isYInverted: Int64, method: String?, refererUrl: String?, timeSupport: String, timeStoring: String, defaultTileSize: String, _ db: Connection) throws {
         
         let urlWithDefaultTileSize = patch.replacingOccurrences(of: "{tileSize}", with: defaultTileSize)
         
@@ -47,7 +47,9 @@ class SqlitedbHandler {
         let minzoom = Expression<String?>("minzoom")
         let maxzoom = Expression<String?>("maxzoom")
         let url = Expression<String?>("url")
+        let randoms = Expression<String?>("randoms")
         let ellipsoid = Expression<Int64?>("ellipsoid")
+        let invertedY = Expression<Int64?>("inverted_y")
         let timeSupported = Expression<String?>("timeSupported")
         let expireminutes = Expression<String?>("expireminutes")
         let timecolumn = Expression<String?>("timecolumn")
@@ -61,27 +63,28 @@ class SqlitedbHandler {
             t.column(minzoom)
             t.column(maxzoom)
             t.column(url)
+            t.column(randoms)
             t.column(ellipsoid)
+            t.column(invertedY)
+            t.column(referer)
             t.column(rule)
             t.column(timeSupported)
-            t.column(expireminutes)
             t.column(timecolumn)
-            t.column(referer)
+            t.column(expireminutes)
             t.column(tilenumbering)
-            
-            
-            
         })
         
         try db.run(info.insert(minzoom <- zoommin,
                                 maxzoom <- zoommax,
                                 url <- urlWithDefaultTileSize,
+                                randoms <- serverNames,
                                 ellipsoid <- projection,
+                                invertedY <- isYInverted,
+                                referer <- refererUrl,
                                 rule <- method,
                                 timeSupported <- timeSupport,
                                 timecolumn <- timeSupport,
                                 expireminutes <- timeStoring,
-                                referer <- refererUrl,
                                 tilenumbering <- "BigPlanet"
         ))
     }
