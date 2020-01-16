@@ -14,7 +14,7 @@ class SqlitedbHandler {
     
 
     
-    public func createFile(isShortSet: Bool, filename: String, zoommin: Int64, zoommax: Int64, patch: String, serverNames: String, projection: Int64, isYInverted: Int64, method: String?, refererUrl: String?, timeSupport: String, timeStoring: String, isEnglish: Bool, defaultTileSize: String) throws {
+    public func createFile(isShortSet: Bool, filename: String, zoommin: Int64, zoommax: Int64, patch: String, serverNames: String, isEllipsoid: Int64, isInvertedY: Int64, refererUrl: String?, timeSupport: String, timeStoring: String, isEnglish: Bool, defaultTileSize: String) throws {
         
         let folderPatch = isShortSet ? patchTemplates.localPathToOsmandMapsShort : patchTemplates.localPathToOsmandMapsFull
         
@@ -31,14 +31,14 @@ class SqlitedbHandler {
         
         try createTilesTable(db)
         try createMetadataTable(db)
-        try createInfoTable(zoommin: sqlitedbMinZoom, zoommax: sqlitedbMaxZoom, patch: patch, serverNames: serverNames, projection: projection, isYInverted: isYInverted, method: method, refererUrl: refererUrl, timeSupport: timeSupport, timeStoring: timeStoring, defaultTileSize: defaultTileSize, db)
+        try createInfoTable(zoommin: sqlitedbMinZoom, zoommax: sqlitedbMaxZoom, patch: patch, serverNames: serverNames, isEllipsoid: isEllipsoid, isYInverted: isInvertedY, refererUrl: refererUrl, timeSupport: timeSupport, timeStoring: timeStoring, defaultTileSize: defaultTileSize, db)
     }
     
     
     
     
     
-    fileprivate func createInfoTable(zoommin: String, zoommax: String, patch: String, serverNames: String, projection: Int64, isYInverted: Int64, method: String?, refererUrl: String?, timeSupport: String, timeStoring: String, defaultTileSize: String, _ db: Connection) throws {
+    fileprivate func createInfoTable(zoommin: String, zoommax: String, patch: String, serverNames: String, isEllipsoid: Int64, isYInverted: Int64, refererUrl: String?, timeSupport: String, timeStoring: String, defaultTileSize: String, _ db: Connection) throws {
         
         let urlWithDefaultTileSize = patch.replacingOccurrences(of: "{tileSize}", with: defaultTileSize)
         
@@ -57,8 +57,6 @@ class SqlitedbHandler {
         let referer = Expression<String?>("referer")
         
         
-        let rule = Expression<String?>("rule")
-        
         try db.run(info.create { t in
             t.column(minzoom)
             t.column(maxzoom)
@@ -67,7 +65,6 @@ class SqlitedbHandler {
             t.column(ellipsoid)
             t.column(invertedY)
             t.column(referer)
-            t.column(rule)
             t.column(timeSupported)
             t.column(timecolumn)
             t.column(expireminutes)
@@ -78,10 +75,9 @@ class SqlitedbHandler {
                                 maxzoom <- zoommax,
                                 url <- urlWithDefaultTileSize,
                                 randoms <- serverNames,
-                                ellipsoid <- projection,
+                                ellipsoid <- isEllipsoid,
                                 invertedY <- isYInverted,
                                 referer <- refererUrl,
-                                rule <- method,
                                 timeSupported <- timeSupport,
                                 timecolumn <- timeSupport,
                                 expireminutes <- timeStoring,

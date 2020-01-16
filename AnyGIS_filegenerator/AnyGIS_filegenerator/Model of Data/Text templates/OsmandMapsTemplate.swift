@@ -90,16 +90,31 @@ struct OsmandMapsTemplate {
         """
     
     
-    public func getMetainfoText(url: String, minZoom: Int64, maxZoom: Int64, isEllipsoid: Bool, tileSize: String, extensiton: String) -> String {
+    public func getMetainfoText(url: String, serverNames: String, minZoom: Int64, maxZoom: Int64, isEllipsoid: Bool, isInvertedY: Bool, tileSize: String, timeSupported: String, cachingMinutes: String) -> String {
+        
+        var cachingTimeValue = ""
+        
+        if timeSupported == "yes" {
+            cachingTimeValue = """
+            [expiration_time_minutes]
+            \(cachingMinutes)
+            """
+        }
+        
+        
         return """
         [url_template]
         \(url)
+        [randoms]
+        \(serverNames)
         [min_zoom]
         \(minZoom)
         [max_zoom]
         \(maxZoom)
         [ellipsoid]
         \(isEllipsoid)
+        [inverted_y]
+        \(isInvertedY)
         [tile_size]
         \(tileSize)
         [img_density]
@@ -108,6 +123,7 @@ struct OsmandMapsTemplate {
         32000
         [ext]
         .png
+        \(cachingTimeValue)
         """
     }
     

@@ -31,7 +31,6 @@ class OsmandAllMapsGenerator {
             //print(mapClientLine.id, mapClientLine.anygisMapName, mapClientLine.clientMapName)
             
             // Filter off service layers
-            //guard mapClientLine.forOsmand else {continue}
             if isForSqlitedb && !mapClientLine.forOsmand {continue}
             if !isForSqlitedb && !mapClientLine.forOsmandMeta {continue}
             
@@ -79,6 +78,7 @@ class OsmandAllMapsGenerator {
         
         
         let isElipsoid = (mapClientLine.projection == 2)
+        let isInvertedY = (mapClientLine.projection == 1)
         
         let hasTileSizeUrlTag = mapServerLine.backgroundUrl.contains("{tileSize}")
         let tileSize = (hasTileSizeUrlTag || mapClientLine.isRetina) ? "512" : "256"
@@ -96,17 +96,25 @@ class OsmandAllMapsGenerator {
             url = mapServerLine.backgroundUrl
             url = prepareUrlSimple(url: url, mapName: mapServerLine.name, serverNames: mapServerLine.backgroundServerName)
         }
-
+        
+        var serverNames = mapServerLine.backgroundServerName
+        serverNames = serverNames.replacingOccurrences(of: ";", with: ",")
+        
+        let cachingMinutes = getCacheStoringValues(storingHours: mapClientLine.cacheStoringHours)
         
         try metainfoHandler.create(isShortSet: isShortSet,
                                    filename: filename,
                                    zoommin: mapServerLine.zoomMin,
                                    zoommax: mapServerLine.zoomMax,
                                    url: url,
+                                   serverNames: serverNames,
                                    isElipsoid: isElipsoid,
+                                   isInvertedY: isInvertedY,
                                    isEnglish: isEnglish,
                                    tileSize: tileSize,
-                                   defaultTileSize: mapServerLine.dpiHD)
+                                   defaultTileSize: mapServerLine.dpiHD,
+                                   timeSupported: cachingMinutes.timeSupported,
+                                   cachingMinutes: cachingMinutes.expireMinutes)
     }
     
     
@@ -121,12 +129,11 @@ class OsmandAllMapsGenerator {
         
         let filename = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
         
-        let currentProjection: Int64 = mapClientLine.projection == 2 ? 1 : 0
+        let isEllipsoid: Int64 = mapClientLine.projection == 2 ? 1 : 0
+        let isInvertedY: Int64 = mapClientLine.projection == 1 ? 1 : 0
         
         var url = ""
-        var method: String? = nil
-        var invertedY: Int64 = 0
-        
+
         var serverNames = mapServerLine.backgroundServerName
         serverNames = serverNames.replacingOccurrences(of: ";", with: ",")
         
@@ -136,41 +143,7 @@ class OsmandAllMapsGenerator {
             
         } else {
             
-            //method = osmandTemplate.readAsScriptMethod
-            var urlString = mapServerLine.backgroundUrl
-            
-            
-            
-            
-//            if urlString.contains("{s}") {
-//                if mapServerLine.backgroundServerName == "wikimapia" {
-//                    url += osmandTemplate.getWikiScript()
-//                } else {
-//                    url += getServerPartsScript(mapServerLine.backgroundServerName)
-//                }
-//            }
-            
-            if urlString.contains("{-y}") {
-                invertedY = 1
-//                url += osmandTemplate.getInvYScript
-            }
-            
-//            if urlString.contains("{z+1}") {
-//                url += osmandTemplate.getZPlus1
-//            }
-            
-//            if urlString.contains("{x/1024}") {
-//                url += osmandTemplate.getXDiv1024
-//            }
-//
-//            if urlString.contains("{y/1024}") {
-//                url += osmandTemplate.getYDiv1024
-//            }
-            
-            //urlString = prepareUrlForScript(url: urlString)
-            url = prepareUrlSimple(url: urlString, mapName: mapServerLine.name)
-            
-//            url += osmandTemplate.getUrlScript(url: urlString)
+            url = prepareUrlSimple(url: mapServerLine.backgroundUrl, mapName: mapServerLine.name)
         }
 
         
@@ -184,23 +157,7 @@ class OsmandAllMapsGenerator {
             referer = mapServerLine.referer
         }
         
-        
-        
-        var timeSupported: String
-        var expireminutes: String
-        
-        switch mapClientLine.cacheStoringHours {
-        case 99999:
-            timeSupported = "no"
-            expireminutes = "-1"
-        case 0:
-            timeSupported = "yes"
-            expireminutes = "1"
-        default:
-            timeSupported = "yes"
-            expireminutes = String(mapClientLine.cacheStoringHours * 60)
-        }
-        
+        let cachingMinutes = getCacheStoringValues(storingHours: mapClientLine.cacheStoringHours)
         
         
         
@@ -210,12 +167,11 @@ class OsmandAllMapsGenerator {
                                        zoommax: maxZoom,
                                        patch: url,
                                        serverNames: serverNames,
-                                       projection: currentProjection,
-                                       isYInverted: invertedY,
-                                       method: method,
+                                       isEllipsoid: isEllipsoid,
+                                       isInvertedY: isInvertedY,
                                        refererUrl: referer,
-                                       timeSupport: timeSupported,
-                                       timeStoring: expireminutes,
+                                       timeSupport: cachingMinutes.timeSupported,
+                                       timeStoring: cachingMinutes.expireMinutes,
                                        isEnglish: isEnglish,
                                        defaultTileSize: mapServerLine.dpiHD)
     }
@@ -234,11 +190,8 @@ class OsmandAllMapsGenerator {
         resultUrl = resultUrl.replacingOccurrences(of: "{z}", with: "{0}")
         resultUrl = resultUrl.replacingOccurrences(of: "{-y}", with: "{2}")
         resultUrl = resultUrl.replacingOccurrences(of: "{s}", with: "{rnd}")
-        //resultUrl = resultUrl.replacingOccurrences(of: "{c}", with: "{q}")
         //resultUrl = resultUrl.replacingOccurrences(of: "https", with: "http")
-        
-
-        
+    
         return resultUrl
     }
     
@@ -263,7 +216,6 @@ class OsmandAllMapsGenerator {
     // delete?
     private func getServerPartsScript(_ severParts: String) -> String {
         
-        
         //let serverLetters = Array(severParts)
         let serverLetters = severParts.split(separator: ";")
         
@@ -280,6 +232,26 @@ class OsmandAllMapsGenerator {
         
         return osmandTemplate.getServerPartScript(serverNames: serverNamesString,
                                                   serversCount: serverLetters.count)
+    }
+    
+    
+    private func getCacheStoringValues(storingHours: Int64) -> (timeSupported: String, expireMinutes: String){
+        var timeSupported: String
+        var expireMinutes: String
+        
+        switch storingHours {
+        case 99999:
+            timeSupported = "no"
+            expireMinutes = "-1"
+        case 0:
+            timeSupported = "yes"
+            expireMinutes = "1"
+        default:
+            timeSupported = "yes"
+            expireMinutes = String(storingHours * 60)
+        }
+        
+        return(timeSupported: timeSupported, expireMinutes: expireMinutes)
     }
     
 }

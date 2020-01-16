@@ -49,8 +49,7 @@ class AlpineFoldersGenerator {
             
             processedUrl = alpineLayerGenerator.replaceUrlParts(url: processedUrl, mapName: mapClientLine.anygisMapName, parameters: alpineLayerGenerator.urlPartsForReplacement)
             
-            let processedServerNames = addSeparators(serverNames: mapServerLine.backgroundServerName)
-            
+    
             
             
             if mapClientLine.groupPrefix != previousFolder {
@@ -68,14 +67,14 @@ class AlpineFoldersGenerator {
                
                 let intro = alpineLayerGenerator.getIntro(groupName: groupName)
                 
-                let oneMapData = alpineLayerGenerator.generateOneLayerContent(mapName, groupName, processedUrl, processedServerNames, mapClientLine.layersIDList, mapClientLine.isRetina, isEnglish, .Alpine, mapClientLine, mapServerLine, mapClientLine.id)
+                let oneMapData = alpineLayerGenerator.generateOneLayerContent(mapName, groupName, processedUrl, mapServerLine.backgroundServerName, mapClientLine.layersIDList, mapClientLine.isRetina, isEnglish, .Alpine, mapClientLine, mapServerLine, mapClientLine.id)
                 
                 content = intro + oneMapData
                 
             } else {
                 
                 // Just add current map to group
-                content += alpineLayerGenerator.generateOneLayerContent(mapName, groupName, processedUrl, processedServerNames, mapClientLine.layersIDList, mapClientLine.isRetina, isEnglish, .Alpine, mapClientLine, mapServerLine, mapClientLine.id)
+                content += alpineLayerGenerator.generateOneLayerContent(mapName, groupName, processedUrl, mapServerLine.backgroundServerName, mapClientLine.layersIDList, mapClientLine.isRetina, isEnglish, .Alpine, mapClientLine, mapServerLine, mapClientLine.id)
             }
             
             // For last iteration: write collected data to last file
@@ -85,22 +84,7 @@ class AlpineFoldersGenerator {
     }
     
     
-    
-    func addSeparators(serverNames: String) -> String {
-        
-        var result = ""
-        
-        if serverNames.replacingOccurrences(of: " ", with: "") != "" {
-            for i in serverNames {
-                result.append(i)
-                result.append(";")
-            }
-            
-            result.removeLast()
-        }
-        
-        return result
-    }
+
     
     
     
