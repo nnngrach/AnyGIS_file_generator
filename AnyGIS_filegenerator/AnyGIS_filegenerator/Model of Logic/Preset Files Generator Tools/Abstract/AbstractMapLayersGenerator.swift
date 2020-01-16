@@ -60,6 +60,8 @@ class AbstractMapLayersGenerator {
     private func getOneLayerContent(_ mapName: String, _ mapCategory: String, locusId: Int64, background: String, _ mapsClientTable: [MapsClientData], _ mapsServerTable: [MapsServerData], _ isEnglish: Bool, _ appName: ClientAppList, _ previousCategory: String, _ mainLayerId: Int64?) -> String {
         
         
+        //print(locusId, mapName)
+        
         var content = ""
         
         let mapClientLine = mapsClientTable.filter {$0.id == locusId}.first!

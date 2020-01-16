@@ -77,6 +77,8 @@
 		33E44E8E2263933900CBECE7 /* LocusAllMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E44E8D2263933900CBECE7 /* LocusAllMapsGenerator.swift */; };
 		33E7EF82234A46D50051D638 /* AlpineFoldersGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E7EF81234A46D50051D638 /* AlpineFoldersGenerator.swift */; };
 		33E7EF85234B63010051D638 /* GlobalContants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33E7EF84234B63010051D638 /* GlobalContants.swift */; };
+		33F766EE23D10275007FE0D2 /* DesktopAllMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F766ED23D10275007FE0D2 /* DesktopAllMapsGenerator.swift */; };
+		33F766F023D10915007FE0D2 /* DesktopMapsTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33F766EF23D10915007FE0D2 /* DesktopMapsTemplate.swift */; };
 		7776365E378A65D45F3E7D03 /* Pods_AnyGIS_filegenerator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */; };
 /* End PBXBuildFile section */
 
@@ -154,6 +156,8 @@
 		33E44E8D2263933900CBECE7 /* LocusAllMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusAllMapsGenerator.swift; sourceTree = "<group>"; };
 		33E7EF81234A46D50051D638 /* AlpineFoldersGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineFoldersGenerator.swift; sourceTree = "<group>"; };
 		33E7EF84234B63010051D638 /* GlobalContants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalContants.swift; sourceTree = "<group>"; };
+		33F766ED23D10275007FE0D2 /* DesktopAllMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesktopAllMapsGenerator.swift; sourceTree = "<group>"; };
+		33F766EF23D10915007FE0D2 /* DesktopMapsTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesktopMapsTemplate.swift; sourceTree = "<group>"; };
 		72609055F57AA39DEAE56B18 /* Pods_AnyGIS_filegenerator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyGIS_filegenerator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76540C1F1A9B64DFC65558DD /* Pods-AnyGIS_filegenerator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.release.xcconfig"; sourceTree = "<group>"; };
 		8BDBCAB25AFE578C55D5EBF4 /* Pods-AnyGIS_filegenerator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyGIS_filegenerator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator.debug.xcconfig"; sourceTree = "<group>"; };
@@ -373,6 +377,7 @@
 			children = (
 				33E44E882262658600CBECE7 /* Abstract */,
 				339B6F8522EC997100D069C7 /* AlpineQuest */,
+				33F766EC23D10246007FE0D2 /* Desktop */,
 				33B76E0B224B93780010E35E /* GuruMaps */,
 				33B76E0A224B93720010E35E /* Locus */,
 				33B76E0C224B93800010E35E /* Orux */,
@@ -460,6 +465,7 @@
 				33B76E16224BC99F0010E35E /* WebPageTemplates.swift */,
 				338B7CE4234CF9FC00DA53CA /* SasPlanetTemplate.swift */,
 				33B76E40224E91380010E35E /* OsmandMapsTemplate.swift */,
+				33F766EF23D10915007FE0D2 /* DesktopMapsTemplate.swift */,
 			);
 			path = "Text templates";
 			sourceTree = "<group>";
@@ -482,6 +488,14 @@
 				33E7EF84234B63010051D638 /* GlobalContants.swift */,
 			);
 			path = Global;
+			sourceTree = "<group>";
+		};
+		33F766EC23D10246007FE0D2 /* Desktop */ = {
+			isa = PBXGroup;
+			children = (
+				33F766ED23D10275007FE0D2 /* DesktopAllMapsGenerator.swift */,
+			);
+			path = Desktop;
 			sourceTree = "<group>";
 		};
 		BA8C5E00687C3312A9B3E3A1 /* Pods */ = {
@@ -647,9 +661,11 @@
 				33B76E1D224BD62A0010E35E /* MapsClientDataDB.swift in Sources */,
 				33B76E11224BA66C0010E35E /* FilePatchTemplates.swift in Sources */,
 				3358321122495813001FFC0A /* ViewController.swift in Sources */,
+				33F766EE23D10275007FE0D2 /* DesktopAllMapsGenerator.swift in Sources */,
 				339B6F8F22EC9B4300D069C7 /* AlpineMapsTemplates.swift in Sources */,
 				333F214422DC5AED0099A8D0 /* MetainfoHandler.swift in Sources */,
 				3358320F22495813001FFC0A /* AppDelegate.swift in Sources */,
+				33F766F023D10915007FE0D2 /* DesktopMapsTemplate.swift in Sources */,
 				330F3F5F2331734300343CA2 /* MapsPreviewData.swift in Sources */,
 				33B76E19224BD47A0010E35E /* MapsServerDataDB.swift in Sources */,
 				339B6F8D22EC9AA000D069C7 /* AlpineSavingPathGenerator.swift in Sources */,

@@ -54,6 +54,7 @@ struct FilePatchTemplates {
     let localPathToAlpineMapsShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Maps_short"
     
     
+    let localPathToDesktopMaps = "file:///Projects/GIS/Online%20map%20sources/map-sources/Desktop/"
     
     let localPathToSasPlanetMaps = "file:///Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Maps/"
     

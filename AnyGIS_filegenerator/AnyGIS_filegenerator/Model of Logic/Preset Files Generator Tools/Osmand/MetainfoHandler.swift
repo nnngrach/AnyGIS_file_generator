@@ -30,7 +30,6 @@ class MetainfoHandler {
         
         let urlWithDefaultTileSize = url.replacingOccurrences(of: "{tileSize}", with: defaultTileSize)
         
-        //TODO:
         let content = osmandTemplate.getMetainfoText(url: urlWithDefaultTileSize, serverNames: serverNames, minZoom: zoommin, maxZoom: zoommax, isEllipsoid: isElipsoid, isInvertedY: isInvertedY, tileSize: tileSize, timeSupported: timeSupported, cachingMinutes: cachingMinutes)
         
         let filename = "/.metainfo"

@@ -22,6 +22,7 @@ class Controller {
     private let alpineFoldersGenerator = AlpineFoldersGenerator()
     private let markdownPagesGenerator = WebPagesAllMapsGenerator()
     private let locusInstallerGeneretor = LocusInstallersGenerator()
+    private let desktopGenerator = DesktopAllMapsGenerator()
     private let sasPlanetGenerator = SasPnanetAllMapsGenerator()
     
     private let westraParser = WestraParser()
@@ -37,6 +38,7 @@ class Controller {
         generateMapsForAlpine()
         generateMapsForLocus()
         generateInstallersForLocus()
+        generateMapsForDesktop()
         generateMapsForSasPlanet()
     }
 
@@ -207,6 +209,21 @@ class Controller {
     }
     
     
+    
+    
+    public func generateMapsForDesktop() {
+        let ru = patches.rusLanguageSubfolder
+        let en = patches.engLanguageSubfolder
+        diskHandler.cleanFolder(patch: patches.localPathToDesktopMaps + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToDesktopMaps + en)
+    
+        do {
+            try desktopGenerator.launch(isEnglish: true)
+            try desktopGenerator.launch(isEnglish: false)
+        } catch {
+            print(error)
+        }
+    }
     
     
     public func generateMapsForSasPlanet() {

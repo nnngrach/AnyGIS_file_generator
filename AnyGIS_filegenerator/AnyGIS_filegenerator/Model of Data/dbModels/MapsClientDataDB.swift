@@ -44,6 +44,7 @@ struct MapsClientDataDB {
     static let forOsmand = Expression<Bool?>("forOsmand")
     static let forOsmandMeta = Expression<Bool?>("forOsmandMeta")
     static let forAlpine = Expression<Bool?>("forAlpine")
+    static let forDesktop = Expression<Bool?>("forDesktop")
     static let forSas = Expression<Bool?>("forSas")
     
     static let locusLoadAnygis = Expression<Bool?>("locusLoadAnygis")
@@ -52,6 +53,7 @@ struct MapsClientDataDB {
     static let osmandLoadAnygis = Expression<Bool?>("osmandLoadAnygis")
     static let osmandMetaLoadAnygis = Expression<Bool?>("osmandMetaLoadAnygis")
     static let alpineLoadAnygis = Expression<Bool?>("alpineLoadAnygis")
+    static let desktopLoadAnygis = Expression<Bool?>("desktopLoadAnygis")
     static let sasLoadAnygis = Expression<Bool?>("sasLoadAnygis")
 
     static let cacheStoringHours = Expression<Int64?>("cacheStoringHours")

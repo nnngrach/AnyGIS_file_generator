@@ -58,6 +58,9 @@ class ViewController: NSViewController {
         controller.generateMapsForAlpine()
     }
     
+    @IBAction func generateDesktoptBtn(_ sender: Any) {
+        controller.generateMapsForDesktop()
+    }
     
     @IBAction func generateSasPlanetBtn(_ sender: Any) {
         controller.generateMapsForSasPlanet()
