@@ -25,6 +25,7 @@ class LocusInstallersGenerator {
             
             // Filter off service layers
             guard mapClientLine.forLocus else {continue}
+            guard mapClientLine.visible else {continue}
             
             let mapFileName = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
             
@@ -56,6 +57,8 @@ class LocusInstallersGenerator {
             
             // Filter off service layers
             guard mapClientLine.forLocus else {continue}
+            guard mapClientLine.visible else {continue}
+            
             
             let mapFileName = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
             
@@ -115,6 +118,7 @@ class LocusInstallersGenerator {
             
             // Filter off service layers
             guard mapClientLine.forLocus else {continue}
+            guard mapClientLine.visible else {continue}
             // Filter for short list
             if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {continue}
             if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}

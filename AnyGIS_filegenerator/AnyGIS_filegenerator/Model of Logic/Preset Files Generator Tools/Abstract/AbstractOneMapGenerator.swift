@@ -24,6 +24,7 @@ class AbstractOneMapGenerator {
         if appName == ClientAppList.OsmandMetainfo && !mapClientLine.forOsmandMeta {return true}
         if appName == ClientAppList.Alpine && !mapClientLine.forAlpine {return true}
         if (appName == ClientAppList.GuruMapsIOS || appName == ClientAppList.GuruMapsAndroid) && !mapClientLine.forGuru {return true}
+        if appName == ClientAppList.Desktop && !mapClientLine.forDesktop {return true}
         
         // Filter for short list
         if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {return true}
