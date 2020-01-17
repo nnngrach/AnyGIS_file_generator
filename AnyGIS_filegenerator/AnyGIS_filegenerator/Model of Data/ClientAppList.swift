@@ -15,4 +15,5 @@ enum ClientAppList: String {
     case OsmandMetainfo = "OsmAnd Maps (metainfo)"
     case Orux = "Orux Maps"
     case Alpine = "Alpine Quest Maps"
+    case Desktop = "Desktop"
 }

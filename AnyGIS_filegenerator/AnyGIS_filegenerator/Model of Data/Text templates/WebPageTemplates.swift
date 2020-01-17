@@ -24,6 +24,7 @@ struct WebPageTemplates {
     let oruxPage = "https://anygis.ru/Web/Html/Orux"
     let osmandPage = "https://anygis.ru/Web/Html/Osmand"
     let alpinePage = "https://anygis.ru/Web/Html/Alpine"
+    let desktopPage = "https://anygis.ru/Web/Html/Desktop"
     let apiPage = "https://anygis.ru/Web/Html/Api"
     let changeLogPage = "https://anygis.ru/Web/Html/Changelog"
 
@@ -154,6 +155,8 @@ struct WebPageTemplates {
             resultUrl = patchTemplates.gitOsmadMetainfoMapsFolderDownloader + langLabel + fileName + ".zip"
         case .Alpine:
             resultUrl = patchTemplates.anygisAlpineMapsFolder + langLabel + fileName + ".AQX"
+        case .Desktop:
+            resultUrl = patchTemplates.gitDesktopFilesFolder + langLabel + fileName + ".txt"
         default:
             break
         }

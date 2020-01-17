@@ -256,6 +256,7 @@ class Controller {
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .OsmandMetainfo)
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .Alpine)
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .Alpine)
+            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .Desktop)
 
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .Locus)
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Locus)
@@ -269,6 +270,7 @@ class Controller {
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .OsmandMetainfo)
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .Alpine)
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Alpine)
+            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Desktop)
 
         } catch {
             print(error)

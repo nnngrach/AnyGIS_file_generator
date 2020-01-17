@@ -83,6 +83,8 @@ class AbstractMapLayersGenerator {
             isLoadAnygis = mapClientLine.gurumapsLoadAnygis
         case .Alpine:
             isLoadAnygis = mapClientLine.alpineLoadAnygis
+        case .Desktop:
+            isLoadAnygis = mapClientLine.desktopLoadAnygis
         }
         
         

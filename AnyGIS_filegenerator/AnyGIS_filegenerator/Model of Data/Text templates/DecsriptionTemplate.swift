@@ -41,6 +41,8 @@ struct DecsriptionTemplate {
             currentAppPageUrl = webPagesTemplates.oruxPage
         case .Alpine:
             currentAppPageUrl = webPagesTemplates.alpinePage
+        case .Desktop:
+            currentAppPageUrl = webPagesTemplates.desktopPage
         }
         
         //let currentAppName = appName.rawValue
