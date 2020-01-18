@@ -10,8 +10,10 @@ import Foundation
 
 class SasPlanetTemplate {
     
+    private let webTemplates = WebPageTemplates()
     
-    func getParamContent(_ url: String, _ mapClientLine: MapsClientData, _ mapServerLine: MapsServerData, _ sasPlanetLine: SasPlanetData) -> String {
+    
+    func getParamContent(_ mapClientLine: MapsClientData, _ mapServerLine: MapsServerData, _ sasPlanetLine: SasPlanetData) -> String {
         
         let text = """
         [PARAMS]
@@ -23,13 +25,12 @@ class SasPlanetTemplate {
         name_uk=\(sasPlanetLine.nameUk)
         name=\(sasPlanetLine.nameEn)
         NameInCache=\(sasPlanetLine.mapFileName)
-        projection=1
-        sradiusa=6378137
-        sradiusb=6378137
-        Ext=.\(sasPlanetLine.tileFormat)
-        defaultContentType=image/jpeg,image/png
+        asLayer=\(getLayerNumber(mapClientLine.groupPrefix))
+        \(getProjection(mapClientLine.projection))
+        DefURLBase=\(getURL(mapServerLine.backgroundUrl, mapServerLine.backgroundServerName, mapClientLine.sasLoadAnygis, anygisMapname: mapServerLine.name))
+        RequestHead=Referer: \(mapServerLine.referer)\\r\\nConnection: keep-alive\\r\\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36\\r\\nAccept: image/webp,image/apng,image/*,*/*;q=0.8\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept-Language: ru,en-US;q=0.9,en;q=0.8
         ContentType=image/jpeg,image/png
-        DefURLBase=\(getUrlPrefix(url, mapServerLine.backgroundServerName))
+        Ext=.\(sasPlanetLine.tileFormat)
         \(getLicense(mapClientLine.copyright))
         """
         
@@ -59,28 +60,60 @@ class SasPlanetTemplate {
     
     
     
-    private func getUrlPrefix(_ url: String, _ serverParts: String) -> String {
+    
+    private func getURL(_ url: String, _ serverParts: String, _ isUsingAnygis: Bool, anygisMapname: String) -> String {
         
-        // Replace server part if it exist
-        var processedUrl = url
-        
-        
-        if serverParts.replacingOccurrences(of: " ", with: "") != "" {
+        if isUsingAnygis {
             
-            processedUrl = processedUrl.replacingOccurrences(of: "{s}", with: String(serverParts.first!))
+            return webTemplates.anygisMapUrl.replacingOccurrences(of: "{mapName}", with: anygisMapname)
+            
+        } else {
+            
+            if serverParts.count > 1 {
+                let newServerParts = getServerParts(serverParts)
+                return url.replacingOccurrences(of: "{s}", with: newServerParts)
+                
+            } else {
+                return url
+            }
         }
-        
-        // get part of url before {x}, {y}, {z}
-        var urlPrefixBeforeVariables = ""
-        
-        for char in processedUrl {
-            guard char != "{" else { break }
-            urlPrefixBeforeVariables.append(char)
-        }
-        
-        return urlPrefixBeforeVariables
     }
     
+    
+    
+    private func getServerParts(_ serverParts: String) -> String {
+        let correctedServerParts = serverParts.replacingOccurrences(of: ";", with: ",")
+        return "{s:" + correctedServerParts + "}"
+    }
+    
+    
+    
+    private func getProjection(_ locusProjection: Int64) -> String {
+        
+        if locusProjection == 2 {
+            return """
+            projection=2
+            sradiusa=6378137
+            sradiusb=6356752
+            """
+        } else {
+            return """
+            projection=1
+            sradiusa=6378137
+            sradiusb=6378137
+            """
+        }
+    }
+    
+    
+    private func getLayerNumber(_ mapGroupName: String) -> String{
+        
+        if mapGroupName.hasPrefix("Overlay") {
+            return "1"
+        } else {
+            return "0"
+        }
+    }
     
     
     private func getLicense(_ copyright: String) -> String {
@@ -104,23 +137,23 @@ class SasPlanetTemplate {
     
     
     
-    func getScriptContent(_ url: String, serverPart: String) -> String {
-        
-        var variablesPart = ""
-        var scriptBeginning = ""
-        var finalUrl = ""
-        
-        
-        
-        
-        if variablesPart.count != 0 {
-            variablesPart = "var\n" + variablesPart
-        }
-        
-        return """
-        \(variablesPart)
-        """
-    }
+//    func getScriptContent(_ url: String, serverPart: String) -> String {
+//
+//        var variablesPart = ""
+//        var scriptBeginning = ""
+//        var finalUrl = ""
+//
+//
+//
+//
+//        if variablesPart.count != 0 {
+//            variablesPart = "var\n" + variablesPart
+//        }
+//
+//        return """
+//        \(variablesPart)
+//        """
+//    }
 }
 
 

@@ -279,16 +279,19 @@ class Controller {
     
     
     
+    /*
     public func parseWestraGeoJson() {
         westraParser.generateWestraPassesGeoJson()
     }
     
     
+     
     public func parseOsmToGeoJson() {
         //let path = "file:///Projects/GIS/Online%20map%20sources/map-sources/Experimantal_area/Osm_Parsing/export.osm"
         let path = "file:///Projects/GIS/Online%20map%20sources/map-sources/Experimantal_area/Osm_Parsing/springs.osm"
 
         osmXmlParser.parse(filepath: path, completitionHandler: nil)
     }
+    */
     
 }

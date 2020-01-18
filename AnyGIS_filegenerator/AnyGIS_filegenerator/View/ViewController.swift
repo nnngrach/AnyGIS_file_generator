@@ -71,13 +71,13 @@ class ViewController: NSViewController {
         controller.generateWebPages()
     }
     
-    @IBAction func parseWestraGeoJson(_ sender: Any) {
-        controller.parseWestraGeoJson()
-    }
-    
-    @IBAction func parseOsmXmlToGeoJson(_ sender: Any) {
-        controller.parseOsmToGeoJson()
-    }
+//    @IBAction func parseWestraGeoJson(_ sender: Any) {
+//        controller.parseWestraGeoJson()
+//    }
+//    
+//    @IBAction func parseOsmXmlToGeoJson(_ sender: Any) {
+//        controller.parseOsmToGeoJson()
+//    }
     
 }
 

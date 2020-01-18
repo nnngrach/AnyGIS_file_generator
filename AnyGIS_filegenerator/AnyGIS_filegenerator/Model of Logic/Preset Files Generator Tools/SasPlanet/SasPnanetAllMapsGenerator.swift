@@ -13,7 +13,6 @@ class SasPnanetAllMapsGenerator {
     private let zipHandler = ZipHandler()
     private let diskHandler = DiskHandler()
     private let baseHandler = SqliteHandler()
-    private let webTemplates = WebPageTemplates()
     private let sasTemplate = SasPlanetTemplate()
     private let patches = FilePatchTemplates()
 
@@ -42,8 +41,6 @@ class SasPnanetAllMapsGenerator {
             }
 
             
-            
-            
             try generateMapZmp(mapClientLine, mapServerLine!, sasPlanetLine!)
         }
         
@@ -53,39 +50,16 @@ class SasPnanetAllMapsGenerator {
     
     private func generateMapZmp(_ mapClientLine: MapsClientData, _ mapServerLine: MapsServerData, _ sasPlanetLine: SasPlanetData) throws {
         
-      
-        
         let folderPath = patches.localPathToSasPlanetMaps + sasPlanetLine.mapFolderPath + sasPlanetLine.mapFileName + ".zmp/"
         
         diskHandler.createFolder(patch: folderPath)
         
-        let url = mapClientLine.sasLoadAnygis ? webTemplates.anygisMapUrl : mapServerLine.backgroundUrl
         
-        let paramsContent = sasTemplate.getParamContent(url, mapClientLine, mapServerLine, sasPlanetLine)
+        let paramsContent = sasTemplate.getParamContent(mapClientLine, mapServerLine, sasPlanetLine)
         
         diskHandler.createFile(patch: folderPath + "params.txt", content: paramsContent)
         
     }
     
-    
-    
-    
-//    private func prepareUrlSimple(url: String, mapName: String, serverNames: String = "") -> String {
-//        
-//        var resultUrl = url
-//        resultUrl = resultUrl.replacingOccurrences(of: "{mapName}", with: mapName)
-//        resultUrl = resultUrl.replacingOccurrences(of: "{x}", with: "{1}")
-//        resultUrl = resultUrl.replacingOccurrences(of: "{y}", with: "{2}")
-//        resultUrl = resultUrl.replacingOccurrences(of: "{z}", with: "{0}")
-//        resultUrl = resultUrl.replacingOccurrences(of: "{-y}", with: "{2}")
-//        //resultUrl = resultUrl.replacingOccurrences(of: "https", with: "http")
-//        
-//        if serverNames != "" {
-//            let serverPart = String(serverNames.first!)
-//            resultUrl = resultUrl.replacingOccurrences(of: "{s}", with: serverPart)
-//        }
-//        
-//        return resultUrl
-//    }
     
 }
