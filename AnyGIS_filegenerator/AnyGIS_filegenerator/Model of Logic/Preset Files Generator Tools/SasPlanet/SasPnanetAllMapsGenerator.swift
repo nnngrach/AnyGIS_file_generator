@@ -29,6 +29,7 @@ class SasPnanetAllMapsGenerator {
             
             let mapServerLine = try baseHandler.getMapsServerDataBy(name: mapClientLine.anygisMapName)
             let sasPlanetLine = try baseHandler.getSasPlanetDataBy(name: mapClientLine.anygisMapName)
+            let mapPreviewLine = try baseHandler.getMapsPreviewBy(name: mapClientLine.anygisMapName)
             
             guard mapServerLine != nil else {
                 print(mapClientLine.anygisMapName, mapClientLine.id, " Server line is nil")
@@ -39,23 +40,28 @@ class SasPnanetAllMapsGenerator {
                 print(mapClientLine.anygisMapName, mapClientLine.id, " Sas planet line is nil")
                 continue
             }
+            
+            guard mapPreviewLine != nil else {
+                print(mapClientLine.anygisMapName, mapClientLine.id, " Preview line is nil")
+                continue
+            }
 
             
-            try generateMapZmp(mapClientLine, mapServerLine!, sasPlanetLine!)
+            try generateMapZmp(mapClientLine, mapServerLine!, sasPlanetLine!, mapPreviewLine!)
         }
         
     }
     
     
     
-    private func generateMapZmp(_ mapClientLine: MapsClientData, _ mapServerLine: MapsServerData, _ sasPlanetLine: SasPlanetData) throws {
+    private func generateMapZmp(_ mapClientLine: MapsClientData, _ mapServerLine: MapsServerData, _ sasPlanetLine: SasPlanetData, _ mapPreviewLine: MapsPreviewData) throws {
         
         let folderPath = patches.localPathToSasPlanetMaps + sasPlanetLine.mapFolderPath + sasPlanetLine.mapFileName + ".zmp/"
         
         diskHandler.createFolder(patch: folderPath)
         
         
-        let paramsContent = sasTemplate.getParamContent(mapClientLine, mapServerLine, sasPlanetLine)
+        let paramsContent = sasTemplate.getParamContent(mapClientLine, mapServerLine, sasPlanetLine, mapPreviewLine)
         
         diskHandler.createFile(patch: folderPath + "params.txt", content: paramsContent)
         

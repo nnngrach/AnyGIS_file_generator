@@ -13,7 +13,7 @@ class SasPlanetTemplate {
     private let webTemplates = WebPageTemplates()
     
     
-    func getParamContent(_ mapClientLine: MapsClientData, _ mapServerLine: MapsServerData, _ sasPlanetLine: SasPlanetData) -> String {
+    func getParamContent(_ mapClientLine: MapsClientData, _ mapServerLine: MapsServerData, _ sasPlanetLine: SasPlanetData, _ mapPreviewLine: MapsPreviewData) -> String {
         
         let text = """
         [PARAMS]
@@ -25,10 +25,10 @@ class SasPlanetTemplate {
         name_uk=\(sasPlanetLine.nameUk)
         name=\(sasPlanetLine.nameEn)
         NameInCache=\(sasPlanetLine.mapFileName)
-        asLayer=\(getLayerNumber(mapClientLine.groupPrefix))
+        asLayer=\(getLayerNumber(mapPreviewLine.isOverlay))
         \(getProjection(mapClientLine.projection))
         DefURLBase=\(getURL(mapServerLine.backgroundUrl, mapServerLine.backgroundServerName, mapClientLine.sasLoadAnygis, anygisMapname: mapServerLine.name))
-        RequestHead=Referer: \(mapServerLine.referer)\\r\\nConnection: keep-alive\\r\\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36\\r\\nAccept: image/webp,image/apng,image/*,*/*;q=0.8\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept-Language: ru,en-US;q=0.9,en;q=0.8
+        RequestHead=Referer: \(getReferer(mapServerLine.referer))\\r\\nConnection: keep-alive\\r\\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36\\r\\nAccept: image/webp,image/apng,image/*,*/*;q=0.8\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept-Language: ru,en-US;q=0.9,en;q=0.8
         ContentType=image/jpeg,image/png
         Ext=.\(sasPlanetLine.tileFormat)
         \(getLicense(mapClientLine.copyright))
@@ -106,13 +106,9 @@ class SasPlanetTemplate {
     }
     
     
-    private func getLayerNumber(_ mapGroupName: String) -> String{
+    private func getLayerNumber(_ isOverlay: Bool) -> String{
         
-        if mapGroupName.hasPrefix("Overlay") {
-            return "1"
-        } else {
-            return "0"
-        }
+        return isOverlay ? "1" : "0"
     }
     
     
@@ -124,6 +120,15 @@ class SasPlanetTemplate {
         }
     }
     
+    
+    // ??? Maybe let it be empty ???
+    private func getReferer(_ referer: String) -> String {
+        if referer.count > 1 {
+            return referer
+        } else {
+            return "http://www.sasgis.org/"
+        }
+    }
     
 //    private func getHeaders(_ referer: String) -> String {
 //        if referer.replacingOccurrences(of: " ", with: "") == "" {
