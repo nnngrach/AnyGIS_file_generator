@@ -50,7 +50,6 @@ class SasPlanetTemplate {
         """
         
         return text
-        //return "hello \n world"
     }
     
     
@@ -109,13 +108,17 @@ class SasPlanetTemplate {
         if locusProjection == 2 {
             return """
             projection=2
+            \r\n
             sradiusa=6378137
+            \r\n
             sradiusb=6356752
             """
         } else {
             return """
             projection=1
+            \r\n
             sradiusa=6378137
+            \r\n
             sradiusb=6378137
             """
         }
