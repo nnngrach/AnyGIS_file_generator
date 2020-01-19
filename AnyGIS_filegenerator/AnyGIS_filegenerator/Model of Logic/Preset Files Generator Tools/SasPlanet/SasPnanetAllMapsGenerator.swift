@@ -18,7 +18,7 @@ class SasPnanetAllMapsGenerator {
 
     
     
-    public func launch() throws {
+    public func launch(isInGitFolder: Bool) throws {
         
         let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: false)
         
@@ -47,16 +47,18 @@ class SasPnanetAllMapsGenerator {
             }
 
             
-            try generateMapZmp(mapClientLine, mapServerLine!, sasPlanetLine!, mapPreviewLine!)
+            try generateMapZmp(isInGitFolder, mapClientLine, mapServerLine!, sasPlanetLine!, mapPreviewLine!)
         }
         
     }
     
     
     
-    private func generateMapZmp(_ mapClientLine: MapsClientData, _ mapServerLine: MapsServerData, _ sasPlanetLine: SasPlanetData, _ mapPreviewLine: MapsPreviewData) throws {
+    private func generateMapZmp(_ isInGitFolder: Bool, _ mapClientLine: MapsClientData, _ mapServerLine: MapsServerData, _ sasPlanetLine: SasPlanetData, _ mapPreviewLine: MapsPreviewData) throws {
         
-        let folderPath = patches.localPathToSasPlanetFolder + "Maps/" + sasPlanetLine.mapFolderPath + sasPlanetLine.mapFileName + ".zmp/"
+        let rootFolder = isInGitFolder ? patches.localPathToSasPlanetInGitFolder : patches.localPathToSasPlanetMaps
+        
+        let folderPath = rootFolder + sasPlanetLine.mapFileName + ".zmp/"
         
         diskHandler.createFolder(patch: folderPath)
         
@@ -67,13 +69,12 @@ class SasPnanetAllMapsGenerator {
         
         
         
-        let textTemplatesFolderPatch = patches.localPathToSasPlanetFolder + "Templates/"
         
-        diskHandler.secureCopyItem(at: textTemplatesFolderPatch + "GetUrlScript.txt", to: folderPath + "GetUrlScript.txt")
-        diskHandler.secureCopyItem(at: textTemplatesFolderPatch + "info.txt", to: folderPath + "info.txt")
+        diskHandler.secureCopyItem(at: patches.localPathToSasPlanetTemplates + "GetUrlScript.txt", to: folderPath + "GetUrlScript.txt")
+        diskHandler.secureCopyItem(at: patches.localPathToSasPlanetTemplates + "info.txt", to: folderPath + "info.txt")
         
         
-        let iconFolderPatch = patches.localPathToSasPlanetFolder + "Icons/" + sasPlanetLine.icon + "/"
+        let iconFolderPatch = patches.localPathToSasPlanetIcons + sasPlanetLine.icon + "/"
                 
         diskHandler.secureCopyItem(at: iconFolderPatch + "18.bmp", to: folderPath + "18.bmp")
         diskHandler.secureCopyItem(at: iconFolderPatch + "24.bmp", to: folderPath + "24.bmp")

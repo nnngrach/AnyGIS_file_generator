@@ -56,9 +56,17 @@ struct FilePatchTemplates {
     
     let localPathToDesktopMaps = "file:///Projects/GIS/Online%20map%20sources/map-sources/Desktop/"
     
-    let localPathToSasPlanetFolder = "file:///Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/"
+    
+    
+    let localPathToSasPlanetFolder = "file:///Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Maps/"
+    
+    let localPathToSasPlanetMaps = "file:///Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Maps/anygis/"
     
     let localPathToSasPlanetIcons = "file:///Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Icons/"
+    
+     let localPathToSasPlanetTemplates = "file:///Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Templates/"
+    
+    let localPathToSasPlanetInGitFolder = "file:///Projects/GIS/SAS/sas.plus.maps/anygis/"
     
     
     
@@ -68,6 +76,7 @@ struct FilePatchTemplates {
     let localPathToOruxMapsFullInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/orux_full"
     let localPathToOruxMapsShortInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/orux_short"
     let localPathToAlpineMapsInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/alpine"
+    
     
     
     

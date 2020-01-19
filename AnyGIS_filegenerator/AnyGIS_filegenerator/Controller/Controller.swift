@@ -228,10 +228,13 @@ class Controller {
     
     public func generateMapsForSasPlanet() {
         
-        diskHandler.cleanFolder(patch: patches.localPathToSasPlanetFolder + "Maps/")
+        diskHandler.cleanFolder(patch: patches.localPathToSasPlanetMaps)
+        diskHandler.cleanFolder(patch: patches.localPathToSasPlanetInGitFolder)
     
         do {
-            try sasPlanetGenerator.launch()
+            try sasPlanetGenerator.launch(isInGitFolder: true)
+            try sasPlanetGenerator.launch(isInGitFolder: false)
+
         } catch {
             print(error)
         }
