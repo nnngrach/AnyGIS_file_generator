@@ -12,44 +12,29 @@ class SasPlanetTemplate {
     
     private let webTemplates = WebPageTemplates()
     
+    private let rn = "\r\n"
     
     func getParamContent(_ mapClientLine: MapsClientData, _ mapServerLine: MapsServerData, _ sasPlanetLine: SasPlanetData, _ mapPreviewLine: MapsPreviewData) -> String {
         
-        let text = """
-        [PARAMS]
-        \r
-        GUID=\(getId(mapClientLine.id))
-        \r\n
-        ParentSubMenu_ru=\(sasPlanetLine.menuRu)
-        \r
-        ParentSubMenu_uk=\(sasPlanetLine.menuUk)
-        \r
-        ParentSubMenu=\(sasPlanetLine.menuEn)
-        \r\n
-        name_ru=\(sasPlanetLine.nameRu)
-        \r
-        name_uk=\(sasPlanetLine.nameUk)
-        \r
-        name=\(sasPlanetLine.nameEn)
-        \r\n
-        NameInCache=\(sasPlanetLine.mapFileName)
-        \r\n
-        asLayer=\(getLayerNumber(mapPreviewLine.isOverlay))
-        \r\n
-        \(getProjection(mapClientLine.projection))
-        \r\n
-        DefURLBase=\(getURL(mapServerLine.backgroundUrl, mapServerLine.backgroundServerName, mapClientLine.sasLoadAnygis, anygisMapname: mapServerLine.name))
-        \r\n
-        RequestHead=Referer: \(getReferer(mapServerLine.referer))\\r\\nConnection: keep-alive\\r\\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36\\r\\nAccept: image/webp,image/apng,image/*,*/*;q=0.8\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept-Language: ru,en-US;q=0.9,en;q=0.8
-        \r\n
-        ContentType=image/jpeg,image/png
-        \r
-        Ext=.\(sasPlanetLine.tileFormat)
-        \r\n
-        \(getLicense(mapClientLine.copyright))
-        """
+
+        return  rn +
+                "[PARAMS]" + rn +
+                "GUID=\(getId(mapClientLine.id))" + rn +
+                "ParentSubMenu_ru=\(sasPlanetLine.menuRu)" + rn +
+                "ParentSubMenu_uk=\(sasPlanetLine.menuUk)" + rn +
+                "ParentSubMenu=\(sasPlanetLine.menuEn)" + rn +
+                "name_ru=\(sasPlanetLine.nameRu)" + rn +
+                "name_uk=\(sasPlanetLine.nameUk)" + rn +
+                "name=\(sasPlanetLine.nameEn)" + rn +
+                "NameInCache=\(sasPlanetLine.mapFileName)" + rn +
+                "asLayer=\(getLayerNumber(mapPreviewLine.isOverlay))" + rn +
+                "\(getProjection(mapClientLine.projection))" + rn +
+                "DefURLBase=\(getURL(mapServerLine.backgroundUrl, mapServerLine.backgroundServerName, mapClientLine.sasLoadAnygis, anygisMapname: mapServerLine.name))" + rn +
+                "RequestHead=Referer: \(getReferer(mapServerLine.referer))\\r\\nConnection: keep-alive\\r\\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36\\r\\nAccept: image/webp,image/apng,image/*,*/*;q=0.8\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept-Language: ru,en-US;q=0.9,en;q=0.8" + rn +
+                "ContentType=image/jpeg,image/png" + rn +
+                "Ext=.\(sasPlanetLine.tileFormat)" + rn +
+                "\(getLicense(mapClientLine.copyright))" + rn
         
-        return text
     }
     
     
@@ -105,22 +90,18 @@ class SasPlanetTemplate {
     
     private func getProjection(_ locusProjection: Int64) -> String {
         
+        
         if locusProjection == 2 {
-            return """
-            projection=2
-            \r
-            sradiusa=6378137
-            \r
-            sradiusb=6356752
-            """
+            
+            return  "projection=2" + rn +
+                    "sradiusa=6378137" + rn +
+                    "sradiusb=6356752"
+            
         } else {
-            return """
-            projection=1
-            \r
-            sradiusa=6378137
-            \r
-            sradiusb=6378137
-            """
+            return  "projection=1" + rn +
+                    "sradiusa=6378137" + rn +
+                    "sradiusb=6378137"
+            
         }
     }
     
