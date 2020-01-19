@@ -236,7 +236,6 @@ class SqliteHandler {
                                  nameRu: rawLine![SasPlanetDataDB.nameRu]!,
                                  nameUk: rawLine![SasPlanetDataDB.nameUk]!,
                                  nameEn: rawLine![SasPlanetDataDB.nameEn]!,
-                                 mapFolderPath: rawLine![SasPlanetDataDB.mapFolderPath]!,
                                  mapFileName: rawLine![SasPlanetDataDB.mapFileName]!,
                                  tileFormat: rawLine![SasPlanetDataDB.tileFormat]!,
                                  icon: rawLine![SasPlanetDataDB.icon]!)

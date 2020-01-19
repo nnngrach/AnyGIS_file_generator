@@ -22,7 +22,6 @@ struct SasPlanetDataDB {
     static let nameUk = Expression<String?>("nameUk")
     static let nameEn = Expression<String?>("nameEn")
     
-    static let mapFolderPath = Expression<String?>("mapFolderPath")
     static let mapFileName = Expression<String?>("mapFileName")
     static let tileFormat = Expression<String?>("tileFormat")
     

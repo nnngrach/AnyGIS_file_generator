@@ -20,7 +20,6 @@ struct SasPlanetData {
     var nameUk: String
     var nameEn: String
     
-    var mapFolderPath: String
     var mapFileName: String
     var tileFormat: String
     
