@@ -17,19 +17,19 @@ class SasPlanetTemplate {
         
         let text = """
         [PARAMS]
-        \r\n
+        \r
         GUID=\(getId(mapClientLine.id))
         \r\n
         ParentSubMenu_ru=\(sasPlanetLine.menuRu)
-        \r\n
+        \r
         ParentSubMenu_uk=\(sasPlanetLine.menuUk)
-        \r\n
+        \r
         ParentSubMenu=\(sasPlanetLine.menuEn)
         \r\n
         name_ru=\(sasPlanetLine.nameRu)
-        \r\n
+        \r
         name_uk=\(sasPlanetLine.nameUk)
-        \r\n
+        \r
         name=\(sasPlanetLine.nameEn)
         \r\n
         NameInCache=\(sasPlanetLine.mapFileName)
@@ -43,7 +43,7 @@ class SasPlanetTemplate {
         RequestHead=Referer: \(getReferer(mapServerLine.referer))\\r\\nConnection: keep-alive\\r\\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36\\r\\nAccept: image/webp,image/apng,image/*,*/*;q=0.8\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept-Language: ru,en-US;q=0.9,en;q=0.8
         \r\n
         ContentType=image/jpeg,image/png
-        \r\n
+        \r
         Ext=.\(sasPlanetLine.tileFormat)
         \r\n
         \(getLicense(mapClientLine.copyright))
@@ -108,17 +108,17 @@ class SasPlanetTemplate {
         if locusProjection == 2 {
             return """
             projection=2
-            \r\n
+            \r
             sradiusa=6378137
-            \r\n
+            \r
             sradiusb=6356752
             """
         } else {
             return """
             projection=1
-            \r\n
+            \r
             sradiusa=6378137
-            \r\n
+            \r
             sradiusb=6378137
             """
         }
