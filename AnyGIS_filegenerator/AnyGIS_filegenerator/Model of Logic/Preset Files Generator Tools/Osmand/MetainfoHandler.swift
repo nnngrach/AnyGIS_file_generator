@@ -35,7 +35,7 @@ class MetainfoHandler {
         let filename = "/.metainfo"
         
         
-        diskHandler.createFile(patch: mapFolderName + filename, content: content)
+        diskHandler.createFile(patch: mapFolderName + filename, content: content, isUtf8: true)
         
         zipHandler.zip(sourcePath: mapFolderName,
                        archievePath: mapFolderName + ".zip")

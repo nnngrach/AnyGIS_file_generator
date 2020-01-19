@@ -56,7 +56,7 @@ struct FilePatchTemplates {
     
     let localPathToDesktopMaps = "file:///Projects/GIS/Online%20map%20sources/map-sources/Desktop/"
     
-    let localPathToSasPlanetMaps = "file:///Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Maps/"
+    let localPathToSasPlanetFolder = "file:///Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/"
     
     let localPathToSasPlanetIcons = "file:///Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Icons/"
     

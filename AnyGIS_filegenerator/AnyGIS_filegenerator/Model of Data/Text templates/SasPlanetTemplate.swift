@@ -17,24 +17,40 @@ class SasPlanetTemplate {
         
         let text = """
         [PARAMS]
+        \r\n
         GUID=\(getId(mapClientLine.id))
+        \r\n
         ParentSubMenu_ru=\(sasPlanetLine.menuRu)
+        \r\n
         ParentSubMenu_uk=\(sasPlanetLine.menuUk)
+        \r\n
         ParentSubMenu=\(sasPlanetLine.menuEn)
+        \r\n
         name_ru=\(sasPlanetLine.nameRu)
+        \r\n
         name_uk=\(sasPlanetLine.nameUk)
+        \r\n
         name=\(sasPlanetLine.nameEn)
+        \r\n
         NameInCache=\(sasPlanetLine.mapFileName)
+        \r\n
         asLayer=\(getLayerNumber(mapPreviewLine.isOverlay))
+        \r\n
         \(getProjection(mapClientLine.projection))
+        \r\n
         DefURLBase=\(getURL(mapServerLine.backgroundUrl, mapServerLine.backgroundServerName, mapClientLine.sasLoadAnygis, anygisMapname: mapServerLine.name))
+        \r\n
         RequestHead=Referer: \(getReferer(mapServerLine.referer))\\r\\nConnection: keep-alive\\r\\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36\\r\\nAccept: image/webp,image/apng,image/*,*/*;q=0.8\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept-Language: ru,en-US;q=0.9,en;q=0.8
+        \r\n
         ContentType=image/jpeg,image/png
+        \r\n
         Ext=.\(sasPlanetLine.tileFormat)
+        \r\n
         \(getLicense(mapClientLine.copyright))
         """
         
         return text
+        //return "hello \n world"
     }
     
     
@@ -126,7 +142,7 @@ class SasPlanetTemplate {
         if referer.count > 1 {
             return referer
         } else {
-            return "http://www.sasgis.org/"
+            return "https://anygis.ru"
         }
     }
     

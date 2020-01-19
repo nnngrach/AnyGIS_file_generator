@@ -70,11 +70,11 @@ class AbstractAllMapsGenerator {
                 let patches = patchGenerator.getOneMapFileSavingPatches(appName, mapNameLabel, mapCategoryLabel, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable)
                 
                 // Save sinlge map file to GitHub syncing folder
-                diskHandler.createFile(patch: patches.patch, content: fileContent)
+                diskHandler.createFile(patch: patches.patch, content: fileContent, isUtf8: true)
                 
                 // Save dublicate file to Heroku Server folder to use with Downloader script
                 if patches.secondPatch != nil && !isShortSet {
-                    diskHandler.createFile(patch: patches.secondPatch!, content: fileContent)
+                    diskHandler.createFile(patch: patches.secondPatch!, content: fileContent, isUtf8: true)
                 }
             }
         }
@@ -88,10 +88,10 @@ class AbstractAllMapsGenerator {
             
             let patches = patchGenerator.getAllMapsFileSavingPatch(isShortSet: isShortSet, isEnglish: isEnglish, appName: appName)
             
-            diskHandler.createFile(patch: patches.patch, content: fileContent)
+            diskHandler.createFile(patch: patches.patch, content: fileContent, isUtf8: true)
             
             if patches.secondPatch != nil {
-                diskHandler.createFile(patch: patches.secondPatch!, content: fileContent)
+                diskHandler.createFile(patch: patches.secondPatch!, content: fileContent, isUtf8: true)
             }
         }
         

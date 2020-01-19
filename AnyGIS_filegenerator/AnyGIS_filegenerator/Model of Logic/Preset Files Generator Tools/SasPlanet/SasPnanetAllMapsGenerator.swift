@@ -56,15 +56,27 @@ class SasPnanetAllMapsGenerator {
     
     private func generateMapZmp(_ mapClientLine: MapsClientData, _ mapServerLine: MapsServerData, _ sasPlanetLine: SasPlanetData, _ mapPreviewLine: MapsPreviewData) throws {
         
-        let folderPath = patches.localPathToSasPlanetMaps + sasPlanetLine.mapFolderPath + sasPlanetLine.mapFileName + ".zmp/"
+        let folderPath = patches.localPathToSasPlanetFolder + "Maps/" + sasPlanetLine.mapFolderPath + sasPlanetLine.mapFileName + ".zmp/"
         
         diskHandler.createFolder(patch: folderPath)
         
         
         let paramsContent = sasTemplate.getParamContent(mapClientLine, mapServerLine, sasPlanetLine, mapPreviewLine)
         
-        diskHandler.createFile(patch: folderPath + "params.txt", content: paramsContent)
+        diskHandler.createFile(patch: folderPath + "params.txt", content: paramsContent, isUtf8: false)
         
+        
+        
+        let textTemplatesFolderPatch = patches.localPathToSasPlanetFolder + "Templates/"
+        
+        diskHandler.secureCopyItem(at: textTemplatesFolderPatch + "GetUrlScript.txt", to: folderPath + "GetUrlScript.txt")
+        diskHandler.secureCopyItem(at: textTemplatesFolderPatch + "info.txt", to: folderPath + "info.txt")
+        
+        
+        let iconFolderPatch = patches.localPathToSasPlanetFolder + "Icons/" + sasPlanetLine.icon + "/"
+                
+        diskHandler.secureCopyItem(at: iconFolderPatch + "18.bmp", to: folderPath + "18.bmp")
+        diskHandler.secureCopyItem(at: iconFolderPatch + "24.bmp", to: folderPath + "24.bmp")
     }
     
     

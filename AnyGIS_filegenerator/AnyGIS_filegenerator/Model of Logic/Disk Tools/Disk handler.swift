@@ -9,18 +9,46 @@ import Foundation
 
 class DiskHandler {
     
-    public func createFile(patch: String, content: String) {
-        
+    
+    // UTF-8 is default. Unicode is for SasPlanet only.
+    public func createFile(patch: String, content: String, isUtf8: Bool) {
+
         let patchWithoutSpaces = patch.replacingOccurrences(of: " ", with: "")
-        
+
         let url = URL(string: patchWithoutSpaces)!
-        
+
         do {
-            try content.write(to: url, atomically: true, encoding: String.Encoding.utf8)
+            
+            if isUtf8 {
+                try content.write(to: url, atomically: true, encoding: String.Encoding.utf8)
+            } else {
+                try content.write(to: url, atomically: true, encoding: String.Encoding.unicode)
+            }
+
         } catch {
             print(error)
         }
     }
+    
+    
+//    public func createFile(patch: String, content: String) {
+//
+//        let patchWithoutSpaces = patch.replacingOccurrences(of: " ", with: "")
+//
+//        do {
+//
+//            //let data = Data(content.utf8)
+//            let data = Data(content.utf16)
+//            let url = URL(string: patchWithoutSpaces)!
+//
+//            //try data.write(to: url, options: .atomic)
+//            try data.write(to: url, options: .atomicWrite)
+//
+//
+//        } catch {
+//            print(error)
+//        }
+//    }
     
     
     public func createFolder(patch: String) {

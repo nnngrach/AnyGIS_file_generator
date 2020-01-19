@@ -48,7 +48,7 @@ class DesktopAllMapsGenerator {
             
             let filePath = folderPatch + langLabel + fileName + ".txt"
             
-            diskHandler.createFile(patch: filePath, content: content)
+            diskHandler.createFile(patch: filePath, content: content, isUtf8: true)
         }
     }
     

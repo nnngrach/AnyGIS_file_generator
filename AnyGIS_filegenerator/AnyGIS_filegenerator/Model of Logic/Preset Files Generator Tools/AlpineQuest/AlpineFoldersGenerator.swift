@@ -104,8 +104,8 @@ class AlpineFoldersGenerator {
         let serverFolderPath = patchTemplates.localPathToAlpineMapsInServer + langLabel + filename
         
  
-        self.diskHandler.createFile(patch: gitHubFolderPath, content: resultContent)
-        self.diskHandler.createFile(patch: serverFolderPath, content: resultContent)
+        self.diskHandler.createFile(patch: gitHubFolderPath, content: resultContent, isUtf8: true)
+        self.diskHandler.createFile(patch: serverFolderPath, content: resultContent, isUtf8: true)
     }
     
 }

@@ -228,7 +228,7 @@ class Controller {
     
     public func generateMapsForSasPlanet() {
         
-        diskHandler.cleanFolder(patch: patches.localPathToSasPlanetMaps)
+        diskHandler.cleanFolder(patch: patches.localPathToSasPlanetFolder + "Maps/")
     
         do {
             try sasPlanetGenerator.launch()
