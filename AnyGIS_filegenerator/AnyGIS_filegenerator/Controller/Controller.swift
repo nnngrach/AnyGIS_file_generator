@@ -25,8 +25,10 @@ class Controller {
     private let desktopGenerator = DesktopAllMapsGenerator()
     private let sasPlanetGenerator = SasPnanetAllMapsGenerator()
     
-    private let westraParser = WestraParser()
-    private let osmXmlParser = OsmXmlParser()
+    private let markdownPagesWithMenuGenerator = WebPagesMenuGenerator()
+    
+//    private let westraParser = WestraParser()
+//    private let osmXmlParser = OsmXmlParser()
 
 
     public func generateAll() {
@@ -244,9 +246,13 @@ class Controller {
 
 
     public func generateWebPages() {
-        diskHandler.cleanFolder(patch: patches.localPathToMarkdownPages)
+        //diskHandler.cleanFolder(patch: patches.localPathToMarkdownPages)
 
         do {
+            
+            try markdownPagesWithMenuGenerator.launch(isEnglish: true, appName: .Desktop)
+            
+            /*
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .Locus)
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .Locus)
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .GuruMapsAndroid)
@@ -274,6 +280,7 @@ class Controller {
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .Alpine)
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Alpine)
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Desktop)
+            */
 
         } catch {
             print(error)

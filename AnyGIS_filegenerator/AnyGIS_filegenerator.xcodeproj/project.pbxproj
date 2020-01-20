@@ -43,6 +43,7 @@
 		337049BC2282E4590080FF9E /* GeoJsonFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337049BB2282E4590080FF9E /* GeoJsonFeature.swift */; };
 		337049BE2282E58B0080FF9E /* GeoJsonPointGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337049BD2282E58B0080FF9E /* GeoJsonPointGeometry.swift */; };
 		337049C02282E61D0080FF9E /* GeoJsonPassProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 337049BF2282E61D0080FF9E /* GeoJsonPassProperty.swift */; };
+		3374373223D6334400AAA331 /* WebPagesMenuGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3374373123D6334400AAA331 /* WebPagesMenuGenerator.swift */; };
 		338B7CDD234CEBAB00DA53CA /* SasPlanetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338B7CDC234CEBAB00DA53CA /* SasPlanetData.swift */; };
 		338B7CDF234CECB300DA53CA /* SasPlanetDataDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338B7CDE234CECB300DA53CA /* SasPlanetDataDB.swift */; };
 		338B7CE2234CF03D00DA53CA /* SasPnanetAllMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338B7CE1234CF03D00DA53CA /* SasPnanetAllMapsGenerator.swift */; };
@@ -122,6 +123,7 @@
 		337049BB2282E4590080FF9E /* GeoJsonFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoJsonFeature.swift; sourceTree = "<group>"; };
 		337049BD2282E58B0080FF9E /* GeoJsonPointGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoJsonPointGeometry.swift; sourceTree = "<group>"; };
 		337049BF2282E61D0080FF9E /* GeoJsonPassProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoJsonPassProperty.swift; sourceTree = "<group>"; };
+		3374373123D6334400AAA331 /* WebPagesMenuGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPagesMenuGenerator.swift; sourceTree = "<group>"; };
 		338B7CDC234CEBAB00DA53CA /* SasPlanetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SasPlanetData.swift; sourceTree = "<group>"; };
 		338B7CDE234CECB300DA53CA /* SasPlanetDataDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SasPlanetDataDB.swift; sourceTree = "<group>"; };
 		338B7CE1234CF03D00DA53CA /* SasPnanetAllMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SasPnanetAllMapsGenerator.swift; sourceTree = "<group>"; };
@@ -279,6 +281,14 @@
 			path = NakarteWestraPasses;
 			sourceTree = "<group>";
 		};
+		3374373023D6330F00AAA331 /* WebPagesMenu */ = {
+			isa = PBXGroup;
+			children = (
+				3374373123D6334400AAA331 /* WebPagesMenuGenerator.swift */,
+			);
+			path = WebPagesMenu;
+			sourceTree = "<group>";
+		};
 		338B7CE0234CEF5B00DA53CA /* SasPlanet */ = {
 			isa = PBXGroup;
 			children = (
@@ -384,6 +394,7 @@
 				33B76E0D224B938A0010E35E /* Osmand */,
 				338B7CE0234CEF5B00DA53CA /* SasPlanet */,
 				33B76E0E224B93920010E35E /* WebPages */,
+				3374373023D6330F00AAA331 /* WebPagesMenu */,
 			);
 			path = "Preset Files Generator Tools";
 			sourceTree = "<group>";
@@ -649,6 +660,7 @@
 				338B7CDD234CEBAB00DA53CA /* SasPlanetData.swift in Sources */,
 				330E8FAA226753D4000D2BB7 /* GuruMapLayersGenerator.swift in Sources */,
 				330E8FAE226757FE000D2BB7 /* LocusMapLayersGenerator.swift in Sources */,
+				3374373223D6334400AAA331 /* WebPagesMenuGenerator.swift in Sources */,
 				330E8FA622674E11000D2BB7 /* AbstractSavingPatchGenerator.swift in Sources */,
 				330F3F6323317FEC00343CA2 /* Enums.swift in Sources */,
 				337049B92282E3000080FF9E /* GeoJsonFeatureCollection.swift in Sources */,

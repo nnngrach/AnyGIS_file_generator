@@ -22,7 +22,8 @@ class DiskHandler {
             if isUtf8 {
                 try content.write(to: url, atomically: true, encoding: String.Encoding.utf8)
             } else {
-                try content.write(to: url, atomically: true, encoding: String.Encoding.windowsCP1251)
+                //try content.write(to: url, atomically: true, encoding: String.Encoding.windowsCP1251)
+                try content.write(to: url, atomically: true, encoding: String.Encoding.utf8)
             }
 
         } catch {
