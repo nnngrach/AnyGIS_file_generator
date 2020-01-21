@@ -19,7 +19,7 @@ class SasPlanetTemplate {
         
         return  rn +
                 "[PARAMS]" + rn +
-                "GUID=" + UUID().uuidString + rn +
+                "GUID={" + UUID().uuidString + "}" + rn +
                 "ParentSubMenu_ru=" + sasPlanetLine.menuRu + rn +
                 "ParentSubMenu_uk=" + sasPlanetLine.menuUk + rn +
                 "ParentSubMenu=" + sasPlanetLine.menuEn + rn +
@@ -114,29 +114,5 @@ class SasPlanetTemplate {
             return ""
         }
     }
-    
-    
-    
-//    // Deprecated:
-//    // Gettingt not cnanging ID
-//
-//    private func getId(_ locusID: Int64) -> String {
-//
-//        let locusIdString = String(locusID)
-//
-//        let template = "5522dd55-55dd-dd55-d55d-555555555555"
-//        let templateArray = Array(template)
-//
-//        var notСhangeableGUID = ""
-//        let prefixLenght = template.count - locusIdString.count
-//
-//        for i in 0 ..< prefixLenght {
-//            notСhangeableGUID.append(templateArray[i])
-//        }
-//
-//        notСhangeableGUID.append(locusIdString)
-//
-//        return "{" + notСhangeableGUID + "}"
-//    }
     
 }
