@@ -13,7 +13,7 @@ class DesktopAllMapsGenerator {
     
     private let diskHandler = DiskHandler()
     private let baseHandler = SqliteHandler()
-    private let patches = FilePatchTemplates()
+    private let patches = FilePathTemplates()
     private let desktopTemplate = DesktopMapsTemplate()
     
     
@@ -48,7 +48,7 @@ class DesktopAllMapsGenerator {
             
             let filePath = folderPatch + langLabel + fileName + ".txt"
             
-            diskHandler.createFile(patch: filePath, content: content, isUtf8: true)
+            diskHandler.createFile(patch: filePath, content: content, isWithBOM: false)
         }
     }
     

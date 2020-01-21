@@ -12,7 +12,7 @@ class AlpineFoldersGenerator {
     
     private let diskHandler = DiskHandler()
     private let baseHandler = SqliteHandler()
-    private let patchTemplates = FilePatchTemplates()
+    private let patchTemplates = FilePathTemplates()
     private let alpineTemplates = AlpineMapsTemplates()
     private let alpineLayerGenerator = AlpineMapLayersGenerator()
     private let alpineSavinsPatches = AlpineSavingPatchGenerator()
@@ -45,7 +45,7 @@ class AlpineFoldersGenerator {
             let mapName = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
             let groupName = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
             
-            var processedUrl = mapClientLine.alpineLoadAnygis ? webTemplates.anygisMapUrl : mapServerLine.backgroundUrl
+            var processedUrl = mapClientLine.alpineLoadAnygis ? webTemplates.anygisMapUrlsTemplate : mapServerLine.backgroundUrl
             
             processedUrl = alpineLayerGenerator.replaceUrlParts(url: processedUrl, mapName: mapClientLine.anygisMapName, parameters: alpineLayerGenerator.urlPartsForReplacement)
             
@@ -104,8 +104,8 @@ class AlpineFoldersGenerator {
         let serverFolderPath = patchTemplates.localPathToAlpineMapsInServer + langLabel + filename
         
  
-        self.diskHandler.createFile(patch: gitHubFolderPath, content: resultContent, isUtf8: true)
-        self.diskHandler.createFile(patch: serverFolderPath, content: resultContent, isUtf8: true)
+        self.diskHandler.createFile(patch: gitHubFolderPath, content: resultContent, isWithBOM: false)
+        self.diskHandler.createFile(patch: serverFolderPath, content: resultContent, isWithBOM: false)
     }
     
 }

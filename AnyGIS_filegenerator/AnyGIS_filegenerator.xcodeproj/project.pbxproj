@@ -46,7 +46,7 @@
 		3374373223D6334400AAA331 /* WebPagesMenuGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3374373123D6334400AAA331 /* WebPagesMenuGenerator.swift */; };
 		338B7CDD234CEBAB00DA53CA /* SasPlanetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338B7CDC234CEBAB00DA53CA /* SasPlanetData.swift */; };
 		338B7CDF234CECB300DA53CA /* SasPlanetDataDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338B7CDE234CECB300DA53CA /* SasPlanetDataDB.swift */; };
-		338B7CE2234CF03D00DA53CA /* SasPnanetAllMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338B7CE1234CF03D00DA53CA /* SasPnanetAllMapsGenerator.swift */; };
+		338B7CE2234CF03D00DA53CA /* SasPlanetMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338B7CE1234CF03D00DA53CA /* SasPlanetMapsGenerator.swift */; };
 		338B7CE5234CF9FC00DA53CA /* SasPlanetTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338B7CE4234CF9FC00DA53CA /* SasPlanetTemplate.swift */; };
 		339B6F8722EC9A0800D069C7 /* AlpineAllMapsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B6F8622EC9A0800D069C7 /* AlpineAllMapsGenerator.swift */; };
 		339B6F8922EC9A4D00D069C7 /* AlpineOneMapGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B6F8822EC9A4D00D069C7 /* AlpineOneMapGenerator.swift */; };
@@ -54,7 +54,7 @@
 		339B6F8D22EC9AA000D069C7 /* AlpineSavingPathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B6F8C22EC9AA000D069C7 /* AlpineSavingPathGenerator.swift */; };
 		339B6F8F22EC9B4300D069C7 /* AlpineMapsTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B6F8E22EC9B4300D069C7 /* AlpineMapsTemplates.swift */; };
 		33B76DFF224B8DA70010E35E /* SqlitedbHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */; };
-		33B76E11224BA66C0010E35E /* FilePatchTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E10224BA66C0010E35E /* FilePatchTemplates.swift */; };
+		33B76E11224BA66C0010E35E /* FilePathTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E10224BA66C0010E35E /* FilePathTemplates.swift */; };
 		33B76E13224BC6830010E35E /* Disk handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E12224BC6830010E35E /* Disk handler.swift */; };
 		33B76E15224BC7950010E35E /* SqliteHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E14224BC7950010E35E /* SqliteHandler.swift */; };
 		33B76E17224BC99F0010E35E /* WebPageTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E16224BC99F0010E35E /* WebPageTemplates.swift */; };
@@ -126,7 +126,7 @@
 		3374373123D6334400AAA331 /* WebPagesMenuGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPagesMenuGenerator.swift; sourceTree = "<group>"; };
 		338B7CDC234CEBAB00DA53CA /* SasPlanetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SasPlanetData.swift; sourceTree = "<group>"; };
 		338B7CDE234CECB300DA53CA /* SasPlanetDataDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SasPlanetDataDB.swift; sourceTree = "<group>"; };
-		338B7CE1234CF03D00DA53CA /* SasPnanetAllMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SasPnanetAllMapsGenerator.swift; sourceTree = "<group>"; };
+		338B7CE1234CF03D00DA53CA /* SasPlanetMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SasPlanetMapsGenerator.swift; sourceTree = "<group>"; };
 		338B7CE4234CF9FC00DA53CA /* SasPlanetTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SasPlanetTemplate.swift; sourceTree = "<group>"; };
 		339B6F8622EC9A0800D069C7 /* AlpineAllMapsGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineAllMapsGenerator.swift; sourceTree = "<group>"; };
 		339B6F8822EC9A4D00D069C7 /* AlpineOneMapGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineOneMapGenerator.swift; sourceTree = "<group>"; };
@@ -134,7 +134,7 @@
 		339B6F8C22EC9AA000D069C7 /* AlpineSavingPathGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineSavingPathGenerator.swift; sourceTree = "<group>"; };
 		339B6F8E22EC9B4300D069C7 /* AlpineMapsTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineMapsTemplates.swift; sourceTree = "<group>"; };
 		33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqlitedbHandler.swift; sourceTree = "<group>"; };
-		33B76E10224BA66C0010E35E /* FilePatchTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePatchTemplates.swift; sourceTree = "<group>"; };
+		33B76E10224BA66C0010E35E /* FilePathTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePathTemplates.swift; sourceTree = "<group>"; };
 		33B76E12224BC6830010E35E /* Disk handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Disk handler.swift"; sourceTree = "<group>"; };
 		33B76E14224BC7950010E35E /* SqliteHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqliteHandler.swift; sourceTree = "<group>"; };
 		33B76E16224BC99F0010E35E /* WebPageTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPageTemplates.swift; sourceTree = "<group>"; };
@@ -292,7 +292,7 @@
 		338B7CE0234CEF5B00DA53CA /* SasPlanet */ = {
 			isa = PBXGroup;
 			children = (
-				338B7CE1234CF03D00DA53CA /* SasPnanetAllMapsGenerator.swift */,
+				338B7CE1234CF03D00DA53CA /* SasPlanetMapsGenerator.swift */,
 			);
 			path = SasPlanet;
 			sourceTree = "<group>";
@@ -467,7 +467,7 @@
 			isa = PBXGroup;
 			children = (
 				33B76E38224E35200010E35E /* DecsriptionTemplate.swift */,
-				33B76E10224BA66C0010E35E /* FilePatchTemplates.swift */,
+				33B76E10224BA66C0010E35E /* FilePathTemplates.swift */,
 				33B76E24224BE4ED0010E35E /* GuruTemplates.swift */,
 				33B76E22224BE4D70010E35E /* LocusInstallersTemplates.swift */,
 				33B76E36224E342E0010E35E /* LocusMapsTemplates.swift */,
@@ -649,7 +649,7 @@
 				33B76E33224E258E0010E35E /* LocusInstellersGenerator.swift in Sources */,
 				330E8FA822675392000D2BB7 /* GuruOneMapGenerator.swift in Sources */,
 				33405E792286ECCC0032B3DD /* OsmWay.swift in Sources */,
-				338B7CE2234CF03D00DA53CA /* SasPnanetAllMapsGenerator.swift in Sources */,
+				338B7CE2234CF03D00DA53CA /* SasPlanetMapsGenerator.swift in Sources */,
 				330E8FB422675C14000D2BB7 /* OruxOneMapGenerator.swift in Sources */,
 				33405E8922872BAE0032B3DD /* AnygisRunMapUpdater.swift in Sources */,
 				330F3F612331739E00343CA2 /* MapsPreviewDataDB.swift in Sources */,
@@ -671,7 +671,7 @@
 				337049B72282D4C90080FF9E /* WesraPassNakarte.swift in Sources */,
 				338B7CE5234CF9FC00DA53CA /* SasPlanetTemplate.swift in Sources */,
 				33B76E1D224BD62A0010E35E /* MapsClientDataDB.swift in Sources */,
-				33B76E11224BA66C0010E35E /* FilePatchTemplates.swift in Sources */,
+				33B76E11224BA66C0010E35E /* FilePathTemplates.swift in Sources */,
 				3358321122495813001FFC0A /* ViewController.swift in Sources */,
 				33F766EE23D10275007FE0D2 /* DesktopAllMapsGenerator.swift in Sources */,
 				339B6F8F22EC9B4300D069C7 /* AlpineMapsTemplates.swift in Sources */,

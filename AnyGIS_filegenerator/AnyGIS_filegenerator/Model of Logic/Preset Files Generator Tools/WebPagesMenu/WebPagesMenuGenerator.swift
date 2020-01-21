@@ -12,7 +12,7 @@ class WebPagesMenuGenerator {
     
     private let diskHandler = DiskHandler()
     private let baseHandler = SqliteHandler()
-    private let patches = FilePatchTemplates()
+    private let patches = FilePathTemplates()
     private let abstractOneMapGenerator = AbstractOneMapGenerator()
     
     struct menuItem {
@@ -100,6 +100,10 @@ class WebPagesMenuGenerator {
         //print(menuItemList)
         
         //print(UUID().uuidString)
+        
+        //let utf8_dom = 0xEEBBBF
+        //print(0xEEBBBF)
+
     }
     
     

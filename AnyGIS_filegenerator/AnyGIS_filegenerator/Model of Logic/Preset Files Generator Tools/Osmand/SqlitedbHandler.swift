@@ -10,7 +10,7 @@ import SQLite
 
 class SqlitedbHandler {
     
-    private let patchTemplates = FilePatchTemplates.init()
+    private let patchTemplates = FilePathTemplates.init()
     
 
     

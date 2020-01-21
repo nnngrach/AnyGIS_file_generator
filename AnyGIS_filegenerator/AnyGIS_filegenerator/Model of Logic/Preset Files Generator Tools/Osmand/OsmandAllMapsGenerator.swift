@@ -15,7 +15,7 @@ class OsmandAllMapsGenerator {
     private let baseHandler = SqliteHandler()
     private let webTemplates = WebPageTemplates()
     private let osmandTemplate = OsmandMapsTemplate()
-    private let patches = FilePatchTemplates()
+    private let patches = FilePathTemplates()
     private let sqlitedbHandler = SqlitedbHandler()
     private let metainfoHandler = MetainfoHandler()
     
@@ -86,7 +86,7 @@ class OsmandAllMapsGenerator {
         var url = ""
         
         if mapClientLine.osmandMetaLoadAnygis {
-            url = webTemplates.anygisMapUrl
+            url = webTemplates.anygisMapUrlsTemplate
             url = prepareUrlSimple(url: url, mapName: mapServerLine.name)
             if mapServerLine.backgroundUrl.hasPrefix("http://"){
                 url = url.replacingOccurrences(of: "https://", with: "http://")
@@ -138,7 +138,7 @@ class OsmandAllMapsGenerator {
         serverNames = serverNames.replacingOccurrences(of: ";", with: ",")
         
         if mapClientLine.osmandLoadAnygis {
-            url = webTemplates.anygisMapUrl
+            url = webTemplates.anygisMapUrlsTemplate
             url = prepareUrlSimple(url: url, mapName: mapServerLine.name)
             
         } else {

@@ -89,7 +89,7 @@ class AbstractMapLayersGenerator {
         
         
         // Prepare Url and server parts
-        var url = isLoadAnygis ? webTemplates.anygisMapUrl : mapServerLine.backgroundUrl
+        var url = isLoadAnygis ? webTemplates.anygisMapUrlsTemplate : mapServerLine.backgroundUrl
         
         url = replaceUrlParts(url: url, mapName: mapServerLine.name, parameters: urlPartsForReplacement)
         

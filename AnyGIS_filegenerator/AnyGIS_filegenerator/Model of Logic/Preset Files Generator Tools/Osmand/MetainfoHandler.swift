@@ -12,7 +12,7 @@ class MetainfoHandler {
     
     private let zipHandler = ZipHandler()
     private let diskHandler = DiskHandler()
-    private let patchTemplates = FilePatchTemplates()
+    private let patchTemplates = FilePathTemplates()
     private let osmandTemplate = OsmandMapsTemplate()
     
     
@@ -35,7 +35,7 @@ class MetainfoHandler {
         let filename = "/.metainfo"
         
         
-        diskHandler.createFile(patch: mapFolderName + filename, content: content, isUtf8: true)
+        diskHandler.createFile(patch: mapFolderName + filename, content: content, isWithBOM: false)
         
         zipHandler.zip(sourcePath: mapFolderName,
                        archievePath: mapFolderName + ".zip")

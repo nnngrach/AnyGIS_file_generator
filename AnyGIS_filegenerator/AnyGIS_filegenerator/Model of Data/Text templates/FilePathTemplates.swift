@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct FilePatchTemplates {
+struct FilePathTemplates {
     
     let siteHost = "https://anygis.ru/"
     //let siteHost = "http://localhost:8080/"

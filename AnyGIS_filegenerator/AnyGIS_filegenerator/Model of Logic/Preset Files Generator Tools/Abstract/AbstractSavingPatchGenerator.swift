@@ -10,7 +10,7 @@ import Foundation
 
 class AbstractSavingPatchGenerator {
     
-    public let patchTemplates = FilePatchTemplates()
+    public let patchTemplates = FilePathTemplates()
     
     public var shortPatch: String {
         return ""

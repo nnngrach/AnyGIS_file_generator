@@ -14,7 +14,7 @@ class LocusInstallersGenerator {
     private let baseHandler = SqliteHandler()
     private let webTemplates = WebPageTemplates()
     private let locusTemplates = LocusInstallersTemplates()
-    private let patchTemplates = FilePatchTemplates()
+    private let patchTemplates = FilePathTemplates()
     
     
     public func createSingleMapLoaders(isEnglish: Bool) throws {
@@ -37,7 +37,7 @@ class LocusInstallersGenerator {
             
             let content = locusTemplates.getIstallerFileIntro() + locusTemplates.getIstallerFileItem(fileName: mapFileName, isIcon: false, isEnglish: isEnglish, isUninstaller: false) + locusTemplates.getIstallerFileItem(fileName: iconName, isIcon: true, isEnglish: isEnglish, isUninstaller: false) + locusTemplates.getIstallerFileOutro()
             
-            self.diskHandler.createFile(patch: installerPatch, content: content, isUtf8: true)
+            self.diskHandler.createFile(patch: installerPatch, content: content, isWithBOM: false)
             
         }
         
@@ -99,7 +99,7 @@ class LocusInstallersGenerator {
         
         let installerPatch = patchTemplates.localPathToLocusInstallers + langLabel + "_" + folderName + ".xml"
         
-        self.diskHandler.createFile(patch: installerPatch, content: resultContent, isUtf8: true)
+        self.diskHandler.createFile(patch: installerPatch, content: resultContent, isWithBOM: false)
     }
     
     
@@ -149,7 +149,7 @@ class LocusInstallersGenerator {
         let uninstallerLabel = isUninstaller ? "Uninstaller_" : ""
         let installerPatch = patchTemplates.localPathToLocusInstallers + langLabel + uninstallerLabel + fileName
         
-        self.diskHandler.createFile(patch: installerPatch, content: content, isUtf8: true)
+        self.diskHandler.createFile(patch: installerPatch, content: content, isWithBOM: false)
     }
     
 }

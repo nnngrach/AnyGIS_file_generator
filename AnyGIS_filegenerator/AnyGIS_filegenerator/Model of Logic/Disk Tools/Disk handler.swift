@@ -10,46 +10,26 @@ import Foundation
 class DiskHandler {
     
     
-    // UTF-8 is default. Unicode is for SasPlanet only.
-    public func createFile(patch: String, content: String, isUtf8: Bool) {
+    public func createFile(patch: String, content: String, isWithBOM: Bool) {
+        
+        let bomMarker = "\u{FEFF}"
+        
+        let fullContent = isWithBOM ? (bomMarker + content) : content
 
+        
         let patchWithoutSpaces = patch.replacingOccurrences(of: " ", with: "")
 
-        let url = URL(string: patchWithoutSpaces)!
-
+        let pathAsUrl = URL(string: patchWithoutSpaces)!
+        
+        
         do {
-            
-            if isUtf8 {
-                try content.write(to: url, atomically: true, encoding: String.Encoding.utf8)
-            } else {
-                //try content.write(to: url, atomically: true, encoding: String.Encoding.windowsCP1251)
-                try content.write(to: url, atomically: true, encoding: String.Encoding.utf8)
-            }
-
+            try fullContent.write(to: pathAsUrl, atomically: true, encoding: String.Encoding.utf8)
         } catch {
             print(error)
         }
     }
     
     
-//    public func createFile(patch: String, content: String) {
-//
-//        let patchWithoutSpaces = patch.replacingOccurrences(of: " ", with: "")
-//
-//        do {
-//
-//            //let data = Data(content.utf8)
-//            let data = Data(content.utf16)
-//            let url = URL(string: patchWithoutSpaces)!
-//
-//            //try data.write(to: url, options: .atomic)
-//            try data.write(to: url, options: .atomicWrite)
-//
-//
-//        } catch {
-//            print(error)
-//        }
-//    }
     
     
     public func createFolder(patch: String) {

@@ -12,7 +12,7 @@ import Foundation
 class Controller {
     
     private let diskHandler = DiskHandler()
-    private let patches = FilePatchTemplates()
+    private let patches = FilePathTemplates()
     
     private let guruMapsGenerator = GuruAllMapsGenerator()
     private let oruxMapsGenerator = OruxAllMapsGenerator()
@@ -23,7 +23,7 @@ class Controller {
     private let markdownPagesGenerator = WebPagesAllMapsGenerator()
     private let locusInstallerGeneretor = LocusInstallersGenerator()
     private let desktopGenerator = DesktopAllMapsGenerator()
-    private let sasPlanetGenerator = SasPnanetAllMapsGenerator()
+    private let sasPlanetGenerator = SasPlanetMapsGenerator()
     
     private let markdownPagesWithMenuGenerator = WebPagesMenuGenerator()
     
@@ -234,8 +234,8 @@ class Controller {
         diskHandler.cleanFolder(patch: patches.localPathToSasPlanetInGitFolder)
     
         do {
-            try sasPlanetGenerator.launch(isInGitFolder: true)
-            try sasPlanetGenerator.launch(isInGitFolder: false)
+            try sasPlanetGenerator.launch(isSavingInGitFolder: true)
+            try sasPlanetGenerator.launch(isSavingInGitFolder: false)
 
         } catch {
             print(error)

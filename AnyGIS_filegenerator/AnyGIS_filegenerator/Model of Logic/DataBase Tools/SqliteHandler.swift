@@ -12,7 +12,7 @@ import SQLite
 
 class SqliteHandler {
     
-    private let patchTemplates = FilePatchTemplates.init()
+    private let patchTemplates = FilePathTemplates.init()
     
     
     

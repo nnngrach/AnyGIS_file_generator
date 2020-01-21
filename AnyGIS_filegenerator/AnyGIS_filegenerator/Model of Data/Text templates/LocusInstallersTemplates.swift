@@ -10,7 +10,7 @@ import Foundation
 
 struct LocusInstallersTemplates {
     
-    private let patchTemplates = FilePatchTemplates()
+    private let patchTemplates = FilePathTemplates()
     private let webPagesTemplates = WebPageTemplates()
     private let descriptionTemplates = DecsriptionTemplate()
     

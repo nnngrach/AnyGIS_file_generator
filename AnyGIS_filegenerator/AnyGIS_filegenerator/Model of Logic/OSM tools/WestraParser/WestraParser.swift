@@ -12,7 +12,7 @@ import Foundation
 class WestraParser {
     
     private let diskHandler = DiskHandler()
-    private let patchTemplates = FilePatchTemplates()
+    private let patchTemplates = FilePathTemplates()
     
     
     public func generateWestraPassesGeoJson() {
