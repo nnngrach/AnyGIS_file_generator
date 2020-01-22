@@ -109,7 +109,7 @@ class SasPlanetTemplate {
     private func getReferer(_ referer: String) -> String {
         
         if referer.count > 1 {
-            return "Referer:" + referer + rn
+            return "Referer:" + referer + "\\r\\n"
         } else {
             return ""
         }
