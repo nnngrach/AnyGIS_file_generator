@@ -29,7 +29,8 @@ class SasPlanetTemplate {
                 "NameInCache=" + sasPlanetLine.mapFileName + rn +
                 "asLayer=" + getLayerNumber(mapPreviewLine.isOverlay) + rn +
                 getProjection(mapClientLine.projection) + rn +
-                "DefURLBase=" + getURL(mapServerLine.backgroundUrl, mapServerLine.backgroundServerName, mapClientLine.sasLoadAnygis, anygisMapname: mapServerLine.name) + rn +
+                "DefURLBase=" + getURL(mapServerLine.backgroundUrl, mapClientLine.sasLoadAnygis, anygisMapname: mapServerLine.name) + rn +
+                getServerParts(mapServerLine.backgroundServerName, mapClientLine.sasLoadAnygis) +
                 getAllHeaders(mapServerLine.referer) + rn +
                 "ContentType=image/jpeg,image/png" + rn +
                 "Ext=." + sasPlanetLine.tileFormat + rn +
@@ -40,26 +41,30 @@ class SasPlanetTemplate {
     
     
     
-    private func getURL(_ url: String, _ serverParts: String, _ isUsingAnygisProxy: Bool, anygisMapname: String) -> String {
+    private func getURL(_ url: String, _ isUsingAnygisProxy: Bool, anygisMapname: String) -> String {
         
         if isUsingAnygisProxy {
             return constantUrls.anygisMapUrlsTemplate.replacingOccurrences(of: "{mapName}", with: anygisMapname)
         } else {
-            if serverParts.count > 1 {
-                let newServerParts = getServerParts(serverParts)
-                return url.replacingOccurrences(of: "{s}", with: newServerParts)
-            } else {
-                return url
-            }
+            return url
         }
     }
     
     
     
-    private func getServerParts(_ serverParts: String) -> String {
+    
+    private func getServerParts(_ serverParts: String, _ isUsingAnygisProxy: Bool) -> String {
         
-        let correctedServerParts = serverParts.replacingOccurrences(of: ";", with: ",")
-        return "{s:" + correctedServerParts + "}"
+        let cleanedServerParts = serverParts.replacingOccurrences(of: " ", with: "")
+        
+        if isUsingAnygisProxy {
+            return ""
+        } else if cleanedServerParts.count == 0 {
+            return ""
+        } else {
+            let correctedServerParts = serverParts.replacingOccurrences(of: ";", with: ",")
+            return "ServerNames=" + correctedServerParts + rn
+        }
     }
     
     
@@ -69,13 +74,9 @@ class SasPlanetTemplate {
         let ellipsodProjectionCode: Int64 = 2
         
         if projectionCode == ellipsodProjectionCode {
-            return  "projection=2" + rn +
-                    "sradiusa=6378137" + rn +
-                    "sradiusb=6356752"
+            return  "EPSG=3395"
         } else {
-            return  "projection=1" + rn +
-                    "sradiusa=6378137" + rn +
-                    "sradiusb=6378137"
+            return  "EPSG=3785"
         }
     }
     
@@ -102,7 +103,13 @@ class SasPlanetTemplate {
     
     private func getAllHeaders(_ referer: String) -> String {
         
-        return "RequestHead=" + getReferer(referer) + "Connection: keep-alive\\r\\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36\\r\\nAccept: image/webp,image/apng,image/*,*/*;q=0.8\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept-Language: ru,en-US;q=0.9,en;q=0.8"
+        let refererForFriendlyServers = "https://anygis.ru/"
+        
+        if referer == refererForFriendlyServers {
+            return "RequestHead=Referer:http://www.sasgis.org/"
+        } else {
+            return "RequestHead=" + getReferer(referer) + "Connection: keep-alive\\r\\nUser-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.94 Safari/537.36\\r\\nAccept: image/webp,image/apng,image/*,*/*;q=0.8\\r\\nAccept-Encoding: gzip, deflate\\r\\nAccept-Language: ru,en-US;q=0.9,en;q=0.8"
+        }
     }
     
     

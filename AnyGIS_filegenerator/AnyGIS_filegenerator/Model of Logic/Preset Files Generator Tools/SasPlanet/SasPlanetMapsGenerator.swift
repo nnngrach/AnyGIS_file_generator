@@ -77,7 +77,7 @@ class SasPlanetMapsGenerator {
         
         
         // Copy unchanging txt files
-        diskHandler.secureCopyItem(at: filePathes.localPathToSasPlanetTemplates + "GetUrlScript.txt", to: folderPath + "GetUrlScript.txt")
+        //diskHandler.secureCopyItem(at: filePathes.localPathToSasPlanetTemplates + "GetUrlScript.txt", to: folderPath + "GetUrlScript.txt")
         diskHandler.secureCopyItem(at: filePathes.localPathToSasPlanetTemplates + "info.txt", to: folderPath + "info.txt")
         
         

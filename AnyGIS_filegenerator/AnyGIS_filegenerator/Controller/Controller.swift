@@ -250,9 +250,9 @@ class Controller {
 
         do {
             
-            try markdownPagesWithMenuGenerator.launch(isEnglish: true, appName: .Desktop)
+            //try markdownPagesWithMenuGenerator.launch(isEnglish: true, appName: .Desktop)
             
-            /*
+            
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .Locus)
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .Locus)
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .GuruMapsAndroid)
@@ -280,7 +280,7 @@ class Controller {
             try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .Alpine)
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Alpine)
             try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Desktop)
-            */
+            
 
         } catch {
             print(error)
