@@ -44,7 +44,7 @@ class DesktopAllMapsGenerator {
             
             let langLabel = isEnglish ? patches.engLanguageSubfolder : patches.rusLanguageSubfolder
             
-            let fileName = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
+            let fileName = "=" + mapClientLine.groupPrefix + "=" + mapClientLine.clientMapName
             
             let filePath = folderPatch + langLabel + fileName + ".txt"
             

@@ -44,7 +44,7 @@ class AbstractSavingPatchGenerator {
         
         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         
-        let filename = clientLine.groupPrefix + "-" + clientLine.clientMapName + extention
+        let filename = "=" + clientLine.groupPrefix + "=" + clientLine.clientMapName + extention
         
         let githubPatch = githubSyncFolder + langLabel + filename
         

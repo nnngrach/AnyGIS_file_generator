@@ -53,6 +53,8 @@
 		339B6F8B22EC9A7D00D069C7 /* AlpineMapLayersGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B6F8A22EC9A7D00D069C7 /* AlpineMapLayersGenerator.swift */; };
 		339B6F8D22EC9AA000D069C7 /* AlpineSavingPathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B6F8C22EC9AA000D069C7 /* AlpineSavingPathGenerator.swift */; };
 		339B6F8F22EC9B4300D069C7 /* AlpineMapsTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339B6F8E22EC9B4300D069C7 /* AlpineMapsTemplates.swift */; };
+		339F40EA23F2A1B100B09925 /* WebMenuPagesTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F40E923F2A1B100B09925 /* WebMenuPagesTemplates.swift */; };
+		339F40EC23F46D3200B09925 /* HtmlMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339F40EB23F46D3200B09925 /* HtmlMenuItems.swift */; };
 		33B76DFF224B8DA70010E35E /* SqlitedbHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */; };
 		33B76E11224BA66C0010E35E /* FilePathTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E10224BA66C0010E35E /* FilePathTemplates.swift */; };
 		33B76E13224BC6830010E35E /* Disk handler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B76E12224BC6830010E35E /* Disk handler.swift */; };
@@ -133,6 +135,8 @@
 		339B6F8A22EC9A7D00D069C7 /* AlpineMapLayersGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineMapLayersGenerator.swift; sourceTree = "<group>"; };
 		339B6F8C22EC9AA000D069C7 /* AlpineSavingPathGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineSavingPathGenerator.swift; sourceTree = "<group>"; };
 		339B6F8E22EC9B4300D069C7 /* AlpineMapsTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlpineMapsTemplates.swift; sourceTree = "<group>"; };
+		339F40E923F2A1B100B09925 /* WebMenuPagesTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebMenuPagesTemplates.swift; sourceTree = "<group>"; };
+		339F40EB23F46D3200B09925 /* HtmlMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlMenuItems.swift; sourceTree = "<group>"; };
 		33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SqlitedbHandler.swift; sourceTree = "<group>"; };
 		33B76E10224BA66C0010E35E /* FilePathTemplates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePathTemplates.swift; sourceTree = "<group>"; };
 		33B76E12224BC6830010E35E /* Disk handler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Disk handler.swift"; sourceTree = "<group>"; };
@@ -347,6 +351,7 @@
 				33B76E28224BE5D40010E35E /* ClientAppList.swift */,
 				338B7CE3234CF91A00DA53CA /* dbModels */,
 				33B76E0F224BA5C40010E35E /* Text templates */,
+				339F40EB23F46D3200B09925 /* HtmlMenuItems.swift */,
 			);
 			path = "Model of Data";
 			sourceTree = "<group>";
@@ -474,6 +479,7 @@
 				339B6F8E22EC9B4300D069C7 /* AlpineMapsTemplates.swift */,
 				33B76E26224BE5000010E35E /* OruxTemplates.swift */,
 				33B76E16224BC99F0010E35E /* WebPageTemplates.swift */,
+				339F40E923F2A1B100B09925 /* WebMenuPagesTemplates.swift */,
 				338B7CE4234CF9FC00DA53CA /* SasPlanetTemplate.swift */,
 				33B76E40224E91380010E35E /* OsmandMapsTemplate.swift */,
 				33F766EF23D10915007FE0D2 /* DesktopMapsTemplate.swift */,
@@ -643,6 +649,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				339F40EA23F2A1B100B09925 /* WebMenuPagesTemplates.swift in Sources */,
 				33B76E13224BC6830010E35E /* Disk handler.swift in Sources */,
 				330E8F9E226505E4000D2BB7 /* OruxAllMapsGenerator.swift in Sources */,
 				330E8FA022651403000D2BB7 /* WebPagesAllMapsGenerator.swift in Sources */,
@@ -696,6 +703,7 @@
 				337049BC2282E4590080FF9E /* GeoJsonFeature.swift in Sources */,
 				330E8FB2226759B7000D2BB7 /* LocusOneMapGenerator.swift in Sources */,
 				33B76E29224BE5D40010E35E /* ClientAppList.swift in Sources */,
+				339F40EC23F46D3200B09925 /* HtmlMenuItems.swift in Sources */,
 				33B76E23224BE4D70010E35E /* LocusInstallersTemplates.swift in Sources */,
 				338B7CDF234CECB300DA53CA /* SasPlanetDataDB.swift in Sources */,
 				33B76E1F224BD9060010E35E /* MapsServerData.swift in Sources */,

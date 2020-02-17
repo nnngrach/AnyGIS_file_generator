@@ -24,6 +24,11 @@ struct FilePathTemplates {
     
     let localPathToMarkdownPages = "file:///Projects/GIS/Anygis_site/modernist-master/Web/Html/Download/"
     
+    let localPathToJekillHtmlTemplate = "file:///Projects/GIS/Anygis_site/modernist-master/_layouts/default.html"
+    
+    
+    
+    
     let localPathToLocusIcons = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Icons"
     let localPathToLocusInstallers = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Installers"
     let localPathToGeoJson = "file:///Projects/GIS/Online%20map%20sources/map-sources/GeoJson"
@@ -70,6 +75,8 @@ struct FilePathTemplates {
     
     
     
+    
+    
     // Generating files folders in server
     
     let localPathToGuruMapsInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/galileo"
@@ -85,6 +92,7 @@ struct FilePathTemplates {
     
     let gitLocusInstallersFolder = "https://github.com/nnngrach/AnyGIS_maps/master/Locus_online_maps/Installers/"
     let gitLocusIconsFolder = "https://github.com/nnngrach/AnyGIS_maps/raw/master/Locus_online_maps/Icons"
+    let gitLocusIconsFolderPreviewing = "https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Locus_online_maps/Icons"
     let gitLocusPagesFolder = "https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Web/Html/Download/"
     
     let gitLocusMapsFolder = "https://raw.githubusercontent.com/nnngrach/AnyGIS_maps/master/Locus_online_maps/Maps_full"

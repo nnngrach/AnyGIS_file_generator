@@ -37,6 +37,7 @@ class AlpineFoldersGenerator {
             if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
             if !mapClientLine.forRus && !isEnglish {continue}
             if !mapClientLine.forEng && isEnglish {continue}
+            if !mapClientLine.visible {continue}
             
            
             let mapServerLine = mapsServerTable.filter{$0.name == mapClientLine.anygisMapName}.first!
@@ -93,7 +94,7 @@ class AlpineFoldersGenerator {
         let resultContent = content + alpineLayerGenerator.getOutro()
         
         
-        let filename = "_" + clientLine.groupPrefix + ".AQX"
+        let filename = "=" + clientLine.groupPrefix + ".AQX"
         
         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         

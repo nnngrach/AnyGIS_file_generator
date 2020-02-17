@@ -20,7 +20,7 @@ class SqlitedbHandler {
         
          let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         
-        let filePatch = folderPatch + langLabel + filename + ".sqlitedb"
+        let filePatch = folderPatch + langLabel + "=" + filename + ".sqlitedb"
         
         //let sqlitedbMinZoom = String(17 - zoommax)
         //let sqlitedbMaxZoom = String(17 - zoommin)

@@ -27,7 +27,7 @@ class LocusInstallersGenerator {
             guard mapClientLine.forLocus else {continue}
             guard mapClientLine.visible else {continue}
             
-            let mapFileName = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
+            let mapFileName = "=" + mapClientLine.groupPrefix + "=" + mapClientLine.clientMapName
             
             let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
             
@@ -60,7 +60,7 @@ class LocusInstallersGenerator {
             guard mapClientLine.visible else {continue}
             
             
-            let mapFileName = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
+            let mapFileName = "=" + mapClientLine.groupPrefix + "=" + mapClientLine.clientMapName
             
             if mapClientLine.groupPrefix != previousFolder {
                 
@@ -134,7 +134,7 @@ class LocusInstallersGenerator {
                 content += locusTemplates.getIstallerFileItem(fileName: iconName, isIcon: true, isEnglish: isEnglish, isUninstaller: isUninstaller)
             }
             
-            let mapFileName = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
+            let mapFileName = "=" + mapClientLine.groupPrefix + "=" + mapClientLine.clientMapName
             
             
             content += locusTemplates.getIstallerFileItem(fileName: mapFileName, isIcon: false, isEnglish: isEnglish, isUninstaller: isUninstaller)

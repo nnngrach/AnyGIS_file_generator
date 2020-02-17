@@ -74,7 +74,7 @@ class OsmandAllMapsGenerator {
         
         let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
         
-        let filename = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
+        let filename = mapClientLine.groupPrefix + "=" + mapClientLine.clientMapName
         
         
         let isElipsoid = (mapClientLine.projection == 2)
@@ -127,7 +127,7 @@ class OsmandAllMapsGenerator {
         
         let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
         
-        let filename = mapClientLine.groupPrefix + "-" + mapClientLine.clientMapName
+        let filename = mapClientLine.groupPrefix + "=" + mapClientLine.clientMapName
         
         let isEllipsoid: Int64 = mapClientLine.projection == 2 ? 1 : 0
         let isInvertedY: Int64 = mapClientLine.projection == 1 ? 1 : 0

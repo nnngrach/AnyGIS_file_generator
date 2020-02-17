@@ -23,7 +23,7 @@ class MetainfoHandler {
         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         
         
-        let mapFolderName = folderPatch + langLabel + filename
+        let mapFolderName = folderPatch + langLabel + "=" + filename
         
         diskHandler.createFolder(patch: mapFolderName)
         

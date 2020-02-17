@@ -37,17 +37,11 @@ class GuruOneMapGenerator: AbstractOneMapGenerator {
     
     private func getFullName(_ clientLine: MapsClientData, _ isEnglish: Bool) -> String {
         
-        var result = isEnglish ? clientLine.shortNameEng : clientLine.shortName
-        
-        if clientLine.groupPrefix == "Global-Satellites" {
-            if !result.contains("Гибрид") && !result.contains("Hybrid") {
-                let categoryName = isEnglish ? " - Satellite" : " - Спутник"
-                
-                result += categoryName
-            }
+        if isEnglish {
+            return clientLine.groupNameEng + " - " + clientLine.shortNameEng
+        } else {
+            return clientLine.groupName + " - " + clientLine.shortName
         }
-        
-        return result
     }
     
     

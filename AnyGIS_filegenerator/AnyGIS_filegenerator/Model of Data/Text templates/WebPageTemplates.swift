@@ -143,17 +143,17 @@ struct WebPageTemplates {
         
         switch appName {
         case .Locus:
-            resultUrl = patchTemplates.gitLocusActionInstallersFolder + langLabel + "__" + fileName + ".xml"
+            resultUrl = "=" + patchTemplates.gitLocusActionInstallersFolder + langLabel + "__" + fileName + ".xml"
         case .GuruMapsIOS:
-            resultUrl = patchTemplates.gitMapsFolder + langLabel + fileName + ".ms"
+            resultUrl = "=" + patchTemplates.gitMapsFolder + langLabel + fileName + ".ms"
         case .GuruMapsAndroid:
-            resultUrl = patchTemplates.anygisGuruMapsFolder + langLabel + fileName + ".ms"
+            resultUrl = "=" + patchTemplates.anygisGuruMapsFolder + langLabel + fileName + ".ms"
         case .Osmand:
-            resultUrl = patchTemplates.gitOsmadMapsFolder + langLabel + fileName + ".sqlitedb"
+            resultUrl = "=" + patchTemplates.gitOsmadMapsFolder + langLabel + fileName + ".sqlitedb"
         case .OsmandMetainfo:
-            resultUrl = patchTemplates.gitOsmadMetainfoMapsFolderDownloader + langLabel + fileName + ".zip"
+            resultUrl = "=" + patchTemplates.gitOsmadMetainfoMapsFolderDownloader + langLabel + fileName + ".zip"
         case .Alpine:
-            resultUrl = patchTemplates.anygisAlpineMapsFolder + langLabel + fileName + ".AQX"
+            resultUrl = "=" + patchTemplates.anygisAlpineMapsFolder + langLabel + fileName + ".AQX"
         case .Desktop:
             resultUrl = patchTemplates.gitDesktopFilesFolder + langLabel + fileName + ".txt"
         default:

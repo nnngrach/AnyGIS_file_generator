@@ -136,4 +136,18 @@ class DiskHandler {
     
     
     
+    
+    public func readFile(at source: String) -> String {
+        
+        let srcURL = URL(string: source)!
+        
+        do {
+            return try String(contentsOf: srcURL, encoding: .utf8)
+        }
+        catch {
+            print("Cannot read file item at \(srcURL): \(error)")
+            return ""
+        }
+    }
+    
 }
