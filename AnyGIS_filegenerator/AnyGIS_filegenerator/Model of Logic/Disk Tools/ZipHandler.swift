@@ -25,16 +25,24 @@ class ZipHandler {
     }
     
     
-    public func zipMapsFolder(sourceShort: String, SouceFull: String, zipPath: String, isShortSet: Bool, isEnglish: Bool) {
+    
+    
+    public func zipMapsFolder(sourceShort: String, SouceFull: String, zipPath: String, isShortSet: Bool, isEnglish: Bool, isForFolders: Bool) {
         
             let sourcePatch = isShortSet ? sourceShort : SouceFull
             let firstPart = isShortSet ? "Maps_short" : "Maps_full"
             let secondPart = isEnglish ? "_en" : "_ru"
+            let forFoldersPart = isForFolders ? "_folders" : ""
             
-            let fullSoucePath = sourcePatch + secondPart
-            let fullArchievePath = zipPath + firstPart + secondPart + ".zip"
+            let fullSoucePath = sourcePatch + forFoldersPart + secondPart
+            let fullArchievePath = zipPath + firstPart + forFoldersPart + secondPart + ".zip"
             
             zip(sourcePath: fullSoucePath, archievePath: fullArchievePath)
     }
+    
+    
+    
+    
+
     
 }

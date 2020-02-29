@@ -189,6 +189,10 @@ class Controller {
         diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsFull + en)
         diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsShort + ru)
         diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsShort + en)
+        diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsFull + patches.groupInOneFileSubfolder  + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsFull + patches.groupInOneFileSubfolder  + en)
+        diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsShort + patches.groupInOneFileSubfolder  + ru)
+        diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsShort + patches.groupInOneFileSubfolder  + en)
         diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsInServer + ru)
         diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsInServer + en)
         

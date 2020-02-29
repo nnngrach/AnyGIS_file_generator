@@ -102,7 +102,8 @@ class AbstractAllMapsGenerator {
                                  SouceFull: patchGenerator.fullPatch,
                                  zipPath: patchGenerator.zipPatch,
                                  isShortSet: isShortSet,
-                                 isEnglish: isEnglish)
+                                 isEnglish: isEnglish,
+                                 isForFolders: false)
         }
         
     }

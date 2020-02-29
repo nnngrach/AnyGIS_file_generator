@@ -123,5 +123,6 @@ struct FilePathTemplates {
     
     let rusLanguageSubfolder = "_ru/"
     let engLanguageSubfolder = "_en/"
+    let groupInOneFileSubfolder = "_folders"
     
 }

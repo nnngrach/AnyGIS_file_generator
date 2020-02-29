@@ -55,13 +55,15 @@ class OsmandAllMapsGenerator {
                                      SouceFull: patches.localPathToOsmandMapsFull,
                                      zipPath: patches.localPathToOsmandMapsZip,
                                      isShortSet: isShortSet,
-                                     isEnglish: isEnglish)
+                                     isEnglish: isEnglish,
+                                     isForFolders: false)
         } else {
             zipHandler.zipMapsFolder(sourceShort: patches.localPathToOsmandMetainfoShort,
                                      SouceFull: patches.localPathToOsmandMetainfoFull,
                                      zipPath: patches.localPathToOsmandMetainfoZip,
                                      isShortSet: isShortSet,
-                                     isEnglish: isEnglish)
+                                     isEnglish: isEnglish,
+                                     isForFolders: false)
         }
     }
     
@@ -77,8 +79,13 @@ class OsmandAllMapsGenerator {
         let filename = mapClientLine.groupPrefix + "=" + mapClientLine.clientMapName
         
         
+        var isInvertedY = false
+        
+        if !mapClientLine.osmandMetaLoadAnygis {
+            isInvertedY = (mapClientLine.projection == 1)
+        }
+        
         let isElipsoid = (mapClientLine.projection == 2)
-        let isInvertedY = (mapClientLine.projection == 1)
         
         let hasTileSizeUrlTag = mapServerLine.backgroundUrl.contains("{tileSize}")
         let tileSize = (hasTileSizeUrlTag || mapClientLine.isRetina) ? "512" : "256"
@@ -129,8 +136,17 @@ class OsmandAllMapsGenerator {
         
         let filename = mapClientLine.groupPrefix + "=" + mapClientLine.clientMapName
         
+        
+        
+        var isInvertedY: Int64 = 0
+        
+        if !mapClientLine.osmandLoadAnygis {
+            isInvertedY = mapClientLine.projection == 1 ? 1 : 0
+        }
+        
+        
         let isEllipsoid: Int64 = mapClientLine.projection == 2 ? 1 : 0
-        let isInvertedY: Int64 = mapClientLine.projection == 1 ? 1 : 0
+        
         
         var url = ""
 

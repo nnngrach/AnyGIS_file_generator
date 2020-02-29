@@ -196,7 +196,7 @@ struct WebMenuPageTemplates {
         let downloadUrl = getMapDownloadUrl(appName: appName, fileName: fileName, isEnglish: isEnglish)
         
         return """
-        <li class="accordeon">
+        <li class="map_line">
           \(previewIconCode)
           <a
             href="\(downloadUrl)"

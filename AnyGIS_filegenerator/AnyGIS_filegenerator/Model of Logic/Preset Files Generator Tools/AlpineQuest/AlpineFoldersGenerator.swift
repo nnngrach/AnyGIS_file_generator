@@ -17,6 +17,7 @@ class AlpineFoldersGenerator {
     private let alpineLayerGenerator = AlpineMapLayersGenerator()
     private let alpineSavinsPatches = AlpineSavingPatchGenerator()
     private let webTemplates = WebPageTemplates()
+    private let zipHandler = ZipHandler()
     
     func createAllFoldersWithMaps(isEnglish: Bool, isShortSet: Bool) throws {
         
@@ -82,6 +83,16 @@ class AlpineFoldersGenerator {
             finishAndWriteFolder(folderName: previousFolder, content: content, isEnglish: isEnglish, isShortSet: isShortSet, clientLine: mapClientLine, clientTable: mapsClientTable, serverTable: mapsServerTable)
         }
         
+        
+        
+        
+        zipHandler.zipMapsFolder(sourceShort: patchTemplates.localPathToAlpineMapsShort,
+            SouceFull: patchTemplates.localPathToAlpineMapsFull,
+            zipPath: patchTemplates.localPathToAlpineMapsZip,
+            isShortSet: isShortSet,
+            isEnglish: isEnglish,
+            isForFolders: true)
+        
     }
     
     
@@ -98,15 +109,36 @@ class AlpineFoldersGenerator {
         
         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         
-        let gitHubFolder = isShortSet ? patchTemplates.localPathToAlpineMapsShort : patchTemplates.localPathToAlpineMapsFull
+        //let gitHubFolder = isShortSet ? patchTemplates.localPathToAlpineMapsShort : patchTemplates.localPathToAlpineMapsFull
         
-        let gitHubFolderPath = gitHubFolder + langLabel + filename
+        let gitHubFolderPath = getSourcePath(isEnglish: isEnglish, isShortSet: isShortSet) + filename
         
         let serverFolderPath = patchTemplates.localPathToAlpineMapsInServer + langLabel + filename
         
  
         self.diskHandler.createFile(patch: gitHubFolderPath, content: resultContent, isWithBOM: false)
         self.diskHandler.createFile(patch: serverFolderPath, content: resultContent, isWithBOM: false)
+    }
+    
+    
+    
+    private func getSourcePath(isEnglish: Bool, isShortSet: Bool) -> String {
+        
+        let gitHubFolder = isShortSet ? patchTemplates.localPathToAlpineMapsShort : patchTemplates.localPathToAlpineMapsFull
+        
+        let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
+        
+        return gitHubFolder + patchTemplates.groupInOneFileSubfolder + langLabel
+    }
+    
+    
+    private func getZipPath(isEnglish: Bool, isShortSet: Bool) -> String {
+        
+        let zipFolder = patchTemplates.localPathToAlpineMapsZip
+        
+        let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
+        
+        return zipFolder + langLabel
     }
     
 }
