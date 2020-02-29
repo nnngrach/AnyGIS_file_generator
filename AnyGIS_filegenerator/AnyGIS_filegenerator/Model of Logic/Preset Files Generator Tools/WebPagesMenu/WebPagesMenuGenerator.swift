@@ -19,9 +19,9 @@ class WebPagesMenuGenerator {
     
     
     
-    public func launch(isEnglish: Bool, isShortSet: Bool, appName: ClientAppList) throws {
+    public func launch(isEnglish: Bool, isShortSet: Bool, isPrivateSet: Bool, appName: ClientAppList) throws {
         
-        let foldersStructure = try prepareFoldersStructure(isEnglish: isEnglish, isShortSet: isShortSet, appName: appName)
+        let foldersStructure = try prepareFoldersStructure(isEnglish: isEnglish, isShortSet: isShortSet, isPrivateSet: isPrivateSet, appName: appName)
         
         let generatedHtmlContent = generateHtmlFrom(foldersStructure: foldersStructure, isEnglish: isEnglish, appName: appName)
         
@@ -37,7 +37,7 @@ class WebPagesMenuGenerator {
     
     
 
-    private func prepareFoldersStructure(isEnglish: Bool, isShortSet: Bool, appName: ClientAppList) throws -> MenuFolderItem {
+    private func prepareFoldersStructure(isEnglish: Bool, isShortSet: Bool, isPrivateSet: Bool, appName: ClientAppList) throws -> MenuFolderItem {
         
         
         var foldersStructure = MenuFolderItem(order: 0, orderEn: 0, name: "root", fullPathEn: "", groupFilePrefix: "", maps: [], subFolders: [:])
@@ -50,7 +50,7 @@ class WebPagesMenuGenerator {
         for mapClientLine in mapsClientTable {
             
             //Filtering
-            let isItUnnecessaryMap = abstractOneMapGenerator.isItUnnecessaryMap(mapClientLine, isShortSet, isEnglish, appName)
+            let isItUnnecessaryMap = abstractOneMapGenerator.isItUnnecessaryMap(mapClientLine, isShortSet, isEnglish, isPrivateSet: isPrivateSet, appName)
             
             if isItUnnecessaryMap {continue}
             

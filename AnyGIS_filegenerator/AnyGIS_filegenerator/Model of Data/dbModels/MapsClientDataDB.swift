@@ -61,4 +61,7 @@ struct MapsClientDataDB {
 
     static let comment = Expression<String?>("comment")
     static let copyright = Expression<String?>("copyright")
+    
+    static let isPrivate = Expression<Bool?>("isPrivate")
+
 }

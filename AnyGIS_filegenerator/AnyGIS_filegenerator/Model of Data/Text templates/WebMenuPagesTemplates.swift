@@ -27,6 +27,8 @@ struct WebMenuPageTemplates {
     private let cssStub = "{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}"
     private let jsStub = "{{ '/assets/js/scale.fix.js' | relative_url }}"
     private let stubsForErasing = ["{% seo %}", "{% if site.description or site.github.project_tagline %}" , "{% endif %}", "{% unless site.description or site.github.project_tagline %} class=\"without-description\" {% endunless %}"]
+    private let yandexMetricaCounter = "<meta name=\"yandex-verification\" content=\"5482503e5aa9170b\" />"
+    private let noindexTag = "<meta name=\"robots\" content=\"noindex\" />"
     
 
         
@@ -44,6 +46,7 @@ struct WebMenuPageTemplates {
         introPart = introPart.replacingOccurrences(of: jsStub, with: jsPath)
         introPart = introPart.replacingOccurrences(of: siteHeaderStub, with: siteHeader)
         introPart = introPart.replacingOccurrences(of: siteDescriptionStub, with: siteDescription)
+        introPart = introPart.replacingOccurrences(of: yandexMetricaCounter, with: noindexTag)
     
         for stub in stubsForErasing {
             introPart = introPart.replacingOccurrences(of: stub, with: "")
@@ -246,7 +249,8 @@ struct WebMenuPageTemplates {
         case .Locus:
             resultUrl = patchTemplates.gitLocusActionInstallersFolder + langLabel + "__" + fileName + ".xml"
         case .GuruMapsIOS:
-            resultUrl = patchTemplates.gitMapsFolder + langLabel + fileName + ".ms"
+            let preparedFileName = fileName.replacingOccurrences(of: "=", with: "%3D")
+            resultUrl = patchTemplates.gitMapsFolder + langLabel + preparedFileName + ".ms"
         case .GuruMapsAndroid:
             resultUrl = patchTemplates.anygisGuruMapsFolder + langLabel + fileName + ".ms"
         case .Osmand:

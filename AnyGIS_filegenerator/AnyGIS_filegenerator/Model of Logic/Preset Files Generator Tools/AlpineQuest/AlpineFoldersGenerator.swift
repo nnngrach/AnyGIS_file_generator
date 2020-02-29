@@ -19,7 +19,7 @@ class AlpineFoldersGenerator {
     private let webTemplates = WebPageTemplates()
     private let zipHandler = ZipHandler()
     
-    func createAllFoldersWithMaps(isEnglish: Bool, isShortSet: Bool) throws {
+    func createAllFoldersWithMaps(isEnglish: Bool, isShortSet: Bool, isPrivateSet: Bool) throws {
         
         var content = ""
         var previousFolder = ""
@@ -39,6 +39,10 @@ class AlpineFoldersGenerator {
             if !mapClientLine.forRus && !isEnglish {continue}
             if !mapClientLine.forEng && isEnglish {continue}
             if !mapClientLine.visible {continue}
+            
+            // TODO: Filter private maps
+            if !isPrivateSet && mapClientLine.isPrivate {continue}
+            if isPrivateSet && !mapClientLine.isPrivate {continue}
             
            
             let mapServerLine = mapsServerTable.filter{$0.name == mapClientLine.anygisMapName}.first!

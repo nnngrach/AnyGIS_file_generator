@@ -59,4 +59,6 @@ struct MapsClientData {
     
     let comment: String
     let copyright: String
+    
+    let isPrivate: Bool
 }

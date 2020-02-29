@@ -29,7 +29,7 @@ class AbstractAllMapsGenerator {
     
     
     
-    public func launch(isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) throws {
+    public func launch(isShortSet: Bool, isEnglish: Bool, isPrivateSet: Bool, appName: ClientAppList) throws {
         
         let mapsServerTable = try baseHandler.getMapsServerData()
         let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
@@ -41,7 +41,7 @@ class AbstractAllMapsGenerator {
         // Iterating for All Maps list
         for mapClientLine in mapsClientTable {
             
-            if oneMapGenerator.isItUnnecessaryMap(mapClientLine, isShortSet, isEnglish, appName) {continue}
+            if oneMapGenerator.isItUnnecessaryMap(mapClientLine, isShortSet, isEnglish, isPrivateSet: isPrivateSet, appName) {continue}
             
             if !isAllMapsInOneFile {
                 fileContent = ""

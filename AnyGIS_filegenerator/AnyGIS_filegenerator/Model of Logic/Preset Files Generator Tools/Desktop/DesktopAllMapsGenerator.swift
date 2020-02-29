@@ -27,6 +27,10 @@ class DesktopAllMapsGenerator {
             guard mapClientLine.forDesktop else {continue}
             guard mapClientLine.visible else {continue}
             
+            // TODO: Filter private maps
+            guard !mapClientLine.isPrivate else {continue}
+            
+            
             let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
             
             

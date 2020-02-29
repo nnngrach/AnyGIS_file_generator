@@ -137,7 +137,8 @@ class SqliteHandler {
                           cacheStoringHours: rawLine[MapsClientDataDB.cacheStoringHours]!,
                           isRetina: rawLine[MapsClientDataDB.isRetina]!,
                           comment: rawLine[MapsClientDataDB.comment]!,
-                          copyright: rawLine[MapsClientDataDB.copyright]!)
+                          copyright: rawLine[MapsClientDataDB.copyright]!,
+                          isPrivate: rawLine[MapsClientDataDB.isPrivate]!)
             
             
             result.append(item)

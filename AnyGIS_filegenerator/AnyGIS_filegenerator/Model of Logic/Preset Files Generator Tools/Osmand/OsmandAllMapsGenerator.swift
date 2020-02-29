@@ -20,7 +20,7 @@ class OsmandAllMapsGenerator {
     private let metainfoHandler = MetainfoHandler()
     
     
-    public func launch(isShortSet: Bool, isEnglish: Bool, isForSqlitedb: Bool) throws {
+    public func launch(isShortSet: Bool, isEnglish: Bool, isForSqlitedb: Bool, isPrivateSet: Bool) throws {
         
         let mapsServerTable = try baseHandler.getMapsServerData()
         let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
@@ -41,6 +41,9 @@ class OsmandAllMapsGenerator {
             if !mapClientLine.forEng && isEnglish {continue}
             if !mapClientLine.visible {continue}
             
+            // TODO: Filter private maps
+            if !isPrivateSet && mapClientLine.isPrivate {continue}
+            if isPrivateSet && !mapClientLine.isPrivate {continue}
             
             if isForSqlitedb {
                 try generateSqlitedbItem(isShortSet: isShortSet, mapClientLine, mapsServerTable, isEnglish)

@@ -27,6 +27,9 @@ class LocusInstallersGenerator {
             guard mapClientLine.forLocus else {continue}
             guard mapClientLine.visible else {continue}
             
+            // TODO: Filter private maps
+            guard mapClientLine.isPrivate else {continue}
+            
             let mapFileName = "=" + mapClientLine.groupPrefix + "=" + mapClientLine.clientMapName
             
             let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
