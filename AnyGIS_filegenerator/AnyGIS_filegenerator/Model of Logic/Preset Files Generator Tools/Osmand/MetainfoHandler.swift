@@ -16,9 +16,20 @@ class MetainfoHandler {
     private let osmandTemplate = OsmandMapsTemplate()
     
     
-    public func create(isShortSet: Bool, filename: String, zoommin: Int64, zoommax: Int64, url: String, serverNames: String, isElipsoid: Bool, isInvertedY: Bool, isEnglish: Bool, tileSize: String, defaultTileSize: String, timeSupported: String, cachingMinutes: String) throws {
+    public func create(isShortSet: Bool, filename: String, zoommin: Int64, zoommax: Int64, url: String, serverNames: String, isElipsoid: Bool, isInvertedY: Bool, isEnglish: Bool, tileSize: String, defaultTileSize: String, timeSupported: String, cachingMinutes: String, isPrivateSet: Bool) throws {
         
-        let folderPatch = isShortSet ? patchTemplates.localPathToOsmandMetainfoShort : patchTemplates.localPathToOsmandMetainfoFull
+        var folderPatch = ""
+        
+        if isPrivateSet {
+            folderPatch = patchTemplates.localPathToOsmandMetainfoPrivate
+        } else {
+            if isShortSet {
+                folderPatch = patchTemplates.localPathToOsmandMetainfoShort
+            } else {
+                folderPatch = patchTemplates.localPathToOsmandMetainfoFull
+            }
+        }
+        
         
         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         

@@ -46,9 +46,9 @@ class OsmandAllMapsGenerator {
             if isPrivateSet && !mapClientLine.isPrivate {continue}
             
             if isForSqlitedb {
-                try generateSqlitedbItem(isShortSet: isShortSet, mapClientLine, mapsServerTable, isEnglish)
+                try generateSqlitedbItem(isShortSet: isShortSet, mapClientLine, mapsServerTable, isEnglish, isPrivateSet)
             } else {
-                try generateMetainfoItem(isShortSet: isShortSet, mapClientLine, mapsServerTable, isEnglish)
+                try generateMetainfoItem(isShortSet: isShortSet, mapClientLine, mapsServerTable, isEnglish, isPrivateSet)
             }
         }
         
@@ -75,7 +75,7 @@ class OsmandAllMapsGenerator {
     
     
     
-    private func generateMetainfoItem(isShortSet: Bool, _ mapClientLine: MapsClientData, _ mapsServerTable: [MapsServerData], _ isEnglish: Bool) throws {
+    private func generateMetainfoItem(isShortSet: Bool, _ mapClientLine: MapsClientData, _ mapsServerTable: [MapsServerData], _ isEnglish: Bool, _ isPrivateSet: Bool) throws {
         
         let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
         
@@ -124,7 +124,8 @@ class OsmandAllMapsGenerator {
                                    tileSize: tileSize,
                                    defaultTileSize: mapServerLine.dpiHD,
                                    timeSupported: cachingMinutes.timeSupported,
-                                   cachingMinutes: cachingMinutes.expireMinutes)
+                                   cachingMinutes: cachingMinutes.expireMinutes,
+                                   isPrivateSet: isPrivateSet)
     }
     
     
@@ -133,7 +134,7 @@ class OsmandAllMapsGenerator {
     
     
     
-    private func generateSqlitedbItem(isShortSet: Bool, _ mapClientLine: MapsClientData, _ mapsServerTable: [MapsServerData], _ isEnglish: Bool) throws {
+    private func generateSqlitedbItem(isShortSet: Bool, _ mapClientLine: MapsClientData, _ mapsServerTable: [MapsServerData], _ isEnglish: Bool, _ isPrivateSet: Bool) throws {
         
         let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
         
@@ -192,6 +193,7 @@ class OsmandAllMapsGenerator {
                                        timeSupport: cachingMinutes.timeSupported,
                                        timeStoring: cachingMinutes.expireMinutes,
                                        isEnglish: isEnglish,
+                                       isPrivateSet: isPrivateSet,
                                        defaultTileSize: mapServerLine.dpiHD)
     }
     

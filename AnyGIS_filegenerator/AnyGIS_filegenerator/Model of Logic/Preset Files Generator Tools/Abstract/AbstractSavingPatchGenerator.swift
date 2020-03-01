@@ -25,13 +25,13 @@ class AbstractSavingPatchGenerator {
     }
     
     
-    public func getAllMapsFileSavingPatch(isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) -> (patch: String, secondPatch: String?) {
+    public func getAllMapsFileSavingPatch(isShortSet: Bool, isEnglish: Bool, isPrivateSet: Bool, appName: ClientAppList) -> (patch: String, secondPatch: String?) {
         return (patch: "", secondPatch: nil)
     }
     
     
     
-    public func getOneMapFileSavingPatches(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData])  -> (patch: String, secondPatch: String?)  {
+    public func getOneMapFileSavingPatches(_ appName: ClientAppList, _ mapName: String, _ mapCategory: String, _ isShortSet: Bool, _ isEnglish: Bool, _ isPrivateSet: Bool, _ clientLine: MapsClientData, _ clientTable: [MapsClientData], _ serverTable: [MapsServerData])  -> (patch: String, secondPatch: String?)  {
         
         return (patch: "", secondPatch: nil)
     }

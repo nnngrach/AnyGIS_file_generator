@@ -12,6 +12,7 @@ import Foundation
 class Controller {
     
     private let diskHandler = DiskHandler()
+    private let zipHandler = ZipHandler()
     private let patches = FilePathTemplates()
     
     private let guruMapsGenerator = GuruAllMapsGenerator()
@@ -42,6 +43,7 @@ class Controller {
         generateInstallersForLocus()
         generateMapsForDesktop()
         generateMapsForSasPlanet()
+        cleanAndZip()
     }
 
 
@@ -77,10 +79,13 @@ class Controller {
         diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsFull + en, filetype: "xml")
         diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsShort + ru, filetype: "xml")
         diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsShort + en, filetype: "xml")
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsPrivate + ru, filetype: "xml")
         diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsFull + ru, filetype: "DS_Store")
         diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsFull + en, filetype: "DS_Store")
         diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsShort + ru, filetype: "DS_Store")
         diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsShort + en, filetype: "DS_Store")
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsPrivate + ru, filetype: "DS_Store")
+        
         
 
         do {
@@ -88,6 +93,7 @@ class Controller {
             try locusMapsGenerator.launch(isShortSet: false, isEnglish: true, isPrivateSet: false, appName: .Locus)
             try locusMapsGenerator.launch(isShortSet: true, isEnglish: false, isPrivateSet: false, appName: .Locus)
             try locusMapsGenerator.launch(isShortSet: false, isEnglish: false, isPrivateSet: false, appName: .Locus)
+            try locusMapsGenerator.launch(isShortSet: false, isEnglish: false, isPrivateSet: true, appName: .Locus)
         } catch {
             print(error)
         }
@@ -102,6 +108,7 @@ class Controller {
         diskHandler.cleanFolder(patch: patches.localPathToGuruMapsFull + en)
         diskHandler.cleanFolder(patch: patches.localPathToGuruMapsShort + ru)
         diskHandler.cleanFolder(patch: patches.localPathToGuruMapsShort + en)
+        diskHandler.cleanFolder(patch: patches.localPathToGuruMapsPrivate + ru)
         diskHandler.cleanFolder(patch: patches.localPathToGuruMapsInServer + ru)
         diskHandler.cleanFolder(patch: patches.localPathToGuruMapsInServer + en)
 
@@ -110,6 +117,8 @@ class Controller {
             try guruMapsGenerator.launch(isShortSet: false, isEnglish: true, isPrivateSet: false, appName: .GuruMapsIOS)
             try guruMapsGenerator.launch(isShortSet: true, isEnglish: false, isPrivateSet: false, appName: .GuruMapsIOS)
             try guruMapsGenerator.launch(isShortSet: false, isEnglish: false, isPrivateSet: false, appName: .GuruMapsIOS)
+            
+            try guruMapsGenerator.launch(isShortSet: false, isEnglish: false, isPrivateSet: true, appName: .GuruMapsIOS)
         } catch {
             print(error)
         }
@@ -123,12 +132,14 @@ class Controller {
         diskHandler.cleanFolder(patch: patches.localPathToOruxMapsFullInServer + en)
         diskHandler.cleanFolder(patch: patches.localPathToOruxMapsShortInServer + ru)
         diskHandler.cleanFolder(patch: patches.localPathToOruxMapsShortInServer + en)
+        diskHandler.cleanFolder(patch: patches.localPathToOruxMapsPrivate + ru)
 
         do {
             try oruxMapsGenerator.launch(isShortSet: true, isEnglish: true, isPrivateSet: false, appName: .Orux)
             try oruxMapsGenerator.launch(isShortSet: true, isEnglish: false, isPrivateSet: false, appName: .Orux)
             try oruxMapsGenerator.launch(isShortSet: false, isEnglish: true, isPrivateSet: false, appName: .Orux)
             try oruxMapsGenerator.launch(isShortSet: false, isEnglish: false, isPrivateSet: false, appName: .Orux)
+            try oruxMapsGenerator.launch(isShortSet: false, isEnglish: false, isPrivateSet: true, appName: .Orux)
         } catch {
             print(error)
         }
@@ -143,12 +154,14 @@ class Controller {
         diskHandler.cleanFolder(patch: patches.localPathToOsmandMapsFull + en)
         diskHandler.cleanFolder(patch: patches.localPathToOsmandMapsShort + ru)
         diskHandler.cleanFolder(patch: patches.localPathToOsmandMapsShort + en)
+        diskHandler.cleanFolder(patch: patches.localPathToOsmandMapsPrivate + ru)
 
         do {
             try osmandMapsGenerator.launch(isShortSet: true, isEnglish: true, isForSqlitedb: true, isPrivateSet: false)
             try osmandMapsGenerator.launch(isShortSet: true, isEnglish: false, isForSqlitedb: true, isPrivateSet: false)
             try osmandMapsGenerator.launch(isShortSet: false, isEnglish: true, isForSqlitedb: true, isPrivateSet: false)
             try osmandMapsGenerator.launch(isShortSet: false, isEnglish: false, isForSqlitedb: true, isPrivateSet: false)
+            try osmandMapsGenerator.launch(isShortSet: false, isEnglish: false, isForSqlitedb: true, isPrivateSet: true)
         } catch {
             print(error)
         }
@@ -164,6 +177,7 @@ class Controller {
         diskHandler.cleanFolder(patch: patches.localPathToOsmandMetainfoFull + en)
         diskHandler.cleanFolder(patch: patches.localPathToOsmandMetainfoShort + ru)
         diskHandler.cleanFolder(patch: patches.localPathToOsmandMetainfoShort + en)
+        diskHandler.cleanFolder(patch: patches.localPathToOsmandMetainfoPrivate + ru)
         
         
         
@@ -173,6 +187,7 @@ class Controller {
             try osmandMapsGenerator.launch(isShortSet: true, isEnglish: false, isForSqlitedb: false, isPrivateSet: false)
             try osmandMapsGenerator.launch(isShortSet: false, isEnglish: true, isForSqlitedb: false, isPrivateSet: false)
             try osmandMapsGenerator.launch(isShortSet: false, isEnglish: false, isForSqlitedb: false, isPrivateSet: false)
+            try osmandMapsGenerator.launch(isShortSet: false, isEnglish: false, isForSqlitedb: false, isPrivateSet: true)
         } catch {
             print(error)
         }
@@ -193,8 +208,11 @@ class Controller {
         diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsFull + patches.groupInOneFileSubfolder  + en)
         diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsShort + patches.groupInOneFileSubfolder  + ru)
         diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsShort + patches.groupInOneFileSubfolder  + en)
+        
         diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsInServer + ru)
         diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsInServer + en)
+        
+        diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsPrivate + ru)
         
         
         do {
@@ -203,11 +221,14 @@ class Controller {
             try alpineFoldersGenerator.createAllFoldersWithMaps(isEnglish: false, isShortSet: true, isPrivateSet: false)
             try alpineFoldersGenerator.createAllFoldersWithMaps(isEnglish: true, isShortSet: false, isPrivateSet: false)
             try alpineFoldersGenerator.createAllFoldersWithMaps(isEnglish: false, isShortSet: false, isPrivateSet: false)
-            
+
             try alpineMapsGenerator.launch(isShortSet: true, isEnglish: true, isPrivateSet: false, appName: .Alpine)
             try alpineMapsGenerator.launch(isShortSet: false, isEnglish: true, isPrivateSet: false, appName: .Alpine)
             try alpineMapsGenerator.launch(isShortSet: true, isEnglish: false, isPrivateSet: false, appName: .Alpine)
             try alpineMapsGenerator.launch(isShortSet: false, isEnglish: false, isPrivateSet: false, appName: .Alpine)
+            
+            try alpineFoldersGenerator.createAllFoldersWithMaps(isEnglish: false, isShortSet: false, isPrivateSet: true)
+            
             
         } catch {
             print(error)
@@ -222,14 +243,33 @@ class Controller {
         let en = patches.engLanguageSubfolder
         diskHandler.cleanFolder(patch: patches.localPathToDesktopMaps + ru)
         diskHandler.cleanFolder(patch: patches.localPathToDesktopMaps + en)
+        diskHandler.cleanFolder(patch: patches.localPathToDesktopMapsPrivate + ru)
     
         do {
-            try desktopGenerator.launch(isEnglish: true)
-            try desktopGenerator.launch(isEnglish: false)
+            try desktopGenerator.launch(isEnglish: true, isPrivateSet: false)
+            try desktopGenerator.launch(isEnglish: false, isPrivateSet: false)
+            try desktopGenerator.launch(isEnglish: false, isPrivateSet: true)
+
         } catch {
             print(error)
         }
     }
+    
+    
+    
+    private func cleanAndZip() {
+
+        diskHandler.cleanFolder(patch: patches.localPathToPrivateSetZip )
+        diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToPrivateSetFolder, filetype: "DS_Store")
+
+        do {
+            zipHandler.zip(sourcePath: patches.localPathToPrivateSetFolder, archievePath: patches.localPathToPrivateSetZip + "Anygis_additional_maps.zip")
+        } catch {
+            print(error)
+        }
+    }
+    
+    
     
     
     public func generateMapsForSasPlanet() {
@@ -281,37 +321,7 @@ class Controller {
             try markdownPagesWithMenuGenerator.launch(isEnglish: true, isShortSet: true, isPrivateSet: false, appName: .Alpine)
             try markdownPagesWithMenuGenerator.launch(isEnglish: true, isShortSet: false, isPrivateSet: false, appName: .Alpine)
             try markdownPagesWithMenuGenerator.launch(isEnglish: true, isShortSet: false, isPrivateSet: false, appName: .Desktop)
-            
-            
-//            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .Locus)
-//            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .Locus)
-//            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .GuruMapsAndroid)
-//            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .GuruMapsAndroid)
-//            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .GuruMapsIOS)
-//            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .GuruMapsIOS)
-//            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .Osmand)
-//            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .Osmand)
-//            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .OsmandMetainfo)
-//            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .OsmandMetainfo)
-//            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: false, appName: .Alpine)
-//            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .Alpine)
-//            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: false, appName: .Desktop)
-//
-//            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .Locus)
-//            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Locus)
-//            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .GuruMapsAndroid)
-//            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .GuruMapsAndroid)
-//            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .GuruMapsIOS)
-//            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .GuruMapsIOS)
-//            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .Osmand)
-//            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Osmand)
-//            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .OsmandMetainfo)
-//            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .OsmandMetainfo)
-//            try markdownPagesGenerator.launch(isShortSet: true, isEnglish: true, appName: .Alpine)
-//            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Alpine)
-//            try markdownPagesGenerator.launch(isShortSet: false, isEnglish: true, appName: .Desktop)
-            
-
+  
         } catch {
             print(error)
         }

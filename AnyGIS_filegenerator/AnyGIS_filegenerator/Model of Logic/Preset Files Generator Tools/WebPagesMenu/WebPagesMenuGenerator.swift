@@ -50,7 +50,7 @@ class WebPagesMenuGenerator {
         for mapClientLine in mapsClientTable {
             
             //Filtering
-            let isItUnnecessaryMap = abstractOneMapGenerator.isItUnnecessaryMap(mapClientLine, isShortSet, isEnglish, isPrivateSet: isPrivateSet, appName)
+            let isItUnnecessaryMap = abstractOneMapGenerator.isItUnnecessaryMap(mapClientLine, isShortSet, isEnglish, isPrivateSet, false, appName)
             
             if isItUnnecessaryMap {continue}
             

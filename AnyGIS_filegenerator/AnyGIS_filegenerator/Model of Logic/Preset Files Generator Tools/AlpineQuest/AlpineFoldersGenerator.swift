@@ -63,7 +63,7 @@ class AlpineFoldersGenerator {
                 // Last map of the current group.
                 // Finish collecting data and write a file.
                 if isNotFirstString {
-                    finishAndWriteFolder(folderName: previousFolder, content: content, isEnglish: isEnglish, isShortSet: isShortSet, clientLine: mapClientLine, clientTable: mapsClientTable, serverTable: mapsServerTable)
+                    finishAndWriteFolder(folderName: previousFolder, content: content, isEnglish: isEnglish, isShortSet: isShortSet, isPrivateSet: isPrivateSet, clientLine: mapClientLine, clientTable: mapsClientTable, serverTable: mapsServerTable)
                 }
                 
                 // Start collecting data for next group
@@ -84,18 +84,19 @@ class AlpineFoldersGenerator {
             }
             
             // For last iteration: write collected data to last file
-            finishAndWriteFolder(folderName: previousFolder, content: content, isEnglish: isEnglish, isShortSet: isShortSet, clientLine: mapClientLine, clientTable: mapsClientTable, serverTable: mapsServerTable)
+            finishAndWriteFolder(folderName: previousFolder, content: content, isEnglish: isEnglish, isShortSet: isShortSet, isPrivateSet: isPrivateSet, clientLine: mapClientLine, clientTable: mapsClientTable, serverTable: mapsServerTable)
         }
         
         
         
-        
-        zipHandler.zipMapsFolder(sourceShort: patchTemplates.localPathToAlpineMapsShort,
+        if !isPrivateSet {
+            zipHandler.zipMapsFolder(sourceShort: patchTemplates.localPathToAlpineMapsShort,
             SouceFull: patchTemplates.localPathToAlpineMapsFull,
             zipPath: patchTemplates.localPathToAlpineMapsZip,
             isShortSet: isShortSet,
             isEnglish: isEnglish,
             isForFolders: true)
+        }
         
     }
     
@@ -104,7 +105,7 @@ class AlpineFoldersGenerator {
     
     
     
-    private func finishAndWriteFolder(folderName: String, content: String, isEnglish: Bool, isShortSet: Bool, clientLine: MapsClientData, clientTable: [MapsClientData], serverTable: [MapsServerData]) {
+    private func finishAndWriteFolder(folderName: String, content: String, isEnglish: Bool, isShortSet: Bool, isPrivateSet: Bool, clientLine: MapsClientData, clientTable: [MapsClientData], serverTable: [MapsServerData]) {
         
         let resultContent = content + alpineLayerGenerator.getOutro()
         
@@ -115,18 +116,25 @@ class AlpineFoldersGenerator {
         
         //let gitHubFolder = isShortSet ? patchTemplates.localPathToAlpineMapsShort : patchTemplates.localPathToAlpineMapsFull
         
-        let gitHubFolderPath = getSourcePath(isEnglish: isEnglish, isShortSet: isShortSet) + filename
+        let gitHubFolderPath = getSourcePath(isEnglish: isEnglish, isShortSet: isShortSet, isPrivateSet: isPrivateSet) + filename
         
         let serverFolderPath = patchTemplates.localPathToAlpineMapsInServer + langLabel + filename
         
  
         self.diskHandler.createFile(patch: gitHubFolderPath, content: resultContent, isWithBOM: false)
-        self.diskHandler.createFile(patch: serverFolderPath, content: resultContent, isWithBOM: false)
+        
+        if !isPrivateSet {
+            self.diskHandler.createFile(patch: serverFolderPath, content: resultContent, isWithBOM: false)
+        }
     }
     
     
     
-    private func getSourcePath(isEnglish: Bool, isShortSet: Bool) -> String {
+    private func getSourcePath(isEnglish: Bool, isShortSet: Bool, isPrivateSet: Bool) -> String {
+        
+        guard !isPrivateSet else {
+            return patchTemplates.localPathToAlpineMapsPrivate + patchTemplates.rusLanguageSubfolder
+        }
         
         let gitHubFolder = isShortSet ? patchTemplates.localPathToAlpineMapsShort : patchTemplates.localPathToAlpineMapsFull
         

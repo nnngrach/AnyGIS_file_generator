@@ -41,7 +41,7 @@ class AbstractAllMapsGenerator {
         // Iterating for All Maps list
         for mapClientLine in mapsClientTable {
             
-            if oneMapGenerator.isItUnnecessaryMap(mapClientLine, isShortSet, isEnglish, isPrivateSet: isPrivateSet, appName) {continue}
+            if oneMapGenerator.isItUnnecessaryMap(mapClientLine, isShortSet, isEnglish, isPrivateSet, isAllMapsInOneFile, appName) {continue}
             
             if !isAllMapsInOneFile {
                 fileContent = ""
@@ -67,7 +67,7 @@ class AbstractAllMapsGenerator {
             // If creating new file with single map
             if !isAllMapsInOneFile {
                 
-                let patches = patchGenerator.getOneMapFileSavingPatches(appName, mapNameLabel, mapCategoryLabel, isShortSet, isEnglish, mapClientLine, mapsClientTable, mapsServerTable)
+                let patches = patchGenerator.getOneMapFileSavingPatches(appName, mapNameLabel, mapCategoryLabel, isShortSet, isEnglish, isPrivateSet, mapClientLine, mapsClientTable, mapsServerTable)
                 
                 // Save sinlge map file to GitHub syncing folder
                 diskHandler.createFile(patch: patches.patch, content: fileContent, isWithBOM: false)
@@ -86,7 +86,7 @@ class AbstractAllMapsGenerator {
             
             fileContent = oneMapGenerator.addIntroAndOutroTo(content: fileContent, isEnglish: isEnglish, appName: appName)
             
-            let patches = patchGenerator.getAllMapsFileSavingPatch(isShortSet: isShortSet, isEnglish: isEnglish, appName: appName)
+            let patches = patchGenerator.getAllMapsFileSavingPatch(isShortSet: isShortSet, isEnglish: isEnglish, isPrivateSet: isPrivateSet, appName: appName)
             
             diskHandler.createFile(patch: patches.patch, content: fileContent, isWithBOM: false)
             

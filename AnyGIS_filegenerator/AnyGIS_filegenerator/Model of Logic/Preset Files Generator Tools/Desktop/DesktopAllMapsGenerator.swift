@@ -17,7 +17,7 @@ class DesktopAllMapsGenerator {
     private let desktopTemplate = DesktopMapsTemplate()
     
     
-    public func launch(isEnglish: Bool) throws {
+    public func launch(isEnglish: Bool, isPrivateSet: Bool) throws {
         
         let mapsServerTable = try baseHandler.getMapsServerData()
         let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
@@ -28,7 +28,11 @@ class DesktopAllMapsGenerator {
             guard mapClientLine.visible else {continue}
             
             // TODO: Filter private maps
-            guard !mapClientLine.isPrivate else {continue}
+            if isPrivateSet && !mapClientLine.isPrivate {continue}
+            if !isPrivateSet && mapClientLine.isPrivate {continue}
+            
+
+
             
             
             let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
@@ -44,7 +48,7 @@ class DesktopAllMapsGenerator {
             
             
             
-            let folderPatch = patches.localPathToDesktopMaps
+            let folderPatch = isPrivateSet ? patches.localPathToDesktopMapsPrivate : patches.localPathToDesktopMaps
             
             let langLabel = isEnglish ? patches.engLanguageSubfolder : patches.rusLanguageSubfolder
             

@@ -15,7 +15,7 @@ class AbstractOneMapGenerator {
     }
     
     
-    public func isItUnnecessaryMap(_ mapClientLine: MapsClientData, _ isShortSet: Bool, _ isEnglish: Bool, isPrivateSet: Bool, _ appName: ClientAppList) -> Bool {
+    public func isItUnnecessaryMap(_ mapClientLine: MapsClientData, _ isShortSet: Bool, _ isEnglish: Bool, _ isPrivateSet: Bool, _ isAllMapsInOneFile: Bool, _ appName: ClientAppList) -> Bool {
         
         // Filter off service layers
         if appName == ClientAppList.Orux && !mapClientLine.forOrux {return true}
@@ -39,8 +39,13 @@ class AbstractOneMapGenerator {
         
         // TODO: Filter private maps
         // Filter private maps
-        if !isPrivateSet && mapClientLine.isPrivate {return true}
-        if isPrivateSet && !mapClientLine.isPrivate {return true}
+        if !isAllMapsInOneFile {
+            if !isPrivateSet && mapClientLine.isPrivate {return true}
+            if isPrivateSet && !mapClientLine.isPrivate {return true}
+        } else {
+            if !isPrivateSet && mapClientLine.isPrivate {return true}
+        }
+        
         
         return false
     }

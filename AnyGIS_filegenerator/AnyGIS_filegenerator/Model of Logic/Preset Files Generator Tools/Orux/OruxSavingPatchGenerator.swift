@@ -10,7 +10,13 @@ import Foundation
 
 class OruxSavingPatchGenerator: AbstractSavingPatchGenerator {
     
-    override func getAllMapsFileSavingPatch(isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) -> (patch: String, secondPatch: String?) {
+    override func getAllMapsFileSavingPatch(isShortSet: Bool, isEnglish: Bool, isPrivateSet: Bool, appName: ClientAppList) -> (patch: String, secondPatch: String?) {
+        
+        guard !isPrivateSet else {
+            return (patch: patchTemplates.localPathToOruxMapsPrivate + patchTemplates.rusLanguageSubfolder + "onlinemapsources.xml",
+            secondPatch: nil)
+        }
+        
         
         let githubPatch = isShortSet ? patchTemplates.localPathToOruxMapsShort : patchTemplates.localPathToOruxMapsFull
         
@@ -20,7 +26,6 @@ class OruxSavingPatchGenerator: AbstractSavingPatchGenerator {
         
         //return patch + langLabel + "onlinemapsources.xml"
         
-        print()
         
         return (patch: githubPatch + langLabel + "onlinemapsources.xml",
                 secondPatch: serverPatch + langLabel + "onlinemapsources.xml")

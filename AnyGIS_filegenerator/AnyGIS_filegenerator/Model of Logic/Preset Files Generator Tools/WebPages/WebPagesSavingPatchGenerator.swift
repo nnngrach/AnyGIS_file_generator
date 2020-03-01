@@ -10,7 +10,7 @@ import Foundation
 
 class WebPagesSavingPatchGenerator: AbstractSavingPatchGenerator {
     
-    override func getAllMapsFileSavingPatch(isShortSet: Bool, isEnglish: Bool, appName: ClientAppList) -> (patch: String, secondPatch: String?) {
+    override func getAllMapsFileSavingPatch(isShortSet: Bool, isEnglish: Bool, isPrivateSet: Bool, appName: ClientAppList) -> (patch: String, secondPatch: String?) {
         
         let firstPart = patchTemplates.localPathToMarkdownPages
         let secondPart = appName.rawValue.replacingOccurrences(of: " ", with: "_")

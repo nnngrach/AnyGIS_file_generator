@@ -14,9 +14,21 @@ class SqlitedbHandler {
     
 
     
-    public func createFile(isShortSet: Bool, filename: String, zoommin: Int64, zoommax: Int64, patch: String, serverNames: String, isEllipsoid: Int64, isInvertedY: Int64, refererUrl: String?, timeSupport: String, timeStoring: String, isEnglish: Bool, defaultTileSize: String) throws {
+    public func createFile(isShortSet: Bool, filename: String, zoommin: Int64, zoommax: Int64, patch: String, serverNames: String, isEllipsoid: Int64, isInvertedY: Int64, refererUrl: String?, timeSupport: String, timeStoring: String, isEnglish: Bool, isPrivateSet: Bool, defaultTileSize: String) throws {
         
-        let folderPatch = isShortSet ? patchTemplates.localPathToOsmandMapsShort : patchTemplates.localPathToOsmandMapsFull
+        
+        var folderPatch = ""
+        
+        if isPrivateSet {
+            folderPatch = patchTemplates.localPathToOsmandMapsPrivate
+        } else {
+            if isShortSet {
+                folderPatch = patchTemplates.localPathToOsmandMapsShort
+            } else {
+                folderPatch = patchTemplates.localPathToOsmandMapsFull
+            }
+        }
+        
         
          let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         
