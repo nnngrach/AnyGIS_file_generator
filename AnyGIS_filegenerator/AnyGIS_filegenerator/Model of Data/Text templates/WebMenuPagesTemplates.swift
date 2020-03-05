@@ -245,11 +245,12 @@ struct WebMenuPageTemplates {
         
          let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         
+        let preparedFileName = fileName.replacingOccurrences(of: "=", with: "%3D")
+        
         switch appName {
         case .Locus:
-            resultUrl = patchTemplates.gitLocusActionInstallersFolder + langLabel + "__" + fileName + ".xml"
+            resultUrl = patchTemplates.gitLocusActionInstallersFolder + langLabel + "__" + preparedFileName + ".xml"
         case .GuruMapsIOS:
-            let preparedFileName = fileName.replacingOccurrences(of: "=", with: "%3D")
             resultUrl = patchTemplates.gitMapsFolder + langLabel + preparedFileName + ".ms"
         case .GuruMapsAndroid:
             resultUrl = patchTemplates.anygisGuruMapsFolder + langLabel + fileName + ".ms"

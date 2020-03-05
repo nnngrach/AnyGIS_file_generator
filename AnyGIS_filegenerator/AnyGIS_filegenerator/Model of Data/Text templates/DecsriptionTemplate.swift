@@ -16,6 +16,7 @@ struct DecsriptionTemplate {
     //MARK: Templates for description
     
     func getCreationTime() -> String {
+        
         let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
@@ -47,12 +48,14 @@ struct DecsriptionTemplate {
         
         //let currentAppName = appName.rawValue
         
-        return """
-        <!--
-        Map pack from AnyGIS.ru
-        Updated: \(getCreationTime())
-        -->
+        return ""
         
-        """
+//        return """
+//        <!--
+//        Map pack from AnyGIS.ru
+//        Updated: \(getCreationTime())
+//        -->
+//
+//        """
     }
 }

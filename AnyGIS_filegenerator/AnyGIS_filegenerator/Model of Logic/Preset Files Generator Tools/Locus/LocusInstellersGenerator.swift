@@ -28,7 +28,7 @@ class LocusInstallersGenerator {
             guard mapClientLine.visible else {continue}
             
             // TODO: Filter private maps
-            guard mapClientLine.isPrivate else {continue}
+            guard !mapClientLine.isPrivate else {continue}
             
             let mapFileName = "=" + mapClientLine.groupPrefix + "=" + mapClientLine.clientMapName
             
@@ -62,6 +62,8 @@ class LocusInstallersGenerator {
             guard mapClientLine.forLocus else {continue}
             guard mapClientLine.visible else {continue}
             
+            // TODO: Filter private maps
+            guard !mapClientLine.isPrivate else {continue}
             
             let mapFileName = "=" + mapClientLine.groupPrefix + "=" + mapClientLine.clientMapName
             
@@ -127,6 +129,9 @@ class LocusInstallersGenerator {
             if isShortSet && !mapClientLine.isInStarterSetEng && isEnglish {continue}
             if !mapClientLine.forRus && !isEnglish {continue}
             if !mapClientLine.forEng && isEnglish {continue}
+            
+            // TODO: Filter private maps
+            guard !mapClientLine.isPrivate else {continue}
             
             if mapClientLine.groupName != previousFolder {
                 
