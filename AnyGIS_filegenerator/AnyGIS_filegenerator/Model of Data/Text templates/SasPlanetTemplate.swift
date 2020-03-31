@@ -39,6 +39,19 @@ class SasPlanetTemplate {
     
     
     
+//    private func getGUID(sasPlanetLine: SasPlanetData) -> String {
+//
+//        if sasPlanetLine.GUID != "" {
+//            return sasPlanetLine.GUID
+//        } else {
+//            let generatedGUID = UUID().uuidString
+//            sasPlanetLine.GUID = generatedGUID
+//            var a = sasPlanetLine
+//
+//            return generatedGUID
+//        }
+//    }
+    
     
     
     private func getURL(_ url: String, _ isUsingAnygisProxy: Bool, anygisMapname: String) -> String {

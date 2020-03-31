@@ -63,5 +63,7 @@ struct MapsClientDataDB {
     static let copyright = Expression<String?>("copyright")
     
     static let isPrivate = Expression<Bool?>("isPrivate")
-
+    
+    static let emojiGroupRu = Expression<String?>("emojiGroupRu")
+    static let emojiGroupEn = Expression<String?>("emojiGroupEn")
 }

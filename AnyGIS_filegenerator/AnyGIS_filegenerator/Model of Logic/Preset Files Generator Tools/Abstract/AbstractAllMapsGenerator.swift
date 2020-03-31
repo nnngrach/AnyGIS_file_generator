@@ -47,8 +47,9 @@ class AbstractAllMapsGenerator {
                 fileContent = ""
             }
         
-        
+            
             let mapNameLabel = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
+            
             let mapCategoryLabel = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
             
             

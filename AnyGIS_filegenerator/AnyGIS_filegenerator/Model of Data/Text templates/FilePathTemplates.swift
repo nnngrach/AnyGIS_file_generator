@@ -29,6 +29,8 @@ struct FilePathTemplates {
     
     
     
+    
+    
     let localPathToLocusIcons = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Icons"
     let localPathToLocusInstallers = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Installers"
     let localPathToGeoJson = "file:///Projects/GIS/Online%20map%20sources/map-sources/GeoJson"

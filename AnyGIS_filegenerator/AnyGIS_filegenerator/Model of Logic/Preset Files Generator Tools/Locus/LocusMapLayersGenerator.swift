@@ -27,6 +27,9 @@ class LocusMapLayersGenerator: AbstractMapLayersGenerator {
     
     override func generateOneLayerContent(_ mapName: String, _ mapCategory: String, _ url: String, _ serverParts: String, _ background: String, _ isRetina: Bool, _ isEnglish: Bool, _ appName: ClientAppList, _ clientLine: MapsClientData, _ serverLine: MapsServerData, _ mainLayerId: Int64) -> String {
         
+        
+        let fullMapName = isEnglish ? (clientLine.emojiGroupEn + " " + clientLine.shortNameEng) : (clientLine.emojiGroupRu + " " + clientLine.shortName)
+        
         // New version of Locus don't overwriting maps with the same id
         var currentLayerUnicId: Int64
         var backgroundLayerUnicId: String
@@ -63,7 +66,7 @@ class LocusMapLayersGenerator: AbstractMapLayersGenerator {
         }
         
         
-        return locusTemplates.getMapFileItem(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: mapName, countries: clientLine.countries, usage: clientLine.usage, url: url, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina, cacheTimeout: clientLine.cacheStoringHours, tileScalesBlock: tileScalesBlock, copyright: clientLine.copyright)
+        return locusTemplates.getMapFileItem(id: currentLayerUnicId, projection: clientLine.projection, visible: clientLine.visible, background: backgroundLayerUnicId, group: mapCategory, name: fullMapName, countries: clientLine.countries, usage: clientLine.usage, url: url, serverParts: serverParts, zoomMin: serverLine.zoomMin, zoomMax: serverLine.zoomMax, referer: serverLine.referer, isRetina: isRetina, cacheTimeout: clientLine.cacheStoringHours, tileScalesBlock: tileScalesBlock, copyright: clientLine.copyright)
     }
     
 }

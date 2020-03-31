@@ -27,6 +27,8 @@
 		330F3F5F2331734300343CA2 /* MapsPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F3F5E2331734300343CA2 /* MapsPreviewData.swift */; };
 		330F3F612331739E00343CA2 /* MapsPreviewDataDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F3F602331739E00343CA2 /* MapsPreviewDataDB.swift */; };
 		330F3F6323317FEC00343CA2 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330F3F6223317FEC00343CA2 /* Enums.swift */; };
+		332AA44A2426717C001162F8 /* WebPagesMapsListGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332AA4492426717C001162F8 /* WebPagesMapsListGenerator.swift */; };
+		332AA44D24334308001162F8 /* OsmandGeneratorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332AA44C24334308001162F8 /* OsmandGeneratorDTO.swift */; };
 		333F214422DC5AED0099A8D0 /* MetainfoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333F214322DC5AED0099A8D0 /* MetainfoHandler.swift */; };
 		33405E752286EC220032B3DD /* OsmXmlParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33405E742286EC220032B3DD /* OsmXmlParser.swift */; };
 		33405E792286ECCC0032B3DD /* OsmWay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33405E782286ECCC0032B3DD /* OsmWay.swift */; };
@@ -106,6 +108,8 @@
 		330F3F5E2331734300343CA2 /* MapsPreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsPreviewData.swift; sourceTree = "<group>"; };
 		330F3F602331739E00343CA2 /* MapsPreviewDataDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsPreviewDataDB.swift; sourceTree = "<group>"; };
 		330F3F6223317FEC00343CA2 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		332AA4492426717C001162F8 /* WebPagesMapsListGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPagesMapsListGenerator.swift; sourceTree = "<group>"; };
+		332AA44C24334308001162F8 /* OsmandGeneratorDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmandGeneratorDTO.swift; sourceTree = "<group>"; };
 		333F214322DC5AED0099A8D0 /* MetainfoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetainfoHandler.swift; sourceTree = "<group>"; };
 		33405E742286EC220032B3DD /* OsmXmlParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmXmlParser.swift; sourceTree = "<group>"; };
 		33405E782286ECCC0032B3DD /* OsmWay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmWay.swift; sourceTree = "<group>"; };
@@ -289,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				3374373123D6334400AAA331 /* WebPagesMenuGenerator.swift */,
+				332AA4492426717C001162F8 /* WebPagesMapsListGenerator.swift */,
 			);
 			path = WebPagesMenu;
 			sourceTree = "<group>";
@@ -453,6 +458,7 @@
 				33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */,
 				333F214322DC5AED0099A8D0 /* MetainfoHandler.swift */,
 				33B76E3E224E5DA30010E35E /* OsmandAllMapsGenerator.swift */,
+				332AA44C24334308001162F8 /* OsmandGeneratorDTO.swift */,
 			);
 			path = Osmand;
 			sourceTree = "<group>";
@@ -678,6 +684,7 @@
 				337049B72282D4C90080FF9E /* WesraPassNakarte.swift in Sources */,
 				338B7CE5234CF9FC00DA53CA /* SasPlanetTemplate.swift in Sources */,
 				33B76E1D224BD62A0010E35E /* MapsClientDataDB.swift in Sources */,
+				332AA44D24334308001162F8 /* OsmandGeneratorDTO.swift in Sources */,
 				33B76E11224BA66C0010E35E /* FilePathTemplates.swift in Sources */,
 				3358321122495813001FFC0A /* ViewController.swift in Sources */,
 				33F766EE23D10275007FE0D2 /* DesktopAllMapsGenerator.swift in Sources */,
@@ -685,6 +692,7 @@
 				333F214422DC5AED0099A8D0 /* MetainfoHandler.swift in Sources */,
 				3358320F22495813001FFC0A /* AppDelegate.swift in Sources */,
 				33F766F023D10915007FE0D2 /* DesktopMapsTemplate.swift in Sources */,
+				332AA44A2426717C001162F8 /* WebPagesMapsListGenerator.swift in Sources */,
 				330F3F5F2331734300343CA2 /* MapsPreviewData.swift in Sources */,
 				33B76E19224BD47A0010E35E /* MapsServerDataDB.swift in Sources */,
 				339B6F8D22EC9AA000D069C7 /* AlpineSavingPathGenerator.swift in Sources */,

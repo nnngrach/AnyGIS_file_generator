@@ -38,10 +38,16 @@ class GuruOneMapGenerator: AbstractOneMapGenerator {
     private func getFullName(_ clientLine: MapsClientData, _ isEnglish: Bool) -> String {
         
         if isEnglish {
-            return clientLine.groupNameEng + " - " + clientLine.shortNameEng
+            return clientLine.emojiGroupEn + " " + clientLine.shortNameEng
         } else {
-            return clientLine.groupName + " - " + clientLine.shortName
+            return clientLine.emojiGroupRu + " " + clientLine.shortName
         }
+        
+//        if isEnglish {
+//            return clientLine.groupNameEng + " - " + clientLine.shortNameEng
+//        } else {
+//            return clientLine.groupName + " - " + clientLine.shortName
+//        }
     }
     
     

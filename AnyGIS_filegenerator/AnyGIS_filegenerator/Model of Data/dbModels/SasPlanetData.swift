@@ -10,6 +10,8 @@ import SQLite
 
 struct SasPlanetData {
     
+    var GUID: String
+    
     var anygisName: String
     
     var menuRu: String

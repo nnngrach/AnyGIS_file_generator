@@ -27,6 +27,7 @@ class Controller {
     private let sasPlanetGenerator = SasPlanetMapsGenerator()
     
     private let markdownPagesWithMenuGenerator = WebPagesMenuGenerator()
+    private let webPagesListGenerator = WebPagesMapsListGenerator()
     
 //    private let westraParser = WestraParser()
 //    private let osmXmlParser = OsmXmlParser()
@@ -294,6 +295,10 @@ class Controller {
 
         do {
             
+            
+            try webPagesListGenerator.launch(isEnglish: false, isShortSet: false, isPrivateSet: false, appName: .Locus)
+            
+    
             try markdownPagesWithMenuGenerator.launch(isEnglish: false, isShortSet: true, isPrivateSet: false, appName: .Locus)
             try markdownPagesWithMenuGenerator.launch(isEnglish: false, isShortSet: false, isPrivateSet: false, appName: .Locus)
             try markdownPagesWithMenuGenerator.launch(isEnglish: false, isShortSet: true, isPrivateSet: false, appName: .GuruMapsAndroid)
@@ -321,7 +326,8 @@ class Controller {
             try markdownPagesWithMenuGenerator.launch(isEnglish: true, isShortSet: true, isPrivateSet: false, appName: .Alpine)
             try markdownPagesWithMenuGenerator.launch(isEnglish: true, isShortSet: false, isPrivateSet: false, appName: .Alpine)
             try markdownPagesWithMenuGenerator.launch(isEnglish: true, isShortSet: false, isPrivateSet: false, appName: .Desktop)
-  
+ 
+ 
         } catch {
             print(error)
         }

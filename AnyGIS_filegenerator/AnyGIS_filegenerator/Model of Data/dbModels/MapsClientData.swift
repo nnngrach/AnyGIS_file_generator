@@ -61,4 +61,7 @@ struct MapsClientData {
     let copyright: String
     
     let isPrivate: Bool
+    
+    let emojiGroupRu: String
+    let emojiGroupEn: String
 }

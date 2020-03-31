@@ -138,7 +138,9 @@ class SqliteHandler {
                           isRetina: rawLine[MapsClientDataDB.isRetina]!,
                           comment: rawLine[MapsClientDataDB.comment]!,
                           copyright: rawLine[MapsClientDataDB.copyright]!,
-                          isPrivate: rawLine[MapsClientDataDB.isPrivate]!)
+                          isPrivate: rawLine[MapsClientDataDB.isPrivate]!,
+                          emojiGroupRu: rawLine[MapsClientDataDB.emojiGroupRu]!,
+                          emojiGroupEn: rawLine[MapsClientDataDB.emojiGroupEn]!)
             
             
             result.append(item)
@@ -230,7 +232,8 @@ class SqliteHandler {
             
             guard rawLine != nil else {return nil}
             
-            return SasPlanetData(anygisName: rawLine![SasPlanetDataDB.anygisName]!,
+            return SasPlanetData(GUID: rawLine![SasPlanetDataDB.GUID] ?? "",
+                                 anygisName: rawLine![SasPlanetDataDB.anygisName]!,
                                  menuRu: rawLine![SasPlanetDataDB.menuRu]!,
                                  menuUk: rawLine![SasPlanetDataDB.menuUk]!,
                                  menuEn: rawLine![SasPlanetDataDB.menuEn]!,

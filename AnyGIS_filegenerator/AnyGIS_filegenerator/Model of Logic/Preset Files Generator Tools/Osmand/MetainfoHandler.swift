@@ -16,14 +16,15 @@ class MetainfoHandler {
     private let osmandTemplate = OsmandMapsTemplate()
     
     
-    public func create(isShortSet: Bool, filename: String, zoommin: Int64, zoommax: Int64, url: String, serverNames: String, isElipsoid: Bool, isInvertedY: Bool, isEnglish: Bool, tileSize: String, defaultTileSize: String, timeSupported: String, cachingMinutes: String, isPrivateSet: Bool) throws {
+    
+    public func create(dto: OsmandGeneratorDTO) throws {
         
         var folderPatch = ""
         
-        if isPrivateSet {
+        if dto.isPrivateSet {
             folderPatch = patchTemplates.localPathToOsmandMetainfoPrivate
         } else {
-            if isShortSet {
+            if dto.isShortSet {
                 folderPatch = patchTemplates.localPathToOsmandMetainfoShort
             } else {
                 folderPatch = patchTemplates.localPathToOsmandMetainfoFull
@@ -31,17 +32,17 @@ class MetainfoHandler {
         }
         
         
-        let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
+        let langLabel = dto.isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         
         
-        let mapFolderName = folderPatch + langLabel + "=" + filename
+        let mapFolderName = folderPatch + langLabel + "=" + dto.filename
         
         diskHandler.createFolder(patch: mapFolderName)
         
         
-        let urlWithDefaultTileSize = url.replacingOccurrences(of: "{tileSize}", with: defaultTileSize)
+        let urlWithDefaultTileSize = dto.url.replacingOccurrences(of: "{tileSize}", with: dto.defaultTileSize)
         
-        let content = osmandTemplate.getMetainfoText(url: urlWithDefaultTileSize, serverNames: serverNames, minZoom: zoommin, maxZoom: zoommax, isEllipsoid: isElipsoid, isInvertedY: isInvertedY, tileSize: tileSize, timeSupported: timeSupported, cachingMinutes: cachingMinutes)
+        let content = osmandTemplate.getMetainfoText(url: urlWithDefaultTileSize, serverNames: dto.serverNames, minZoom: dto.zoommin, maxZoom: dto.zoommax, isEllipsoid: dto.isEllipsoid, isInvertedY: dto.isInvertedY, tileSize: dto.tileSize, timeSupported: dto.timeSupport, cachingMinutes: dto.cachingMinutes)
         
         let filename = "/.metainfo"
         
@@ -51,5 +52,6 @@ class MetainfoHandler {
         zipHandler.zip(sourcePath: mapFolderName,
                        archievePath: mapFolderName + ".zip")
     }
+    
     
 }

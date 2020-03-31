@@ -24,6 +24,7 @@ class AlpineOneMapGenerator: AbstractOneMapGenerator {
         
         let intro = alpineTemplates.getIntro(groupName: groupName)
         
+        
         let oneMapData = layersGenerator.getAllLayersContent(mapName, mapCategory, clientLine.id, clientLine.layersIDList, clientLine, clientTable, serverTable, isEnglish, appName, previousCategory)
         
         let outro = alpineTemplates.getOutro()

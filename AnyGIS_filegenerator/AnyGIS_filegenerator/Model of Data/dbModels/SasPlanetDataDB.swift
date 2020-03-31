@@ -12,6 +12,7 @@ struct SasPlanetDataDB {
     
     static let table = Table("SasPlanetData")
     
+    static let GUID = Expression<String?>("GUID")
     static let anygisName = Expression<String?>("anygisName")
     
     static let menuRu = Expression<String?>("menuRu")
