@@ -27,9 +27,6 @@ class OsmandAllMapsGenerator {
         
         for mapClientLine in mapsClientTable {
             
-            //print(mapClientLine.id, mapClientLine.shortName)
-            //print(mapClientLine.id, mapClientLine.anygisMapName, mapClientLine.clientMapName)
-            
             if isItUnnececaryMap(isForSqlitedb, isShortSet, isEnglish, isPrivateSet, mapClientLine: mapClientLine) {continue}
             
             let mapData = prepareMapDate( isShortSet, isEnglish, isForSqlitedb, mapClientLine, mapsServerTable, isPrivateSet)

@@ -19,13 +19,13 @@ class SasPlanetTemplate {
         
         return  rn +
                 "[PARAMS]" + rn +
-                "GUID={" + UUID().uuidString + "}" + rn +
+                "GUID={" + sasPlanetLine.GUID + "}" + rn +
                 "ParentSubMenu_ru=" + sasPlanetLine.menuRu + rn +
                 "ParentSubMenu_uk=" + sasPlanetLine.menuUk + rn +
                 "ParentSubMenu=" + sasPlanetLine.menuEn + rn +
-                "name_ru=" + sasPlanetLine.nameRu + rn +
-                "name_uk=" + sasPlanetLine.nameUk + rn +
-                "name=" + sasPlanetLine.nameEn + rn +
+                "name_ru=" + getNameRU(mapClientLine, sasPlanetLine) + rn +
+                "name_uk=" + getNameUK(mapClientLine, sasPlanetLine) + rn +
+                "name=" + getNameEN(mapClientLine, sasPlanetLine) + rn +
                 "NameInCache=" + sasPlanetLine.mapFileName + rn +
                 "asLayer=" + getLayerNumber(mapPreviewLine.isOverlay) + rn +
                 getProjection(mapClientLine.projection) + rn +
@@ -34,23 +34,41 @@ class SasPlanetTemplate {
                 getAllHeaders(mapServerLine.referer) + rn +
                 "ContentType=image/jpeg,image/png" + rn +
                 "Ext=." + sasPlanetLine.tileFormat + rn +
-                getLicense(mapClientLine.copyright) + rn
+                getTrafficSettings(mapClientLine) +
+                getLicense(mapClientLine.copyright)
     }
     
     
     
-//    private func getGUID(sasPlanetLine: SasPlanetData) -> String {
-//
-//        if sasPlanetLine.GUID != "" {
-//            return sasPlanetLine.GUID
-//        } else {
-//            let generatedGUID = UUID().uuidString
-//            sasPlanetLine.GUID = generatedGUID
-//            var a = sasPlanetLine
-//
-//            return generatedGUID
-//        }
-//    }
+
+    
+    private func getNameRU(_ mapClientLine: MapsClientData, _ sasPlanetLine: SasPlanetData) -> String {
+        
+        let sasTableNameIsEmpty = sasPlanetLine.nameRu == nil || sasPlanetLine.nameRu!.replacingOccurrences(of: " ", with: "") == ""
+        
+        return sasTableNameIsEmpty ? mapClientLine.shortName : sasPlanetLine.nameRu!
+    }
+    
+    
+    
+    private func getNameEN(_ mapClientLine: MapsClientData, _ sasPlanetLine: SasPlanetData) -> String {
+        
+        let sasTableNameIsEmpty = sasPlanetLine.nameEn == nil || sasPlanetLine.nameEn!.replacingOccurrences(of: " ", with: "") == ""
+        
+        return sasTableNameIsEmpty ? mapClientLine.shortNameEng : sasPlanetLine.nameEn!
+    }
+    
+    
+    
+    private func getNameUK(_ mapClientLine: MapsClientData, _ sasPlanetLine: SasPlanetData) -> String {
+        
+        let sasTableNameIsEmpty = sasPlanetLine.nameRu == nil || sasPlanetLine.nameUk!.replacingOccurrences(of: " ", with: "") == ""
+        
+        return sasTableNameIsEmpty ? mapClientLine.shortName : sasPlanetLine.nameUk!
+    }
+    
+    
+    
     
     
     
@@ -130,6 +148,22 @@ class SasPlanetTemplate {
         
         if referer.count > 1 {
             return "Referer:" + referer + "\\r\\n"
+        } else {
+            return ""
+        }
+    }
+    
+    
+    private func getTrafficSettings(_ mapClientLine: MapsClientData) -> String {
+        if mapClientLine.cacheStoringHours == 0 {
+            return """
+            CacheType=9
+            UseMemCache=1
+            MemCacheCapacity=100
+            MemCacheTTL=60000
+            MemCacheClearStrategy=1
+            RestartDownloadOnMemCacheTTL=1
+            """ + rn
         } else {
             return ""
         }

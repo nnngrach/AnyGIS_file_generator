@@ -176,9 +176,6 @@ struct WebPageTemplates {
     
     func getPreviwIconCode(hasPreview: Bool, isEnglish: Bool, mapName: String) -> String {
         
-        //return ""
-        
-        
         
         if hasPreview {
             let iconUrl = patchTemplates.siteHost + "Web/Img/eye.png"
@@ -186,8 +183,6 @@ struct WebPageTemplates {
             let label = isEnglish ? "Preview map" : "Предпросмотр карты"
             
             return "<a href=\"\(previewPageUrl)\" target=\"_blank\" title=\"\(label)\" > <img src=\"\(iconUrl)\" /> </a>"
-            
-            //return "[![](\(iconUrl) \"\(label)\")](\(previewPageUrl))"
             
         } else {
             let iconUrl = patchTemplates.siteHost + "Web/Img/eyeNo.png"

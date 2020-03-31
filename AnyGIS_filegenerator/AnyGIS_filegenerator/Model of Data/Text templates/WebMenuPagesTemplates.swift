@@ -18,8 +18,6 @@ struct WebMenuPageTemplates {
     private let jsPath = "/assets/js/scale.fix.js"
     
     
-        
-    
     private let contentStub = "{{ content }}"
     private let langStub = "{{ site.lang | default: \"en-US\" }}"
     private let siteHeaderStub = "{{ site.title | default: site.github.repository_name }}"

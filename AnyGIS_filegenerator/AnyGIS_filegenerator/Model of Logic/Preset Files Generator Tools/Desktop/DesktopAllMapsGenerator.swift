@@ -46,8 +46,6 @@ class DesktopAllMapsGenerator {
             let content = desktopTemplate.getFileContent(mapName: fullMapName, anygisMapName: mapServerLine.name, isProxyOnly: mapClientLine.desktopLoadAnygis, url: mapServerLine.backgroundUrl, serverParts: mapServerLine.backgroundServerName, dpiSdName: mapServerLine.dpiSD, dpiHdName: mapServerLine.dpiHD, referer: mapServerLine.referer, minZoom: mapServerLine.zoomMin, maxZoom: mapServerLine.zoomMax, proection: mapClientLine.projection, anygisHostUrl: patches.serverHost)
             
             
-            
-            
             let folderPatch = isPrivateSet ? patches.localPathToDesktopMapsPrivate : patches.localPathToDesktopMaps
             
             let langLabel = isEnglish ? patches.engLanguageSubfolder : patches.rusLanguageSubfolder

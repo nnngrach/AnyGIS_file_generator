@@ -25,12 +25,9 @@ class Controller {
     private let locusInstallerGeneretor = LocusInstallersGenerator()
     private let desktopGenerator = DesktopAllMapsGenerator()
     private let sasPlanetGenerator = SasPlanetMapsGenerator()
-    
     private let markdownPagesWithMenuGenerator = WebPagesMenuGenerator()
     private let webPagesListGenerator = WebPagesMapsListGenerator()
     
-//    private let westraParser = WestraParser()
-//    private let osmXmlParser = OsmXmlParser()
 
 
     public func generateAll() {
@@ -47,6 +44,8 @@ class Controller {
         cleanAndZip()
     }
 
+    
+    
 
     public func generateInstallersForLocus() {
         let ru = patches.rusLanguageSubfolder
@@ -86,8 +85,6 @@ class Controller {
         diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsShort + ru, filetype: "DS_Store")
         diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsShort + en, filetype: "DS_Store")
         diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToLocusMapsPrivate + ru, filetype: "DS_Store")
-        
-        
 
         do {
             try locusMapsGenerator.launch(isShortSet: true, isEnglish: true, isPrivateSet: false, appName: .Locus)
@@ -180,9 +177,6 @@ class Controller {
         diskHandler.cleanFolder(patch: patches.localPathToOsmandMetainfoShort + en)
         diskHandler.cleanFolder(patch: patches.localPathToOsmandMetainfoPrivate + ru)
         
-        
-        
-        
         do {
             try osmandMapsGenerator.launch(isShortSet: true, isEnglish: true, isForSqlitedb: false, isPrivateSet: false)
             try osmandMapsGenerator.launch(isShortSet: true, isEnglish: false, isForSqlitedb: false, isPrivateSet: false)
@@ -197,7 +191,6 @@ class Controller {
     
     
     public func generateMapsForAlpine() {
-        
         let ru = patches.rusLanguageSubfolder
         let en = patches.engLanguageSubfolder
         diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToAlpineMapsZip, filetype: "zip")
@@ -212,9 +205,7 @@ class Controller {
         
         diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsInServer + ru)
         diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsInServer + en)
-        
         diskHandler.cleanFolder(patch: patches.localPathToAlpineMapsPrivate + ru)
-        
         
         do {
             
@@ -229,8 +220,6 @@ class Controller {
             try alpineMapsGenerator.launch(isShortSet: false, isEnglish: false, isPrivateSet: false, appName: .Alpine)
             
             try alpineFoldersGenerator.createAllFoldersWithMaps(isEnglish: false, isShortSet: false, isPrivateSet: true)
-            
-            
         } catch {
             print(error)
         }
@@ -259,22 +248,16 @@ class Controller {
     
     
     private func cleanAndZip() {
-
         diskHandler.cleanFolder(patch: patches.localPathToPrivateSetZip )
         diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToPrivateSetFolder, filetype: "DS_Store")
 
-        do {
-            zipHandler.zip(sourcePath: patches.localPathToPrivateSetFolder, archievePath: patches.localPathToPrivateSetZip + "Anygis_additional_maps.zip")
-        } catch {
-            print(error)
-        }
+        zipHandler.zip(sourcePath: patches.localPathToPrivateSetFolder, archievePath: patches.localPathToPrivateSetZip + "Anygis_additional_maps.zip")
     }
     
     
     
     
     public func generateMapsForSasPlanet() {
-        
         diskHandler.cleanFolder(patch: patches.localPathToSasPlanetMaps)
         diskHandler.cleanFolder(patch: patches.localPathToSasPlanetInGitFolder)
     
@@ -294,11 +277,8 @@ class Controller {
         diskHandler.cleanFolder(patch: patches.localPathToMarkdownPages)
 
         do {
-            
-            
             try webPagesListGenerator.launch(isEnglish: false, isShortSet: false, isPrivateSet: false, appName: .Locus)
             
-    
             try markdownPagesWithMenuGenerator.launch(isEnglish: false, isShortSet: true, isPrivateSet: false, appName: .Locus)
             try markdownPagesWithMenuGenerator.launch(isEnglish: false, isShortSet: false, isPrivateSet: false, appName: .Locus)
             try markdownPagesWithMenuGenerator.launch(isEnglish: false, isShortSet: true, isPrivateSet: false, appName: .GuruMapsAndroid)
@@ -327,27 +307,9 @@ class Controller {
             try markdownPagesWithMenuGenerator.launch(isEnglish: true, isShortSet: false, isPrivateSet: false, appName: .Alpine)
             try markdownPagesWithMenuGenerator.launch(isEnglish: true, isShortSet: false, isPrivateSet: false, appName: .Desktop)
  
- 
         } catch {
             print(error)
         }
     }
-    
-    
-    
-    /*
-    public func parseWestraGeoJson() {
-        westraParser.generateWestraPassesGeoJson()
-    }
-    
-    
-     
-    public func parseOsmToGeoJson() {
-        //let path = "file:///Projects/GIS/Online%20map%20sources/map-sources/Experimantal_area/Osm_Parsing/export.osm"
-        let path = "file:///Projects/GIS/Online%20map%20sources/map-sources/Experimantal_area/Osm_Parsing/springs.osm"
-
-        osmXmlParser.parse(filepath: path, completitionHandler: nil)
-    }
-    */
     
 }

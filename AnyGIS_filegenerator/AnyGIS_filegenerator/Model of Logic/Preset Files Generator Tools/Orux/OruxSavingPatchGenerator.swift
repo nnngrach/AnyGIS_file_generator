@@ -24,8 +24,6 @@ class OruxSavingPatchGenerator: AbstractSavingPatchGenerator {
         
         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         
-        //return patch + langLabel + "onlinemapsources.xml"
-        
         
         return (patch: githubPatch + langLabel + "onlinemapsources.xml",
                 secondPatch: serverPatch + langLabel + "onlinemapsources.xml")

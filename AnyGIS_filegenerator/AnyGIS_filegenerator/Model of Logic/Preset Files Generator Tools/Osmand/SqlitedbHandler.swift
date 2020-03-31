@@ -33,7 +33,7 @@ class SqlitedbHandler {
         
         let filePatch = folderPatch + langLabel + "=" + dto.filename + ".sqlitedb"
         
-        // sqlitedb uses iverted zoom
+        // Sqlitedb uses iverted zoom
         let sqlitedbMinZoom = String(17 - dto.zoommax)
         let sqlitedbMaxZoom = String(17 - dto.zoommin)
         
@@ -52,7 +52,7 @@ class SqlitedbHandler {
     
 
     
-    fileprivate func createInfoTable(zoommin: String, zoommax: String, patch: String, serverNames: String, isEllipsoid: Int64, isYInverted: Int64, tileSize: String, refererUrl: String?, timeSupport: String, timeStoring: String, defaultTileSize: String, _ db: Connection) throws {
+    private func createInfoTable(zoommin: String, zoommax: String, patch: String, serverNames: String, isEllipsoid: Int64, isYInverted: Int64, tileSize: String, refererUrl: String?, timeSupport: String, timeStoring: String, defaultTileSize: String, _ db: Connection) throws {
         
         let urlWithDefaultTileSize = patch.replacingOccurrences(of: "{tileSize}", with: defaultTileSize)
         
@@ -101,21 +101,13 @@ class SqlitedbHandler {
                                 tilenumbering <- "BigPlanet"
         ))
         
-//        try db.execute("""
-//                   BEGIN TRANSACTION;
-//                   CREATE TABLE info (minzoom INTEGER, maxzoom INTEGER, ellipsoid TEXT, invertedY TEXT, "url" TEXT, "randoms" TEXT, "referer" TEXT, "timeSupported" TEXT, timecolumn TEXT, expireminutes TEXT, tilenumbering TEXT);
-//                   PRAGMA foreign_keys=OFF;
-//                   INSERT INTO info VALUES(\(zoommin),\(zoommax),'\(isEllipsoid)', '\(isYInverted)', '\(urlWithDefaultTileSize)','\(serverNames)', '\(refererUrl ?? "")', '\(timeSupport)', '\(timeSupport)','\(timeStoring)', 'BigPlanet');
-//                   COMMIT;
-//                   """
-//               )
     }
     
     
     
     
     
-    fileprivate func createTilesTable(_ db: Connection) throws {
+    private func createTilesTable(_ db: Connection) throws {
         
         let tiles = Table("tiles")
 
@@ -140,16 +132,7 @@ class SqlitedbHandler {
         try db.run(tiles.createIndex(y))
         try db.run(tiles.createIndex(z))
         try db.run(tiles.createIndex(s))
-        
-//        try db.execute("""
-//            BEGIN TRANSACTION;
-//            CREATE TABLE IF NOT EXISTS "tiles" (x int, y int, z int, s int, image blob, time int, PRIMARY KEY (x,y,z,s));
-//            CREATE INDEX "index_tiles_on_x" ON "tiles" ("x");
-//            CREATE INDEX "index_tiles_on_y" ON "tiles" ("y");
-//            CREATE INDEX "index_tiles_on_z" ON "tiles" ("z");
-//            COMMIT TRANSACTION;
-//            """
-//        )
+
     }
     
     

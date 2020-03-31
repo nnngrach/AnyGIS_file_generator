@@ -193,6 +193,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		332AA44E2433C2AD001162F8 /* Generators */ = {
+			isa = PBXGroup;
+			children = (
+				33B76E28224BE5D40010E35E /* ClientAppList.swift */,
+				339F40EB23F46D3200B09925 /* HtmlMenuItems.swift */,
+				332AA44C24334308001162F8 /* OsmandGeneratorDTO.swift */,
+			);
+			path = Generators;
+			sourceTree = "<group>";
+		};
 		33405E732286EBF40032B3DD /* OSM tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -352,11 +362,10 @@
 		33B76E02224B90E40010E35E /* Model of Data */ = {
 			isa = PBXGroup;
 			children = (
+				332AA44E2433C2AD001162F8 /* Generators */,
 				33405E8122871EEC0032B3DD /* Geo */,
-				33B76E28224BE5D40010E35E /* ClientAppList.swift */,
 				338B7CE3234CF91A00DA53CA /* dbModels */,
 				33B76E0F224BA5C40010E35E /* Text templates */,
-				339F40EB23F46D3200B09925 /* HtmlMenuItems.swift */,
 			);
 			path = "Model of Data";
 			sourceTree = "<group>";
@@ -458,7 +467,6 @@
 				33B76DFE224B8DA70010E35E /* SqlitedbHandler.swift */,
 				333F214322DC5AED0099A8D0 /* MetainfoHandler.swift */,
 				33B76E3E224E5DA30010E35E /* OsmandAllMapsGenerator.swift */,
-				332AA44C24334308001162F8 /* OsmandGeneratorDTO.swift */,
 			);
 			path = Osmand;
 			sourceTree = "<group>";

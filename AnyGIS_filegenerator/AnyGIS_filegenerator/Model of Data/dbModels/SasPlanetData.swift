@@ -18,9 +18,9 @@ struct SasPlanetData {
     var menuUk: String
     var menuEn: String
     
-    var nameRu: String
-    var nameUk: String
-    var nameEn: String
+    var nameRu: String?
+    var nameUk: String?
+    var nameEn: String?
     
     var mapFileName: String
     var tileFormat: String

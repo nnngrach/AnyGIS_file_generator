@@ -39,10 +39,5 @@ class ZipHandler {
             
             zip(sourcePath: fullSoucePath, archievePath: fullArchievePath)
     }
-    
-    
-    
-    
-
-    
+       
 }

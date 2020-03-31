@@ -114,7 +114,6 @@ class AlpineFoldersGenerator {
         
         let langLabel = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
         
-        //let gitHubFolder = isShortSet ? patchTemplates.localPathToAlpineMapsShort : patchTemplates.localPathToAlpineMapsFull
         
         let gitHubFolderPath = getSourcePath(isEnglish: isEnglish, isShortSet: isShortSet, isPrivateSet: isPrivateSet) + filename
         

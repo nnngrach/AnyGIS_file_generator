@@ -74,15 +74,11 @@ class WebPagesMapsListGenerator {
         
         content = String(content.dropLast())
         
-        //let resultContent = "const pregeneratedMapList = [ \n" + content + "\n];"
         let resultContent = "const MapsList = { \"mapsList\": [ \n" + content + "\n] }"
-        
         
         let filePath = patches.localPathToMarkdownPages + "mapsList.js"
         diskHandler.createFile(patch: filePath, content: resultContent, isWithBOM: false)
     
     }
-    
-    
     
 }

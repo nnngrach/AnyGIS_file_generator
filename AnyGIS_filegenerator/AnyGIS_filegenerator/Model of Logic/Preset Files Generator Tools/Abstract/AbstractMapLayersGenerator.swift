@@ -105,14 +105,6 @@ class AbstractMapLayersGenerator {
                 serverPartsInClientFormat = serverPartsInClientFormat.replacingOccurrences(of: defaultSeparator, with: serverNamesSeparator)
             }
                 
-            
-//            let storedServerParts = mapServerLine.backgroundServerName
-//
-//            for i in storedServerParts {
-//                serverPartsInClientFormat.append(i)
-//                serverPartsInClientFormat.append(serverNamesSeparator)
-//            }
-//            serverPartsInClientFormat = String(serverPartsInClientFormat.dropLast())
         }
         
         

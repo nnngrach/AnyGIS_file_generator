@@ -15,9 +15,11 @@ struct FilePathTemplates {
     let serverHost = "https://anygis.ru/api/v1/"
     let serverHostHttp = "http://anygis.ru/api/v1/"
     
+    
     // Main DB patch
     
     let dataBasePatch = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/base.sqlite"
+    
     
     
     // Generating files folders in site
@@ -117,10 +119,6 @@ struct FilePathTemplates {
     let anygisAlpineMapsFolder = "https://anygis.ru/api/v1/download/alpine"
     
     
-    //let anygisGuruMapsFolder = "https://anygis.herokuapp.com/download/galileo"
-    //let anygisAlpineMapsFolder = "https://anygis.herokuapp.com/download/alpine"
-
-    
     
     let gitDownloaderApi = "https://minhaskamal.github.io/DownGit/#/home?url="
     let gitLocusFullMapsZip = "https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/nnngrach/AnyGIS_maps/tree/master/Locus_online_maps/Maps_full"
@@ -134,5 +132,4 @@ struct FilePathTemplates {
     let rusLanguageSubfolder = "_ru/"
     let engLanguageSubfolder = "_en/"
     let groupInOneFileSubfolder = "_folders"
-    
 }

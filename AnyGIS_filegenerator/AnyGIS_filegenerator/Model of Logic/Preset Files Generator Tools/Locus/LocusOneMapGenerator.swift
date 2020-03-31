@@ -1,5 +1,4 @@
 //
-//  q.swift
 //  AnyGIS_filegenerator
 //
 //  Created by HR_book on 17/04/2019.

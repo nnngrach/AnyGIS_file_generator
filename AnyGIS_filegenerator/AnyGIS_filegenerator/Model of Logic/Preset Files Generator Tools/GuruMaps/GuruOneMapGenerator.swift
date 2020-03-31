@@ -42,13 +42,7 @@ class GuruOneMapGenerator: AbstractOneMapGenerator {
         } else {
             return clientLine.emojiGroupRu + " " + clientLine.shortName
         }
-        
-//        if isEnglish {
-//            return clientLine.groupNameEng + " - " + clientLine.shortNameEng
-//        } else {
-//            return clientLine.groupName + " - " + clientLine.shortName
-//        }
+
     }
-    
     
 }

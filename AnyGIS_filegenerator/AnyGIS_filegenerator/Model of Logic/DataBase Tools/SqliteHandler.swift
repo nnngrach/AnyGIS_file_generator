@@ -48,6 +48,7 @@ class SqliteHandler {
     
     
     
+    
     public func getMapsServerDataBy(name: String) -> MapsServerData? {
         
         do {
@@ -77,13 +78,12 @@ class SqliteHandler {
     
     
     
+    
     public func getMapsClientData(isEnglish: Bool) throws -> [MapsClientData] {
         
         var result: [MapsClientData] = []
         
         let connection = try Connection(patchTemplates.dataBasePatch, readonly: true)
-        
-        //let rawTable = try connection.prepare(MapClientFilesDataDB.table)
         
         let firstSortingField = isEnglish ? MapsClientDataDB.orderEng : MapsClientDataDB.orderRu
         let secondSortingField = isEnglish ? MapsClientDataDB.shortNameEng : MapsClientDataDB.shortName
@@ -142,7 +142,6 @@ class SqliteHandler {
                           emojiGroupRu: rawLine[MapsClientDataDB.emojiGroupRu]!,
                           emojiGroupEn: rawLine[MapsClientDataDB.emojiGroupEn]!)
             
-            
             result.append(item)
         }
         
@@ -186,6 +185,8 @@ class SqliteHandler {
     }
     
     
+    
+    
     public func getMapsPreviewBy(name: String) -> MapsPreviewData? {
         
         do {
@@ -213,6 +214,50 @@ class SqliteHandler {
                                    bboxB: rawLine![MapsPreviewDataDB.bboxB]!)
             
         } catch {
+            return generateDefaultPreviewLine(name: name)
+        }
+    }
+    
+    
+    
+    private func generateDefaultPreviewLine(name: String) -> MapsPreviewData? {
+        do {
+            let connection = try Connection(patchTemplates.dataBasePatch, readonly: false)
+            let previewTable = MapsPreviewDataDB.table
+            
+            
+            let insert = previewTable.insert(
+                MapsPreviewDataDB.name <- name,
+                MapsPreviewDataDB.isTesting <- true,
+                MapsPreviewDataDB.hasPrewiew <- true,
+                MapsPreviewDataDB.isOverlay <- false,
+                MapsPreviewDataDB.previewLat <- 56.1,
+                MapsPreviewDataDB.previewLon <- 37.7,
+                MapsPreviewDataDB.previewZoom <- 10,
+                MapsPreviewDataDB.previewUrl <- "",
+                MapsPreviewDataDB.isGlobal <- true,
+                MapsPreviewDataDB.bboxL <- -99,
+                MapsPreviewDataDB.bboxT <- -99,
+                MapsPreviewDataDB.bboxR <- -99,
+                MapsPreviewDataDB.bboxB <- -99)
+            
+            try connection.run(insert)
+            
+            return MapsPreviewData(
+                name: name,
+                isTesting: true,
+                hasPrewiew: true,
+                isOverlay: false,
+                previewLat: 56.1,
+                previewLon: 37.7,
+                previewZoom: 10,
+                previewUrl: "",
+                isGlobal: true,
+                bboxL: -99,
+                bboxT: -99,
+                bboxR: -99,
+                bboxB: -99)
+        } catch {
             return nil
         }
     }
@@ -220,6 +265,32 @@ class SqliteHandler {
     
     
     
+    public func generateGuidForSasPlanet() {
+        
+        do {
+            let connection = try Connection(patchTemplates.dataBasePatch, readonly: false)
+            let table = SasPlanetDataDB.table
+            
+            for line in try connection.prepare(table) {
+
+                let id = line[SasPlanetDataDB.GUID]
+                
+                if id == nil || id!.replacingOccurrences(of: " ", with: "") == "" {
+                    let myline = table.filter(SasPlanetDataDB.anygisName == line[SasPlanetDataDB.anygisName]!)
+                    
+                    let newGuid = UUID().uuidString
+                    try connection.run(myline.update(SasPlanetDataDB.GUID <- newGuid))
+                }
+            }
+            
+        } catch {
+            print("error Sas GUID generating")
+        }
+        
+    }
+    
+    
+
     public func getSasPlanetDataBy(name: String) -> SasPlanetData? {
         
         do {
@@ -237,9 +308,9 @@ class SqliteHandler {
                                  menuRu: rawLine![SasPlanetDataDB.menuRu]!,
                                  menuUk: rawLine![SasPlanetDataDB.menuUk]!,
                                  menuEn: rawLine![SasPlanetDataDB.menuEn]!,
-                                 nameRu: rawLine![SasPlanetDataDB.nameRu]!,
-                                 nameUk: rawLine![SasPlanetDataDB.nameUk]!,
-                                 nameEn: rawLine![SasPlanetDataDB.nameEn]!,
+                                 nameRu: rawLine![SasPlanetDataDB.nameRu],
+                                 nameUk: rawLine![SasPlanetDataDB.nameUk],
+                                 nameEn: rawLine![SasPlanetDataDB.nameEn],
                                  mapFileName: rawLine![SasPlanetDataDB.mapFileName]!,
                                  tileFormat: rawLine![SasPlanetDataDB.tileFormat]!,
                                  icon: rawLine![SasPlanetDataDB.icon]!)

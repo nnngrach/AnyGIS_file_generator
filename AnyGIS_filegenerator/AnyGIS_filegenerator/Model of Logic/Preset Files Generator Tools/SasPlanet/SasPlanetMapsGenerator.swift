@@ -19,6 +19,8 @@ class SasPlanetMapsGenerator {
     // Start iterating in db
     public func launch(isSavingInGitFolder: Bool) throws {
         
+        dbHandler.generateGuidForSasPlanet()
+        
         let mapsClientTable = try dbHandler.getMapsClientData(isEnglish: false)
         
         
@@ -29,9 +31,9 @@ class SasPlanetMapsGenerator {
             guard mapClientLine.forSas else {continue}
             
             // Load data from binded tables
-            let mapServerLine = try dbHandler.getMapsServerDataBy(name: mapClientLine.anygisMapName)
-            let sasPlanetLine = try dbHandler.getSasPlanetDataBy(name: mapClientLine.anygisMapName)
-            let mapPreviewLine = try dbHandler.getMapsPreviewBy(name: mapClientLine.anygisMapName)
+            let mapServerLine = dbHandler.getMapsServerDataBy(name: mapClientLine.anygisMapName)
+            let sasPlanetLine = dbHandler.getSasPlanetDataBy(name: mapClientLine.anygisMapName)
+            let mapPreviewLine = dbHandler.getMapsPreviewBy(name: mapClientLine.anygisMapName)
             
             // Error Handling
             guard mapServerLine != nil else {
@@ -77,7 +79,6 @@ class SasPlanetMapsGenerator {
         
         
         // Copy unchanging txt files
-        //diskHandler.secureCopyItem(at: filePathes.localPathToSasPlanetTemplates + "GetUrlScript.txt", to: folderPath + "GetUrlScript.txt")
         diskHandler.secureCopyItem(at: filePathes.localPathToSasPlanetTemplates + "info.txt", to: folderPath + "info.txt")
         
         
