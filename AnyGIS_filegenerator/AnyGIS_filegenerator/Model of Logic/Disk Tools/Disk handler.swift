@@ -117,7 +117,7 @@ class DiskHandler {
     
     
     
-    public func secureCopyItem(at source: String, to destination: String) -> Bool {
+    public func secureCopyItem(at source: String, to destination: String) {
         
         let srcURL = URL(string: source)!
         let dstURL = URL(string: destination)!
@@ -129,9 +129,7 @@ class DiskHandler {
             try FileManager.default.copyItem(at: srcURL, to: dstURL)
         } catch (let error) {
             print("Cannot copy item at \(srcURL) to \(dstURL): \(error)")
-            return false
         }
-        return true
     }
     
     

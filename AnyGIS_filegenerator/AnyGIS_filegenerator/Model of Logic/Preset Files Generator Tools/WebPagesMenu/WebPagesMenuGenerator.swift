@@ -41,7 +41,7 @@ class WebPagesMenuGenerator {
         
         
         var foldersStructure = MenuFolderItem(order: 0, orderEn: 0, name: "root", fullPathEn: "", groupFilePrefix: "", maps: [], subFolders: [:])
-        var previousFolderPath = ""
+        let previousFolderPath = ""
         
         let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
         
@@ -69,7 +69,7 @@ class WebPagesMenuGenerator {
             
             
             // Fill map field
-            let mapPrevievLine = try baseHandler.getMapsPreviewBy(name: mapClientLine.anygisMapName)
+            let mapPrevievLine = baseHandler.getMapsPreviewBy(name: mapClientLine.anygisMapName)
             
             foldersStructure.recursiveAdd(name: mapClientLine.shortName, nameEn: mapClientLine.shortNameEng, hasPreview: mapPrevievLine?.hasPrewiew ?? false, anygisMapName: mapClientLine.anygisMapName, fileGroupPrefix: mapClientLine.groupPrefix, fileName: mapClientLine.clientMapName, chekingFolders: currentGroupSubFolders, index: 0)
         }
@@ -148,8 +148,6 @@ class WebPagesMenuGenerator {
     
     
     private func getHtmlPart(isEnglish: Bool, isShortSet: Bool, appName: ClientAppList) -> (intro: String, outro: String) {
-        
-        var content = ""
         
         let htmlTemplateFile = diskHandler.readFile(at: patches.localPathToJekillHtmlTemplate)
         var htmlParts = menuTemplates.fillStubsInHtmlPageTemplate(htmlTemplateFile)

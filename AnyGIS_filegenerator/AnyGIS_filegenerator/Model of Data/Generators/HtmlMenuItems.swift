@@ -37,7 +37,7 @@ struct MenuFolderItem {
         if index == chekingFolders.count {return}
         
         let currentCheckingFolderName = chekingFolders[index]
-        let currentCheckingFolderNameEn = chekingFoldersEn[index]
+        //let currentCheckingFolderNameEn = chekingFoldersEn[index]
         
         if !self.containFolder(currentCheckingFolderName) {
             

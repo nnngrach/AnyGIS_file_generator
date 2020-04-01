@@ -27,7 +27,7 @@ class WebPagesMapsListGenerator {
         for mapClientLine in mapsClientTable {
             
             //Filtering
-            let isItUnnecessaryMap = abstractOneMapGenerator.isItUnnecessaryMap(mapClientLine, isShortSet, isEnglish, isPrivateSet, false, appName)
+            //let isItUnnecessaryMap = abstractOneMapGenerator.isItUnnecessaryMap(mapClientLine, isShortSet, isEnglish, isPrivateSet, false, appName)
             
 
             if !mapClientLine.visible {continue}

@@ -27,6 +27,9 @@ struct DecsriptionTemplate {
     
     func getDescription(appName: ClientAppList) -> String {
         
+        return ""
+        
+        /*
         var currentAppPageUrl: String
         
         switch appName {
@@ -46,16 +49,17 @@ struct DecsriptionTemplate {
             currentAppPageUrl = webPagesTemplates.desktopPage
         }
         
-        //let currentAppName = appName.rawValue
+        let currentAppName = appName.rawValue
         
         return ""
         
-//        return """
-//        <!--
-//        Map pack from AnyGIS.ru
-//        Updated: \(getCreationTime())
-//        -->
-//
-//        """
+        return """
+        <!--
+        Map pack from AnyGIS.ru
+        Updated: \(getCreationTime())
+        -->
+
+        """
+        */
     }
 }
