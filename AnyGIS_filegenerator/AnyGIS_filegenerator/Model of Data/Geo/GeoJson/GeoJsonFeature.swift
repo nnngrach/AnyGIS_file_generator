@@ -6,6 +6,7 @@
 //  Copyright © 2019 Nnngrach. All rights reserved.
 //
 
+
 import Foundation
 
 struct GeoJsonFeature: Codable {
@@ -13,3 +14,4 @@ struct GeoJsonFeature: Codable {
     var geometry: GeoJsonPointGeometry
     var properties: [String : String]
 }
+

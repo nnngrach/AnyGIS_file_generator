@@ -6,6 +6,7 @@
 //  Copyright © 2019 Nnngrach. All rights reserved.
 //
 
+/*
 import Foundation
 
 struct GeoJsonPassPropertie: Codable {
@@ -14,3 +15,4 @@ struct GeoJsonPassPropertie: Codable {
     var rtsa_scale: String
     var is_summit: String?
 }
+*/

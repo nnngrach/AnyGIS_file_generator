@@ -6,6 +6,8 @@
 //  Copyright © 2019 Nnngrach. All rights reserved.
 //
 
+
+/*
 import Foundation
 
 class OsmToGeoJsonConverter {
@@ -63,3 +65,5 @@ class OsmToGeoJsonConverter {
     
     
 }
+*/
+

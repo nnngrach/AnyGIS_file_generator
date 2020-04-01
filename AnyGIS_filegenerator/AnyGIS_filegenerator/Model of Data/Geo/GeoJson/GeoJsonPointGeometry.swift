@@ -6,9 +6,11 @@
 //  Copyright © 2019 Nnngrach. All rights reserved.
 //
 
+
 import Foundation
 
 struct GeoJsonPointGeometry: Codable {
     var type: String
     var coordinates: [Double]
 }
+
