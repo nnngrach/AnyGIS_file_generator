@@ -12,4 +12,5 @@ target 'AnyGIS_filegenerator' do
   # pod 'GRDB.swift'
   pod 'SQLite.swift'
   pod 'ZIPFoundation', '~> 0.9'
+  pod 'SwiftLint'
 end

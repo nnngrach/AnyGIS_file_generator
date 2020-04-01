@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7AA53C530A5BB37CE898F3706A641502"
+               BlueprintIdentifier = "AA15C8469D67684160CC2A7098EB841C"
                BuildableName = "ZIPFoundation.framework"
                BlueprintName = "ZIPFoundation"
                ReferencedContainer = "container:Pods.xcodeproj">

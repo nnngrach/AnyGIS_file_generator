@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DDFB68EDD8C885C09C2CA21263820D2C"
+               BlueprintIdentifier = "F7DB3767342772D3B78654287FF51EBB"
                BuildableName = "Pods_AnyGIS_filegenerator.framework"
                BlueprintName = "Pods-AnyGIS_filegenerator"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -40,15 +40,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DDFB68EDD8C885C09C2CA21263820D2C"
-            BuildableName = "Pods_AnyGIS_filegenerator.framework"
-            BlueprintName = "Pods-AnyGIS_filegenerator"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

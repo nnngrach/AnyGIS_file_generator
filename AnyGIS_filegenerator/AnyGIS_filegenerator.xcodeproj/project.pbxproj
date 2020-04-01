@@ -545,6 +545,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3358321B22495814001FFC0A /* Build configuration list for PBXNativeTarget "AnyGIS_filegenerator" */;
 			buildPhases = (
+				332AA4522434F777001162F8 /* ShellScript */,
 				45443F5D99992A96E3E61180 /* [CP] Check Pods Manifest.lock */,
 				3358320722495813001FFC0A /* Sources */,
 				3358320822495813001FFC0A /* Frameworks */,
@@ -615,6 +616,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		332AA4522434F777001162F8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
 		45443F5D99992A96E3E61180 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -639,18 +657,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
-				"${BUILT_PRODUCTS_DIR}/ZIPFoundation/ZIPFoundation.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZIPFoundation.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

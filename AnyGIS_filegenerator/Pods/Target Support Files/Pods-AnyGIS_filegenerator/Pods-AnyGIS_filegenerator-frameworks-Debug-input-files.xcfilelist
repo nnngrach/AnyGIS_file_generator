@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-AnyGIS_filegenerator/Pods-AnyGIS_filegenerator-frameworks.sh
+${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework
+${BUILT_PRODUCTS_DIR}/ZIPFoundation/ZIPFoundation.framework
