@@ -18,72 +18,72 @@ struct FilePathTemplates {
     
     // Main DB patch
     
-    let dataBasePatch = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/base.sqlite"
+    let dataBasePatch = "file:////Users/Shared/Old_catalog/Projects/GIS/AnyGIS%20server/AnyGIS_Server/base.sqlite"
     
     
     
     // Generating files folders in site
     
-    let localPathToMarkdownPages = "file:///Projects/GIS/Anygis_site/modernist-master/Web/Html/Download/"
+    let localPathToMarkdownPages = "file:////Users/Shared/Old_catalog/Projects/GIS/Anygis_site/modernist-master/Web/Html/Download/"
     
-    let localPathToJekillHtmlTemplate = "file:///Projects/GIS/Anygis_site/modernist-master/_layouts/default.html"
-    
-    
+    let localPathToJekillHtmlTemplate = "file:////Users/Shared/Old_catalog/Projects/GIS/Anygis_site/modernist-master/_layouts/default.html"
     
     
     
     
-    let localPathToLocusIcons = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Icons"
-    let localPathToLocusInstallers = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Installers"
-    let localPathToGeoJson = "file:///Projects/GIS/Online%20map%20sources/map-sources/GeoJson"
     
     
-    let localPathToLocusMapsZip = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Zip/"
-    let localPathToLocusMapsFull = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Maps_full"
-    let localPathToLocusMapsShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Maps_short"
-    let localPathToLocusMapsPrivate = "file:///Projects/GIS/Online%20map%20sources%20deleted/Files/Locus"
+    let localPathToLocusIcons = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Icons"
+    let localPathToLocusInstallers = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Installers"
+    let localPathToGeoJson = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/GeoJson"
     
     
-    let localPathToGuruMapsZip = "file:///Projects/GIS/Online%20map%20sources/map-sources/Galileo_online_maps/Zip/"
-    let localPathToGuruMapsFull = "file:///Projects/GIS/Online%20map%20sources/map-sources/Galileo_online_maps/Maps_full"
-    let localPathToGuruMapsShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/Galileo_online_maps/Maps_short"
-    let localPathToGuruMapsPrivate = "file:///Projects/GIS/Online%20map%20sources%20deleted/Files/GuruMaps"
-    
-    let localPathToOsmandMapsZip = "file:///Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Sqlitedb/Zip/"
-    let localPathToOsmandMapsFull = "file:///Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Sqlitedb/Maps_full"
-    let localPathToOsmandMapsShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Sqlitedb/Maps_short"
-    let localPathToOsmandMapsPrivate = "file:///Projects/GIS/Online%20map%20sources%20deleted/Files/Osmand_sqlitedb"
-    
-    let localPathToOsmandMetainfoZip = "file:///Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Zip/"
-    let localPathToOsmandMetainfoFull = "file:///Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Maps_full"
-    let localPathToOsmandMetainfoShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Maps_short"
-    let localPathToOsmandMetainfoPrivate = "file:///Projects/GIS/Online%20map%20sources%20deleted/Files/Osmand_metainfo"
-    
-    let localPathToOruxMapsFull = "file:///Projects/GIS/Online%20map%20sources/map-sources/Orux_online_maps/Maps_full"
-    let localPathToOruxMapsShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/Orux_online_maps/Maps_short"
-    let localPathToOruxMapsPrivate = "file:///Projects/GIS/Online%20map%20sources%20deleted/Files/Orux"
-    
-    let localPathToAlpineMapsZip = "file:///Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Zip/"
-    let localPathToAlpineMapsFull = "file:///Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Maps_full"
-    let localPathToAlpineMapsShort = "file:///Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Maps_short"
-    let localPathToAlpineMapsPrivate = "file:///Projects/GIS/Online%20map%20sources%20deleted/Files/AlpineQuest"
+    let localPathToLocusMapsZip = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Zip/"
+    let localPathToLocusMapsFull = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Maps_full"
+    let localPathToLocusMapsShort = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Maps_short"
+    let localPathToLocusMapsPrivate = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources%20deleted/Files/Locus"
     
     
-    let localPathToDesktopMaps = "file:///Projects/GIS/Online%20map%20sources/map-sources/Desktop/"
-    let localPathToDesktopMapsPrivate = "file:///Projects/GIS/Online%20map%20sources%20deleted/Files/Desktop"
+    let localPathToGuruMapsZip = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Galileo_online_maps/Zip/"
+    let localPathToGuruMapsFull = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Galileo_online_maps/Maps_full"
+    let localPathToGuruMapsShort = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Galileo_online_maps/Maps_short"
+    let localPathToGuruMapsPrivate = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources%20deleted/Files/GuruMaps"
     
-    let localPathToPrivateSetFolder = "file:///Projects/GIS/Online%20map%20sources%20deleted/Files/"
-    let localPathToPrivateSetZip = "file:///Projects/GIS/Online%20map%20sources%20deleted/Zip/"
+    let localPathToOsmandMapsZip = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Sqlitedb/Zip/"
+    let localPathToOsmandMapsFull = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Sqlitedb/Maps_full"
+    let localPathToOsmandMapsShort = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Sqlitedb/Maps_short"
+    let localPathToOsmandMapsPrivate = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources%20deleted/Files/Osmand_sqlitedb"
     
-    let localPathToSasPlanetFolder = "file:///Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Maps/"
+    let localPathToOsmandMetainfoZip = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Zip/"
+    let localPathToOsmandMetainfoFull = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Maps_full"
+    let localPathToOsmandMetainfoShort = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Maps_short"
+    let localPathToOsmandMetainfoPrivate = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources%20deleted/Files/Osmand_metainfo"
     
-    let localPathToSasPlanetMaps = "file:///Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Maps/anygis/"
+    let localPathToOruxMapsFull = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Orux_online_maps/Maps_full"
+    let localPathToOruxMapsShort = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Orux_online_maps/Maps_short"
+    let localPathToOruxMapsPrivate = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources%20deleted/Files/Orux"
     
-    let localPathToSasPlanetIcons = "file:///Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Icons/"
+    let localPathToAlpineMapsZip = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Zip/"
+    let localPathToAlpineMapsFull = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Maps_full"
+    let localPathToAlpineMapsShort = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/AlpineQuest_online_maps/Maps_short"
+    let localPathToAlpineMapsPrivate = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources%20deleted/Files/AlpineQuest"
     
-     let localPathToSasPlanetTemplates = "file:///Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Templates/"
     
-    let localPathToSasPlanetInGitFolder = "file:///Projects/GIS/SAS/sas.plus.maps/anygis/"
+    let localPathToDesktopMaps = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Desktop/"
+    let localPathToDesktopMapsPrivate = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources%20deleted/Files/Desktop"
+    
+    let localPathToPrivateSetFolder = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources%20deleted/Files/"
+    let localPathToPrivateSetZip = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources%20deleted/Zip/"
+    
+    let localPathToSasPlanetFolder = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Maps/"
+    
+    let localPathToSasPlanetMaps = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Maps/anygis/"
+    
+    let localPathToSasPlanetIcons = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Icons/"
+    
+     let localPathToSasPlanetTemplates = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/SasPlanet/Templates/"
+    
+    let localPathToSasPlanetInGitFolder = "file:////Users/Shared/Old_catalog/Projects/GIS/SAS/sas.plus.maps/anygis/"
     
     
     
@@ -91,10 +91,10 @@ struct FilePathTemplates {
     
     // Generating files folders in server
     
-    let localPathToGuruMapsInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/galileo"
-    let localPathToOruxMapsFullInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/orux_full"
-    let localPathToOruxMapsShortInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/orux_short"
-    let localPathToAlpineMapsInServer = "file:///Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/alpine"
+    let localPathToGuruMapsInServer = "file:////Users/Shared/Old_catalog/Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/galileo"
+    let localPathToOruxMapsFullInServer = "file:////Users/Shared/Old_catalog/Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/orux_full"
+    let localPathToOruxMapsShortInServer = "file:////Users/Shared/Old_catalog/Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/orux_short"
+    let localPathToAlpineMapsInServer = "file:////Users/Shared/Old_catalog/Projects/GIS/AnyGIS%20server/AnyGIS_Server/Public/server/alpine"
     
     
     
