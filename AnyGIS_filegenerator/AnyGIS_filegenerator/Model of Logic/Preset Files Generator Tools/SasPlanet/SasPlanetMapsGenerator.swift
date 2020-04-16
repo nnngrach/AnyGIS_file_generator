@@ -89,4 +89,13 @@ class SasPlanetMapsGenerator {
         diskHandler.secureCopyItem(at: iconFolderPatch + "24.bmp", to: folderPath + "24.bmp")
     }
     
+    
+    
+//    private func prepareUrl(mapServerLine: MapsServerData) -> String {
+//
+//        var resultUrl = mapServerLine.backgroundUrl
+//        resultUrl = resultUrl.replacingOccurrences(of: "{tileSize}", with: mapServerLine.dpiSD)
+//
+//        return resultUrl
+//    }
 }

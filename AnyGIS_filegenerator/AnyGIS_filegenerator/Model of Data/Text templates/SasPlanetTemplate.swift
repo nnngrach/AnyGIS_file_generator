@@ -29,11 +29,12 @@ class SasPlanetTemplate {
                 "NameInCache=" + sasPlanetLine.mapFileName + rn +
                 "asLayer=" + getLayerNumber(mapPreviewLine.isOverlay) + rn +
                 getProjection(mapClientLine.projection) + rn +
-                "DefURLBase=" + getURL(mapServerLine.backgroundUrl, mapClientLine.sasLoadAnygis, anygisMapname: mapServerLine.name) + rn +
+                "DefURLBase=" + getURL(mapServerLine, mapClientLine.sasLoadAnygis, anygisMapname: mapServerLine.name) + rn +
                 getServerParts(mapServerLine.backgroundServerName, mapClientLine.sasLoadAnygis) +
                 getAllHeaders(mapServerLine.referer) + rn +
                 "ContentType=image/jpeg,image/png" + rn +
                 "Ext=." + sasPlanetLine.tileFormat + rn +
+                "DetectContentType=1" + rn +
                 getTrafficSettings(mapClientLine) +
                 getLicense(mapClientLine.copyright)
     }
@@ -72,11 +73,13 @@ class SasPlanetTemplate {
     
     
     
-    private func getURL(_ url: String, _ isUsingAnygisProxy: Bool, anygisMapname: String) -> String {
+    private func getURL(_ mapServerLine: MapsServerData, _ isUsingAnygisProxy: Bool, anygisMapname: String) -> String {
         
         if isUsingAnygisProxy {
             return constantUrls.anygisMapUrlsTemplate.replacingOccurrences(of: "{mapName}", with: anygisMapname)
         } else {
+            var url = mapServerLine.backgroundUrl
+            url = url.replacingOccurrences(of: "{tileSize}", with: mapServerLine.dpiSD)
             return url
         }
     }
