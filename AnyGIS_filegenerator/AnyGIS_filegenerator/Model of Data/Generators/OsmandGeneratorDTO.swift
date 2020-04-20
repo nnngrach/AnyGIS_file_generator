@@ -9,6 +9,7 @@
 import Foundation
 
 struct OsmandGeneratorDTO {
+    let label: String
     let filename: String
     let zoommin: Int64
     let zoommax: Int64
