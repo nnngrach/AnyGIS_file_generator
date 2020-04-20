@@ -59,6 +59,8 @@ struct FilePathTemplates {
     let localPathToOsmandMetainfoShort = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Metainfo/Maps_short"
     let localPathToOsmandMetainfoPrivate = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources%20deleted/Files/Osmand_metainfo"
     
+    let localPathToOsmandOsf = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Osf/Maps_full"
+    
     let localPathToOruxMapsFull = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Orux_online_maps/Maps_full"
     let localPathToOruxMapsShort = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Orux_online_maps/Maps_short"
     let localPathToOruxMapsPrivate = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources%20deleted/Files/Orux"

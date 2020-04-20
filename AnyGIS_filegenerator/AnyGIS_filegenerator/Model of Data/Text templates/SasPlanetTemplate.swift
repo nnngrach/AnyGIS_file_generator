@@ -19,22 +19,22 @@ class SasPlanetTemplate {
         
         return  rn +
                 "[PARAMS]" + rn +
-                "GUID={" + sasPlanetLine.GUID + "}" + rn +
+                "GUID={" + sasPlanetLine.GUID + "}" + rn + rn +
                 "ParentSubMenu_ru=" + sasPlanetLine.menuRu + rn +
                 "ParentSubMenu_uk=" + sasPlanetLine.menuUk + rn +
-                "ParentSubMenu=" + sasPlanetLine.menuEn + rn +
+                "ParentSubMenu=" + sasPlanetLine.menuEn + rn + rn +
                 "name_ru=" + getNameRU(mapClientLine, sasPlanetLine) + rn +
                 "name_uk=" + getNameUK(mapClientLine, sasPlanetLine) + rn +
-                "name=" + getNameEN(mapClientLine, sasPlanetLine) + rn +
+                "name=" + getNameEN(mapClientLine, sasPlanetLine) + rn + rn +
                 "NameInCache=" + sasPlanetLine.mapFileName + rn +
                 "asLayer=" + getLayerNumber(mapPreviewLine.isOverlay) + rn +
-                getProjection(mapClientLine.projection) + rn +
-                "DefURLBase=" + getURL(mapServerLine, mapClientLine.sasLoadAnygis, anygisMapname: mapServerLine.name) + rn +
+                getProjection(mapClientLine.projection) + rn + rn +
+                "DefURLBase=" + getURL(mapServerLine, mapClientLine.sasLoadAnygis, anygisMapname: mapServerLine.name) + rn + rn +
                 getServerParts(mapServerLine.backgroundServerName, mapClientLine.sasLoadAnygis) +
-                getAllHeaders(mapServerLine.referer) + rn +
-                "ContentType=image/jpeg,image/png" + rn +
+                getAllHeaders(mapServerLine.referer) + rn + rn +
                 "Ext=." + sasPlanetLine.tileFormat + rn +
                 "DetectContentType=1" + rn +
+                "ContentType=image/jpeg,image/png" + rn +
                 getTrafficSettings(mapClientLine) +
                 getLicense(mapClientLine.copyright)
     }

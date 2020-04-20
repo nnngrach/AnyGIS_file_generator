@@ -54,6 +54,10 @@ class ViewController: NSViewController {
         controller.generateMapsForOsmandMetainfo()
     }
     
+    @IBAction func generateOsmandOsfBtn(_ sender: Any) {
+        controller.generateMapsForOsmandOsf()
+    }
+    
     @IBAction func generateAlpineinfoBtn(_ sender: Any) {
         controller.generateMapsForAlpine()
     }

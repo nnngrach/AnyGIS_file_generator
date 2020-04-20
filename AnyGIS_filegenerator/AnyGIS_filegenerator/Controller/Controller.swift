@@ -25,6 +25,7 @@ class Controller {
         generateMapsForOrux()
         generateMapsForOsmand()
         generateMapsForOsmandMetainfo()
+        generateMapsForOsmandOsf()
         generateMapsForAlpine()
         generateMapsForLocus()
         generateInstallersForLocus()
@@ -137,11 +138,11 @@ class Controller {
         diskHandler.cleanFolder(patch: patches.localPathToOsmandMapsPrivate + rus)
 
         do {
-            try osmandGenerator.launch(isShortSet: true, isEnglish: true, isForSqlitedb: true, isPrivateSet: false)
-            try osmandGenerator.launch(isShortSet: true, isEnglish: false, isForSqlitedb: true, isPrivateSet: false)
-            try osmandGenerator.launch(isShortSet: false, isEnglish: true, isForSqlitedb: true, isPrivateSet: false)
-            try osmandGenerator.launch(isShortSet: false, isEnglish: false, isForSqlitedb: true, isPrivateSet: false)
-            try osmandGenerator.launch(isShortSet: false, isEnglish: false, isForSqlitedb: true, isPrivateSet: true)
+            try osmandGenerator.launch(isShortSet: true, isEnglish: true, fileFormat: .sqlitedb, isPrivateSet: false)
+            try osmandGenerator.launch(isShortSet: true, isEnglish: false, fileFormat: .sqlitedb, isPrivateSet: false)
+            try osmandGenerator.launch(isShortSet: false, isEnglish: true, fileFormat: .sqlitedb, isPrivateSet: false)
+            try osmandGenerator.launch(isShortSet: false, isEnglish: false, fileFormat: .sqlitedb, isPrivateSet: false)
+            try osmandGenerator.launch(isShortSet: false, isEnglish: false, fileFormat: .sqlitedb, isPrivateSet: true)
         } catch {
             print(error)
         }
@@ -158,15 +159,32 @@ class Controller {
         diskHandler.cleanFolder(patch: patches.localPathToOsmandMetainfoPrivate + rus)
 
         do {
-            try osmandGenerator.launch(isShortSet: true, isEnglish: true, isForSqlitedb: false, isPrivateSet: false)
-            try osmandGenerator.launch(isShortSet: true, isEnglish: false, isForSqlitedb: false, isPrivateSet: false)
-            try osmandGenerator.launch(isShortSet: false, isEnglish: true, isForSqlitedb: false, isPrivateSet: false)
-            try osmandGenerator.launch(isShortSet: false, isEnglish: false, isForSqlitedb: false, isPrivateSet: false)
-            try osmandGenerator.launch(isShortSet: false, isEnglish: false, isForSqlitedb: false, isPrivateSet: true)
+            try osmandGenerator.launch(isShortSet: true, isEnglish: true, fileFormat: .metainfo, isPrivateSet: false)
+            try osmandGenerator.launch(isShortSet: true, isEnglish: false, fileFormat: .metainfo, isPrivateSet: false)
+            try osmandGenerator.launch(isShortSet: false, isEnglish: true, fileFormat: .metainfo, isPrivateSet: false)
+            try osmandGenerator.launch(isShortSet: false, isEnglish: false, fileFormat: .metainfo, isPrivateSet: false)
+            try osmandGenerator.launch(isShortSet: false, isEnglish: false, fileFormat: .metainfo, isPrivateSet: true)
         } catch {
             print(error)
         }
     }
+    
+    
+    public func generateMapsForOsmandOsf() {
+        
+        let rus = patches.rusLanguageSubfolder
+        let eng = patches.engLanguageSubfolder
+        //diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToOsmandMapsZip, filetype: "zip")
+        diskHandler.cleanFolder(patch: patches.localPathToOsmandOsf + rus)
+
+        do {
+            try osmandGenerator.launch(isShortSet: false, isEnglish: false, fileFormat: .osf, isPrivateSet: false)
+        } catch {
+            print(error)
+        }
+    }
+    
+    
 
     public func generateMapsForAlpine() {
         let rus = patches.rusLanguageSubfolder

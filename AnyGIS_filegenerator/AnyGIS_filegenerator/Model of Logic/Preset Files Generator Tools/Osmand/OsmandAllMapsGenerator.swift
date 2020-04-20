@@ -20,40 +20,48 @@ class OsmandAllMapsGenerator {
     private let metainfoHandler = MetainfoHandler()
     
     
-    public func launch(isShortSet: Bool, isEnglish: Bool, isForSqlitedb: Bool, isPrivateSet: Bool) throws {
+    public func launch(isShortSet: Bool, isEnglish: Bool, fileFormat: OsmandMapFormat, isPrivateSet: Bool) throws {
         
         let mapsServerTable = try baseHandler.getMapsServerData()
         let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
         
         for mapClientLine in mapsClientTable {
             
-            if isItUnnececaryMap(isForSqlitedb, isShortSet, isEnglish, isPrivateSet, mapClientLine: mapClientLine) {continue}
+            if isItUnnececaryMap(fileFormat, isShortSet, isEnglish, isPrivateSet, mapClientLine: mapClientLine) {continue}
+
+            let mapData = prepareMapDate( isShortSet, isEnglish, fileFormat, mapClientLine, mapsServerTable, isPrivateSet)
             
-            let mapData = prepareMapDate( isShortSet, isEnglish, isForSqlitedb, mapClientLine, mapsServerTable, isPrivateSet)
-            
-            if isForSqlitedb {
+            switch fileFormat {
+            case .sqlitedb:
                 try sqlitedbHandler.createFile(dto: mapData)
-            } else {
+            case .metainfo:
                 try metainfoHandler.create(dto: mapData)
+            case .osf:
+                print("osf1")
             }
         }
         
         // Add all files to zip
-        if isForSqlitedb {
+        
+        switch fileFormat {
+        case .sqlitedb:
             zipHandler.zipMapsFolder(sourceShort: patches.localPathToOsmandMapsShort,
-                                     SouceFull: patches.localPathToOsmandMapsFull,
-                                     zipPath: patches.localPathToOsmandMapsZip,
-                                     isShortSet: isShortSet,
-                                     isEnglish: isEnglish,
-                                     isForFolders: false)
-        } else {
+                                    SouceFull: patches.localPathToOsmandMapsFull,
+                                    zipPath: patches.localPathToOsmandMapsZip,
+                                    isShortSet: isShortSet,
+                                    isEnglish: isEnglish,
+                                    isForFolders: false)
+        case .metainfo:
             zipHandler.zipMapsFolder(sourceShort: patches.localPathToOsmandMetainfoShort,
-                                     SouceFull: patches.localPathToOsmandMetainfoFull,
-                                     zipPath: patches.localPathToOsmandMetainfoZip,
-                                     isShortSet: isShortSet,
-                                     isEnglish: isEnglish,
-                                     isForFolders: false)
+                                    SouceFull: patches.localPathToOsmandMetainfoFull,
+                                    zipPath: patches.localPathToOsmandMetainfoZip,
+                                    isShortSet: isShortSet,
+                                    isEnglish: isEnglish,
+                                    isForFolders: false)
+        case .osf:
+            break
         }
+        
     }
     
     
@@ -61,11 +69,11 @@ class OsmandAllMapsGenerator {
     
     
     
-    private func isItUnnececaryMap(_ isForSqlitedb: Bool, _ isShortSet: Bool, _ isEnglish: Bool, _ isPrivateSet: Bool, mapClientLine: MapsClientData) -> Bool {
+    private func isItUnnececaryMap(_ fileFormat: OsmandMapFormat, _ isShortSet: Bool, _ isEnglish: Bool, _ isPrivateSet: Bool, mapClientLine: MapsClientData) -> Bool {
         
         // Filter off service layers
-        if isForSqlitedb && !mapClientLine.forOsmand {return true}
-        if !isForSqlitedb && !mapClientLine.forOsmandMeta {return true}
+        if fileFormat == .sqlitedb && !mapClientLine.forOsmand {return true}
+        if fileFormat == .metainfo && !mapClientLine.forOsmandMeta {return true}
         
         // Filter for short list
         if isShortSet && !mapClientLine.isInStarterSet && !isEnglish {return true}
@@ -82,13 +90,13 @@ class OsmandAllMapsGenerator {
     }
     
     
-    private func prepareMapDate(_ isShortSet: Bool, _ isEnglish: Bool, _ isForSqlitedb: Bool, _ mapClientLine: MapsClientData, _ mapsServerTable: [MapsServerData],  _ isPrivateSet: Bool) -> OsmandGeneratorDTO {
+    private func prepareMapDate(_ isShortSet: Bool, _ isEnglish: Bool, _ fileFormat: OsmandMapFormat, _ mapClientLine: MapsClientData, _ mapsServerTable: [MapsServerData],  _ isPrivateSet: Bool) -> OsmandGeneratorDTO {
         
         let mapServerLine = mapsServerTable.filter {$0.name == mapClientLine.anygisMapName}.first!
         
         let filename = mapClientLine.groupPrefix + "=" + mapClientLine.clientMapName
         
-        let isUsingAnygisProxy = checkIfIsUsingAnygisProxy(isForSqlitedb, mapClientLine)
+        let isUsingAnygisProxy = checkIfIsUsingAnygisProxy(fileFormat, mapClientLine)
         let url = getUrl(isUsingAnygisProxy, mapServerLine)
         let serverNames = getServerNames(mapServerLine)
         let referer = getReferer(mapServerLine)
@@ -103,9 +111,9 @@ class OsmandAllMapsGenerator {
   
     
     
-    private func checkIfIsUsingAnygisProxy(_ isForSqlitedb: Bool, _ mapClientLine: MapsClientData) -> Bool {
+    private func checkIfIsUsingAnygisProxy(_ fileFormat: OsmandMapFormat, _ mapClientLine: MapsClientData) -> Bool {
         
-        return (isForSqlitedb && mapClientLine.osmandLoadAnygis) || (!isForSqlitedb && mapClientLine.osmandMetaLoadAnygis)
+        return (fileFormat == .sqlitedb && mapClientLine.osmandLoadAnygis) || (fileFormat == .metainfo && mapClientLine.osmandMetaLoadAnygis)
     }
     
     
