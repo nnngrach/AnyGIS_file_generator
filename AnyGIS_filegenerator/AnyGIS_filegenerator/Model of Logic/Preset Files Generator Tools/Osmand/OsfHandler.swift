@@ -11,8 +11,129 @@ import Foundation
 class OsfHandler {
     
     private let diskHandler = DiskHandler()
+    private let baseHandler = SqliteHandler()
     private let patchTemplates = FilePathTemplates()
+    private let textTemplates = OsmandOsfTemplate()
     
+    
+    var previousCategoryName = ""
+    var currentCategoryName = ""
+    
+    var isItFirstIteration = true
+    var allGeneratedMapCategories = ""
+    var currentCategoryMaps = ""
+    
+    
+    public func launch(fileFormat: OsmandMapFormat, isEnglish: Bool) throws {
+        
+        let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
+        
+    
+        for mapClientLine in mapsClientTable {
+            
+            if isItUnnececaryMap(mapClientLine, fileFormat) {continue}
+            
+            updateCurrentCategoryName(mapClientLine)
+            savePreviousResultIfItNeeded()
+            
+            appendToCurrentCategoryMapItem(mapClientLine, fileFormat, isEnglish)
+            
+            isItFirstIteration = false
+        }
+        
+        savePreviousResultIfItNeeded()
+        
+        let resultContent = getResultContentWith(allGeneratedMapCategories)
+        saveToFile(resultContent)
+    }
+    
+    
+    
+    
+    
+    private func isItUnnececaryMap(_ mapClientLine: MapsClientData, _ fileFormat: OsmandMapFormat) -> Bool {
+        
+        if !mapClientLine.visible {return true}
+        if !mapClientLine.isPrivate {return true}
+        if fileFormat == .sqlitedb && !mapClientLine.forOsmand {return true}
+        if fileFormat == .metainfo && !mapClientLine.forOsmandMeta {return true}
+        
+        return false
+    }
+    
+    
+    private func updateCurrentCategoryName(_ mapClientLine: MapsClientData) {
+        currentCategoryName = mapClientLine.groupNameEng
+    }
+    
+    private func savePreviousResultIfItNeeded() {
+        
+        if previousCategoryName != currentCategoryName {
+            previousCategoryName  = currentCategoryName
+            if isItFirstIteration {return}
+            
+            appendToAllGeneratedCategories(currentCategoryMaps)
+            resetLastIterationData()
+        }
+    }
+    
+    
+    private func appendToAllGeneratedCategories(_ currentCategoryMaps: String) {
+        let mapItems = removeLastCommaSymbol(currentCategoryMaps)
+        var jsonBlock = textTemplates.oneMapCategory
+        jsonBlock = jsonBlock.replacingOccurrences(of: "{$mapItems}", with: mapItems)
+        allGeneratedMapCategories.append(jsonBlock)
+    }
+    
+    
+    
+    private func resetLastIterationData() {
+        currentCategoryMaps = ""
+    }
+    
+    
+    private func appendToCurrentCategoryMapItem(_ mapClientLine: MapsClientData, _ fileFormat: OsmandMapFormat, _ isEnglish: Bool) {
+        
+        var mapItem = textTemplates.oneMapItem
+        
+        let firstNamePart = isEnglish ? mapClientLine.emojiGroupEn : mapClientLine.emojiGroupEn
+        let secondNamePart = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
+        let nameLabel = firstNamePart + " " + secondNamePart
+        
+        
+        mapItem = mapItem.replacingOccurrences(of: "{$mapLabel}", with: nameLabel)
+
+    }
+    
+    
+    
+    
+    private func getResultContentWith(_ allGeneratedMapCategories: String) -> String {
+        let categoryItems = removeLastCommaSymbol(allGeneratedMapCategories)
+        var jsonBlock = textTemplates.wholePluginTemplate
+        jsonBlock = jsonBlock.replacingOccurrences(of: "{$mapCategories}", with: categoryItems)
+        return jsonBlock
+    }
+    
+    
+    private func saveToFile(_ content: String) {
+        // saving json
+        print(content)
+    }
+    
+    
+    
+    
+    private func removeLastCommaSymbol(_ currentCategoryMaps: String) -> String {
+        return String(currentCategoryMaps.dropLast())
+    }
+    
+    
+    
+    
+    
+    
+    //=================Old
     
     private var allMapsObjects: [OsmandOsfMap] = []
     
@@ -54,20 +175,3 @@ class OsfHandler {
     
 }
 
-
-
-
-
-
-//let a = Osf(myTitle: "AA", price: 12.5, quantity: 5)
-//let b =  Osf(myTitle: "BB", price: 41.7, quantity: 07)
-//let c = [a, b]
-//let encodedData = try? JSONEncoder().encode(c)
-//let str = String(data: encodedData!, encoding: .utf8)!
-//
-//
-//struct Osf: Codable {
-//  var myTitle:String
-//  var price:Double
-//  var quantity:Int
-//}

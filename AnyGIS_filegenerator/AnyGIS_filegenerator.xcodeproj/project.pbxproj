@@ -30,6 +30,7 @@
 		331C01EC244DFDAD006FBF0D /* OsmandMapFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C01EB244DFDAD006FBF0D /* OsmandMapFormat.swift */; };
 		331C01EE244E1977006FBF0D /* OsfHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C01ED244E1977006FBF0D /* OsfHandler.swift */; };
 		331C01F0244E1FD2006FBF0D /* OsmandOsfMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C01EF244E1FD2006FBF0D /* OsmandOsfMap.swift */; };
+		331C01F2244F1C77006FBF0D /* OsmandObfTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C01F1244F1C77006FBF0D /* OsmandObfTemplate.swift */; };
 		332AA44A2426717C001162F8 /* WebPagesMapsListGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332AA4492426717C001162F8 /* WebPagesMapsListGenerator.swift */; };
 		332AA44D24334308001162F8 /* OsmandGeneratorDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332AA44C24334308001162F8 /* OsmandGeneratorDTO.swift */; };
 		333F214422DC5AED0099A8D0 /* MetainfoHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333F214322DC5AED0099A8D0 /* MetainfoHandler.swift */; };
@@ -114,6 +115,7 @@
 		331C01EB244DFDAD006FBF0D /* OsmandMapFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmandMapFormat.swift; sourceTree = "<group>"; };
 		331C01ED244E1977006FBF0D /* OsfHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsfHandler.swift; sourceTree = "<group>"; };
 		331C01EF244E1FD2006FBF0D /* OsmandOsfMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmandOsfMap.swift; sourceTree = "<group>"; };
+		331C01F1244F1C77006FBF0D /* OsmandObfTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmandObfTemplate.swift; sourceTree = "<group>"; };
 		332AA4492426717C001162F8 /* WebPagesMapsListGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPagesMapsListGenerator.swift; sourceTree = "<group>"; };
 		332AA44C24334308001162F8 /* OsmandGeneratorDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OsmandGeneratorDTO.swift; sourceTree = "<group>"; };
 		333F214322DC5AED0099A8D0 /* MetainfoHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetainfoHandler.swift; sourceTree = "<group>"; };
@@ -505,6 +507,7 @@
 				339F40E923F2A1B100B09925 /* WebMenuPagesTemplates.swift */,
 				338B7CE4234CF9FC00DA53CA /* SasPlanetTemplate.swift */,
 				33B76E40224E91380010E35E /* OsmandMapsTemplate.swift */,
+				331C01F1244F1C77006FBF0D /* OsmandObfTemplate.swift */,
 				33F766EF23D10915007FE0D2 /* DesktopMapsTemplate.swift */,
 			);
 			path = "Text templates";
@@ -713,6 +716,7 @@
 				331C01F0244E1FD2006FBF0D /* OsmandOsfMap.swift in Sources */,
 				337049B72282D4C90080FF9E /* WesraPassNakarte.swift in Sources */,
 				338B7CE5234CF9FC00DA53CA /* SasPlanetTemplate.swift in Sources */,
+				331C01F2244F1C77006FBF0D /* OsmandObfTemplate.swift in Sources */,
 				33B76E1D224BD62A0010E35E /* MapsClientDataDB.swift in Sources */,
 				332AA44D24334308001162F8 /* OsmandGeneratorDTO.swift in Sources */,
 				33B76E11224BA66C0010E35E /* FilePathTemplates.swift in Sources */,

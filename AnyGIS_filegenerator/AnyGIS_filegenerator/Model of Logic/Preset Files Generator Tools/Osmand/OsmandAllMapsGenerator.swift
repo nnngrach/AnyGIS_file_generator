@@ -81,7 +81,7 @@ class OsmandAllMapsGenerator {
     private func isItUnnececaryMap(_ fileFormat: OsmandMapFormat, _ isShortSet: Bool, _ isEnglish: Bool, _ isPrivateSet: Bool, mapClientLine: MapsClientData) -> Bool {
         
         //for OSF testing
-        //if mapClientLine.groupName != "Спутниковые" {return true}
+        if mapClientLine.groupName != "Спутниковые" {return true}
         //if mapClientLine.id != 2050003 {return true}
         
         
