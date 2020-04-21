@@ -30,8 +30,8 @@ class OsmandOsfTemplate {
                 "ru":"Коллекция онлайн-карт"
              },
              "description":{
-                "":"This package is a collection of online map sources of various types: satellite, tourist, historical, and many others. \nIf you notice any problems, please report them to the telegram chat <a href=\"https://t.me/anygis\">@anygis</a> or email anygis@bk.ru.",
-                "ru":"Сборник с источниками растровых онлайн-карт разных типов: спутниковых, туристических, исторических и многих других. \nО замеченных неисправностях сообщайте в telegram-чат  <a href=\"https://t.me/anygis\">@anygis</a> или на электронную почту anygis@bk.ru."
+                "":"This package is a collection of online map sources of various types: satellite, tourist, historical, and many others. \\nIf you notice any problems, please report them to the telegram chat <a href=\\"https://t.me/anygis\\">@anygis</a> or email anygis@bk.ru.",
+                "ru":"Сборник с источниками растровых онлайн-карт разных типов: спутниковых, туристических, исторических и многих других. \\nО замеченных неисправностях сообщайте в telegram-чат  <a href=\\"https://t.me/anygis\\">@anygis</a> или на электронную почту anygis@bk.ru."
              }
           },
 
@@ -49,16 +49,14 @@ class OsmandOsfTemplate {
                       "":"ic_world_globe_dark"
                    },
                    "header":{
-                      "":"This package is a collection of online map sources of various types: satellite, tourist, historical, and many others. \nIf you notice any problems, please report them to the telegram chat <a href=\"https://t.me/anygis\">@anygis</a> or email anygis@bk.ru."
+                      "":"This package is a collection of online map sources of various types: satellite, tourist, historical, and many others. \\nIf you notice any problems, please report them to the telegram chat <a href=\\"https://t.me/anygis\\">@anygis</a> or email anygis@bk.ru."
                    },
                    "header-button":{
                       "url":"https://t.me/anygis",
                       "":"Telegram chat"
                    }
                 },
-
                 {$mapCategories}
-
              ]
 
           },
@@ -76,51 +74,51 @@ class OsmandOsfTemplate {
     let oneMapCategory =
     """
 
-    {
-       "scope-id":"online-maps",
-       "path":"anygis/{$category}",
-       "header-color":"#002E64",
-       "name":{
-          "":"{$categoryLabel}"
-       },
-       "icon":{
-          "":"ic_world_globe_dark"
-       },
-       "items":[
 
-          {$mapItems}
 
-       ]
-    },
+                {
+                   "scope-id":"online-maps",
+                   "path":"anygis/{$category}",
+                   "header-color":"#002E64",
+                   "name":{
+                      "":"{$categoryLabel}"
+                   },
+                   "icon":{
+                      "":"ic_world_globe_dark"
+                   },
+                   "items":[
+                      {$mapItems}
+                   ]
+                },
     """
     
-    //"type":"sqlite"
-    //"filename":"Strava_Ride_Hd.sqlitedb",
+ 
     
     let oneMapItem =
     """
 
-    {
-       "name":{
-          "":"{$mapLabel}"
-       },
-       "containerSize":2292857,
-       "type":"{$fileFormat}",
-       "contentSize":2292857,
-       "timestamp":{$timestamp},
-       "description":"",
-       "image-description-url":[
 
-       ],
-       "filename":"{$filename}",
-       "firstsubname":{
-          "":"World"
-       },
-       "secondsubname":{
-          "":"FREE"
-       },
-       "downloadurl":"{$downloadurl}"
-    },
+                    {
+                       "name":{
+                          "":"{$mapLabel}"
+                       },
+                       "containerSize":2292857,
+                       "type":"{$fileFormat}",
+                       "contentSize":2292857,
+                       "timestamp":{$timestamp},
+                       "description":"",
+                       "image-description-url":[
+
+                       ],
+                       "filename":"{$filename}",
+                       "firstsubname":{
+                          "":"World"
+                       },
+                       "secondsubname":{
+                          "":"FREE"
+                       },
+                       "downloadurl":"{$downloadurl}"
+                    },
     """
     
 }

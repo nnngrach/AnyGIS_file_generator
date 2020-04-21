@@ -16,35 +16,50 @@ class OsfHandler {
     private let textTemplates = OsmandOsfTemplate()
     
     
-    var previousCategoryName = ""
-    var currentCategoryName = ""
+    var currentCategoryLocalName = ""
+    var previousCategoryLocalName = ""
+    var previousCategoryPrefix = ""
     
-    var isItFirstIteration = true
+    
+    var currentIterationNumber: IterationNumber = .first
     var allGeneratedMapCategories = ""
     var currentCategoryMaps = ""
     
     
+    
     public func launch(fileFormat: OsmandMapFormat, isEnglish: Bool) throws {
         
+        currentIterationNumber = .first
         let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
         
-    
         for mapClientLine in mapsClientTable {
             
             if isItUnnececaryMap(mapClientLine, fileFormat) {continue}
             
-            updateCurrentCategoryName(mapClientLine)
+            
+            currentCategoryLocalName = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
+            
             savePreviousResultIfItNeeded()
+            //updateCurrentCategoryName(mapClientLine, isEnglish)
+            
+            let osmandMenuPath = mapClientLine.groupNameEng.replacingOccurrences(of: " ", with: "")
+            previousCategoryPrefix = osmandMenuPath
+            
+            if currentIterationNumber == .first {
+                previousCategoryLocalName = currentCategoryLocalName
+            }
+                        
             
             appendToCurrentCategoryMapItem(mapClientLine, fileFormat, isEnglish)
             
-            isItFirstIteration = false
+            currentIterationNumber = .middle
         }
         
+        currentIterationNumber = .last
         savePreviousResultIfItNeeded()
         
         let resultContent = getResultContentWith(allGeneratedMapCategories)
-        saveToFile(resultContent)
+        saveToFile(resultContent, isEnglish)
     }
     
     
@@ -54,34 +69,63 @@ class OsfHandler {
     private func isItUnnececaryMap(_ mapClientLine: MapsClientData, _ fileFormat: OsmandMapFormat) -> Bool {
         
         if !mapClientLine.visible {return true}
-        if !mapClientLine.isPrivate {return true}
+        if mapClientLine.isPrivate {return true}
         if fileFormat == .sqlitedb && !mapClientLine.forOsmand {return true}
         if fileFormat == .metainfo && !mapClientLine.forOsmandMeta {return true}
+        
+        //just for testing
+        //if (mapClientLine.groupName != "Геологические") && (mapClientLine.groupName != "Инфраструктура") {return true}
         
         return false
     }
     
     
-    private func updateCurrentCategoryName(_ mapClientLine: MapsClientData) {
-        currentCategoryName = mapClientLine.groupNameEng
+//    private func updateCurrentCategoryName(_ mapClientLine: MapsClientData, _ isEnglish: Bool) {
+//        previousCategoryPrefix = mapClientLine.groupPrefix
+//        previousCategoryLocalName = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
+//    }
+    
+    
+    enum IterationNumber {
+        case first, middle, last
     }
+    
+    
     
     private func savePreviousResultIfItNeeded() {
         
-        if previousCategoryName != currentCategoryName {
-            previousCategoryName  = currentCategoryName
-            if isItFirstIteration {return}
-            
+        let isNewCategoryName = (currentCategoryLocalName != previousCategoryLocalName)
+        let isFirstIteration = (currentIterationNumber == .first)
+        let isFinishingIteration = (currentIterationNumber == .last)
+        
+        if isFirstIteration {
+            //currentCategoryLocalName = previousCategoryLocalName
+            return
+        }
+        
+        if isNewCategoryName || isFinishingIteration {
+
             appendToAllGeneratedCategories(currentCategoryMaps)
+            
+            previousCategoryLocalName = currentCategoryLocalName
             resetLastIterationData()
         }
     }
     
     
     private func appendToAllGeneratedCategories(_ currentCategoryMaps: String) {
-        let mapItems = removeLastCommaSymbol(currentCategoryMaps)
+        
         var jsonBlock = textTemplates.oneMapCategory
+        
+        let categoryPath = previousCategoryPrefix
+        let categoryLabel = previousCategoryLocalName
+        
+        let mapItems = removeLastCommaSymbol(currentCategoryMaps)
+        
+        jsonBlock = jsonBlock.replacingOccurrences(of: "{$category}", with: categoryPath)
+        jsonBlock = jsonBlock.replacingOccurrences(of: "{$categoryLabel}", with: categoryLabel)
         jsonBlock = jsonBlock.replacingOccurrences(of: "{$mapItems}", with: mapItems)
+        
         allGeneratedMapCategories.append(jsonBlock)
     }
     
@@ -96,13 +140,44 @@ class OsfHandler {
         
         var mapItem = textTemplates.oneMapItem
         
-        let firstNamePart = isEnglish ? mapClientLine.emojiGroupEn : mapClientLine.emojiGroupEn
+        let firstNamePart = isEnglish ? mapClientLine.emojiGroupEn : mapClientLine.emojiGroupRu
         let secondNamePart = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
         let nameLabel = firstNamePart + " " + secondNamePart
         
         
-        mapItem = mapItem.replacingOccurrences(of: "{$mapLabel}", with: nameLabel)
+        var format = ""
+        var extantion = ""
+        
+        if fileFormat == .sqlitedb {
+            format = "sqlite"
+            extantion = ".sqlitedb"
+        } else {
+            //TODO: not shure about this
+            format = "metainfo"
+            extantion = ".metainfo"
+        }
+        
+        
+        let fileName = nameLabel + extantion
+        
+        
 
+        let lang = isEnglish ? patchTemplates.engLanguageSubfolder : patchTemplates.rusLanguageSubfolder
+        var url = patchTemplates.gitOsmadMapsFolder + lang + "=" + mapClientLine.groupPrefix + "=" + mapClientLine.clientMapName + extantion
+        url = url.replacingOccurrences(of: "=", with: "%3D")
+        url = url.replacingOccurrences(of: "/", with: "\\/")
+        
+        
+        let timestamp = String( Int( NSDate().timeIntervalSince1970 ) )
+        
+        
+        mapItem = mapItem.replacingOccurrences(of: "{$mapLabel}", with: nameLabel)
+        mapItem = mapItem.replacingOccurrences(of: "{$fileFormat}", with: format)
+        mapItem = mapItem.replacingOccurrences(of: "{$timestamp}", with: timestamp)
+        mapItem = mapItem.replacingOccurrences(of: "{$filename}", with: fileName)
+        mapItem = mapItem.replacingOccurrences(of: "{$downloadurl}", with: url)
+        
+        currentCategoryMaps.append(mapItem)
     }
     
     
@@ -116,9 +191,11 @@ class OsfHandler {
     }
     
     
-    private func saveToFile(_ content: String) {
-        // saving json
-        print(content)
+    private func saveToFile(_ content: String, _ isEnglish: Bool) {
+        let lang = isEnglish ? "en/" : "ru/"
+        let filename = "items.json"
+        let path = patchTemplates.localPathToOsmandOsf + lang + filename
+        diskHandler.createFile(patch: path, content: content, isWithBOM: false)
     }
     
     
@@ -133,7 +210,10 @@ class OsfHandler {
     
     
     
-    //=================Old
+    
+    
+    
+    //TODO: delete old code
     
     private var allMapsObjects: [OsmandOsfMap] = []
     

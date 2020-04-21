@@ -10,6 +10,7 @@ class Controller {
     private let oruxMapsGenerator = OruxAllMapsGenerator()
     private let locusMapsGenerator = LocusAllMapsGenerator()
     private let osmandGenerator = OsmandAllMapsGenerator()
+    private let osmandOsfGenerator = OsfHandler()
     private let alpineMapsGenerator = AlpineAllMapsGenerator()
     private let alpineFolderGenerator = AlpineFoldersGenerator()
     private let markdownPagesGenerator = WebPagesAllMapsGenerator()
@@ -172,13 +173,13 @@ class Controller {
     
     public func generateMapsForOsmandOsf() {
         
-        let rus = patches.rusLanguageSubfolder
-        let eng = patches.engLanguageSubfolder
+        
         //diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToOsmandMapsZip, filetype: "zip")
-        diskHandler.cleanFolder(patch: patches.localPathToOsmandOsf + rus)
+        diskHandler.cleanFolder(patch: patches.localPathToOsmandOsf + "ru/")
 
         do {
-            try osmandGenerator.launch(isShortSet: false, isEnglish: false, fileFormat: .osf, isPrivateSet: false)
+            try osmandOsfGenerator.launch(fileFormat: .sqlitedb, isEnglish: false)
+            //try osmandGenerator.launch(isShortSet: false, isEnglish: false, fileFormat: .osf, isPrivateSet: false)
         } catch {
             print(error)
         }
