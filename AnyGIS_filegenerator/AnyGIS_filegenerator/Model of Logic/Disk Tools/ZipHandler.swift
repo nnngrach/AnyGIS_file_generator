@@ -25,6 +25,20 @@ class ZipHandler {
     }
     
     
+    public func zipWithoutParentFolder(sourcePath: String, archievePath: String) {
+        
+        let sourceURL = URL(string: sourcePath)!
+        let archieveURL = URL(string: archievePath)!
+        let fileManager = FileManager()
+        
+        do {
+            try fileManager.zipItem(at: sourceURL, to: archieveURL, shouldKeepParent: false, compressionMethod: .none, progress: nil)
+        } catch {
+            print("Creation of ZIP archive failed with error:\(error)")
+        }
+    }
+    
+    
     
     
     public func zipMapsFolder(sourceShort: String, SouceFull: String, zipPath: String, isShortSet: Bool, isEnglish: Bool, isForFolders: Bool) {

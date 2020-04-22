@@ -10,6 +10,7 @@ import Foundation
 
 class OsfHandler {
     
+    private let zipHandler = ZipHandler()
     private let diskHandler = DiskHandler()
     private let baseHandler = SqliteHandler()
     private let patchTemplates = FilePathTemplates()
@@ -36,7 +37,7 @@ class OsfHandler {
         
         for mapClientLine in mapsClientTable {
             
-            if isItUnnececaryMap(mapClientLine, fileFormat) {continue}
+            if isItUnnececaryMap(mapClientLine, fileFormat, isEnglish) {continue}
             
             
             currentCategoryNameEn = mapClientLine.groupNameEng
@@ -63,19 +64,22 @@ class OsfHandler {
         savePreviousResultIfItNeeded()
         
         let resultContent = getResultContentWith(allGeneratedMapCategories)
-        saveToFile(resultContent, isEnglish)
+        saveResult(resultContent, isEnglish)
     }
     
     
     
     
     
-    private func isItUnnececaryMap(_ mapClientLine: MapsClientData, _ fileFormat: OsmandMapFormat) -> Bool {
+    private func isItUnnececaryMap(_ mapClientLine: MapsClientData, _ fileFormat: OsmandMapFormat, _ isEnglish: Bool) -> Bool {
         
         if !mapClientLine.visible {return true}
         if mapClientLine.isPrivate {return true}
         if fileFormat == .sqlitedb && !mapClientLine.forOsmand {return true}
         if fileFormat == .metainfo && !mapClientLine.forOsmandMeta {return true}
+        //if isEnglish && !mapClientLine.forEng {return true}
+        //if !isEnglish && !mapClientLine.forRus {return true}
+        
         
         //just for testing
         //if (mapClientLine.groupName != "Геологические") && (mapClientLine.groupName != "Инфраструктура") {return true}
@@ -161,7 +165,8 @@ class OsfHandler {
         }
         
         
-        let fileName = nameLabelEn + extantion
+        let fileNameEn = nameLabelEn + extantion
+        let fileNameRu = nameLabelRu + extantion
         
         
 
@@ -180,7 +185,8 @@ class OsfHandler {
         mapItem = mapItem.replacingOccurrences(of: "{$mapLabelRu}", with: nameLabelRu)
         mapItem = mapItem.replacingOccurrences(of: "{$fileFormat}", with: format)
         mapItem = mapItem.replacingOccurrences(of: "{$timestamp}", with: timestamp)
-        mapItem = mapItem.replacingOccurrences(of: "{$filename}", with: fileName)
+        mapItem = mapItem.replacingOccurrences(of: "{$filenameEn}", with: fileNameEn)
+        mapItem = mapItem.replacingOccurrences(of: "{$filenameRu}", with: fileNameRu)
         mapItem = mapItem.replacingOccurrences(of: "{$downloadurl}", with: url)
         mapItem = mapItem.replacingOccurrences(of: "{$imagePreview}", with: tileUrl)
         
@@ -204,11 +210,26 @@ class OsfHandler {
     }
     
     
+    
+    private func saveResult(_ content: String, _ isEnglish: Bool) {
+        saveToFile(content, isEnglish)
+        copyStaticFiles()
+        createObfFile()
+    }
+    
     private func saveToFile(_ content: String, _ isEnglish: Bool) {
-        let lang = isEnglish ? "en/" : "ru/"
         let filename = "items.json"
-        let path = patchTemplates.localPathToOsmandOsf + lang + filename
+        let path = patchTemplates.localPathToOsmandOsfFiles + filename
         diskHandler.createFile(patch: path, content: content, isWithBOM: false)
+    }
+    
+    private func copyStaticFiles() {
+        diskHandler.secureCopyItem(at: patchTemplates.localPathToOsmandOsfStaticFiles + "full_collection.json", to: patchTemplates.localPathToOsmandOsfFiles + "full_collection.json")
+        diskHandler.secureCopyItem(at: patchTemplates.localPathToOsmandOsfStaticFiles + "res", to: patchTemplates.localPathToOsmandOsfFiles + "res")
+    }
+    
+    private func createObfFile() {
+        zipHandler.zipWithoutParentFolder(sourcePath: patchTemplates.localPathToOsmandOsfFiles, archievePath: patchTemplates.localPathToOsmandOsfPluginFolder + "Online_maps_collection_anygis.osf")
     }
     
     
@@ -218,53 +239,4 @@ class OsfHandler {
         return String(currentCategoryMaps.dropLast())
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    //TODO: delete old code
-    
-    private var allMapsObjects: [OsmandOsfMap] = []
-    
-    public func reset() {
-        allMapsObjects = []
-    }
-    
-    
-    public func addMap(dto: OsmandGeneratorDTO) throws {
-        
-        let currentMap = OsmandOsfMap(
-            name: dto.label,
-            url: dto.url,
-            randoms: dto.serverNames,
-            referer: dto.refererUrl ?? "",
-            minZoom: Int(dto.zoommin),
-            maxZoom: Int(dto.zoommax),
-            ellipsoid: dto.isEllipsoid,
-            inverted_y: dto.isInvertedY,
-            inversiveZoom: false,
-            timesupported: dto.timeSupport == "yes",
-            expire: Int(dto.timeStoring) ?? 2160,
-            tileSize: Int(dto.defaultTileSize) ?? 256,
-            bitDensity: 8,
-            avgSize: 18000,
-            ext: ".png",
-            sql: false)
-        
-        allMapsObjects.append(currentMap)
-    }
-    
-    
-    public func getAllMapsJson() -> String {
-        let encodedData = try? JSONEncoder().encode(allMapsObjects)
-        let jsonString = String(data: encodedData ?? Data(),
-                                encoding: .utf8)
-        return jsonString ?? ""
-    }
-    
 }
-

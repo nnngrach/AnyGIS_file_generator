@@ -60,6 +60,9 @@ struct FilePathTemplates {
     let localPathToOsmandMetainfoPrivate = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources%20deleted/Files/Osmand_metainfo"
     
     let localPathToOsmandOsf = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Osf/"
+    let localPathToOsmandOsfStaticFiles = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Osf/not_changing_files/"
+    let localPathToOsmandOsfFiles = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Osf/result_files/"
+    let localPathToOsmandOsfPluginFolder = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Osmand_online_maps/Osf/result_osf/"
     
     let localPathToOruxMapsFull = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Orux_online_maps/Maps_full"
     let localPathToOruxMapsShort = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Orux_online_maps/Maps_short"

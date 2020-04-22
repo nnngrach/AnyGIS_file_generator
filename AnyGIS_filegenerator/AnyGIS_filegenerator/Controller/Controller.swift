@@ -173,13 +173,11 @@ class Controller {
     
     public func generateMapsForOsmandOsf() {
         
-        
-        //diskHandler.cleanFiletypeFromFolder(patch: patches.localPathToOsmandMapsZip, filetype: "zip")
-        diskHandler.cleanFolder(patch: patches.localPathToOsmandOsf + "ru/")
+        diskHandler.cleanFolder(patch: patches.localPathToOsmandOsfFiles)
+        diskHandler.cleanFolder(patch: patches.localPathToOsmandOsfPluginFolder)
 
         do {
             try osmandOsfGenerator.launch(fileFormat: .sqlitedb, isEnglish: false)
-            //try osmandGenerator.launch(isShortSet: false, isEnglish: false, fileFormat: .osf, isPrivateSet: false)
         } catch {
             print(error)
         }

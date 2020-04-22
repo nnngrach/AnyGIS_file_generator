@@ -26,7 +26,7 @@ class OsmandAllMapsGenerator {
         let mapsServerTable = try baseHandler.getMapsServerData()
         let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
         
-        resetAll()
+        //resetAll()
         
         for mapClientLine in mapsClientTable {
             
@@ -40,8 +40,7 @@ class OsmandAllMapsGenerator {
             case .metainfo:
                 try metainfoHandler.create(dto: mapData)
             case .osf:
-                try osfHandler.addMap(dto: mapData)
-                //break
+                break
             }
         }
         
@@ -63,8 +62,6 @@ class OsmandAllMapsGenerator {
                                     isEnglish: isEnglish,
                                     isForFolders: false)
         case .osf:
-            let result = osfHandler.getAllMapsJson()
-            print(result)
             break
         }
         
@@ -72,19 +69,13 @@ class OsmandAllMapsGenerator {
     
     
     
-    private func resetAll() {
-        osfHandler.reset()
-    }
+//    private func resetAll() {
+//        //osfHandler.reset()
+//    }
     
     
     
     private func isItUnnececaryMap(_ fileFormat: OsmandMapFormat, _ isShortSet: Bool, _ isEnglish: Bool, _ isPrivateSet: Bool, mapClientLine: MapsClientData) -> Bool {
-        
-        //for OSF testing
-        if mapClientLine.groupName != "Спутниковые" {return true}
-        //if mapClientLine.id != 2050003 {return true}
-        
-        
         
         // Filter off service layers
         if fileFormat == .sqlitedb && !mapClientLine.forOsmand {return true}

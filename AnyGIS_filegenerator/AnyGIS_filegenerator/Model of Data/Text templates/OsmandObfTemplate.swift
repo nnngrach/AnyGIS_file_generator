@@ -93,7 +93,11 @@ class OsmandOsfTemplate {
                 },
     """
     
- 
+//    "filename":{
+//        "":"{$filenameEn}",
+//        "ru":"{$filenameRu}"
+//    },
+
     
     let oneMapItem =
     """
@@ -102,7 +106,7 @@ class OsmandOsfTemplate {
                     {
                        "name":{
                           "":"{$mapLabelEn}",
-                          "ru":"{$mapLabelRu}",
+                          "ru":"{$mapLabelRu}"
                        },
                        "containerSize":2292857,
                        "type":"{$fileFormat}",
@@ -110,9 +114,10 @@ class OsmandOsfTemplate {
                        "timestamp":{$timestamp},
                        "description":"",
                        "image-description-url":[
-                          {"":"{$imagePreview}"}
+                          "{$imagePreview}"
                        ],
-                       "filename":"{$filename}",
+                       "filename":"{$filenameEn}",
+
                        "firstsubname":{
                           "":""
                        },
