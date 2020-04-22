@@ -16,13 +16,15 @@ class OsfHandler {
     private let patchTemplates = FilePathTemplates()
     private let textTemplates = OsmandOsfTemplate()
     
+    enum IterationNumber {
+        case first, middle, last
+    }
     
     var currentCategoryNameEn = ""
     var currentCategoryNameRu = ""
     var previousCategoryNameEn = ""
     var previousCategoryNameRu = ""
     var previousCategoryPrefix = ""
-    
     
     var currentIterationNumber: IterationNumber = .first
     var allGeneratedMapCategories = ""
@@ -39,22 +41,9 @@ class OsfHandler {
             
             if isItUnnececaryMap(mapClientLine, fileFormat, isEnglish) {continue}
             
-            
-            currentCategoryNameEn = mapClientLine.groupNameEng
-            currentCategoryNameRu = mapClientLine.groupName
-            
+            updateCurrentStepData(mapClientLine)
             savePreviousResultIfItNeeded()
-            //updateCurrentCategoryName(mapClientLine, isEnglish)
-            
-            let osmandMenuPath = mapClientLine.groupNameEng.replacingOccurrences(of: " ", with: "")
-            previousCategoryPrefix = osmandMenuPath
-            
-            if currentIterationNumber == .first {
-                previousCategoryNameEn = currentCategoryNameEn
-                previousCategoryNameRu = currentCategoryNameRu
-            }
-                        
-            
+            updatePreviousStepData(mapClientLine)
             appendToCurrentCategoryMapItem(mapClientLine, fileFormat, isEnglish)
             
             currentIterationNumber = .middle
@@ -80,23 +69,27 @@ class OsfHandler {
         //if isEnglish && !mapClientLine.forEng {return true}
         //if !isEnglish && !mapClientLine.forRus {return true}
         
-        
-        //just for testing
-        //if (mapClientLine.groupName != "Геологические") && (mapClientLine.groupName != "Инфраструктура") {return true}
-        
         return false
     }
     
     
-//    private func updateCurrentCategoryName(_ mapClientLine: MapsClientData, _ isEnglish: Bool) {
-//        previousCategoryPrefix = mapClientLine.groupPrefix
-//        previousCategoryLocalName = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
-//    }
-    
-    
-    enum IterationNumber {
-        case first, middle, last
+    private func updateCurrentStepData(_ mapClientLine: MapsClientData) {
+        currentCategoryNameEn = mapClientLine.groupNameEng
+        currentCategoryNameRu = mapClientLine.groupName
     }
+    
+    
+    private func updatePreviousStepData(_ mapClientLine: MapsClientData) {
+        let osmandMenuPath = mapClientLine.groupNameEng.replacingOccurrences(of: " ", with: "")
+        previousCategoryPrefix = osmandMenuPath
+        
+        if currentIterationNumber == .first {
+            previousCategoryNameEn = currentCategoryNameEn
+            previousCategoryNameRu = currentCategoryNameRu
+        }
+    }
+    
+    
     
     
     
@@ -106,10 +99,7 @@ class OsfHandler {
         let isFirstIteration = (currentIterationNumber == .first)
         let isFinishingIteration = (currentIterationNumber == .last)
         
-        if isFirstIteration {
-            //currentCategoryLocalName = previousCategoryLocalName
-            return
-        }
+        if isFirstIteration {return}
         
         if isNewCategoryName || isFinishingIteration {
 
@@ -178,12 +168,14 @@ class OsfHandler {
         
         let tileUrl = getPreviewTileUrl(mapClientLine)
         
-        //let timestamp = String( Int( NSDate().timeIntervalSince1970 ) )
+        let date = getDateStringFrom(timestamp: mapClientLine.lastUpdateTime)
         let timestamp = String(mapClientLine.lastUpdateTime)
+
         
         mapItem = mapItem.replacingOccurrences(of: "{$mapLabelEn}", with: nameLabelEn)
         mapItem = mapItem.replacingOccurrences(of: "{$mapLabelRu}", with: nameLabelRu)
         mapItem = mapItem.replacingOccurrences(of: "{$fileFormat}", with: format)
+        mapItem = mapItem.replacingOccurrences(of: "{$date}", with: date)
         mapItem = mapItem.replacingOccurrences(of: "{$timestamp}", with: timestamp)
         mapItem = mapItem.replacingOccurrences(of: "{$filenameEn}", with: fileNameEn)
         mapItem = mapItem.replacingOccurrences(of: "{$filenameRu}", with: fileNameRu)
@@ -193,6 +185,15 @@ class OsfHandler {
         currentCategoryMaps.append(mapItem)
     }
     
+    
+    private func getDateStringFrom(timestamp: Int64) -> String{
+        let format = "dd.MM.yyyy"
+        let date = Date(timeIntervalSince1970: Double(timestamp))
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        let dateResult = formatter.string(from: date as Date)
+        return dateResult
+    }
     
     
     

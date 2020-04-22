@@ -48,12 +48,14 @@ class OsmandOsfTemplate {
                    "icon":{
                       "":"ic_world_globe_dark"
                    },
-                   "header":{
-                      "":"This package is a collection of online map sources of various types: satellite, tourist, historical, and many others. \\nIf you notice any problems, please report them to the telegram chat <a href=\\"https://t.me/anygis\\">@anygis</a> or email anygis@bk.ru."
-                   },
-                   "header-button":{
-                      "url":"https://t.me/anygis",
-                      "":"Telegram chat"
+                   "header-color" : "#002E64",
+
+                   "description" : {
+                       "text" : {"" : "This package is a collection of online map sources of various types: satellite, tourist, historical, and many others. \\nIf you notice any problems, please report them to the telegram chat <a href=\\"https://t.me/anygis\\">@anygis</a> or email anygis@bk.ru." },
+                       "button" : [{
+                           "" : "Telegram chat",
+                           "url": "https:\\/\\/t.me\\/anygis"
+                       }]
                    }
                 },
                 {$mapCategories}
@@ -110,20 +112,15 @@ class OsmandOsfTemplate {
                        },
                        "containerSize":2292857,
                        "type":"{$fileFormat}",
-                       "contentSize":2292857,
+                       "date": "{$date}",
                        "timestamp":{$timestamp},
-                       "description":"",
+                       "description": {},
                        "image-description-url":[
                           "{$imagePreview}"
                        ],
                        "filename":"{$filenameEn}",
-
-                       "firstsubname":{
-                          "":""
-                       },
-                       "secondsubname":{
-                          "":""
-                       },
+                       "firstsubname" : {"" : "World"},
+                       "secondsubname" : {"" : "FREE"},
                        "downloadurl":"{$downloadurl}"
                     },
     """
