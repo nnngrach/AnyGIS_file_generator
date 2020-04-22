@@ -140,7 +140,8 @@ class SqliteHandler {
                           copyright: rawLine[MapsClientDataDB.copyright]!,
                           isPrivate: rawLine[MapsClientDataDB.isPrivate]!,
                           emojiGroupRu: rawLine[MapsClientDataDB.emojiGroupRu]!,
-                          emojiGroupEn: rawLine[MapsClientDataDB.emojiGroupEn]!)
+                          emojiGroupEn: rawLine[MapsClientDataDB.emojiGroupEn]!,
+                          lastUpdateTime: rawLine[MapsClientDataDB.lastUpdateTime]!)
             
             result.append(item)
         }

@@ -66,4 +66,6 @@ struct MapsClientDataDB {
     
     static let emojiGroupRu = Expression<String?>("emojiGroupRu")
     static let emojiGroupEn = Expression<String?>("emojiGroupEn")
+    
+    static let lastUpdateTime = Expression<Int64?>("lastUpdateTime")
 }

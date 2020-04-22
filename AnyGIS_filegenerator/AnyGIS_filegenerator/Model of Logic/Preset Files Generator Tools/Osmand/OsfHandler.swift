@@ -16,8 +16,10 @@ class OsfHandler {
     private let textTemplates = OsmandOsfTemplate()
     
     
-    var currentCategoryLocalName = ""
-    var previousCategoryLocalName = ""
+    var currentCategoryNameEn = ""
+    var currentCategoryNameRu = ""
+    var previousCategoryNameEn = ""
+    var previousCategoryNameRu = ""
     var previousCategoryPrefix = ""
     
     
@@ -37,7 +39,8 @@ class OsfHandler {
             if isItUnnececaryMap(mapClientLine, fileFormat) {continue}
             
             
-            currentCategoryLocalName = isEnglish ? mapClientLine.groupNameEng : mapClientLine.groupName
+            currentCategoryNameEn = mapClientLine.groupNameEng
+            currentCategoryNameRu = mapClientLine.groupName
             
             savePreviousResultIfItNeeded()
             //updateCurrentCategoryName(mapClientLine, isEnglish)
@@ -46,7 +49,8 @@ class OsfHandler {
             previousCategoryPrefix = osmandMenuPath
             
             if currentIterationNumber == .first {
-                previousCategoryLocalName = currentCategoryLocalName
+                previousCategoryNameEn = currentCategoryNameEn
+                previousCategoryNameRu = currentCategoryNameRu
             }
                         
             
@@ -94,7 +98,7 @@ class OsfHandler {
     
     private func savePreviousResultIfItNeeded() {
         
-        let isNewCategoryName = (currentCategoryLocalName != previousCategoryLocalName)
+        let isNewCategoryName = (currentCategoryNameEn != previousCategoryNameEn)
         let isFirstIteration = (currentIterationNumber == .first)
         let isFinishingIteration = (currentIterationNumber == .last)
         
@@ -107,7 +111,8 @@ class OsfHandler {
 
             appendToAllGeneratedCategories(currentCategoryMaps)
             
-            previousCategoryLocalName = currentCategoryLocalName
+            previousCategoryNameEn = currentCategoryNameEn
+            previousCategoryNameRu = currentCategoryNameRu
             resetLastIterationData()
         }
     }
@@ -118,12 +123,12 @@ class OsfHandler {
         var jsonBlock = textTemplates.oneMapCategory
         
         let categoryPath = previousCategoryPrefix
-        let categoryLabel = previousCategoryLocalName
         
         let mapItems = removeLastCommaSymbol(currentCategoryMaps)
         
         jsonBlock = jsonBlock.replacingOccurrences(of: "{$category}", with: categoryPath)
-        jsonBlock = jsonBlock.replacingOccurrences(of: "{$categoryLabel}", with: categoryLabel)
+        jsonBlock = jsonBlock.replacingOccurrences(of: "{$categoryLabelEn}", with: previousCategoryNameEn)
+        jsonBlock = jsonBlock.replacingOccurrences(of: "{$categoryLabelRu}", with: previousCategoryNameRu)
         jsonBlock = jsonBlock.replacingOccurrences(of: "{$mapItems}", with: mapItems)
         
         allGeneratedMapCategories.append(jsonBlock)
@@ -140,10 +145,8 @@ class OsfHandler {
         
         var mapItem = textTemplates.oneMapItem
         
-        let firstNamePart = isEnglish ? mapClientLine.emojiGroupEn : mapClientLine.emojiGroupRu
-        let secondNamePart = isEnglish ? mapClientLine.shortNameEng : mapClientLine.shortName
-        let nameLabel = firstNamePart + " " + secondNamePart
-        
+        let nameLabelRu = mapClientLine.emojiGroupRu + " " + mapClientLine.shortName
+        let nameLabelEn = mapClientLine.emojiGroupEn + " " + mapClientLine.shortNameEng
         
         var format = ""
         var extantion = ""
@@ -158,7 +161,7 @@ class OsfHandler {
         }
         
         
-        let fileName = nameLabel + extantion
+        let fileName = nameLabelEn + extantion
         
         
 
@@ -168,18 +171,28 @@ class OsfHandler {
         url = url.replacingOccurrences(of: "/", with: "\\/")
         
         
-        let timestamp = String( Int( NSDate().timeIntervalSince1970 ) )
+        let tileUrl = getPreviewTileUrl(mapClientLine)
         
+        //let timestamp = String( Int( NSDate().timeIntervalSince1970 ) )
+        let timestamp = String(mapClientLine.lastUpdateTime)
         
-        mapItem = mapItem.replacingOccurrences(of: "{$mapLabel}", with: nameLabel)
+        mapItem = mapItem.replacingOccurrences(of: "{$mapLabelEn}", with: nameLabelEn)
+        mapItem = mapItem.replacingOccurrences(of: "{$mapLabelRu}", with: nameLabelRu)
         mapItem = mapItem.replacingOccurrences(of: "{$fileFormat}", with: format)
         mapItem = mapItem.replacingOccurrences(of: "{$timestamp}", with: timestamp)
         mapItem = mapItem.replacingOccurrences(of: "{$filename}", with: fileName)
         mapItem = mapItem.replacingOccurrences(of: "{$downloadurl}", with: url)
+        mapItem = mapItem.replacingOccurrences(of: "{$imagePreview}", with: tileUrl)
         
         currentCategoryMaps.append(mapItem)
     }
     
+    
+    
+    
+    private func getPreviewTileUrl(_ mapClientLine: MapsClientData) -> String {
+        return "https://anygis.ru/api/v1/previewTile/" + mapClientLine.anygisMapName
+    }
     
     
     

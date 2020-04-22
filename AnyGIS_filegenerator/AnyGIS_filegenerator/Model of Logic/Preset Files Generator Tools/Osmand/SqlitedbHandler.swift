@@ -34,8 +34,12 @@ class SqlitedbHandler {
         let filePatch = folderPatch + langLabel + "=" + dto.filename + ".sqlitedb"
         
         // Sqlitedb uses iverted zoom
-        let sqlitedbMinZoom = String(17 - dto.zoommax)
-        let sqlitedbMaxZoom = String(17 - dto.zoommin)
+        //let sqlitedbMinZoom = String(17 - dto.zoommax)
+        //let sqlitedbMaxZoom = String(17 - dto.zoommin)
+        
+        let sqlitedbMinZoom = String(dto.zoommin)
+        let sqlitedbMaxZoom = String(dto.zoommax)
+        
         
         let isInvertedY: Int64 = dto.isInvertedY ? 1 : 0
         let isEllipsoid: Int64 = dto.isEllipsoid ? 1 : 0
@@ -98,7 +102,8 @@ class SqlitedbHandler {
                                 timeSupported <- timeSupport,
                                 timecolumn <- timeSupport,
                                 expireminutes <- timeStoring,
-                                tilenumbering <- "BigPlanet"
+                                tilenumbering <- "simple"
+                                //tilenumbering <- "BigPlanet"
         ))
         
     }

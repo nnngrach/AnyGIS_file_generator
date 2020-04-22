@@ -81,7 +81,8 @@ class OsmandOsfTemplate {
                    "path":"anygis/{$category}",
                    "header-color":"#002E64",
                    "name":{
-                      "":"{$categoryLabel}"
+                      "":"{$categoryLabelEn}",
+                      "ru":"{$categoryLabelRu}"
                    },
                    "icon":{
                       "":"ic_world_globe_dark"
@@ -100,7 +101,8 @@ class OsmandOsfTemplate {
 
                     {
                        "name":{
-                          "":"{$mapLabel}"
+                          "":"{$mapLabelEn}",
+                          "ru":"{$mapLabelRu}",
                        },
                        "containerSize":2292857,
                        "type":"{$fileFormat}",
@@ -108,14 +110,14 @@ class OsmandOsfTemplate {
                        "timestamp":{$timestamp},
                        "description":"",
                        "image-description-url":[
-
+                          {"":"{$imagePreview}"}
                        ],
                        "filename":"{$filename}",
                        "firstsubname":{
-                          "":"World"
+                          "":""
                        },
                        "secondsubname":{
-                          "":"FREE"
+                          "":""
                        },
                        "downloadurl":"{$downloadurl}"
                     },

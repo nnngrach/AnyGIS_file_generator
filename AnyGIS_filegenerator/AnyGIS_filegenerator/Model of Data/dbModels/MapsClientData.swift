@@ -64,4 +64,6 @@ struct MapsClientData {
     
     let emojiGroupRu: String
     let emojiGroupEn: String
+    
+    let lastUpdateTime: Int64
 }
