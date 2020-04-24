@@ -22,12 +22,12 @@ class OsmandOsfTemplate {
           "icon" : {"" : "@plugin-id.png"},
           "image" : {"" : "@plugin-image.webp"},
           "name" : {
-            "" : "Collection of online maps",
-            "ru" : "Коллекция онлайн-карт"
+            "" : "AnyGIS online maps collection",
+            "ru" : "Коллекция онлайн карт AnyGIS"
           },
           "description" : {
             "" : "This package is a collection of online map sources of various types: satellite, tourist, historical, and many others. \\nIf you notice any problems, please report them to the telegram chat <a href=\\"https://t.me/anygis\\">@anygis</a> or email <a href=\\"mailto:anygis@bk.ru\\">anygis@bk.ru</a>.",
-            "ru" : "Сборник с источниками растровых онлайн-карт разных типов: спутниковых, туристических, исторических и многих других. \\nО замеченных неисправностях сообщайте в telegram-чат  <a href=\\"https://t.me/anygis\\">@anygis</a> или на электронную почту <a href=\\"mailto:anygis@bk.ru\\">anygis@bk.ru</a>."
+            "ru" : "Сборник с источниками растровых онлайн-карт разных типов: спутниковых, туристических, исторических и многих других. \\nО замеченных неисправностях сообщайте в telegram-чат проекта <a href=\\"https://t.me/anygis\\">@anygis</a> или на электронную почту <a href=\\"mailto:anygis@bk.ru\\">anygis@bk.ru</a>."
           }
         },
 
@@ -39,14 +39,17 @@ class OsmandOsfTemplate {
 
             {
               "path" : "anygis",
-              "name" : {"" : "AnyGis Online Maps"},
+              "name" : {
+                "" : "AnyGIS online maps collection",
+                "ru" : "Коллекция онлайн карт AnyGIS"
+              },
               "icon" : {"" : "ic_world_globe_dark"},
               "header-color" : "#002E64",
 
               "description" : {
                 "text" : {
                   "" : "This package is a collection of online map sources of various types: satellite, tourist, historical, and many others. \\nIf you notice any problems, please report them to the telegram chat.",
-                  "ru" : "Сборник с источниками растровых онлайн-карт разных типов: спутниковых, туристических, исторических и многих других. \\nО замеченных неисправностях сообщайте в telegram-чат."
+                  "ru" : "Сборник с источниками растровых онлайн-карт разных типов: спутниковых, туристических, исторических и многих других. \\nО замеченных неисправностях сообщайте в telegram-чат проекта."
                 },
                 "button" : [{
                   "" : "Telegram chat",

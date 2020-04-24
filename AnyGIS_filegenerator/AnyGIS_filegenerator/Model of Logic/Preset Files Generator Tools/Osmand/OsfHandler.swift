@@ -220,7 +220,7 @@ class OsfHandler {
     
     
     private func getPreviewTileUrl(_ mapClientLine: MapsClientData) -> String {
-        return "https://anygis.ru/api/v1/previewTile/" + mapClientLine.anygisMapName
+        return "https://anygis.ru/api/v1/previewRowOfTiles/" + mapClientLine.anygisMapName
     }
     
     
@@ -247,8 +247,8 @@ class OsfHandler {
     }
     
     private func copyStaticFiles() {
-        diskHandler.secureCopyItem(at: patchTemplates.localPathToOsmandOsfStaticFiles + "full_collection.json", to: patchTemplates.localPathToOsmandOsfFiles + "full_collection.json")
         diskHandler.secureCopyItem(at: patchTemplates.localPathToOsmandOsfStaticFiles + "res", to: patchTemplates.localPathToOsmandOsfFiles + "res")
+        //diskHandler.secureCopyItem(at: patchTemplates.localPathToOsmandOsfStaticFiles + "full_collection.json", to: patchTemplates.localPathToOsmandOsfFiles + "full_collection.json")
     }
     
     private func createObfFile() {
