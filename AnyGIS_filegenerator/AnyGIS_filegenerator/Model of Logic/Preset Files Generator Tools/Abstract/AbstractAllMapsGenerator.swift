@@ -41,6 +41,8 @@ class AbstractAllMapsGenerator {
         // Iterating for All Maps list
         for mapClientLine in mapsClientTable {
             
+            //print(appName, mapClientLine.emojiGroupRu, mapClientLine.shortName)
+            
             if oneMapGenerator.isItUnnecessaryMap(mapClientLine, isShortSet, isEnglish, isPrivateSet, isAllMapsInOneFile, appName) {continue}
             
             if !isAllMapsInOneFile {

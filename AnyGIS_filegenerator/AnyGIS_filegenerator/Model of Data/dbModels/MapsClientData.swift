@@ -33,6 +33,11 @@ struct MapsClientData {
     let layersIDList: String
     let visible: Bool
     
+    let regionNameRu: String
+    let regionNameEn: String
+    let subregionNameRu: String
+    let subregionNameEn: String
+    
     let countries: String
     let usage: String
     
@@ -64,6 +69,7 @@ struct MapsClientData {
     
     let emojiGroupRu: String
     let emojiGroupEn: String
+    let osfPrefix: String
     
     let lastUpdateTime: Int64
 }

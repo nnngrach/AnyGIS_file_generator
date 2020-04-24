@@ -88,8 +88,8 @@ class SqliteHandler {
         let firstSortingField = isEnglish ? MapsClientDataDB.orderEng : MapsClientDataDB.orderRu
         let secondSortingField = isEnglish ? MapsClientDataDB.shortNameEng : MapsClientDataDB.shortName
         
-        let rawTable = try connection
-            .prepare(MapsClientDataDB.table
+        let rawTable = try connection.prepare(MapsClientDataDB.table
+            //.filter(MapsClientDataDB.visible == true)
             .order(firstSortingField, secondSortingField))
         
         
@@ -116,6 +116,10 @@ class SqliteHandler {
                           projection: rawLine[MapsClientDataDB.projection]!,
                           layersIDList: rawLine[MapsClientDataDB.layersIDList]!,
                           visible: rawLine[MapsClientDataDB.visible]!,
+                          regionNameRu: rawLine[MapsClientDataDB.regionNameRu]!,
+                          regionNameEn: rawLine[MapsClientDataDB.regionNameEn]!,
+                          subregionNameRu: rawLine[MapsClientDataDB.subregionNameRu]!,
+                          subregionNameEn: rawLine[MapsClientDataDB.subregionNameEn]!,
                           countries: rawLine[MapsClientDataDB.countries]!,
                           usage: rawLine[MapsClientDataDB.usage]!,
                           forLocus: rawLine[MapsClientDataDB.forLocus]!,
@@ -141,6 +145,90 @@ class SqliteHandler {
                           isPrivate: rawLine[MapsClientDataDB.isPrivate]!,
                           emojiGroupRu: rawLine[MapsClientDataDB.emojiGroupRu]!,
                           emojiGroupEn: rawLine[MapsClientDataDB.emojiGroupEn]!,
+                          osfPrefix: rawLine[MapsClientDataDB.osfPrefix]!,
+                          lastUpdateTime: rawLine[MapsClientDataDB.lastUpdateTime]!)
+            
+            result.append(item)
+        }
+        
+        return result
+    }
+    
+    
+    
+    
+    public func getMapsClientDataForOsf() throws -> [MapsClientData] {
+        
+        var result: [MapsClientData] = []
+        
+        let connection = try Connection(patchTemplates.dataBasePatch, readonly: true)
+        
+        let rawTable = try connection.prepare(MapsClientDataDB.table
+            .filter(MapsClientDataDB.visible == true)
+            .filter(MapsClientDataDB.isPrivate == false)
+            .order(MapsClientDataDB.orderEng, MapsClientDataDB.shortNameEng))
+        
+        /*
+        let rawTable = try connection
+            .prepare(MapsClientDataDB.table
+            .filter(MapsClientDataDB.visible == true)
+            .filter(MapsClientDataDB.isPrivate == false)
+            .order(MapsClientDataDB.regionNameEn,
+                       MapsClientDataDB.subregionNameEn,
+                       MapsClientDataDB.shortNameEng))
+        */
+        
+        
+        for rawLine in rawTable {
+            
+            let item = MapsClientData(id: rawLine[MapsClientDataDB.id]!,
+                          anygisMapName: rawLine[MapsClientDataDB.anygisMapName]!,
+                          orderRu: rawLine[MapsClientDataDB.orderRu]!,
+                          orderEng: rawLine[MapsClientDataDB.orderEng]!,
+                          isInStarterSet: rawLine[MapsClientDataDB.isInStarterSet]!,
+                          isInStarterSetEng: rawLine[MapsClientDataDB.isInStarterSetEng]!,
+                          forRus: rawLine[MapsClientDataDB.forRus]!,
+                          forEng: rawLine[MapsClientDataDB.forEng]!,
+                          groupName: rawLine[MapsClientDataDB.groupName]!,
+                          groupNameEng: rawLine[MapsClientDataDB.groupNameEng]!,
+                          shortName: rawLine[MapsClientDataDB.shortName]!,
+                          shortNameEng: rawLine[MapsClientDataDB.shortNameEng]!,
+                          groupPrefix: rawLine[MapsClientDataDB.groupPrefix]!,
+                          oruxGroupPrefix: rawLine[MapsClientDataDB.oruxGroupPrefix]!,
+                          clientMapName: rawLine[MapsClientDataDB.clientMapName]!,
+                          projection: rawLine[MapsClientDataDB.projection]!,
+                          layersIDList: rawLine[MapsClientDataDB.layersIDList]!,
+                          visible: rawLine[MapsClientDataDB.visible]!,
+                          regionNameRu: rawLine[MapsClientDataDB.regionNameRu]!,
+                          regionNameEn: rawLine[MapsClientDataDB.regionNameEn]!,
+                          subregionNameRu: rawLine[MapsClientDataDB.subregionNameRu]!,
+                          subregionNameEn: rawLine[MapsClientDataDB.subregionNameEn]!,
+                          countries: rawLine[MapsClientDataDB.countries]!,
+                          usage: rawLine[MapsClientDataDB.usage]!,
+                          forLocus: rawLine[MapsClientDataDB.forLocus]!,
+                          forGuru: rawLine[MapsClientDataDB.forGuru]!,
+                          forOrux: rawLine[MapsClientDataDB.forOrux]!,
+                          forOsmand: rawLine[MapsClientDataDB.forOsmand]!,
+                          forOsmandMeta: rawLine[MapsClientDataDB.forOsmandMeta]!,
+                          forAlpine: rawLine[MapsClientDataDB.forAlpine]!,
+                          forSas: rawLine[MapsClientDataDB.forSas]!,
+                          forDesktop: rawLine[MapsClientDataDB.forDesktop]!,
+                          locusLoadAnygis: rawLine[MapsClientDataDB.locusLoadAnygis]!,
+                          gurumapsLoadAnygis: rawLine[MapsClientDataDB.gurumapsLoadAnygis]!,
+                          oruxLoadAnygis: rawLine[MapsClientDataDB.oruxLoadAnygis]!,
+                          osmandLoadAnygis: rawLine[MapsClientDataDB.osmandLoadAnygis]!,
+                          osmandMetaLoadAnygis: rawLine[MapsClientDataDB.osmandMetaLoadAnygis]!,
+                          alpineLoadAnygis: rawLine[MapsClientDataDB.alpineLoadAnygis]!,
+                          sasLoadAnygis: rawLine[MapsClientDataDB.sasLoadAnygis]!,
+                          desktopLoadAnygis: rawLine[MapsClientDataDB.desktopLoadAnygis]!,
+                          cacheStoringHours: rawLine[MapsClientDataDB.cacheStoringHours]!,
+                          isRetina: rawLine[MapsClientDataDB.isRetina]!,
+                          comment: rawLine[MapsClientDataDB.comment]!,
+                          copyright: rawLine[MapsClientDataDB.copyright]!,
+                          isPrivate: rawLine[MapsClientDataDB.isPrivate]!,
+                          emojiGroupRu: rawLine[MapsClientDataDB.emojiGroupRu]!,
+                          emojiGroupEn: rawLine[MapsClientDataDB.emojiGroupEn]!,
+                          osfPrefix: rawLine[MapsClientDataDB.osfPrefix]!,
                           lastUpdateTime: rawLine[MapsClientDataDB.lastUpdateTime]!)
             
             result.append(item)

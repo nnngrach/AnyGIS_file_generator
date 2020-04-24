@@ -35,7 +35,9 @@ class OsfHandler {
     public func launch(fileFormat: OsmandMapFormat, isEnglish: Bool) throws {
         
         currentIterationNumber = .first
-        let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
+        
+        //let mapsClientTable = try baseHandler.getMapsClientData(isEnglish: isEnglish)
+        let mapsClientTable = try baseHandler.getMapsClientDataForOsf()
         
         for mapClientLine in mapsClientTable {
             
@@ -120,9 +122,12 @@ class OsfHandler {
         
         let mapItems = removeLastCommaSymbol(currentCategoryMaps)
         
+        let categoryEn = previousCategoryNameEn.replacingOccurrences(of: "Overlay", with: "Layer")
+        let categoryRu = previousCategoryNameRu.replacingOccurrences(of: "Overlay", with: "Layer")
+        
         jsonBlock = jsonBlock.replacingOccurrences(of: "{$category}", with: categoryPath)
-        jsonBlock = jsonBlock.replacingOccurrences(of: "{$categoryLabelEn}", with: previousCategoryNameEn)
-        jsonBlock = jsonBlock.replacingOccurrences(of: "{$categoryLabelRu}", with: previousCategoryNameRu)
+        jsonBlock = jsonBlock.replacingOccurrences(of: "{$categoryLabelEn}", with: categoryEn)
+        jsonBlock = jsonBlock.replacingOccurrences(of: "{$categoryLabelRu}", with: categoryRu)
         jsonBlock = jsonBlock.replacingOccurrences(of: "{$mapItems}", with: mapItems)
         
         allGeneratedMapCategories.append(jsonBlock)
@@ -139,8 +144,10 @@ class OsfHandler {
         
         var mapItem = textTemplates.oneMapItem
         
-        let nameLabelRu = mapClientLine.emojiGroupRu + " " + mapClientLine.shortName
-        let nameLabelEn = mapClientLine.emojiGroupEn + " " + mapClientLine.shortNameEng
+        //let nameLabelRu = mapClientLine.emojiGroupRu + " " + mapClientLine.shortName
+        //let nameLabelEn = mapClientLine.emojiGroupEn + " " + mapClientLine.shortNameEng
+        let nameLabelRu = mapClientLine.osfPrefix + " " + mapClientLine.shortName
+        let nameLabelEn = mapClientLine.osfPrefix + " " + mapClientLine.shortNameEng
         
         var format = ""
         var extantion = ""
@@ -170,6 +177,15 @@ class OsfHandler {
         
         let date = getDateStringFrom(timestamp: mapClientLine.lastUpdateTime)
         let timestamp = String(mapClientLine.lastUpdateTime)
+        
+        let firstsubnameEn = mapClientLine.regionNameEn.count > 2 ? mapClientLine.regionNameEn : "Global"
+        let firstsubnameRu = mapClientLine.regionNameRu.count > 2 ? mapClientLine.regionNameRu : "Глобальное покрытие"
+        let secondsubnameEn = mapClientLine.subregionNameEn.count > 2 ? mapClientLine.subregionNameEn : ""
+        let secondsubnameRu = mapClientLine.subregionNameRu.count > 2 ? mapClientLine.subregionNameRu : ""
+        
+        let mapServerLine = baseHandler.getMapsServerDataBy(name: mapClientLine.anygisMapName)!
+        let descriptionEn = textTemplates.getDescriptionEn(mapClientLine, mapServerLine, date)
+        let descriptionRu = textTemplates.getDescriptionEn(mapClientLine, mapServerLine, date)
 
         
         mapItem = mapItem.replacingOccurrences(of: "{$mapLabelEn}", with: nameLabelEn)
@@ -181,6 +197,12 @@ class OsfHandler {
         mapItem = mapItem.replacingOccurrences(of: "{$filenameRu}", with: fileNameRu)
         mapItem = mapItem.replacingOccurrences(of: "{$downloadurl}", with: url)
         mapItem = mapItem.replacingOccurrences(of: "{$imagePreview}", with: tileUrl)
+        mapItem = mapItem.replacingOccurrences(of: "{$firstsubnameEn}", with: firstsubnameEn)
+        mapItem = mapItem.replacingOccurrences(of: "{$firstsubnameRu}", with: firstsubnameRu)
+        mapItem = mapItem.replacingOccurrences(of: "{$secondsubnameEn}", with: secondsubnameEn)
+        mapItem = mapItem.replacingOccurrences(of: "{$secondsubnameRu}", with: secondsubnameRu)
+        mapItem = mapItem.replacingOccurrences(of: "{$descriptionEn}", with: descriptionEn)
+        mapItem = mapItem.replacingOccurrences(of: "{$descriptionRu}", with: descriptionRu)
         
         currentCategoryMaps.append(mapItem)
     }

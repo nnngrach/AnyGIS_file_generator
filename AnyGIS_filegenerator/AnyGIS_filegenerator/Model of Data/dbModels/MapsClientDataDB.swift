@@ -35,6 +35,11 @@ struct MapsClientDataDB {
     static let layersIDList = Expression<String?>("layersIDList")
     static let visible = Expression<Bool?>("visible")
     
+    static let regionNameRu = Expression<String?>("regionNameRu")
+    static let regionNameEn = Expression<String?>("regionNameEn")
+    static let subregionNameRu = Expression<String?>("subregionNameRu")
+    static let subregionNameEn = Expression<String?>("subregionNameEn")
+    
     static let countries = Expression<String?>("countries")
     static let usage = Expression<String?>("usage")
     
@@ -66,6 +71,7 @@ struct MapsClientDataDB {
     
     static let emojiGroupRu = Expression<String?>("emojiGroupRu")
     static let emojiGroupEn = Expression<String?>("emojiGroupEn")
+    static let osfPrefix = Expression<String?>("osfPrefix")
     
     static let lastUpdateTime = Expression<Int64?>("lastUpdateTime")
 }
