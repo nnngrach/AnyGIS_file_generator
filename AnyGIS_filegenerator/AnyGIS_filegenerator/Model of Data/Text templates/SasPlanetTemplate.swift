@@ -172,4 +172,16 @@ class SasPlanetTemplate {
         }
     }
     
+    
+    
+    public func getInfoFileContent() -> String {
+        return rn +
+            "Этот файл был создан автоматически с помощью файло-генератора AnyGIS.ru" + rn +
+            "Он должен работать с SasPlanet версии 200127.10112 (nightly) и новее." + rn +
+            "Если вы заметили ошибку, свяжитесь со мной и сообщите о ней:" + rn + rn +
+            "https://t.me/anygis" + rn +
+            "https://vk.com/anygis" + rn +
+            "anygis@bk.ru"
+    }
+    
 }

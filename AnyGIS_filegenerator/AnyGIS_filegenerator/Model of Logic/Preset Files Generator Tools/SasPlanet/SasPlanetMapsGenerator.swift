@@ -77,9 +77,11 @@ class SasPlanetMapsGenerator {
         
         diskHandler.createFile(patch: folderPath + "params.txt", content: paramsContent, isWithBOM: true)
         
+        diskHandler.createFile(patch: folderPath + "info.txt", content: textTemplate.getInfoFileContent(), isWithBOM: true)
+        
         
         // Copy unchanging txt files
-        diskHandler.secureCopyItem(at: filePathes.localPathToSasPlanetTemplates + "info.txt", to: folderPath + "info.txt")
+        //diskHandler.secureCopyItem(at: filePathes.localPathToSasPlanetTemplates + "info.txt", to: folderPath + "info.txt")
         
         
         // Copy one of standatd icon files
