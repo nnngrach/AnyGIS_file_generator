@@ -35,7 +35,8 @@ struct FilePathTemplates {
     
     let localPathToLocusIcons = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Icons"
     let localPathToLocusInstallers = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Installers"
-    let localPathToGeoJson = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/GeoJson"
+    
+    let localPathToGPX = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Gpx"
     
     
     let localPathToLocusMapsZip = "file:////Users/Shared/Old_catalog/Projects/GIS/Online%20map%20sources/map-sources/Locus_online_maps/Zip/"

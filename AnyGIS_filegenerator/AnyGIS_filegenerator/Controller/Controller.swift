@@ -19,20 +19,23 @@ class Controller {
     private let sasPlanetGenerator = SasPlanetMapsGenerator()
     private let menuGenerator = WebPagesMenuGenerator()
     private let webPagesListGenerator = WebPagesMapsListGenerator()
+    private let westraParser = WestraParser()
+    
 
     public func generateAll() {
-        generateWebPages()
-        generateMapsForGuru()
-        generateMapsForOrux()
-        generateMapsForOsmand()
-        generateMapsForOsmandMetainfo()
-        generateMapsForOsmandOsf()
-        generateMapsForAlpine()
-        generateMapsForLocus()
-        generateInstallersForLocus()
-        generateMapsForDesktop()
-        generateMapsForSasPlanet()
-        cleanAndZip()
+//        generateWebPages()
+//        generateMapsForGuru()
+//        generateMapsForOrux()
+//        generateMapsForOsmand()
+//        generateMapsForOsmandMetainfo()
+//        generateMapsForOsmandOsf()
+//        generateMapsForAlpine()
+//        generateMapsForLocus()
+//        generateInstallersForLocus()
+//        generateMapsForDesktop()
+//        generateMapsForSasPlanet()
+//        cleanAndZip()
+        westraParser.generateWestraPassesGPX()
     }
 
     public func generateInstallersForLocus() {

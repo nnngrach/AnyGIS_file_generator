@@ -9,10 +9,21 @@
 import Foundation
 
 struct WestraPassNakarte: Codable {
+    var id: String?
     var name: String?
-    var elevation: String?
+    var altnames:String?
     var latlon: [Double]
-    var grade_eng: String
+    var elevation: String?
+    var grade_eng: String?
     var grade: String?
     var is_summit: Int?
+    var connects: String?
+    var slopes: String?
+    var author: String?
+    var comments: [WestraPassNakarteComments]?
+}
+
+struct WestraPassNakarteComments: Codable {
+    var content: String?
+    var user: String?
 }
