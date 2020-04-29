@@ -23,19 +23,19 @@ class Controller {
     
 
     public func generateAll() {
-//        generateWebPages()
-//        generateMapsForGuru()
-//        generateMapsForOrux()
-//        generateMapsForOsmand()
-//        generateMapsForOsmandMetainfo()
-//        generateMapsForOsmandOsf()
-//        generateMapsForAlpine()
-//        generateMapsForLocus()
-//        generateInstallersForLocus()
-//        generateMapsForDesktop()
-//        generateMapsForSasPlanet()
-//        cleanAndZip()
-        westraParser.generateWestraPassesGPX()
+        generateWebPages()
+        generateMapsForGuru()
+        generateMapsForOrux()
+        generateMapsForOsmand()
+        generateMapsForOsmandMetainfo()
+        generateMapsForOsmandOsf()
+        generateMapsForAlpine()
+        generateMapsForLocus()
+        generateInstallersForLocus()
+        generateMapsForDesktop()
+        generateMapsForSasPlanet()
+        cleanAndZip()
+        westraParser.generateGpxFile(forLocus: false)
     }
 
     public func generateInstallersForLocus() {

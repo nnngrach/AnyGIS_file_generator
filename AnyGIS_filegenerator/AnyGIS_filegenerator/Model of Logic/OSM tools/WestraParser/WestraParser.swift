@@ -15,7 +15,7 @@ class WestraParser {
     private let patchTemplates = FilePathTemplates()
     
     
-    public func generateWestraPassesGPX() {
+    public func generateGpxFile(forLocus: Bool) {
         let urlWithPassesJson = "https://nakarte.me/westraPasses/westra_passes.json"
         guard let url = URL(string: urlWithPassesJson) else {return}
         
@@ -23,15 +23,16 @@ class WestraParser {
             guard error == nil else {return}
             guard let data = data else {return}
             
-            self.generateGpxFromFetchedData(data)
+            self.generateGpxFromFetchedData(data, forLocus)
         }.resume()
     }
     
     
-    private func generateGpxFromFetchedData(_ data: Data) {
+    private func generateGpxFromFetchedData(_ data: Data, _ forLocus: Bool) {
         do {
             let pointsObjects = try self.encodeFromJson(data)
-            let gpxFileContent = self.createGpxContent(using: pointsObjects)
+            let gpxPointsContent = forLocus ? self.createGpxContentForLocus(using: pointsObjects) : self.createGpxContentUniversal(using: pointsObjects)
+            let gpxFileContent = self.getFullGpxFileContent(with: gpxPointsContent)
             let savingPatch = self.patchTemplates.localPathToGPX + "/WestraPasses.gpx"
             self.diskHandler.createFile(patch: savingPatch, content: gpxFileContent, isWithBOM: false)
         } catch let error {
@@ -45,7 +46,29 @@ class WestraParser {
     }
     
     
-    private func createGpxContent(using nakartePasses: [WestraPassNakarte]) -> String {
+    private func createGpxContentUniversal(using nakartePasses: [WestraPassNakarte]) -> String {
+       var pointsBlocks = ""
+              
+            for point in nakartePasses {
+
+                let grade = point.grade ?? "?"
+                let name = point.name ?? "?"
+                let elevation = point.elevation ?? "?"
+                
+                pointsBlocks +=
+                """
+                <wpt lat="\(point.latlon[0])" lon="\(point.latlon[1])">
+                    <name>\(grade) - "\(name)" (\(elevation) m)</name>
+                </wpt>
+
+                """
+          }
+              
+          return pointsBlocks
+    }
+    
+        
+    private func createGpxContentForLocus(using nakartePasses: [WestraPassNakarte]) -> String {
         var pointsBlocks = ""
         
         for point in nakartePasses {
@@ -111,8 +134,13 @@ class WestraParser {
             """
         }
         
-        
-        let fullFileContent = """
+        return pointsBlocks
+    }
+    
+    
+    
+    private func getFullGpxFileContent(with pointsContent: String) -> String {
+        return """
         <?xml version="1.0" encoding="utf-8" standalone="yes"?>
         <gpx version="1.1"
          xmlns="http://www.topografix.com/GPX/1/1"
@@ -122,13 +150,10 @@ class WestraParser {
          xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3"
          xmlns:gpxtrkx="http://www.garmin.com/xmlschemas/TrackStatsExtension/v1"
          xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v2">
-        \(pointsBlocks)
+        \(pointsContent)
         </gpx>
         """
-        
-        return fullFileContent
     }
-    
     
     
     
